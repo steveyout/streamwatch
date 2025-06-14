@@ -1,20 +1,20 @@
 {
     "about": {
-        "description": "P-Stream er vefforrit sem leitar á netinu að straumum. Markmið liðsins er naumhyggju nálgun á að horfa á efni.",
+        "description": "StreamWatch er vefforrit sem leitar á netinu að straumum. Markmið liðsins er naumhyggju nálgun á að horfa á efni.",
         "faqTitle": "Algengar spurningar",
         "q1": {
-            "body": "P-Stream hýsir ekki neitt efni. Þegar þú ýtir á eitthvað til að horfa á, leitað er á netinu fyrir það efni (Þú getur séð hvaða heimild við erum að nota á hleðslu skjánum og í 'myndbands heimildir' flipanum). Skrár eru aldrei settar in af P-Stream, allt er í gegnum leitarvél.",
+            "body": "StreamWatch hýsir ekki neitt efni. Þegar þú ýtir á eitthvað til að horfa á, leitað er á netinu fyrir það efni (Þú getur séð hvaða heimild við erum að nota á hleðslu skjánum og í 'myndbands heimildir' flipanum). Skrár eru aldrei settar in af StreamWatch, allt er í gegnum leitarvél.",
             "title": "Hvaðan kemur efnið?"
         },
         "q2": {
-            "body": "Þú getur ekki beðið um þætti eða myndir, P-Stream stýrir ekki neinu efni. Allt efni er skoðað í gegnum heimildir á netinu.",
+            "body": "Þú getur ekki beðið um þætti eða myndir, StreamWatch stýrir ekki neinu efni. Allt efni er skoðað í gegnum heimildir á netinu.",
             "title": "Hvar get ég beðið um þætti eða myndir?"
         },
         "q3": {
             "body": "Leitarniðurstöður okkar eru knúnar af The Movie Database (TMDB) og eru sýndar þótt að heimildir okkar hafa ekki efnið.",
             "title": "Leitarniðurstöðurnar sýna þættina eða myndina, af hverju get ég ekki spilað það?"
         },
-        "title": "Um P-Stream"
+        "title": "Um StreamWatch"
     },
     "actions": {
         "copied": "Afritað",
@@ -82,7 +82,7 @@
     "footer": {
         "legal": {
             "disclaimer": "Fyrirvari",
-            "disclaimerText": "P-Stream hýsir engar skrár, það tengist eingöngu þjónustu þriðja aðila. Lagleg atriði ættu að vera rædd við skráarhýsinga og veitanda. P-Stream er ekki ábyrg fyrir neinum skrám sýndar af myndbands veitöndum."
+            "disclaimerText": "StreamWatch hýsir engar skrár, það tengist eingöngu þjónustu þriðja aðila. Lagleg atriði ættu að vera rædd við skráarhýsinga og veitanda. StreamWatch er ekki ábyrg fyrir neinum skrám sýndar af myndbands veitöndum."
         },
         "links": {
             "discord": "Discord",
@@ -92,13 +92,13 @@
         "tagline": "Horfðu á uppáhalds þætti og myndirnar þínar með þessu opna hugbúnaða forriti."
     },
     "global": {
-        "name": "P-Stream",
+        "name": "StreamWatch",
         "pages": {
             "about": "Um",
             "dmca": "DMCA",
             "login": "Skrá inn",
             "onboarding": "Setja upp",
-            "pagetitle": "{{title}} - P-Stream",
+            "pagetitle": "{{title}} - StreamWatch",
             "register": "Skrá",
             "settings": "Stillingar"
         }
@@ -235,7 +235,7 @@
                     "title": "Sérsniðið umboð"
                 }
             },
-            "title": "Komum þér í uppsetningu með P-Stream"
+            "title": "Komum þér í uppsetningu með StreamWatch"
         }
     },
     "overlays": {
@@ -252,10 +252,10 @@
         "menus": {
             "downloads": {
                 "copyHlsPlaylist": "Afrita HLS spilalista hlekk",
-                "disclaimer": "Niðurhalningar eru teknar beint frá heimildini. P-Stream hefur engan kraft yfir hvernig niðurhalningarnar eru gefnar.",
+                "disclaimer": "Niðurhalningar eru teknar beint frá heimildini. StreamWatch hefur engan kraft yfir hvernig niðurhalningarnar eru gefnar.",
                 "downloadSubtitle": "Hlaða niður nú verandi texta",
                 "downloadVideo": "Hlaða niður myndbandi",
-                "hlsDisclaimer": "Niðurhalningar eru teknar beint frá heimildini. P-Stream hefur engan kraft yfir hvernig niðurhalningarnar eru gefnar.<br /><br />Vinsamlegast fattaðu að þú ert að niðurhala HLS spilunarlista, <bold>það er ekki mælt með að niðurhala ef þú kannt ekki mikið á háþróað streymis sniði.</bold>. Reyndu aðrar heimildir fyrir önnur sniði.",
+                "hlsDisclaimer": "Niðurhalningar eru teknar beint frá heimildini. StreamWatch hefur engan kraft yfir hvernig niðurhalningarnar eru gefnar.<br /><br />Vinsamlegast fattaðu að þú ert að niðurhala HLS spilunarlista, <bold>það er ekki mælt með að niðurhala ef þú kannt ekki mikið á háþróað streymis sniði.</bold>. Reyndu aðrar heimildir fyrir önnur sniði.",
                 "onAndroid": {
                     "1": "Til þess að niðurhala á Android, ýttu á niðurhalningar takkan síðan, á nýju síðunni, <bold>smelltu og haltu niðri</bold> á myndbandinu, veldu síðan <bold>vista</bold>.",
                     "shortTitle": "Hlaða niður / Android",
@@ -397,7 +397,7 @@
             "shortRemaining": "-{{timeLeft}}"
         },
         "turnstile": {
-            "description": "Vinsamlegast sannreyndu að þú sért manneskja með því að klára Captcha-ið til hægri. Þetta er til þess að halda P-Stream öruggu!",
+            "description": "Vinsamlegast sannreyndu að þú sért manneskja með því að klára Captcha-ið til hægri. Þetta er til þess að halda StreamWatch öruggu!",
             "error": "Mistókst að sannreyna að þú sért manneskja. Vinsamlegast reyndu aftur.",
             "title": "Við þurfum að sannræna að þú ert manneskja.",
             "verifyingHumanity": "Að sannræna að þú sért manneskja..."

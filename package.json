@@ -1,9 +1,9 @@
 {
   "packageManager": "pnpm@9.14.4",
-  "name": "P-Stream",
+  "name": "StreamWatch",
   "version": "5.0.0",
   "private": true,
-  "homepage": "https://github.com/p-stream/p-stream",
+  "homepage": "https://github.com/steveyout/Streamwatch",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -36,7 +36,7 @@
     "@headlessui/react": "^1.7.19",
     "@ladjs/country-language": "^1.0.3",
     "@marsidev/react-turnstile": "^0.7.2",
-    "@movie-web/providers": "github:p-stream/providers#production",
+    "@movie-web/providers": "github:steveyout/providers#production",
     "@noble/hashes": "^1.8.0",
     "@plasmohq/messaging": "^0.6.2",
     "@react-spring/web": "^9.7.5",

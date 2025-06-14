@@ -1,6 +1,6 @@
 {
-  "name": "P-Stream",
-  "short_name": "P-Stream",
+  "name": "StreamWatch",
+  "short_name": "StreamWatch",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#120f1d",

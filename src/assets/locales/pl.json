@@ -1,23 +1,23 @@
 {
     "about": {
-        "description": "P-Stream jest aplikacją internetową, która wyszukuje w internecie strumienia. Zespół dąży do minimalistycznego podejścia do konsumpcji treści.",
+        "description": "StreamWatch jest aplikacją internetową, która wyszukuje w internecie strumienia. Zespół dąży do minimalistycznego podejścia do konsumpcji treści.",
         "faqTitle": "Częste pytania",
         "q1": {
-            "body": "P-Stream nie udostępnia żadnych treści. Kiedy klikniesz na coś co chcesz obejrzeć, internet zostanie przeszukany pod kątem wybranych multimediów (na ekranie ładowania oraz w zakładce „źródła wideo” możesz zobaczyć, z jakiego źródła korzystasz). Media nigdy nie są przesyłane przez P-Stream, wszystko odbywa się za pośrednictwem tego mechanizmu wyszukiwania.",
+            "body": "StreamWatch nie udostępnia żadnych treści. Kiedy klikniesz na coś co chcesz obejrzeć, internet zostanie przeszukany pod kątem wybranych multimediów (na ekranie ładowania oraz w zakładce „źródła wideo” możesz zobaczyć, z jakiego źródła korzystasz). Media nigdy nie są przesyłane przez StreamWatch, wszystko odbywa się za pośrednictwem tego mechanizmu wyszukiwania.",
             "title": "Skąd pochodzą treści?"
         },
         "q2": {
-            "body": "Nie można złożyć wniosku o serialu ani filmu, P-Stream nie zarządza żadną treścią. Wszystkie treści są przeglądane za pośrednictwem źródeł w Internecie.",
+            "body": "Nie można złożyć wniosku o serialu ani filmu, StreamWatch nie zarządza żadną treścią. Wszystkie treści są przeglądane za pośrednictwem źródeł w Internecie.",
             "title": "Gdzie mogę złożyć wniosek o seriale lub filmie?"
         },
         "q3": {
             "body": "Nasze wyniki wyszukiwania pochodzą z TMDB i są wyświetlane niezależnie od tego, czy nasze źródła faktycznie posiadają daną treść.",
             "title": "W wyniku wyszukiwania wyświetlany jest serial lub film. Dlaczego nie mogę go odtworzyć?"
         },
-        "title": "O P-Stream",
+        "title": "O StreamWatch",
         "q5": {
             "title": "Jak mogę dowiedzieć się więcej?",
-            "body": "P-Stream ma swój serwer Discord, który znajdziesz w nagłówku strony!"
+            "body": "StreamWatch ma swój serwer Discord, który znajdziesz w nagłówku strony!"
         },
         "q4": {
             "title": "Co z moimi danymi?"
@@ -89,7 +89,7 @@
     "footer": {
         "legal": {
             "disclaimer": "Zastrzeżenie",
-            "disclaimerText": "P-Stream nie przechowuje żadnych plików, zawiera jedynie łącza do usług stron trzecich. Kwestie prawne należy konsultować z hostami plików i dostawcami. P-Stream nie ponosi odpowiedzialności za jakiekolwiek pliki multimedialne prezentowane przez dostawców wideo."
+            "disclaimerText": "StreamWatch nie przechowuje żadnych plików, zawiera jedynie łącza do usług stron trzecich. Kwestie prawne należy konsultować z hostami plików i dostawcami. StreamWatch nie ponosi odpowiedzialności za jakiekolwiek pliki multimedialne prezentowane przez dostawców wideo."
         },
         "links": {
             "discord": "Discord",
@@ -100,13 +100,13 @@
         "tagline": "Oglądaj swoje ulubione seriale i filmy za pomocą tej aplikacji streamingowej typu open source."
     },
     "global": {
-        "name": "P-Stream",
+        "name": "StreamWatch",
         "pages": {
             "about": "Informacje",
             "dmca": "DMCA",
             "login": "Zaloguj sie",
             "onboarding": "Konfiguracja",
-            "pagetitle": "{{title}} - P-Stream",
+            "pagetitle": "{{title}} - StreamWatch",
             "register": "Zarejestruj się",
             "settings": "Ustawienia",
             "discover": "Odkrywaj",
@@ -135,11 +135,11 @@
                     "Co chcesz odkryć?",
                     "Co znajduje się na Twojej liście do obejrzenia?",
                     "Jaki jest twój ulubiony film?",
-                    "P-Stream to najlepsza strona!",
+                    "StreamWatch to najlepsza strona!",
                     "Co chcesz dzisiaj zobaczyć?",
                     "Jak minął Ci dzień?",
                     null,
-                    "Czy P-Stream nie jest najlepszy?",
+                    "Czy StreamWatch nie jest najlepszy?",
                     ">ᴗ<"
                 ]
             },
@@ -275,7 +275,7 @@
                     "title": "Niestandardowy serwer proxy"
                 }
             },
-            "title": "Przejdźmy do konfiguracji z P-Stream"
+            "title": "Przejdźmy do konfiguracji z StreamWatch"
         }
     },
     "overlays": {
@@ -292,10 +292,10 @@
         "menus": {
             "downloads": {
                 "copyHlsPlaylist": "Kopiuj link do listy odtwarzania HLS",
-                "disclaimer": "Pliki do pobrania są pobierane bezpośrednio od dostawcy. P-Stream nie ma kontroli nad sposobem dostarczania plików do pobrania.",
+                "disclaimer": "Pliki do pobrania są pobierane bezpośrednio od dostawcy. StreamWatch nie ma kontroli nad sposobem dostarczania plików do pobrania.",
                 "downloadSubtitle": "Pobierz aktualne napisy",
                 "downloadVideo": "Pobierz wideo",
-                "hlsDisclaimer": "Pliki do pobrania są pobierane bezpośrednio od dostawcy. P-Stream nie ma kontroli nad sposobem dostarczania plików do pobrania.<br /><br />Należy pamiętać, że pobierasz playlistę HLS, <bold>nie zaleca się pobierania, jeśli nie jesteś zaznajomiony z zaawansowanymi formatami przesyłania strumieniowego</bold>. Wypróbuj różne źródła dla innych formatów.",
+                "hlsDisclaimer": "Pliki do pobrania są pobierane bezpośrednio od dostawcy. StreamWatch nie ma kontroli nad sposobem dostarczania plików do pobrania.<br /><br />Należy pamiętać, że pobierasz playlistę HLS, <bold>nie zaleca się pobierania, jeśli nie jesteś zaznajomiony z zaawansowanymi formatami przesyłania strumieniowego</bold>. Wypróbuj różne źródła dla innych formatów.",
                 "onAndroid": {
                     "1": "Aby pobrać na Androidzie, kliknij przycisk pobierania, a następnie na nowej stronie <bold>dotknij i przytrzymaj</bold> na filmie, a następnie wybierz <bold>zapisz</bold>.",
                     "shortTitle": "Pobierz / Android",
@@ -439,7 +439,7 @@
             "shortRemaining": "-{{timeLeft}}"
         },
         "turnstile": {
-            "description": "Proszę potwierdź że jesteś człowiekiem, wypełniając Captcha po prawej stronie. Ma to zapewnić bezpieczeństwo P-Stream!",
+            "description": "Proszę potwierdź że jesteś człowiekiem, wypełniając Captcha po prawej stronie. Ma to zapewnić bezpieczeństwo StreamWatch!",
             "error": "Nie udało się zweryfikować Twojego człowieczeństwa. Proszę spróbuj ponownie.",
             "title": "Musimy sprawdzić, czy jesteś człowiekiem.",
             "verifyingHumanity": "Sprawdzasz swoje człowieczeństwo..."

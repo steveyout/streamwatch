@@ -1,6 +1,6 @@
 {
   "about": {
-    "description": "P-Stream is a fork of movie-web that is ensured to stay up even after the shutdown of movie-web.app. P-Stream runs on a private, self-hosted VPS. I run this site at a loss; there are very minimal ads due to my beliefs in free media.",
+    "description": "StreamWatch is a fork of movie-web that is ensured to stay up even after the shutdown of movie-web.app. StreamWatch runs on a private, self-hosted VPS. I run this site at a loss; there are very minimal ads due to my beliefs in free media.",
     "help": "Can't find an answer? <0>Get support here.</0>",
     "faqTitle": "Common questions",
     "searchPlaceholder": "Search FAQ...",
@@ -13,12 +13,12 @@
     },
     "q1": {
       "title": "Where does the content come from?",
-      "body": "P-Stream does not host any content. When you click on something to watch, the internet is searched for the selected media (On the loading screen and in the 'video sources' tab you can see which source you're using). Media never gets uploaded by P-Stream, everything is through this searching mechanism.",
+      "body": "StreamWatch does not host any content. When you click on something to watch, the internet is searched for the selected media (On the loading screen and in the 'video sources' tab you can see which source you're using). Media never gets uploaded by StreamWatch, everything is through this searching mechanism.",
       "section": "general"
     },
     "q2": {
       "title": "Where can I request a show or movie?",
-      "body": "It's not possible to request a show or movie, P-Stream does not manage any content. All content is viewed through sources on the internet.",
+      "body": "It's not possible to request a show or movie, StreamWatch does not manage any content. All content is viewed through sources on the internet.",
       "section": "search"
     },
     "q3": {
@@ -33,11 +33,11 @@
     },
     "q5": {
       "title": "How can I find out more?",
-      "body": "P-Stream has a Discord server that can be found at the header of this page!",
+      "body": "StreamWatch has a Discord server that can be found at the header of this page!",
       "section": "general"
     },
     "q6": {
-      "title": "Is there a P-Stream app?",
+      "title": "Is there a StreamWatch app?",
       "body": "Not yet, but you can install it as a PWA (Progressive Web App). On iOS, use Safari → Share → Add to Home Screen. On Android, use Chrome → 3 dots → Add to Home Screen. An experimental APK is available via our Discord, but it's not recommended.",
       "section": "general"
     },
@@ -136,7 +136,7 @@
       "body": "Use the \"Customize\" option in subtitle settings or tap [ and ] on your keyboard to adjust. You can also upload your own subtitle file.",
       "section": "language"
     },
-    "title": "About P-Stream and FAQ (^▽^)"
+    "title": "About StreamWatch and FAQ (^▽^)"
   },
   "actions": {
     "copied": "Copied",
@@ -204,7 +204,7 @@
   "footer": {
     "legal": {
       "disclaimer": "Disclaimer ◝(ᵔᵕᵔ)◜",
-      "disclaimerText": "Please note: P-Stream does not host any files itself but instead only display's content from 3rd party providers. Legal issues should be taken up with them."
+      "disclaimerText": "Please note: StreamWatch does not host any files itself but instead only display's content from 3rd party providers. Legal issues should be taken up with them."
     },
     "links": {
       "discord": "Discord",
@@ -216,7 +216,7 @@
     "tagline": "Watch your favorite shows and movies for free with no ads ever! (っ'ヮ'c)"
   },
   "global": {
-    "name": "P-Stream",
+    "name": "StreamWatch",
     "pages": {
       "about": "About and FAQ",
       "dmca": "DMCA",
@@ -224,7 +224,7 @@
       "support": "Support",
       "login": "Login",
       "onboarding": "Setup",
-      "pagetitle": "{{title}} - P-Stream",
+      "pagetitle": "{{title}} - StreamWatch",
       "register": "Register",
       "settings": "Settings",
       "migration": "Migrate Account",
@@ -252,11 +252,11 @@
           "What are you in the mood for?",
           "Should we delete your browser history?",
           "What do you want to stream?",
-          "P-Stream is the best site ever!",
+          "StreamWatch is the best site ever!",
           "What's on your watchlist today?",
           "How was your day?",
           "My bad the site never works...",
-          "Isn't P-Stream just the best?",
+          "Isn't StreamWatch just the best?",
           ">ᴗ<"
         ]
       },
@@ -281,15 +281,15 @@
     "titles": {
       "day": {
         "default": "What would you like to watch this afternoon?",
-        "extra": ["Viva la P-Stream!"]
+        "extra": ["Viva la StreamWatch!"]
       },
       "morning": {
         "default": "What would you like to watch this morning?",
-        "extra": ["Viva la P-Stream!"]
+        "extra": ["Viva la StreamWatch!"]
       },
       "night": {
         "default": "What would you like to watch tonight?",
-        "extra": ["Viva la P-Stream!"]
+        "extra": ["Viva la StreamWatch!"]
       },
       "420": {
         "default": "What would you like to watch this 4/20?",
@@ -444,7 +444,7 @@
   "downtimeNotice": {
     "badge": "Issues",
     "goHome": "Go home",
-    "message": "P-Stream is experiencing issues with some providers again, if you cant find or play a show please change the source. Expect this error to persist throughout the below times.",
+    "message": "StreamWatch is experiencing issues with some providers again, if you cant find or play a show please change the source. Expect this error to persist throughout the below times.",
     "title": "Provider issues"
   },
   "onboarding": {
@@ -494,19 +494,19 @@
         "button": "More info",
         "title": "Understanding a setup",
         "explainer": {
-          "intro": "P-Stream doesn't host videos. It relies on third-party websites for content, so you need to choose how it connects to those sites.",
+          "intro": "StreamWatch doesn't host videos. It relies on third-party websites for content, so you need to choose how it connects to those sites.",
           "options": "Your Options:",
           "extension": "1. Extension",
           "extensionDescription": "The extension gives you access to the most sources. It acts as a local proxy and can handle sites that need special cookies or headers to load.",
           "proxy": "2. Proxy",
           "proxyDescription": "The proxy scrapes media from other websites. It bypasses browser restrictions (like CORS) to allow scraping.",
           "default": "3. Default Setup",
-          "defaultDescription": "Uses P-Stream's built-in proxy. It's the easiest option but might be slower due to shared bandwidth.",
+          "defaultDescription": "Uses StreamWatch's built-in proxy. It's the easiest option but might be slower due to shared bandwidth.",
           "fedapi": {
             "fedapi": "Additional: FED API (Private) token",
             "fedapiDescription": "Bring your own FREE Febbox account to gain access to FED API (Private), the best source with 4K quality, Dolby Atmos, skip intro and the fastest load times! Highly recommended option!"
           },
-          "outro": "If you have more questions on how this works, feel free to ask on the <0>P-Stream Discord</0> server!"
+          "outro": "If you have more questions on how this works, feel free to ask on the <0>StreamWatch Discord</0> server!"
         },
         "recommended": {
           "title": "Not sure what to choose?",
@@ -543,7 +543,7 @@
           "title": "Custom proxy"
         }
       },
-      "title": "Let's get you setup with P-Stream 🥳"
+      "title": "Let's get you setup with StreamWatch 🥳"
     }
   },
   "overlays": {
@@ -561,11 +561,11 @@
       "downloads": {
         "button": "Atempt download",
         "hlsDownloader": "Or, go to the <0>hls downloader website</0> and paste the playlist URL from below.",
-        "disclaimer": "Downloads are taken directly from the provider. P-Stream does not have control over how the downloads are provided.",
+        "disclaimer": "Downloads are taken directly from the provider. StreamWatch does not have control over how the downloads are provided.",
         "copyHlsPlaylist": "Copy HLS playlist link",
         "downloadSubtitle": "Download current subtitle",
         "downloadVideo": "Download video",
-        "hlsDisclaimer": "Downloads are taken directly from the provider. P-Stream does not have control over how the downloads are provided.<br /><br />Please note you are downloading an HLS playlist, <bold>it is not recommended to download if you are not familiar with advanced streaming formats</bold>. Try different sources for different formats.",
+        "hlsDisclaimer": "Downloads are taken directly from the provider. StreamWatch does not have control over how the downloads are provided.<br /><br />Please note you are downloading an HLS playlist, <bold>it is not recommended to download if you are not familiar with advanced streaming formats</bold>. Try different sources for different formats.",
         "onAndroid": {
           "1": "To download on Android, click the download button then, on the new page, <bold>tap and hold</bold> on the video, then select <bold>save</bold>.",
           "shortTitle": "Download / Android",
@@ -731,7 +731,7 @@
         "homeButton": "Go home",
         "enableExtension": "Enable extension",
         "title": "Please enable the extension",
-        "text": "You've installed the P-Stream extension. To start using it, you need to enable the extension for this site."
+        "text": "You've installed the StreamWatch extension. To start using it, you need to enable the extension for this site."
       },
       "tips": {
         "1": "Tap the gear icon to switch sources!",
@@ -764,7 +764,7 @@
       "shortRemaining": "-{{timeLeft}}"
     },
     "turnstile": {
-      "description": "Please prove your humanity by completing the quick challenge, this is to keep P-Stream safe.",
+      "description": "Please prove your humanity by completing the quick challenge, this is to keep StreamWatch safe.",
       "error": "Failed to verify your humanity - stream failed to load. Clear your cache and try again, or switch to a different source (tap the gear).",
       "title": "Are You a Robot 🤖?",
       "verifyingHumanity": "Verifying your humanity... (^▽^)👍"
@@ -772,9 +772,9 @@
   },
   "support": {
     "title": "Support",
-    "text": "P-Stream is designed to be as user-friendly as possible. However, people still have questions and issues. This page is here to help resolve these shortcomings",
+    "text": "StreamWatch is designed to be as user-friendly as possible. However, people still have questions and issues. This page is here to help resolve these shortcomings",
     "q1": {
-      "body": "Well, you can join the official <0>P-Stream discord</0> and ask questions there or you can email the one provided at the bottom of this page.",
+      "body": "Well, you can join the official <0>StreamWatch discord</0> and ask questions there or you can email the one provided at the bottom of this page.",
       "title": "Where can I get help?"
     },
     "q2": {
@@ -784,9 +784,9 @@
   },
   "jip": {
     "title": "Jip",
-    "text": "P-Stream didn't fall out of a coconut tree, it was made mostly by a single person (a very epic one at that).",
+    "text": "StreamWatch didn't fall out of a coconut tree, it was made mostly by a single person (a very epic one at that).",
     "q1": {
-      "body": "Well, you can join the official <0>P-Stream discord</0> and ask questions there or you can email the one provided at the bottom of this page.",
+      "body": "Well, you can join the official <0>StreamWatch discord</0> and ask questions there or you can email the one provided at the bottom of this page.",
       "title": "Where can I get help?"
     },
     "q2": {
@@ -822,7 +822,7 @@
       },
       "admin": {
         "title": "Admin panel",
-        "text": "Utilize tools made for testing P-Stream's condition.",
+        "text": "Utilize tools made for testing StreamWatch's condition.",
         "button": "Check it out"
       },
       "actions": {

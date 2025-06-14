@@ -312,7 +312,7 @@ function FebboxKeyEdit({ febboxKey, setFebboxKey }: FebboxKeyProps) {
                         src="https://player.vimeo.com/video/1059834885?h=c3ab398d42&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
                         allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
                         className="absolute top-0 left-0 w-full h-full border border-type-secondary rounded-lg bg-black"
-                        title="P-Stream FED API Setup Tutorial"
+                        title="StreamWatch FED API Setup Tutorial"
                       />
                     </div>
                     <br />

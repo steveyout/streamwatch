@@ -1,26 +1,26 @@
 {
     "about": {
-        "description": "P-Stream internette akışlar için tarama yapan bir web uygulamasıdır. Ekip, içerik tüketmeye karşı ekseriyetle minimalist bir yaklaşım sergilemektedir.",
+        "description": "StreamWatch internette akışlar için tarama yapan bir web uygulamasıdır. Ekip, içerik tüketmeye karşı ekseriyetle minimalist bir yaklaşım sergilemektedir.",
         "faqTitle": "Sıkça sorulan sorular",
         "q1": {
-            "body": "P-Stream herhangi bir içerik barındırmaz. İzlemek için bir şeye tıkladığınızda, seçilen medya için internette arama yapılır (Yükleme ekranında ve 'video kaynakları' sekmesinde hangi kaynağı kullandığınızı görebilirsiniz). Medya hiçbir zaman P-Stream tarafından yüklenmez, her şey bu arama mekanizması aracılığıyla gerçekleşir.",
+            "body": "StreamWatch herhangi bir içerik barındırmaz. İzlemek için bir şeye tıkladığınızda, seçilen medya için internette arama yapılır (Yükleme ekranında ve 'video kaynakları' sekmesinde hangi kaynağı kullandığınızı görebilirsiniz). Medya hiçbir zaman StreamWatch tarafından yüklenmez, her şey bu arama mekanizması aracılığıyla gerçekleşir.",
             "title": "İçerikler nereden geliyor?"
         },
         "q2": {
-            "body": "Bir dizi veya film talep etmek mümkün değildir, P-Stream içeriklerin hiçbirini yönetmez. Tüm içerikler internet üzerindeki kaynaklar aracılığıyla görüntülenir.",
+            "body": "Bir dizi veya film talep etmek mümkün değildir, StreamWatch içeriklerin hiçbirini yönetmez. Tüm içerikler internet üzerindeki kaynaklar aracılığıyla görüntülenir.",
             "title": "Bir dizi veya filmi nereden talep edebilirim?"
         },
         "q3": {
             "body": "Arama sonuçlarımız The Movie Database (TMDB) tarafından desteklenmektedir ve kaynaklarımızın içeriğe gerçekten sahip olup olmadığına bakılmaksızın görüntülenir.",
             "title": "Arama sonuçları diziyi veya filmi gösteriyor, neden oynatamıyorum?"
         },
-        "title": "P-Stream hakkında",
+        "title": "StreamWatch hakkında",
         "q4": {
             "body": "Tüm veriler topluluk sunucusuyla senkronize edilir, isteyen herkes bunu kullanmakta özgürdür.",
             "title": "Peki ya benim verileri ve bilgilerim?"
         },
         "q5": {
-            "body": "P-Stream’in bir Discord sunucusu var, sayfanın en üst kısmına bak!",
+            "body": "StreamWatch’in bir Discord sunucusu var, sayfanın en üst kısmına bak!",
             "title": "Daha fazlasını nasıl bulabilirim?"
         }
     },
@@ -90,7 +90,7 @@
     "footer": {
         "legal": {
             "disclaimer": "Sorumluluk Reddi",
-            "disclaimerText": "P-Stream herhangi bir dosya barındırmaz, yalnızca 3. parti hizmetlere bağlantı verir. Yasal meseleler, dosya barındırıcıları ve sağlayıcıları ile görüşülmelidir. P-Stream, video sağlayıcıları tarafından gösterilen hiçbir medya dosyasından sorumlu değildir."
+            "disclaimerText": "StreamWatch herhangi bir dosya barındırmaz, yalnızca 3. parti hizmetlere bağlantı verir. Yasal meseleler, dosya barındırıcıları ve sağlayıcıları ile görüşülmelidir. StreamWatch, video sağlayıcıları tarafından gösterilen hiçbir medya dosyasından sorumlu değildir."
         },
         "links": {
             "discord": "Discord",
@@ -102,13 +102,13 @@
         "tagline": "Bu açık kaynaklı akış uygulamasıyla en sevdiğiniz dizileri ve filmleri izleyin."
     },
     "global": {
-        "name": "P-Stream",
+        "name": "StreamWatch",
         "pages": {
             "about": "Hakkında",
             "dmca": "DMCA",
             "login": "Giriş yap",
             "onboarding": "Kur",
-            "pagetitle": "{{title}} - P-Stream",
+            "pagetitle": "{{title}} - StreamWatch",
             "register": "Kayıt ol",
             "settings": "Ayarlar",
             "discover": "Keşfet",
@@ -142,7 +142,7 @@
                     "Bugün izleme listende neler var?",
                     "Günün nasıldı?",
                     "Benim hatam, site hiç çalışmıyor zaten...",
-                    "P-Stream en iyisi değil mi ya?",
+                    "StreamWatch en iyisi değil mi ya?",
                     ">ᴗ<"
                 ]
             },
@@ -285,7 +285,7 @@
                     "title": "Özel Proxy"
                 }
             },
-            "title": "P-Stream ile sizi hazır hale getirelim"
+            "title": "StreamWatch ile sizi hazır hale getirelim"
         }
     },
     "overlays": {
@@ -302,10 +302,10 @@
         "menus": {
             "downloads": {
                 "copyHlsPlaylist": "HLS oynatma listesi bağlantısını kopyala",
-                "disclaimer": "İndirme bağlantıları doğrudan sağlayıcının kendisinden alınır. P-Stream'in sağlanan indirme bağlantıları üzerinde hiçbir konrolü yoktur.",
+                "disclaimer": "İndirme bağlantıları doğrudan sağlayıcının kendisinden alınır. StreamWatch'in sağlanan indirme bağlantıları üzerinde hiçbir konrolü yoktur.",
                 "downloadSubtitle": "Geçerli altyazıyı indir",
                 "downloadVideo": "Videoyu indir",
-                "hlsDisclaimer": "İndirmeler doğrudan sağlayıcıdan alınır. P-Stream, indirmelerin nasıl sağlanacağı üzerinde kontrole sahip değildir.<br /><br />Lütfen bir HLS oynatma listesi indirdiğinizi unutmayın; <bold>ileri seviye bilginiz yoksa indirmeniz önerilmez. akış biçimleri</bold>. Farklı formatlar için farklı kaynakları deneyin.",
+                "hlsDisclaimer": "İndirmeler doğrudan sağlayıcıdan alınır. StreamWatch, indirmelerin nasıl sağlanacağı üzerinde kontrole sahip değildir.<br /><br />Lütfen bir HLS oynatma listesi indirdiğinizi unutmayın; <bold>ileri seviye bilginiz yoksa indirmeniz önerilmez. akış biçimleri</bold>. Farklı formatlar için farklı kaynakları deneyin.",
                 "onAndroid": {
                     "1": "Android'e indirmek için önce indir butonuna basın, sonra açılan yeni sayfada video üzerine <bold>basılı tutun</bold>, ardından <bold>Videoyu indir</bold> seçeneğini seçin.",
                     "shortTitle": "İndir / Android",
@@ -433,7 +433,7 @@
                 "badge": "Eklenti devre dışı",
                 "enableExtension": "Eklentiyi etkinleştir",
                 "homeButton": "Eve git",
-                "text": "P-Stream uzantısını kurdunuz. Kullanmaya başlamak için, uzantıyı bu site için etkinleştirmeniz gerekiyor.",
+                "text": "StreamWatch uzantısını kurdunuz. Kullanmaya başlamak için, uzantıyı bu site için etkinleştirmeniz gerekiyor.",
                 "title": "Lütfen eklentiyi etkinleştirin"
             },
             "items": {
@@ -456,7 +456,7 @@
             "shortRemaining": "-{{timeLeft}}"
         },
         "turnstile": {
-            "description": "Lütfen sağ taraftaki Captcha'yı çözerek insan olduğunuzu doğrulayın. Bu, P-Stream'i güvende tutmak içindir!",
+            "description": "Lütfen sağ taraftaki Captcha'yı çözerek insan olduğunuzu doğrulayın. Bu, StreamWatch'i güvende tutmak içindir!",
             "error": "İnsan olduğunuz doğrulanamadı. Lütfen tekrar deneyin.",
             "title": "İnsan olduğunuzu doğrulamamız gerekiyor.",
             "verifyingHumanity": "İnsan olduğunuz doğrulanıyor..."

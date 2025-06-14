@@ -1,22 +1,22 @@
 {
     "about": {
-        "description": "P-Stream es una aplicación web que busca transmisiones en internet. El equipo tiene como objetivo un enfoque principalmente minimalista para consumir contenido.",
+        "description": "StreamWatch es una aplicación web que busca transmisiones en internet. El equipo tiene como objetivo un enfoque principalmente minimalista para consumir contenido.",
         "faqTitle": "Preguntas frecuentes",
         "q1": {
-            "body": "P-Stream no aloja ningún contenido. Cuando haces clic en algo para ver, se busca en internet el medio seleccionado (En la pantalla de carga y en la pestaña 'fuentes de vídeo' puedes ver qué fuente estás utilizando). El contenido nunca se carga en P-Stream, todo se realiza a través de este mecanismo de búsqueda.",
+            "body": "StreamWatch no aloja ningún contenido. Cuando haces clic en algo para ver, se busca en internet el medio seleccionado (En la pantalla de carga y en la pestaña 'fuentes de vídeo' puedes ver qué fuente estás utilizando). El contenido nunca se carga en StreamWatch, todo se realiza a través de este mecanismo de búsqueda.",
             "title": "¿De dónde proviene el contenido?"
         },
         "q2": {
-            "body": "No es posible solicitar una serie o película, P-Stream no gestiona ningún contenido. Todo el contenido se ve a través de fuentes en internet.",
+            "body": "No es posible solicitar una serie o película, StreamWatch no gestiona ningún contenido. Todo el contenido se ve a través de fuentes en internet.",
             "title": "¿Dónde puedo solicitar una serie o película?"
         },
         "q3": {
             "body": "Nuestros resultados de búsqueda están alimentados por The Movie Database (TMDB) y se muestran independientemente de si nuestras fuentes realmente tienen el contenido.",
             "title": "Los resultados de búsqueda muestran la serie o película, ¿Por qué no puedo reproducirla?"
         },
-        "title": "Acerca de P-Stream",
+        "title": "Acerca de StreamWatch",
         "q5": {
-            "body": "¡P-Stream tiene un servidor de Discord que se puede encontrar en el encabezado de esta página!",
+            "body": "¡StreamWatch tiene un servidor de Discord que se puede encontrar en el encabezado de esta página!",
             "title": "¿Cómo puedo obtener más información?"
         },
         "q4": {
@@ -90,7 +90,7 @@
     "footer": {
         "legal": {
             "disclaimer": "Descargo de responsabilidad",
-            "disclaimerText": "P-Stream no aloja ningún archivo, simplemente enlaza a servicios de terceros. Los problemas legales deben ser tratados con los proveedores de archivos y servicios. P-Stream no se hace responsable de los archivos multimedia mostrados por los proveedores de vídeo."
+            "disclaimerText": "StreamWatch no aloja ningún archivo, simplemente enlaza a servicios de terceros. Los problemas legales deben ser tratados con los proveedores de archivos y servicios. StreamWatch no se hace responsable de los archivos multimedia mostrados por los proveedores de vídeo."
         },
         "links": {
             "discord": "Discord",
@@ -102,13 +102,13 @@
         "tagline": "Ve tus series y películas favoritas con esta aplicación de transmisión de código abierto."
     },
     "global": {
-        "name": "P-Stream",
+        "name": "StreamWatch",
         "pages": {
             "about": "Acerca de",
             "dmca": "DMCA",
             "login": "Iniciar sesión",
             "onboarding": "Configurar",
-            "pagetitle": "{{title}} - P-Stream",
+            "pagetitle": "{{title}} - StreamWatch",
             "register": "Registrarse",
             "settings": "Configuración",
             "discover": "Descubrir",
@@ -141,7 +141,7 @@
                     "¿Qué hay en tu lista de seguimiento hoy?",
                     "¿Cómo estuvo su día?",
                     "Mala mia este sitio nunca funciona...",
-                    "¿No es P-Stream lo mejor?",
+                    "¿No es StreamWatch lo mejor?",
                     ">ᴗ<"
                 ]
             },
@@ -288,21 +288,21 @@
                 },
                 "or": "o"
             },
-            "title": "Vamos a configurar P-Stream",
+            "title": "Vamos a configurar StreamWatch",
             "moreInfo": {
                 "explainer": {
                     "default": "3. Configuración predeterminada",
-                    "intro": "P-Stream no aloja los videos. Depende de sitios de páginas web de terceros para el contenido, asi que tienes que elegir como te conectas a esos sitios.",
+                    "intro": "StreamWatch no aloja los videos. Depende de sitios de páginas web de terceros para el contenido, asi que tienes que elegir como te conectas a esos sitios.",
                     "fedapi": {
                         "fedapi": "Adicional: FED API (Privado) token",
                         "fedapiDescription": "¡Trae tu propia cuenta GRATIS de Febbox para tener acceso a FED API (Privada), la mejor fuente con calidad 4K,Dolby Atmos, saltar intros y los tiempos de carga mas rapidos! ¡Opción altamente recomendada!"
                     },
-                    "defaultDescription": "Usa el proxy incorporado de P-Stream. Es la opción mas facil pero puede ser mas lenta debido a ancho de banda compartida.",
+                    "defaultDescription": "Usa el proxy incorporado de StreamWatch. Es la opción mas facil pero puede ser mas lenta debido a ancho de banda compartida.",
                     "extension": "1. Extensión",
                     "options": "Tus Opciones:",
                     "extensionDescription": "La extensión te brinda acceso a la mayoría de las fuentes. Actúa como un proxy local y puede manejar sitios que necesitan cookies especiales o encabezados para cargar.",
                     "proxy": "2. Proxy",
-                    "outro": "¡Si tienes más preguntas en cómo esto funciona, siéntete libre de preguntar en el <0>P-Stream Discord</0> servidor!"
+                    "outro": "¡Si tienes más preguntas en cómo esto funciona, siéntete libre de preguntar en el <0>StreamWatch Discord</0> servidor!"
                 },
                 "title": "Comprender una configuración",
                 "recommended": {
@@ -338,10 +338,10 @@
         "menus": {
             "downloads": {
                 "copyHlsPlaylist": "Copiar enlace de reproducción HLS",
-                "disclaimer": "Las descargas se realizan directamente desde el proveedor. P-Stream no tiene control sobre cómo se proporcionan las descargas.",
+                "disclaimer": "Las descargas se realizan directamente desde el proveedor. StreamWatch no tiene control sobre cómo se proporcionan las descargas.",
                 "downloadSubtitle": "Descargar subtítulo actual",
                 "downloadVideo": "Descargar vídeo",
-                "hlsDisclaimer": "Las descargas se realizan directamente del proveedor. P-Stream no tiene control sobre cómo se proporcionan las descargas. <br /><br />Tenga en cuenta que está descargando una lista de reproducción HLS, <bold>dirigida a usuarios familiarizados con la transmisión multimedia avanzada.</bold> Prueba con diferentes fuentes para diferentes formatos.",
+                "hlsDisclaimer": "Las descargas se realizan directamente del proveedor. StreamWatch no tiene control sobre cómo se proporcionan las descargas. <br /><br />Tenga en cuenta que está descargando una lista de reproducción HLS, <bold>dirigida a usuarios familiarizados con la transmisión multimedia avanzada.</bold> Prueba con diferentes fuentes para diferentes formatos.",
                 "onAndroid": {
                     "1": "Para descargar en Android, haz clic en el botón de descarga y luego, en la nueva página, <bold>mantén presionado</bold> el vídeo y selecciona <bold>guardar</bold>.",
                     "shortTitle": "Descargar / Android",
@@ -499,7 +499,7 @@
             "shortRemaining": "-{{timeLeft}}"
         },
         "turnstile": {
-            "description": "Por favor, confirma que eres humano completando el Captcha. ¡Esto es para mantener P-Stream seguro!",
+            "description": "Por favor, confirma que eres humano completando el Captcha. ¡Esto es para mantener StreamWatch seguro!",
             "error": "Ha habido un error al verificar tu humanidad. Por favor, prueba de nuevo.",
             "title": "Necesitamos verificar que eres humano.",
             "verifyingHumanity": "Verificando tu hunanidad…"
@@ -801,7 +801,7 @@
         }
     },
     "downtimeNotice": {
-        "message": "P-Stream esta experimentando problemas con algunos proveedores de nuevo. Si no puedes encontrar o reproducir un programa, por favor cambie de fuente. Espera que este error persista a lo largo de los siguientes momentos.",
+        "message": "StreamWatch esta experimentando problemas con algunos proveedores de nuevo. Si no puedes encontrar o reproducir un programa, por favor cambie de fuente. Espera que este error persista a lo largo de los siguientes momentos.",
         "badge": "Problemas",
         "title": "Problemas de proveedor"
     }

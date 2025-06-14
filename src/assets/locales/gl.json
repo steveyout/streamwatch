@@ -1,20 +1,20 @@
 {
     "about": {
-        "description": "P-Stream é unha aplicación web que busca transmisións na rede. O equipo ten como obxectivo manter un enfoque principalmente minimalista para consumir os contidos.",
+        "description": "StreamWatch é unha aplicación web que busca transmisións na rede. O equipo ten como obxectivo manter un enfoque principalmente minimalista para consumir os contidos.",
         "faqTitle": "Preguntas frecuentes",
         "q1": {
-            "body": "P-Stream non aloxa ningún contido. Cando premes en algo para ver o contenido, búscase en internet o medio seleccionado. (Na pantalla de carga e na lapela 'fontes de video' podes ver que fonte se está a empregar. O contido nunca se carga en P-Stream, todo realízase a través deste método de busca.",
+            "body": "StreamWatch non aloxa ningún contido. Cando premes en algo para ver o contenido, búscase en internet o medio seleccionado. (Na pantalla de carga e na lapela 'fontes de video' podes ver que fonte se está a empregar. O contido nunca se carga en StreamWatch, todo realízase a través deste método de busca.",
             "title": "De onde proveñen os contidos?"
         },
         "q2": {
-            "body": "Non é posible solicitar unha película. P-Stream non xestiona ningún contido. Todo o contido é xestionado a través de fontes na rede.",
+            "body": "Non é posible solicitar unha película. StreamWatch non xestiona ningún contido. Todo o contido é xestionado a través de fontes na rede.",
             "title": "Onde poido solicitar unha película a engadir?"
         },
         "q3": {
             "body": "Os nosos resultados de busqueda proveñen de The Movie Database (TMDB) e se mostran independentemente de se as nosas fontes multimedia teñen realmente o contido.",
             "title": "Os resultados da busca mostran a serie ou película... Por qué non poido reproducila?"
         },
-        "title": "Acerca de P-Stream"
+        "title": "Acerca de StreamWatch"
     },
     "actions": {
         "copied": "Copiado",
@@ -82,7 +82,7 @@
     "footer": {
         "legal": {
             "disclaimer": "Descargo de responsabilidade",
-            "disclaimerText": "P-Stream non aloxa ningún arquivo, simplemente enlaza con servizos de terceiros. Os problemas legais deben ser tratados cós proovedores de arquivos e servizos. P-Stream non se fai responsable dos arquivos multimedia mostrados polos provedores de video."
+            "disclaimerText": "StreamWatch non aloxa ningún arquivo, simplemente enlaza con servizos de terceiros. Os problemas legais deben ser tratados cós proovedores de arquivos e servizos. StreamWatch non se fai responsable dos arquivos multimedia mostrados polos provedores de video."
         },
         "links": {
             "discord": "Discord",
@@ -92,13 +92,13 @@
         "tagline": "Disfruta das túas series e películas favoritas con esta aplicación de transmisión de código aberto."
     },
     "global": {
-        "name": "P-Stream",
+        "name": "StreamWatch",
         "pages": {
             "about": "Acerca de",
             "dmca": "DMCA",
             "login": "Iniciar sesión",
             "onboarding": "Configuración",
-            "pagetitle": "{{title}} - P-Stream",
+            "pagetitle": "{{title}} - StreamWatch",
             "register": "Rexistrarse",
             "settings": "Configuración"
         }
@@ -235,7 +235,7 @@
                     "title": "Proxy personalizado"
                 }
             },
-            "title": "Vamos a empezar coa configuración de P-Stream"
+            "title": "Vamos a empezar coa configuración de StreamWatch"
         }
     },
     "overlays": {
@@ -252,10 +252,10 @@
         "menus": {
             "downloads": {
                 "copyHlsPlaylist": "Copiar a ligazón da lista HLS",
-                "disclaimer": "As descargas proveñen do provedor. P-Stream non ten control sobre as descargas e a súa procedencia.",
+                "disclaimer": "As descargas proveñen do provedor. StreamWatch non ten control sobre as descargas e a súa procedencia.",
                 "downloadSubtitle": "Descargar subtítulos actuais",
                 "downloadVideo": "Descargar video",
-                "hlsDisclaimer": "As descargas realizanse directamente dende o proovedor. P-Stream non ten control sobre como se xestionan as descargas. <br /><br />Ten en conta que estás a descargar unha lista de reproducción HLS, <bold>non está recomendado instalalos se non estás familiarizado con estos sistemas de contidos avanzados</bold> Proba fontes diferentes ou formatos diferentes.",
+                "hlsDisclaimer": "As descargas realizanse directamente dende o proovedor. StreamWatch non ten control sobre como se xestionan as descargas. <br /><br />Ten en conta que estás a descargar unha lista de reproducción HLS, <bold>non está recomendado instalalos se non estás familiarizado con estos sistemas de contidos avanzados</bold> Proba fontes diferentes ou formatos diferentes.",
                 "onAndroid": {
                     "1": "Para descargar en Android, fai click no botón de descarga e despois, na nova páxina, <bold>mantén presionado</bold>o vídeo e selecciona <bold>gardar</bold>.",
                     "shortTitle": "Descargar / Android",
@@ -399,7 +399,7 @@
             "shortRemaining": "-{{timeLeft}}"
         },
         "turnstile": {
-            "description": "Por favor, verifica que eres un humán completando o Captcha. Isto é para mantee P-Stream seguro!",
+            "description": "Por favor, verifica que eres un humán completando o Captcha. Isto é para mantee StreamWatch seguro!",
             "error": "Houbo un erro ao verificar a túa humanidade. Por favor, volve a intentalo.",
             "title": "Necesitamos verificar que realmente eres un humán.",
             "verifyingHumanity": "Verificando a túa humanidade…"

@@ -1,26 +1,26 @@
 {
     "about": {
-        "description": "P-Stream 是 movie-web 的一个分叉，可确保在 movie-web.app 关闭后仍能正常运行。P-Stream 运行在一个私有的、自我托管的 VPS 上。我在亏损的情况下运营这个网站，但这里没有广告，因为我对免费媒体的信仰。",
+        "description": "StreamWatch 是 movie-web 的一个分叉，可确保在 movie-web.app 关闭后仍能正常运行。StreamWatch 运行在一个私有的、自我托管的 VPS 上。我在亏损的情况下运营这个网站，但这里没有广告，因为我对免费媒体的信仰。",
         "faqTitle": "常见问题",
         "q1": {
-            "body": "P-Stream 不托管任何内容。当您点击要观看的内容时，会在互联网上搜索所选媒体（在加载屏幕和“片源”选项卡中，您可以看到您正在使用的视频源）。P-Stream 不上传媒体，所有内容都是通过这种搜索机制获取的。",
+            "body": "StreamWatch 不托管任何内容。当您点击要观看的内容时，会在互联网上搜索所选媒体（在加载屏幕和“片源”选项卡中，您可以看到您正在使用的视频源）。StreamWatch 不上传媒体，所有内容都是通过这种搜索机制获取的。",
             "title": "这些内容来自哪里？"
         },
         "q2": {
-            "body": "无法主动请求增加节目或电影，P-Stream 不托管任何内容。所有内容均通过网络上的片源服务器获取并供您观看。",
+            "body": "无法主动请求增加节目或电影，StreamWatch 不托管任何内容。所有内容均通过网络上的片源服务器获取并供您观看。",
             "title": "我可以从哪里请求增加节目或电影？"
         },
         "q3": {
             "body": "我们的搜索结果由 The Movie Database (TMDB) 提供，无论我们的片源服务器是否实际拥有该内容，都会显示搜索结果。",
             "title": "搜索结果中已显示了节目或电影，为何我无法播放？"
         },
-        "title": "关于 P-Stream",
+        "title": "关于 StreamWatch",
         "q4": {
             "body": "所有数据都同步到社区后台，任何人都可以免费使用。",
             "title": "那我的数据呢？"
         },
         "q5": {
-            "body": "P-Stream 有一个 Discord 服务器，可在本页上方找到！",
+            "body": "StreamWatch 有一个 Discord 服务器，可在本页上方找到！",
             "title": "如何了解更多信息？"
         }
     },
@@ -90,7 +90,7 @@
     "footer": {
         "legal": {
             "disclaimer": "免责声明",
-            "disclaimerText": "请注意：P-Stream 本身不托管任何文件，只提供第三方提供商的内容。如有法律问题，请与它们联系。"
+            "disclaimerText": "请注意：StreamWatch 本身不托管任何文件，只提供第三方提供商的内容。如有法律问题，请与它们联系。"
         },
         "links": {
             "discord": "Discord",
@@ -101,13 +101,13 @@
         "tagline": "免费观看您喜爱的节目和电影，绝无任何广告！"
     },
     "global": {
-        "name": "P-Stream",
+        "name": "StreamWatch",
         "pages": {
             "about": "关于",
             "dmca": "DMCA",
             "login": "登录",
             "onboarding": "设定",
-            "pagetitle": "{{title}} - P-Stream",
+            "pagetitle": "{{title}} - StreamWatch",
             "register": "注册",
             "settings": "设置",
             "support": "支持",
@@ -137,11 +137,11 @@
                     "您想探索些什么？",
                     "您的片单上都有啥？",
                     "您最喜欢的影片是什么？",
-                    "P-Stream 是最好的网站！",
+                    "StreamWatch 是最好的网站！",
                     "您今天的片单上有什么？",
                     "今天过得怎么样？",
                     "是我的错，网站总是无法正常运行…",
-                    "P-Stream 不就是最棒的吗？",
+                    "StreamWatch 不就是最棒的吗？",
                     ">ᴗ<"
                 ]
             },
@@ -162,19 +162,19 @@
             "day": {
                 "default": "您今天下午想看什么？",
                 "extra": [
-                    "P-Stream 万岁！"
+                    "StreamWatch 万岁！"
                 ]
             },
             "morning": {
                 "default": "您今早想看什么？",
                 "extra": [
-                    "P-Stream 万岁！"
+                    "StreamWatch 万岁！"
                 ]
             },
             "night": {
                 "default": "您今晚想看什么？",
                 "extra": [
-                    "P-Stream 万岁！"
+                    "StreamWatch 万岁！"
                 ]
             },
             "420": {
@@ -280,7 +280,7 @@
                 },
                 "or": "或"
             },
-            "title": "让我们为您设定 P-Stream"
+            "title": "让我们为您设定 StreamWatch"
         }
     },
     "overlays": {
@@ -297,10 +297,10 @@
         "menus": {
             "downloads": {
                 "copyHlsPlaylist": "复制 HLS 播放列表链接",
-                "disclaimer": "下载内容是直接从内容提供者获取的。P-Stream 无法控制下载内容如何被提供。",
+                "disclaimer": "下载内容是直接从内容提供者获取的。StreamWatch 无法控制下载内容如何被提供。",
                 "downloadSubtitle": "下载当前字幕",
                 "downloadVideo": "下载视频",
-                "hlsDisclaimer": "下载内容是直接从内容提供者获取的。P-Stream 无法控制下载内容如何被提供。<br /><br />请注意，您正在下载 HLS 播放列表，<bold>如您不熟悉高级流媒体格式，我们不推荐此操作</bold>。如需下载其他格式，请尝试切换视频源。",
+                "hlsDisclaimer": "下载内容是直接从内容提供者获取的。StreamWatch 无法控制下载内容如何被提供。<br /><br />请注意，您正在下载 HLS 播放列表，<bold>如您不熟悉高级流媒体格式，我们不推荐此操作</bold>。如需下载其他格式，请尝试切换视频源。",
                 "onAndroid": {
                     "1": "要从 Android 下载，先点击下载按钮，之后在新的页面上， <bold>点击并按住</bold>视频，然后选择 <bold>保存</bold>。",
                     "shortTitle": "下载 / Android",
@@ -438,7 +438,7 @@
                 "badge": "扩展程序已禁用",
                 "enableExtension": "启用扩展程序",
                 "homeButton": "返回首页",
-                "text": "您已经安装 P-Stream 扩展程序。要开始使用，您需要为此站点启用扩展。",
+                "text": "您已经安装 StreamWatch 扩展程序。要开始使用，您需要为此站点启用扩展。",
                 "title": "请启用扩展程序"
             },
             "items": {
@@ -462,7 +462,7 @@
             "shortRemaining": "-{{timeLeft}}"
         },
         "turnstile": {
-            "description": "请完成简短的挑战来证明你是人类，这是为了确保 P-Stream 的安全。",
+            "description": "请完成简短的挑战来证明你是人类，这是为了确保 StreamWatch 的安全。",
             "error": "人类验证失败 - 流媒体加载失败。清除缓存后重试，或切换到其他片源。",
             "title": "您是机器人吗？",
             "verifyingHumanity": "正在验证您是否为人类…"
@@ -536,7 +536,7 @@
             "title": "账户",
             "admin": {
                 "title": "管理面板",
-                "text": "用于测试 P-Stream 状态的工具。",
+                "text": "用于测试 StreamWatch 状态的工具。",
                 "button": "看看这个"
             }
         },
@@ -785,10 +785,10 @@
             "title": "如何报告错误或问题？"
         },
         "title": "支持",
-        "text": "P-Stream 的设计尽可能方便用户使用。但是人们仍然会有疑问和问题，本页将帮助解决这些问题",
+        "text": "StreamWatch 的设计尽可能方便用户使用。但是人们仍然会有疑问和问题，本页将帮助解决这些问题",
         "q1": {
             "title": "我可以在哪获取帮助？",
-            "body": "您可以加入 <0>P-Stream 官方 Discord</0> 并在那里提问，也可以向本页底部的电子邮件地址发送邮件。"
+            "body": "您可以加入 <0>StreamWatch 官方 Discord</0> 并在那里提问，也可以向本页底部的电子邮件地址发送邮件。"
         }
     },
     "jip": {
@@ -797,16 +797,16 @@
             "title": "如何报告错误或问题？"
         },
         "title": "Jip",
-        "text": "P-Stream 并不是大风刮来的，它主要是由一个人（一个非常史诗般的人）创造的。",
+        "text": "StreamWatch 并不是大风刮来的，它主要是由一个人（一个非常史诗般的人）创造的。",
         "q1": {
-            "body": "您可以加入 <0>P-Stream 官方 Discord</0> 并在那里提问，也可以向本页底部的电子邮件地址发送邮件。",
+            "body": "您可以加入 <0>StreamWatch 官方 Discord</0> 并在那里提问，也可以向本页底部的电子邮件地址发送邮件。",
             "title": "我可以在哪获取帮助？"
         }
     },
     "downtimeNotice": {
         "badge": "问题",
         "goHome": "返回首页",
-        "message": "P-Stream 在某些片源提供商处遇到问题，如果您无法找到或播放节目，请更换片源。预计该错误将在一段时间内持续存在。",
+        "message": "StreamWatch 在某些片源提供商处遇到问题，如果您无法找到或播放节目，请更换片源。预计该错误将在一段时间内持续存在。",
         "title": "片源提供商问题"
     }
 }

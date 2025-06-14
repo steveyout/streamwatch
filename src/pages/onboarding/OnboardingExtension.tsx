@@ -141,7 +141,7 @@ function ChromeExtensionPage(props: ExtensionPageProps) {
 
       <ExtensionStatus status={props.status} loading={props.loading} />
       <Link
-        href="https://github.com/p-stream/extension"
+        href="https://github.com/StreamWatch/extension"
         target="_blank"
         className="pt-4 !text-type-dimmed"
       >
@@ -170,7 +170,7 @@ function FirefoxExtensionPage(props: ExtensionPageProps) {
 
       <ExtensionStatus status={props.status} loading={props.loading} showHelp />
       <Link
-        href="https://github.com/p-stream/extension"
+        href="https://github.com/StreamWatch/extension"
         target="_blank"
         className="pt-4 !text-type-dimmed"
       >
@@ -226,7 +226,7 @@ function UnknownExtensionPage(props: ExtensionPageProps) {
 
       <ExtensionStatus status={props.status} loading={props.loading} showHelp />
       <Link
-        href="https://github.com/p-stream/extension"
+        href="https://github.com/StreamWatch/extension"
         target="_blank"
         className="pt-4 !text-type-dimmed"
       >

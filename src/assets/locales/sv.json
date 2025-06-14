@@ -1,20 +1,20 @@
 {
     "about": {
-        "description": "P-Stream är en webbapplikation som söker efter strömmar på internet. Teamet strävar efter en mestadels minimalistisk ansats för att konsumera innehåll.",
+        "description": "StreamWatch är en webbapplikation som söker efter strömmar på internet. Teamet strävar efter en mestadels minimalistisk ansats för att konsumera innehåll.",
         "faqTitle": "Vanliga frågor",
         "q1": {
-            "body": "P-Stream hostar ingen innehåll. När du klickar på något att titta på, söks internet efter det valda mediet (På laddningsskärmen och i fliken 'Videokällor' kan du se vilken källa du använder). Inget medium laddas upp av P-Stream, allt sker genom sökmotorn.",
+            "body": "StreamWatch hostar ingen innehåll. När du klickar på något att titta på, söks internet efter det valda mediet (På laddningsskärmen och i fliken 'Videokällor' kan du se vilken källa du använder). Inget medium laddas upp av StreamWatch, allt sker genom sökmotorn.",
             "title": "Var kommer innehållet ifrån?"
         },
         "q2": {
-            "body": "Det går inte att begära en show eller film, P-Stream hanterar inte något innehåll. Allt innehåll visas genom källor på internet.",
+            "body": "Det går inte att begära en show eller film, StreamWatch hanterar inte något innehåll. Allt innehåll visas genom källor på internet.",
             "title": "Var kan jag begära en show eller film?"
         },
         "q3": {
             "body": "Våra sökresultat drivs av The Movie Database (TMDB) och visas oavsett om våra källor faktiskt har innehållet.",
             "title": "Sökresultaten visar showen eller filmen, varför kan jag inte spela upp den?"
         },
-        "title": "Om P-Stream"
+        "title": "Om StreamWatch"
     },
     "actions": {
         "copied": "Kopierad",
@@ -79,7 +79,7 @@
     "footer": {
         "legal": {
             "disclaimer": "Friskriver sig från ansvar",
-            "disclaimerText": "P-Stream hostar inga filer utan länkar endast till filer från tredje part. Eventuella juridiska frågor bör tas upp med källorna till materialet. P-Stream varken ansvarar eller styr över de mediefiler som visas."
+            "disclaimerText": "StreamWatch hostar inga filer utan länkar endast till filer från tredje part. Eventuella juridiska frågor bör tas upp med källorna till materialet. StreamWatch varken ansvarar eller styr över de mediefiler som visas."
         },
         "links": {
             "discord": "Discord",
@@ -89,12 +89,12 @@
         "tagline": "Titta på dina favoritprogram och filmer helt gratis."
     },
     "global": {
-        "name": "P-Stream",
+        "name": "StreamWatch",
         "pages": {
             "about": "Om oss",
             "dmca": "DMCA",
             "login": "Logga in",
-            "pagetitle": "{{title}} - P-Stream",
+            "pagetitle": "{{title}} - StreamWatch",
             "register": "Registrera",
             "settings": "Inställningar"
         }
@@ -175,7 +175,7 @@
         },
         "menus": {
             "downloads": {
-                "disclaimer": "Nedladdningar görs direkt från leverantören. P-Stream har ingen kontroll över hur nedladdningarna tillhandahålls.",
+                "disclaimer": "Nedladdningar görs direkt från leverantören. StreamWatch har ingen kontroll över hur nedladdningarna tillhandahålls.",
                 "downloadVideo": "Ladda ner video",
                 "onAndroid": {
                     "1": "För att ladda ner på Android, klicka på nedladdningsknappen och på den nya sidan <bold>trycker och håller</bold> på videon, välj sedan <bold>spara</bold>.",
