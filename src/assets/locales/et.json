@@ -1,20 +1,20 @@
 {
   "about": {
-    "description": "P-Stream on veebirakendus, mis otsib internetti striimide jaoks. Meie eesmärk on enamasti minimalistlik lähenemine sisu tarbimisele.",
+    "description": "StreamWatch on veebirakendus, mis otsib internetti striimide jaoks. Meie eesmärk on enamasti minimalistlik lähenemine sisu tarbimisele.",
     "faqTitle": "Tihti küsitud küsimused",
     "q1": {
-      "body": "P-Stream ei hoiusta enda sisu. Kui klõpsate, et midagi vaadata, otsitakse valitud meediat internetist (laadimisekraanil ja vahekaardil \"videoallikad\" näete, millist allikat te kasutate). Meediat ei lae P-Stream kunagi üles, kõik toimub selle otsingumehhanismi kaudu.",
+      "body": "StreamWatch ei hoiusta enda sisu. Kui klõpsate, et midagi vaadata, otsitakse valitud meediat internetist (laadimisekraanil ja vahekaardil \"videoallikad\" näete, millist allikat te kasutate). Meediat ei lae StreamWatch kunagi üles, kõik toimub selle otsingumehhanismi kaudu.",
       "title": "Kust tuleb meie sisu?"
     },
     "q2": {
-      "body": "Saadet või filmi ei ole võimalik taotelda, P-Stream ei halda mingit sisu. Kogu sisu vaadatakse interneti allikate kaudu.",
+      "body": "Saadet või filmi ei ole võimalik taotelda, StreamWatch ei halda mingit sisu. Kogu sisu vaadatakse interneti allikate kaudu.",
       "title": "Kust ma saan kindlat saadet või filmi paluda?"
     },
     "q3": {
       "body": "Meie otsingutulemusi toetab The Movie Database (TMDB) ja need kuvatakse sõltumata sellest, kas meie allikates on sisu tegelikult olemas.",
       "title": "Otsingutulemustes kuvatakse saade või film. Miks ma ei saa seda esitada?"
     },
-    "title": "P-Stream'i kohta"
+    "title": "StreamWatch'i kohta"
   },
   "actions": {
     "copied": "Kopeeritud",
@@ -82,7 +82,7 @@
   "footer": {
     "legal": {
       "disclaimer": "Lahtiütlemine",
-      "disclaimerText": "P-Stream ei hoiusta ühtegi faili, vaid ainult lingib kolmandate osapoolte teenustele. Juriidilised küsimused tuleks lahendada failihostide ja teenusepakkujatega. P-Stream ei vastuta videopakkujate poolt näidatud meediafailide eest."
+      "disclaimerText": "StreamWatch ei hoiusta ühtegi faili, vaid ainult lingib kolmandate osapoolte teenustele. Juriidilised küsimused tuleks lahendada failihostide ja teenusepakkujatega. StreamWatch ei vastuta videopakkujate poolt näidatud meediafailide eest."
     },
     "links": {
       "discord": "Discord",
@@ -92,13 +92,13 @@
     "tagline": "Vaadake selle avatud lähtekoodiga striimimis rakendusega oma lemmiksaateid ja -filme."
   },
   "global": {
-    "name": "P-Stream",
+    "name": "StreamWatch",
     "pages": {
       "about": "Meist",
       "legal": "Legal / DMCA",
       "login": "Logi sisse",
       "onboarding": "Seadistamine",
-      "pagetitle": "{{title}} - P-Stream",
+      "pagetitle": "{{title}} - StreamWatch",
       "register": "Registreeri",
       "settings": "Sätted"
     }
@@ -232,7 +232,7 @@
           "title": "Kohandatud proxy"
         }
       },
-      "title": "Teeme algust P-Streami kasutamisega"
+      "title": "Teeme algust StreamWatchi kasutamisega"
     }
   },
   "overlays": {
@@ -249,10 +249,10 @@
     "menus": {
       "downloads": {
         "copyHlsPlaylist": "Kopeeri HLS esitusloendi link",
-        "disclaimer": "Allalaadimine toimub otse teenusepakkujalt. P-Stream ei saa kontrollida, kuidas allalaadimine toimub.",
+        "disclaimer": "Allalaadimine toimub otse teenusepakkujalt. StreamWatch ei saa kontrollida, kuidas allalaadimine toimub.",
         "downloadSubtitle": "Laadige alla praegune subtiiter",
         "downloadVideo": "Lae alla video",
-        "hlsDisclaimer": "Allalaadimised võetakse otse teenusepakkujalt. P-Stream ei kontrolli, kuidas allalaadimisi pakutakse. <br /><br /><bold>Pange tähele, et laadite alla HLS-i esitusloendit, see on mõeldud kasutajatele, kes on tuttavad multimeediumi striimimisega</bold>.",
+        "hlsDisclaimer": "Allalaadimised võetakse otse teenusepakkujalt. StreamWatch ei kontrolli, kuidas allalaadimisi pakutakse. <br /><br /><bold>Pange tähele, et laadite alla HLS-i esitusloendit, see on mõeldud kasutajatele, kes on tuttavad multimeediumi striimimisega</bold>.",
         "onAndroid": {
           "1": "Et allalaadida Androidi telefonil, vajuta allalaadimise nupule, siis uuel leheküljel <bold>vajuta ja hoia</bold> video peal, siis vali <bold>salvesta</bold>.",
           "shortTitle": "Allalaadimine / Android",
@@ -380,7 +380,7 @@
         "badge": "Brauserilaiendus väljalülitatud",
         "enableExtension": "Lülita brauserilaiendus sisse",
         "homeButton": "Tagasi",
-        "text": "Olete allalaadinud P-Stream'i brauserilaiendue. Selle kasutamiseks peate vajutama brauserilaienduse peale ning andma ligipääsu praegusele saidile.",
+        "text": "Olete allalaadinud StreamWatch'i brauserilaiendue. Selle kasutamiseks peate vajutama brauserilaienduse peale ning andma ligipääsu praegusele saidile.",
         "title": "Palun lülita brauserilaiendus sisse"
       },
       "items": {
@@ -403,7 +403,7 @@
       "shortRemaining": "-{{timeLeft}}"
     },
     "turnstile": {
-      "description": "Palun kinnitage, et olete inimene, täites paremal asuva Captcha. See on selleks, et hoida P-Stream turvalisena!",
+      "description": "Palun kinnitage, et olete inimene, täites paremal asuva Captcha. See on selleks, et hoida StreamWatch turvalisena!",
       "error": "Ei õnnestunud kontrollida teie inimlikkust. Palun proovige uuesti.",
       "title": "Me peame kontrollima, et te olete inimene.",
       "verifyingHumanity": "Kontrollime kas olete robot..."

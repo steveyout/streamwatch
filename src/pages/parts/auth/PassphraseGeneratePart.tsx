@@ -36,7 +36,7 @@ export function PassphraseGeneratePart(props: PassphraseGeneratePartProps) {
 
     const credential = await createPasskey(
       `user-${Date.now()}`,
-      "P-Stream User",
+      "StreamWatch User",
     );
     return credential.id;
   }, []);

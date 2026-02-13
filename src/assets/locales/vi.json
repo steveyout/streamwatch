@@ -1,14 +1,14 @@
 {
   "about": {
-    "description": "P-Stream là một nhánh của movie-web được đảm bảo sẽ tiếp tục hoạt động ngay cả sau khi movie-web.app ngừng hoạt động. P-Stream chạy trên VPS riêng tư, tự lưu trữ. Tôi điều hành trang web này phi lợi nhuận; có rất ít quảng cáo vì tôi tin vào phương tiện truyền thông miễn phí.",
+    "description": "StreamWatch là một nhánh của movie-web được đảm bảo sẽ tiếp tục hoạt động ngay cả sau khi movie-web.app ngừng hoạt động. StreamWatch chạy trên VPS riêng tư, tự lưu trữ. Tôi điều hành trang web này phi lợi nhuận; có rất ít quảng cáo vì tôi tin vào phương tiện truyền thông miễn phí.",
     "faqTitle": "Các câu hỏi thường gặp",
     "q1": {
-      "body": "P-Stream không lưu trữ bất kì nội dung nào. Khi bạn chọn xem một nội dung nào đó, ứng dụng sẽ tìm kiếm nội dung đó trên Internet (Khi nội dung tải và trong tab 'nguồn video' bạn sẽ tìm thấy nguồn đang được dùng). Nội dung không bao giờ được tải lên trên P-Stream, mọi thứ đều được tìm kiếm thông qua phương thức này.",
+      "body": "StreamWatch không lưu trữ bất kì nội dung nào. Khi bạn chọn xem một nội dung nào đó, ứng dụng sẽ tìm kiếm nội dung đó trên Internet (Khi nội dung tải và trong tab 'nguồn video' bạn sẽ tìm thấy nguồn đang được dùng). Nội dung không bao giờ được tải lên trên StreamWatch, mọi thứ đều được tìm kiếm thông qua phương thức này.",
       "title": "Nội dung đến từ đâu?",
       "section": "chung"
     },
     "q2": {
-      "body": "Việc yêu cầu thêm một chương trình truyền hình hoặc phim là điều bất khả thi bởi vì P-Stream không quản lý bất kỳ nội dung nào. Tất cả nội dung được truyền thông qua những nguồn trên internet.",
+      "body": "Việc yêu cầu thêm một chương trình truyền hình hoặc phim là điều bất khả thi bởi vì StreamWatch không quản lý bất kỳ nội dung nào. Tất cả nội dung được truyền thông qua những nguồn trên internet.",
       "title": "Tôi có thể yêu cầu thêm một chương trình truyền hình hoặc phim ở đâu?",
       "section": "tìm kiếm"
     },
@@ -17,14 +17,14 @@
       "title": "Tại sao kết quả tìm kiếm hiển thị chương trình truyền hình hoặc phim nhưng tôi không thể xem nó?",
       "section": "tìm kiếm"
     },
-    "title": "Về P-Stream",
+    "title": "Về StreamWatch",
     "q4": {
       "body": "Tất cả dữ liệu đều được đồng bộ với hệ thống cộng đồng, bất kỳ ai cũng có thể sử dụng tự do.",
       "title": "Còn dữ liệu với mấy thứ của tôi thì sao?",
       "section": "chung"
     },
     "q5": {
-      "body": "P-Stream có Discord server nằm ở phần đầu trang này đó!",
+      "body": "StreamWatch có Discord server nằm ở phần đầu trang này đó!",
       "title": "Muốn biết thêm thì làm sao?",
       "section": "chung"
     },
@@ -59,7 +59,7 @@
       "section": "ngôn ngữ"
     },
     "q6": {
-      "title": "Có ứng dụng P-Stream không?",
+      "title": "Có ứng dụng StreamWatch không?",
       "body": "Chưa, nhưng bạn có thể cài đặt nó dưới dạng PWA (ỨProgressive Web App). Trên iOS, hãy sử dụng Safari → Chia sẻ → Thêm vào Màn hình chính. Trên Android, hãy sử dụng Chrome → 3 chấm → Thêm vào Màn hình chính. APK thử nghiệm có sẵn thông qua Discord của chúng tôi, nhưng không được khuyến khích.",
       "section": "chung"
     },
@@ -204,7 +204,7 @@
   "footer": {
     "legal": {
       "disclaimer": "Tuyên bố miễn trừ trách nhiệm",
-      "disclaimerText": "P-Stream không lưu trữ bất kì file nào, nó chỉ đến những đường dẫn của các dịch vụ bên thứ ba. Bất kỳ vấn đề nào về pháp lý nên được đưa đến chủ sỡ hữu của file hoặc những nhà cung cấp đó. P-Stream hoàn toàn không chịu trách nhiệm cho bất kỳ nội dung nào được chiếu từ các nhà cung cấp."
+      "disclaimerText": "StreamWatch không lưu trữ bất kì file nào, nó chỉ đến những đường dẫn của các dịch vụ bên thứ ba. Bất kỳ vấn đề nào về pháp lý nên được đưa đến chủ sỡ hữu của file hoặc những nhà cung cấp đó. StreamWatch hoàn toàn không chịu trách nhiệm cho bất kỳ nội dung nào được chiếu từ các nhà cung cấp."
     },
     "links": {
       "discord": "Discord",
@@ -216,13 +216,13 @@
     "tagline": "Xem các chương trình và phim yêu thích của bạn với ứng dụng phát trực tuyến nguồn mở này! (っ'ヮ'c)"
   },
   "global": {
-    "name": "P-Stream",
+    "name": "StreamWatch",
     "pages": {
       "about": "Thông tin",
       "legal": "Legal / DMCA",
       "login": "Đăng nhập",
       "onboarding": "Cài đặt",
-      "pagetitle": "{{title}} - P-Stream",
+      "pagetitle": "{{title}} - StreamWatch",
       "register": "Đăng ký",
       "settings": "Cài đặt",
       "migration": "Chuyển tài khoản",
@@ -252,11 +252,11 @@
           "Bạn đang muốn làm gì?",
           "Chúng tôi có nên xóa trình duyệt web của bạn không?",
           "Ban muốn xem gì?",
-          "P-Stream là trang web tuyệt nhất!",
+          "StreamWatch là trang web tuyệt nhất!",
           "Có gì trong danh sách phim của bạn hôm nay?",
           "Hôm nay bạn thế nào?",
           "Xin lỗi nha, trang này hay hỏng lắm...",
-          "Không phải P-Stream là tuyệt nhất sao?",
+          "Không phải StreamWatch là tuyệt nhất sao?",
           ">ᴗ<"
         ]
       },
@@ -364,7 +364,7 @@
     "start": {
       "moreInfo": {
         "explainer": {
-          "outro": "Nếu bạn còn thắc mắc cách hoạt động của trang, liên hệ server <0>P-Stream Discord</0>!",
+          "outro": "Nếu bạn còn thắc mắc cách hoạt động của trang, liên hệ server <0>StreamWatch Discord</0>!",
           "proxy": "2. Proxy",
           "extensionDescription": "Tiện ích mở rộng này cho phép bạn truy cập vào hầu hết các nguồn. Nó hoạt động như một proxy cục bộ và có thể xử lý các trang web cần cookie hoặc tiêu đề đặc biệt để tải.",
           "proxyDescription": "Proxy thu thập phương tiện truyền thông từ các trang web khác. Nó bỏ qua các hạn chế của trình duyệt (như CORS) để cho phép thu thập.",
@@ -373,10 +373,10 @@
             "fedapi": "Bổ sung: Mã token FED API (Riêng tư)"
           },
           "extension": "1. Tiện ích mở rộng",
-          "intro": "P-Stream không lưu trữ video. Nó dựa vào các trang web của bên thứ ba để có nội dung, vì vậy bạn cần chọn cách kết nối với các trang web đó.",
+          "intro": "StreamWatch không lưu trữ video. Nó dựa vào các trang web của bên thứ ba để có nội dung, vì vậy bạn cần chọn cách kết nối với các trang web đó.",
           "options": "Các lựa chọn của bạn:",
           "default": "3. Thiết lập mặc định",
-          "defaultDescription": "Sử dụng proxy tích hợp của P-Stream. Đây là lựa chọn dễ nhất nhưng có thể chậm hơn do băng thông được chia sẻ."
+          "defaultDescription": "Sử dụng proxy tích hợp của StreamWatch. Đây là lựa chọn dễ nhất nhưng có thể chậm hơn do băng thông được chia sẻ."
         },
         "recommended": {
           "desktop": {
@@ -416,7 +416,7 @@
           "title": "Proxy tùy chỉnh"
         }
       },
-      "title": "Hãy thiết lập P-Stream nào🥳"
+      "title": "Hãy thiết lập StreamWatch nào🥳"
     },
     "proxy": {
       "explainer": "Bạn có thể có được luồng chất lượng cao bằng cách tạo và sử dụng proxy tự phục vụ.",
@@ -525,7 +525,7 @@
         "vlc": "VLC",
         "iina": "IINA",
         "hlsOpenInDisclaimer": "Mở luồng HLS với trình phát bên ngoài CÓ THỂ KHÔNG HOẠT ĐỘNG!",
-        "hlsDisclaimer": "Tải xuống được lấy trực tiếp từ nhà cung cấp. P-Stream không kiểm soát cách cung cấp tải xuống.<br /><br />Xin lưu ý rằng bạn đang tải xuống danh sách phát HLS, <bold>không nên tải xuống nếu bạn không quen với các định dạng phát trực tuyến nâng cao</bold>. Hãy thử các nguồn khác nhau cho các định dạng khác nhau.",
+        "hlsDisclaimer": "Tải xuống được lấy trực tiếp từ nhà cung cấp. StreamWatch không kiểm soát cách cung cấp tải xuống.<br /><br />Xin lưu ý rằng bạn đang tải xuống danh sách phát HLS, <bold>không nên tải xuống nếu bạn không quen với các định dạng phát trực tuyến nâng cao</bold>. Hãy thử các nguồn khác nhau cho các định dạng khác nhau.",
         "onAndroid": {
           "1": "Để tải xuống trên Android, hãy nhấp vào nút tải xuống, sau đó trên trang mới, <bold>nhấn và giữ</bold> vào video, sau đó chọn <bold>lưu</bold>.",
           "shortTitle": "Tải xuống / Android",
@@ -544,7 +544,7 @@
         "title": "Tải xuống",
         "button": "Lượt tải xuống",
         "hlsDownloader": "Hoặc, hãy truy cập <0>trang web tải xuống hls</0> và dán URL danh sách phát bên dưới.",
-        "disclaimer": "Tải xuống được lấy trực tiếp từ nhà cung cấp. P-Stream không kiểm soát cách cung cấp tải xuống.",
+        "disclaimer": "Tải xuống được lấy trực tiếp từ nhà cung cấp. StreamWatch không kiểm soát cách cung cấp tải xuống.",
         "copyHlsPlaylist": "Sao chép liên kết danh sách phát HLS",
         "downloadSubtitle": "Tải xuống phụ đề hiện tại",
         "downloadVideo": "Tải xuống video"
@@ -593,7 +593,7 @@
       "extensionFailure": {
         "homeButton": "Về trang chính",
         "badge": "Tiện ích mở rộng đã bị vô hiệu hóa",
-        "text": "Bạn đã cài đặt tiện ích mở rộng P-Stream. Để bắt đầu sử dụng, bạn cần bật tiện ích mở rộng cho trang web này.",
+        "text": "Bạn đã cài đặt tiện ích mở rộng StreamWatch. Để bắt đầu sử dụng, bạn cần bật tiện ích mở rộng cho trang web này.",
         "enableExtension": "Bật tiện ích mở rộng",
         "title": "Vui lòng bật tiện ích mở rộng"
       },
@@ -768,7 +768,7 @@
   "downtimeNotice": {
     "goHome": "Về trang chính",
     "badge": "Sự cố",
-    "message": "P-Stream đang gặp sự cố với một số nhà cung cấp một lần nữa, nếu bạn không tìm thấy hoặc không phát được chương trình, vui lòng thay đổi nguồn. Dự kiến lỗi này sẽ tiếp diễn trong thời gian tới.",
+    "message": "StreamWatch đang gặp sự cố với một số nhà cung cấp một lần nữa, nếu bạn không tìm thấy hoặc không phát được chương trình, vui lòng thay đổi nguồn. Dự kiến lỗi này sẽ tiếp diễn trong thời gian tới.",
     "title": "Sự cố nhà cung cấp"
   },
   "realdebrid": {

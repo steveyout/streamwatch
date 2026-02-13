@@ -1,6 +1,6 @@
 {
   "packageManager": "pnpm@9.14.4",
-  "name": "P-Stream",
+  "name": "StreamWatch",
   "version": "5.3.5",
   "private": true,
   "homepage": "https://github.com/p-stream/p-stream",

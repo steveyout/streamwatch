@@ -1,14 +1,14 @@
 {
   "about": {
-    "description": "P-Stream isch e Abspaltig vo movie-web und wird sichergstellt, dass es au no lauft, wenn movie-web.app nüm verfügbar isch. P-Stream lauft uf eme private, selbstghostete VPS. Ich betreib die Site mit Verlust – ohni Werbig, will ich a freiji Medie glaub.",
+    "description": "StreamWatch isch e Abspaltig vo movie-web und wird sichergstellt, dass es au no lauft, wenn movie-web.app nüm verfügbar isch. StreamWatch lauft uf eme private, selbstghostete VPS. Ich betreib die Site mit Verlust – ohni Werbig, will ich a freiji Medie glaub.",
     "faqTitle": "Hüfig gstelti Froge",
     "q1": {
-      "body": "P-Stream hostet kei Inhalt selber. Wenn du öpis zum Luege aaklicksch, wird s’Internet nach dem usgwählte Medium dürsuecht (uf em Ladebildschirm ond im Tab „Videoquellen“ gsesch, weli Quelle grad brucht wird). Medie wird nie vo P-Stream ufelade – alles lauft über die Suechfunktion.",
+      "body": "StreamWatch hostet kei Inhalt selber. Wenn du öpis zum Luege aaklicksch, wird s’Internet nach dem usgwählte Medium dürsuecht (uf em Ladebildschirm ond im Tab „Videoquellen“ gsesch, weli Quelle grad brucht wird). Medie wird nie vo StreamWatch ufelade – alles lauft über die Suechfunktion.",
       "title": "Woher stamme die Videos?",
       "section": "generel"
     },
     "q2": {
-      "body": "Es isch nöd möglich, e Serie oder e Film z'wünsche, will P-Stream kei Inhalt verwaltet. Alles wird über Quellen im Internet agluegt.",
+      "body": "Es isch nöd möglich, e Serie oder e Film z'wünsche, will StreamWatch kei Inhalt verwaltet. Alles wird über Quellen im Internet agluegt.",
       "title": "Wo chan ich en Serie oder en Felm afroge?",
       "section": "suechi"
     },
@@ -17,7 +17,7 @@
       "title": "T Suechergäbnis zeige t Serie ond t Felme, wiso chani si net abspele?",
       "section": "suech"
     },
-    "title": "Öber P-Stream (^▽^)",
+    "title": "Öber StreamWatch (^▽^)",
     "q4": {
       "title": "Was esch met mine Date und em Stuff?",
       "body": "Alli Date werdet met der Community-Backend synchronisiert, ond jede cha die au notze.",
@@ -25,7 +25,7 @@
     },
     "q5": {
       "title": "Wie chani me usefende?",
-      "body": "P-Stream het en Discord server, me fendet en zoberscht of de Website!",
+      "body": "StreamWatch het en Discord server, me fendet en zoberscht of de Website!",
       "section": "generel"
     },
     "q9": {
@@ -35,7 +35,7 @@
     },
     "q6": {
       "body": "Momentan noni, aber du chasch en PWA (Progressive Web App) installiere. Of iOS, benotz Safari → Share → Add to Home Screen. Of Andriod, benotz Chrome → 3 dots → Add to Home Screen. En Beta fonere APK esch of üsem Discord verfüegbar, aber es werd net empfole.",
-      "title": "Gets en P-Stream app?",
+      "title": "Gets en StreamWatch app?",
       "section": "generel"
     },
     "q15": {
@@ -162,7 +162,7 @@
   "footer": {
     "legal": {
       "disclaimer": "Hewis",
-      "disclaimerText": "Bitte beacht: P-Stream host kei Date selber, sondern zeigt nor Inhalt vo Drittabieter a. Rechtlichi Froge sete metem Abieter klärt werde."
+      "disclaimerText": "Bitte beacht: StreamWatch host kei Date selber, sondern zeigt nor Inhalt vo Drittabieter a. Rechtlichi Froge sete metem Abieter klärt werde."
     },
     "links": {
       "discord": "Discord",
@@ -174,13 +174,13 @@
     "tagline": "Lueg dini lieblings Serie ond Felme gratis ohni Werbig z’gse! (っ'ヮ'c)"
   },
   "global": {
-    "name": "P-Stream",
+    "name": "StreamWatch",
     "pages": {
       "about": "Öber",
       "legal": "Legal / DMCA",
       "login": "Amälde",
       "onboarding": "Irechte",
-      "pagetitle": "{{title}} - P-Stream",
+      "pagetitle": "{{title}} - StreamWatch",
       "register": "Regischtriere",
       "settings": "Ischtelige",
       "discover": "Entdecke",
@@ -210,11 +210,11 @@
           "I was för nere Stemig besch grad?",
           "Sölle mer dini Browser-Historie lösche?",
           "Was möchtisch gern luege?",
-          "P-Stream esch die bescht Site ever!",
+          "StreamWatch esch die bescht Site ever!",
           "Was esch of dim Felm ToDo Zetteli?",
           "Wie esch din Tag gse?",
           "Min Fähler, t’Site fonktioniert nie…",
-          "P-Stream esch die bescht Site, oder?",
+          "StreamWatch esch die bescht Site, oder?",
           ">ᴗ<"
         ]
       },
@@ -234,11 +234,11 @@
     "titles": {
       "day": {
         "default": "Was möchtisch a däm schöne nomitag aluege?",
-        "extra": ["Viva la P-Stream e ciao Svizzera"]
+        "extra": ["Viva la StreamWatch e ciao Svizzera"]
       },
       "morning": {
         "default": "Was welsch a däm morge aluege?",
-        "extra": ["Viva la P-Stream!"]
+        "extra": ["Viva la StreamWatch!"]
       },
       "night": {
         "default": "Besch no wach? Was möchtisch luege?",
@@ -351,22 +351,22 @@
         },
         "or": "oder"
       },
-      "title": "Lass üs metem istelle fo P-Stream starte 🥳",
+      "title": "Lass üs metem istelle fo StreamWatch starte 🥳",
       "moreInfo": {
         "explainer": {
           "default": "3. Standart Istelige",
           "extensionDescription": "D’Erweiterig git der Zuegriff uf d’meiste Quellen. Si funktioniert wie en lokale Proxy und cha Site verwände, wo spezielli Cookies oder Header bruuche zum Lade.",
-          "intro": "P-Stream hostet kei Videos. Es isch uf Drittanbieter-Websites angewiese für d’Inhalt, drum muesch du wähle, wie s sich mit dene Site verbindet.",
+          "intro": "StreamWatch hostet kei Videos. Es isch uf Drittanbieter-Websites angewiese für d’Inhalt, drum muesch du wähle, wie s sich mit dene Site verbindet.",
           "fedapi": {
             "fedapiDescription": "Bring din eigene gratis Febbox-Account mit, zum Zuegriff uf d’FED API (Privat) z’übercho. Die beschti Quälle mit 4K-Qualität, Dolby Atmos, Intro Skip ond superschnälle Ladezyte! Wörklich sehr zom Empfehle!",
             "fedapi": "Optional: FED API (Private) token"
           },
-          "defaultDescription": "Bruchsch der integrierti P-Stream Proxy. Es isch der eifachscht Option, chönnt aber langsamer si weg der teilte Bandbreite.",
+          "defaultDescription": "Bruchsch der integrierti StreamWatch Proxy. Es isch der eifachscht Option, chönnt aber langsamer si weg der teilte Bandbreite.",
           "options": "Dini Optione:",
           "extension": "1. Erwiterig",
           "proxy": "2. Proxy",
           "proxyDescription": "Dr Proxy scrape Medien vo andere Websites. Er umgoh Browser-Einschränkige (wie CORS), um s’Scrape z’ermögliche.",
-          "outro": "Wenn du meh Froge hesch, wie das funktioniert, chasch gärn uf em <0>P-Stream Discord\\</0>-Server frage!"
+          "outro": "Wenn du meh Froge hesch, wie das funktioniert, chasch gärn uf em <0>StreamWatch Discord\\</0>-Server frage!"
         },
         "button": "Me Info",
         "title": "Es Setup versto",
@@ -403,10 +403,10 @@
     "menus": {
       "downloads": {
         "copyHlsPlaylist": "Kopier HLS-Playlist Link",
-        "disclaimer": "Downloads chömed direkt vom Anbieter. P-Stream het kei Kontroll drüber, wie die Downloads zur Verfüegig gstellt werde.",
+        "disclaimer": "Downloads chömed direkt vom Anbieter. StreamWatch het kei Kontroll drüber, wie die Downloads zur Verfüegig gstellt werde.",
         "downloadSubtitle": "Aktuelle Untertitel ablade",
         "downloadVideo": "Video abelade",
-        "hlsDisclaimer": "Downloads chömed direkt vom Anbieter. P-Stream het kei Kontroll drüber, wie die Downloads zur Verfüegig gstellt werde. <br /><br />Bitte beachte, dass du e HLS-Playlist abeladsch, <bold>es wird nöd empfohle zum abelade, wenn du dich mit fortgschrittliche Streaming-Formate nöd uskennsch</bold>. Versuech anderi Quellen für anderi Formate.",
+        "hlsDisclaimer": "Downloads chömed direkt vom Anbieter. StreamWatch het kei Kontroll drüber, wie die Downloads zur Verfüegig gstellt werde. <br /><br />Bitte beachte, dass du e HLS-Playlist abeladsch, <bold>es wird nöd empfohle zum abelade, wenn du dich mit fortgschrittliche Streaming-Formate nöd uskennsch</bold>. Versuech anderi Quellen für anderi Formate.",
         "onAndroid": {
           "1": "Om of Android abezlade, klick ofe abelad chnopf, <bold>Klick ond halt</bold> ofs Video, den wählsch <bold>save</bold>us.",
           "shortTitle": "Abelade / Android",
@@ -562,7 +562,7 @@
         "badge": "Erwiterig deaktiviert",
         "enableExtension": "Erwiterig aktiviere",
         "homeButton": "Gang heime",
-        "text": "Du hescht P-Stream Erwiterig installiert. Demet du si chasch benotze, muesch si aktiviere.",
+        "text": "Du hescht StreamWatch Erwiterig installiert. Demet du si chasch benotze, muesch si aktiviere.",
         "title": "Bitte aktivier t Erwiterig"
       },
       "items": {
@@ -609,7 +609,7 @@
       "shortRemaining": "-{{timeLeft}}"
     },
     "turnstile": {
-      "description": "Halt, stop. Besch du en Mönsch? Bewis dini Mönschlechkeit indem du schnell en Challenge abschliesch – das dient zor Sicherheit vo P-Stream.",
+      "description": "Halt, stop. Besch du en Mönsch? Bewis dini Mönschlechkeit indem du schnell en Challenge abschliesch – das dient zor Sicherheit vo StreamWatch.",
       "error": "Du hesch der Tescht net gschaft- Stream het net chöne lade. Ler din Cache und versuech’s nomol, oder wechsle zue ere andere Quelle (tipp uf s’Zahnrad).",
       "title": "Besch du en Roboter?",
       "verifyingHumanity": "Verifizier dini Mönschlechkeit… (^▽^)👍"
@@ -683,7 +683,7 @@
       "title": "Account",
       "admin": {
         "title": "Admin-Zentrale",
-        "text": "Notz d‘Wärchzüg wo deför do si, der zuestand vo P-Stream z öberprüefe.",
+        "text": "Notz d‘Wärchzüg wo deför do si, der zuestand vo StreamWatch z öberprüefe.",
         "button": "Check es us"
       }
     },
@@ -933,31 +933,31 @@
   "downtimeNotice": {
     "badge": "Fehler",
     "title": "Abieter Problem",
-    "message": "P-Stream het wieder Problemli mit einzelne Anbieter. Wenn du e Serie nöd finde oder abspiele chasch, versuech bitte d’Quelle z’wechsle. Dä Fehler wird voraussichtlich während de unten aaggehne Zytspanne ahalte.",
+    "message": "StreamWatch het wieder Problemli mit einzelne Anbieter. Wenn du e Serie nöd finde oder abspiele chasch, versuech bitte d’Quelle z’wechsle. Dä Fehler wird voraussichtlich während de unten aaggehne Zytspanne ahalte.",
     "goHome": "Zor Start-Site"
   },
   "support": {
     "title": "Support",
     "q1": {
-      "body": "Nun, du chasch em Officiele <0>P-Stream-Discord</0> biträte ond det Froge stelle oder du chasch en Email schecke a d‘Adresse ganz onte uf dere Site.",
+      "body": "Nun, du chasch em Officiele <0>StreamWatch-Discord</0> biträte ond det Froge stelle oder du chasch en Email schecke a d‘Adresse ganz onte uf dere Site.",
       "title": "Wo chani Helf hole?"
     },
     "q2": {
       "title": "Wo chani en Fehler oder en Bug mälde?",
       "body": "Mir hei en <0>GitHub</0>, wo du es detailliertes Issue im Repository erstelle chasch. Zusätzlich chasch du, wenn du wetsch, au e Pull Request mache, um s’Problem sälber z’fiixe."
     },
-    "text": "P-Stream isch druf usgleit, so benotzerfröntlech wie möglech z‘si. Trotzdäm het Lüüt no Froge und Problem. Die Site isch do, om z‘hälfe."
+    "text": "StreamWatch isch druf usgleit, so benotzerfröntlech wie möglech z‘si. Trotzdäm het Lüüt no Froge und Problem. Die Site isch do, om z‘hälfe."
   },
   "jip": {
     "q1": {
       "title": "Wo bechomi helf?",
-      "body": "Nun, du chasch em Officielle <0>P-Stream-Discord</0> biträte ond det Froge stelle oder en Email at adresse wo onde a dere Site esch, schribe."
+      "body": "Nun, du chasch em Officielle <0>StreamWatch-Discord</0> biträte ond det Froge stelle oder en Email at adresse wo onde a dere Site esch, schribe."
     },
     "q2": {
       "title": "Wo chani en Fehler oder en Bug mälde?",
       "body": "Mir hei en <0>GitHub\\</0>, wo du es detailliertes Issue im Repository erstelle chasch. Zusätzlich chasch du, wenn du wotsch, au e Pull Request mache, um s’Problem sälber z’fiixe."
     },
-    "text": "P-Stream isch net usem Hemel gheit - s meischte esch vonere einzelne Person gmacht worde (ond das no sehr idrocksvoll!).",
+    "text": "StreamWatch isch net usem Hemel gheit - s meischte esch vonere einzelne Person gmacht worde (ond das no sehr idrocksvoll!).",
     "title": "Jip"
   },
   "details": {

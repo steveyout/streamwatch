@@ -3,10 +3,10 @@
     "faqTitle": "Gyakori kérdések",
     "q1": {
       "title": "Honnan jön a tartalom?",
-      "body": "P-Stream nem tárol semmilyen tartalmat. Amikor valamit megakarsz nézni, az internetet átfésüljök a kiválasztott médiáért (A töltőképernyőn, és a 'video források' fülön láthatod, hogy melyik forrást használod). Média, tartalom soha nincs feltöltve P-Stream által, minden ezen a keresési mechanizmuson keresztül történik."
+      "body": "StreamWatch nem tárol semmilyen tartalmat. Amikor valamit megakarsz nézni, az internetet átfésüljök a kiválasztott médiáért (A töltőképernyőn, és a 'video források' fülön láthatod, hogy melyik forrást használod). Média, tartalom soha nincs feltöltve StreamWatch által, minden ezen a keresési mechanizmuson keresztül történik."
     },
     "q2": {
-      "body": "Nem lehetséges filmet vagy sorozatot kérni, P-Stream nem kezel semmilyen tartalmat. Az összes tartalom különböző internetes forrásokon keresztül tekinthető meg.",
+      "body": "Nem lehetséges filmet vagy sorozatot kérni, StreamWatch nem kezel semmilyen tartalmat. Az összes tartalom különböző internetes forrásokon keresztül tekinthető meg.",
       "title": "Hol tudok filmet vagy sorozatot kérni?"
     },
     "q3": {
@@ -19,10 +19,10 @@
     },
     "q5": {
       "title": "Hol tudhatok meg többet?",
-      "body": "Van a P-Stream-nek egy Discord szervere, amit megtalálhatsz ennek az oldalnak a fejlécén!"
+      "body": "Van a StreamWatch-nek egy Discord szervere, amit megtalálhatsz ennek az oldalnak a fejlécén!"
     },
-    "title": "P-Stream-ről",
-    "description": "P-Stream egy mellékágja(forkja) a movie-webnek, amelynek fennmaradása biztosítva van a movie-web.app leállása után is. P-Stream egy privát, \"self-hosted\" VPS-en fut. Az oldalt veszteségesen futtatom;nincsenek reklámok a szabad/ingyenes médiában való hitem miatt."
+    "title": "StreamWatch-ről",
+    "description": "StreamWatch egy mellékágja(forkja) a movie-webnek, amelynek fennmaradása biztosítva van a movie-web.app leállása után is. StreamWatch egy privát, \"self-hosted\" VPS-en fut. Az oldalt veszteségesen futtatom;nincsenek reklámok a szabad/ingyenes médiában való hitem miatt."
   },
   "actions": {
     "copied": "Kimásolva",
@@ -90,7 +90,7 @@
   "footer": {
     "legal": {
       "disclaimer": "Figyelmeztetés",
-      "disclaimerText": "Felhívjuk figyelmedet, hogy a P-Stream nem tárol fájlokat, hanem csak harmadik fél szolgáltatóinak tartalmát jeleníti meg. Jogi kérdésekkel közvetlenül hozzájuk kell fordulni."
+      "disclaimerText": "Felhívjuk figyelmedet, hogy a StreamWatch nem tárol fájlokat, hanem csak harmadik fél szolgáltatóinak tartalmát jeleníti meg. Jogi kérdésekkel közvetlenül hozzájuk kell fordulni."
     },
     "links": {
       "discord": "Discord",
@@ -102,7 +102,7 @@
     "tagline": "Nézd a kedvenc filmeidet és sorozataidat ingyen, örökké reklámmentesen!"
   },
   "global": {
-    "name": "P-Stream",
+    "name": "StreamWatch",
     "pages": {
       "about": "Rólunk",
       "legal": "Legal / DMCA",
@@ -110,7 +110,7 @@
       "support": "Szupport",
       "login": "Bejelentkezés",
       "onboarding": "Előkészítés",
-      "pagetitle": "{{title}} - P-Stream",
+      "pagetitle": "{{title}} - StreamWatch",
       "settings": "Beállítások",
       "migration": "Fiók átvitele",
       "jip": "Jip",
@@ -134,11 +134,11 @@
           "Mihez van kedved?",
           "Kitöröljük a böngészési előzményeidet?",
           "Mit akarsz streamelni?",
-          "P-Stream mindenidők legjobb oldala!",
+          "StreamWatch mindenidők legjobb oldala!",
           "Mi van a nézési listádon ma?",
           "Milyen volt a napod?",
           "A francba, bocsi, az én hibám, hogy soha se működik az oldal...",
-          "Ugye, hogy a P-Stream a legjobb?",
+          "Ugye, hogy a StreamWatch a legjobb?",
           "UwU"
         ]
       },
@@ -163,16 +163,16 @@
     },
     "titles": {
       "day": {
-        "extra": ["Viva la P-Stream!"],
+        "extra": ["Viva la StreamWatch!"],
         "default": "Mit szeretnél nézni e délután?"
       },
       "morning": {
         "default": "Mit szeretnél nézni e reggelen?",
-        "extra": ["Viva la P-Stream!"]
+        "extra": ["Viva la StreamWatch!"]
       },
       "night": {
         "default": "Mit szeretnél nézni ezen az estén?",
-        "extra": ["Viva la P-Stream!"]
+        "extra": ["Viva la StreamWatch!"]
       },
       "420": {
         "extra": ["Boldog 4/20-át!"],
@@ -331,7 +331,7 @@
     "badge": "Hibák",
     "goHome": "Kezdőlapra",
     "title": "Tartalomszolgáltatói problémák",
-    "message": "P-Stream hiábakt tapasztal néhány szolgáltatóval megint, ha nem találsz, vagy nem tudsz lejátszani egy sorozatot, változtass forrást. Az alábbi időszakokban ez a hiba várhatóan fennmarad."
+    "message": "StreamWatch hiábakt tapasztal néhány szolgáltatóval megint, ha nem találsz, vagy nem tudsz lejátszani egy sorozatot, változtass forrást. Az alábbi időszakokban ez a hiba várhatóan fennmarad."
   },
   "onboarding": {
     "defaultConfirm": {
@@ -379,7 +379,7 @@
         "button": "Több információ",
         "title": "Egy beállítás megértése",
         "explainer": {
-          "intro": "P-Stream nem hosztol, se nem tárol videókat. Harmadik felekre hagyatkozik a tartalmakért, ezért ki kell választanod, hogy hogyan kapcsolódjon azokhoz az oldalakhoz.",
+          "intro": "StreamWatch nem hosztol, se nem tárol videókat. Harmadik felekre hagyatkozik a tartalmakért, ezért ki kell választanod, hogy hogyan kapcsolódjon azokhoz az oldalakhoz.",
           "options": "A beállításaid:",
           "extension": "1. Bővítmény",
           "proxy": "2. Proxy",
@@ -389,8 +389,8 @@
             "fedapi": "Továbbiak: FED API (privát) token",
             "fedapiDescription": "Hozd az INGYENES Febbox fioókodat, hogy hozzáférést nyerj a FED API (privát-hoz), a legjobb forrás 4K minőséggel, Dolby Atmos hatással, intro átugrással, és a leggyorsabb betöltési sebességekkel! Nagyon ajánlott opció!"
           },
-          "outro": "Ha több kérdésed van, hogy ez hogyan működik, nyugodtan kérdezz a <0>P-Stream Discord</0> szerveren!",
-          "defaultDescription": "A P-Stream beépített proxy-ját használja. A legegyszerűbb opció, de lehet lassabb a megosztozott sávszélesség miatt.",
+          "outro": "Ha több kérdésed van, hogy ez hogyan működik, nyugodtan kérdezz a <0>StreamWatch Discord</0> szerveren!",
+          "defaultDescription": "A StreamWatch beépített proxy-ját használja. A legegyszerűbb opció, de lehet lassabb a megosztozott sávszélesség miatt.",
           "extensionDescription": "A bővítmény ad a elérhetőséget a legtöbb forráshoz. Egy lokális proxy-ként viselkedik, és tudja kezelni az olyan oldalakat, amiknek speciális sütik vagy \"header\"-ök kellenek a betöltéshez."
         },
         "recommended": {
@@ -429,7 +429,7 @@
         }
       },
       "explainer": "A legjobb sztreamekért, ki kell választanod, hogy melyik sztreamelési módot akarod használni.",
-      "title": "Állítsuk be neked a P-Stream-et"
+      "title": "Állítsuk be neked a StreamWatch-et"
     }
   },
   "overlays": {
@@ -446,7 +446,7 @@
     "menus": {
       "downloads": {
         "button": "Letöltés megpróbálása",
-        "disclaimer": "A letöltések közvetlen a szolgáltatótól jönnek. P-Stream-nek nincs befolyása, hogy a letöltés hogyan van kínálva.",
+        "disclaimer": "A letöltések közvetlen a szolgáltatótól jönnek. StreamWatch-nek nincs befolyása, hogy a letöltés hogyan van kínálva.",
         "copyHlsPlaylist": "HLS lejátszási lista link másolása",
         "downloadSubtitle": "Jelenlegi felirat letöltése",
         "downloadVideo": "Videó letöltése",
@@ -467,7 +467,7 @@
         },
         "title": "Letöltés",
         "hlsDownloader": "Vagy, menj ide <0>hls downloader website</0> és illeszd be az alábbi lejátszási lista URL-t.",
-        "hlsDisclaimer": "A letöltések közvetlen a tartalomszolgáltatótól vannak.P-Stream-nek nincsen semmi befolyása, hogy a letöltések hogyan vannak szolgáltatva.<br /><br />Vedd figyelembe, hogy egy HLS lejátszási listát töltesz le, <bold>nem ajánlott letölteni, ha nem vagy ismerős a haladó sztreaming formátumokkal</bold>. Próbálj különböző forrásokat más formátumokért."
+        "hlsDisclaimer": "A letöltések közvetlen a tartalomszolgáltatótól vannak.StreamWatch-nek nincsen semmi befolyása, hogy a letöltések hogyan vannak szolgáltatva.<br /><br />Vedd figyelembe, hogy egy HLS lejátszási listát töltesz le, <bold>nem ajánlott letölteni, ha nem vagy ismerős a haladó sztreaming formátumokkal</bold>. Próbálj különböző forrásokat más formátumokért."
       },
       "episodes": {
         "button": "Részek",
@@ -617,7 +617,7 @@
         "homeButton": "Kezdőlapra",
         "enableExtension": "Engedélyezd a bővítményt",
         "title": "Kérlek engedélyezd a bővítményt",
-        "text": "Telepítetted a P-Stream bővitményt. Hogy használni tudd, engedélyezned kell a bővítményt ennek az oldalnak."
+        "text": "Telepítetted a StreamWatch bővitményt. Hogy használni tudd, engedélyezned kell a bővítményt ennek az oldalnak."
       },
       "tips": {
         "1": "Nyomj a fogaskerékre, hogy forrásokat válts!",
@@ -652,15 +652,15 @@
     "turnstile": {
       "title": "Robot vagy?",
       "verifyingHumanity": "Emberiség megerősítése...",
-      "description": "Kérlek bízonyitsd emberi léteted ezzel az egyszerű feladattal, hogy biztonsága tartsuk P-Stream-et.",
+      "description": "Kérlek bízonyitsd emberi léteted ezzel az egyszerű feladattal, hogy biztonsága tartsuk StreamWatch-et.",
       "error": "Nem sikerült bizonyítani emberiséged - sztreamnek nem sikerült betöltenie. Töröld a cache-ed és próbáld újra vagy válts forrást (nyomd a fogaskereket)."
     }
   },
   "support": {
     "title": "Szupport",
-    "text": "P-Stream minnél felhasználó barátabbnak van tervezve. De így is szoktak lenni kérdések, és problémák. Ez az oldal ezeknek a megoldására szolgál",
+    "text": "StreamWatch minnél felhasználó barátabbnak van tervezve. De így is szoktak lenni kérdések, és problémák. Ez az oldal ezeknek a megoldására szolgál",
     "q1": {
-      "body": "Csatlakozhatsz a hivatalos <0>P-Stream discord</0> szerverhez, és ott kérdezhetsz, vagy írhatsz egy emailt az oldal alján található címre.",
+      "body": "Csatlakozhatsz a hivatalos <0>StreamWatch discord</0> szerverhez, és ott kérdezhetsz, vagy írhatsz egy emailt az oldal alján található címre.",
       "title": "Hol kaphatok segítséget?"
     },
     "q2": {
@@ -670,10 +670,10 @@
   },
   "jip": {
     "title": "Jip",
-    "text": "P-Stream nem került ide a semmiből, nem a fán termett, nagyrészt egy ember által lett csinálva (egy nagyon király ember által).",
+    "text": "StreamWatch nem került ide a semmiből, nem a fán termett, nagyrészt egy ember által lett csinálva (egy nagyon király ember által).",
     "q1": {
       "title": "Hol kaphatok segítséget?",
-      "body": "Csatlakozhatsz a hivatalos <0>P-Stream discord</0> szerverhez, és ott kérdezhetsz, vagy írhatsz egy emailt az oldal alján található címre."
+      "body": "Csatlakozhatsz a hivatalos <0>StreamWatch discord</0> szerverhez, és ott kérdezhetsz, vagy írhatsz egy emailt az oldal alján található címre."
     },
     "q2": {
       "title": "Hol tudok jelenteni egy bugot, vagy egy hibát?",
@@ -709,7 +709,7 @@
       "admin": {
         "title": "Adminisztrátor panel",
         "button": "Nézd meg",
-        "text": "Használd az eszközöket, amik P-Stream állapotának felmérésére lettek tervezve."
+        "text": "Használd az eszközöket, amik StreamWatch állapotának felmérésére lettek tervezve."
       },
       "actions": {
         "delete": {

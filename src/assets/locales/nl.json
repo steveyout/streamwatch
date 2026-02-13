@@ -1,26 +1,26 @@
 {
   "about": {
-    "description": "P-Stream is een webapplicatie die het internet afzoekt naar streams. Het team streeft naar een minimalistische benadering van het consumeren van inhoud.",
+    "description": "StreamWatch is een webapplicatie die het internet afzoekt naar streams. Het team streeft naar een minimalistische benadering van het consumeren van inhoud.",
     "faqTitle": "Veelgestelde vragen",
     "q1": {
-      "body": "P-Stream host geen inhoud. Wanneer je op iets klikt om te bekijken, wordt het internet afgezocht naar de geselecteerde media (op het laadscherm en in het tabblad 'videobronnen' kun je zien welke bron je gebruikt). Media wordt nooit geüpload door P-Stream, alles gaat via dit zoekmechanisme.",
+      "body": "StreamWatch host geen inhoud. Wanneer je op iets klikt om te bekijken, wordt het internet afgezocht naar de geselecteerde media (op het laadscherm en in het tabblad 'videobronnen' kun je zien welke bron je gebruikt). Media wordt nooit geüpload door StreamWatch, alles gaat via dit zoekmechanisme.",
       "title": "Waar komt de content vandaan?"
     },
     "q2": {
-      "body": "Het is niet mogelijk om een show of film aan te vragen, P-Stream beheert geen content. Alle inhoud wordt bekeken via bronnen op het internet.",
+      "body": "Het is niet mogelijk om een show of film aan te vragen, StreamWatch beheert geen content. Alle inhoud wordt bekeken via bronnen op het internet.",
       "title": "Waar kan ik een show of film aanvragen?"
     },
     "q3": {
       "body": "Onze zoekresultaten worden aangestuurd door The Movie Database (TMDB) en worden weergegeven ongeacht of onze bronnen de inhoud daadwerkelijk hebben.",
       "title": "De zoekresultaten tonen de show of film, waarom kan ik hem niet afspelen?"
     },
-    "title": "Over P-Stream",
+    "title": "Over StreamWatch",
     "q4": {
       "body": "Alle data worden gesynchroniseerd met de community backend. Iedereen kan deze ook vrij gebruiken.",
       "title": "Hoe zit het met mijn gegevens en dergelijke?"
     },
     "q5": {
-      "body": "P-Stream heeft een Discord server die je bovenaan in deze pagina kunt vinden!",
+      "body": "StreamWatch heeft een Discord server die je bovenaan in deze pagina kunt vinden!",
       "title": "Hoe kan ik meer te weten komen?"
     }
   },
@@ -90,7 +90,7 @@
   "footer": {
     "legal": {
       "disclaimer": "Disclaimer",
-      "disclaimerText": "P-Stream host geen bestanden, maar linkt alleen naar diensten van derden. Juridische kwesties moeten worden opgenomen met de bestandshosts en providers. P-Stream is niet verantwoordelijk voor mediabestanden die worden getoond door de videoproviders."
+      "disclaimerText": "StreamWatch host geen bestanden, maar linkt alleen naar diensten van derden. Juridische kwesties moeten worden opgenomen met de bestandshosts en providers. StreamWatch is niet verantwoordelijk voor mediabestanden die worden getoond door de videoproviders."
     },
     "links": {
       "discord": "Discord",
@@ -101,13 +101,13 @@
     "tagline": "Bekijk je favoriete shows en films met deze open source streaming app."
   },
   "global": {
-    "name": "P-Stream",
+    "name": "StreamWatch",
     "pages": {
       "about": "Over",
       "legal": "Legal / DMCA",
       "login": "Login",
       "onboarding": "Instellen",
-      "pagetitle": "{{title}} - P-Stream",
+      "pagetitle": "{{title}} - StreamWatch",
       "register": "Registreren",
       "settings": "Instellingen",
       "discover": "Ondek",
@@ -141,7 +141,7 @@
           "Wat staat er vandaag op jouw kijklijst?",
           "Hoe was je dag?",
           "Mijn fout, de site werkt nooit...",
-          "Is P-Stream niet gewoon de beste?",
+          "Is StreamWatch niet gewoon de beste?",
           ">ᴗ<"
         ]
       },
@@ -161,11 +161,11 @@
     "titles": {
       "day": {
         "default": "Wat wil je vanmiddag kijken?",
-        "extra": ["Lang leven P-Stream!"]
+        "extra": ["Lang leven StreamWatch!"]
       },
       "morning": {
         "default": "Waar wil je deze ochtend naar kijken?",
-        "extra": ["Lang leven P-Stream!"]
+        "extra": ["Lang leven StreamWatch!"]
       },
       "night": {
         "default": "Wat wil je vanavond bekijken?",
@@ -270,7 +270,7 @@
         },
         "or": "of"
       },
-      "title": "Laten we beginnen met het instellen van P-Stream"
+      "title": "Laten we beginnen met het instellen van StreamWatch"
     }
   },
   "overlays": {
@@ -287,10 +287,10 @@
     "menus": {
       "downloads": {
         "copyHlsPlaylist": "HLS-afspeellijstlink kopiëren",
-        "disclaimer": "Downloads worden direct bij de bron opgehaald. P-Stream heeft geen controle over het bestand dat je ontvangt.",
+        "disclaimer": "Downloads worden direct bij de bron opgehaald. StreamWatch heeft geen controle over het bestand dat je ontvangt.",
         "downloadSubtitle": "Download huidige ondertiteling",
         "downloadVideo": "Download filmpje",
-        "hlsDisclaimer": "Downloads worden rechtstreeks van de aanbieder gehaald. P-Stream heeft geen controle over de manier waarop de downloads worden aangeboden.<br /><br />Houd er rekening mee dat u nu een HLS-afspeellijst downloadt, het wordt <bold>afgeraden deze te downloaden als u niet bekend bent met geavanceerde streamingbestandstypen</bold>. Probeer verschillende bronnen voor verschillende streamingbestandstypen.",
+        "hlsDisclaimer": "Downloads worden rechtstreeks van de aanbieder gehaald. StreamWatch heeft geen controle over de manier waarop de downloads worden aangeboden.<br /><br />Houd er rekening mee dat u nu een HLS-afspeellijst downloadt, het wordt <bold>afgeraden deze te downloaden als u niet bekend bent met geavanceerde streamingbestandstypen</bold>. Probeer verschillende bronnen voor verschillende streamingbestandstypen.",
         "onAndroid": {
           "1": "Om te downloaden op Android, klik je op de downloadknop en vervolgens, op de nieuwe pagina, <bold>tap and hold</bold> op de video en selecteer <bold>save</bold>.",
           "shortTitle": "Download / Android",
@@ -428,7 +428,7 @@
         "badge": "Extensie uitgeschakeld",
         "enableExtension": "Extensie inschakelen",
         "homeButton": "Naar hoofdpagina",
-        "text": "Je hebt de P-Stream extensie geïnstalleerd. Om deze te gebruiken, moet je de extensie inschakelen voor deze site.",
+        "text": "Je hebt de StreamWatch extensie geïnstalleerd. Om deze te gebruiken, moet je de extensie inschakelen voor deze site.",
         "title": "Activeer alstublieft de extensie"
       },
       "items": {
@@ -452,7 +452,7 @@
       "shortRemaining": "-{{timeLeft}}"
     },
     "turnstile": {
-      "description": "Bevestig dat u een mens bent door de Captcha aan de rechterkant in te vullen. Dit is om P-Stream veilig te houden!",
+      "description": "Bevestig dat u een mens bent door de Captcha aan de rechterkant in te vullen. Dit is om StreamWatch veilig te houden!",
       "error": "Kan uw menselijkheid niet verifiëren. Probeer het opnieuw.",
       "title": "We moeten verifiëren dat u een mens bent.",
       "verifyingHumanity": "Je menselijkheid verifiëren..."
@@ -732,12 +732,12 @@
   },
   "downtimeNotice": {
     "badge": "Problemen",
-    "message": "P-Stream ondervindt opnieuw problemen met sommige providers. Als je een show niet kunt vinden of afspelen, probeer dan de bron te wijzigen. Verwacht dat deze fout zich zal blijven voordoen gedurende de onderstaande tijden.",
+    "message": "StreamWatch ondervindt opnieuw problemen met sommige providers. Als je een show niet kunt vinden of afspelen, probeer dan de bron te wijzigen. Verwacht dat deze fout zich zal blijven voordoen gedurende de onderstaande tijden.",
     "goHome": "Ga naar startpagina",
     "title": "Providerproblemen"
   },
   "support": {
-    "text": "P-Stream is ontworpen om zo gebruiksvriendelijk mogelijk te zijn. Mensen hebben echter nog steeds vragen en problemen. Deze pagina is hier om deze tekortkomingen op te lossen",
+    "text": "StreamWatch is ontworpen om zo gebruiksvriendelijk mogelijk te zijn. Mensen hebben echter nog steeds vragen en problemen. Deze pagina is hier om deze tekortkomingen op te lossen",
     "title": "Ondersteuning",
     "q2": {
       "body": "We hebben een <0>GitHub</0> waar je een gedetailleerd issue in onze repository kunt aanmaken. Daarnaast kun je, als je dat wilt, een pull request indienen om het probleem zelf op te lossen.",

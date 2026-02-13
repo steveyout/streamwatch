@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>P-Stream Notifications</title>
+    <title>StreamWatch Notifications</title>
     <link>https://pstream.mov</link>
-    <description>Site updates and important notifications for P-Stream users</description>
+    <description>Site updates and important notifications for StreamWatch users</description>
     <language>en</language>
     <lastBuildDate>Mon, 29 Sep 2025 18:00:00 MST</lastBuildDate>
     <atom:link href="https://pstream.mov/notifications.xml" rel="self" type="application/rss+xml" />
 
     <item>
       <guid>notification-059</guid>
-      <title>P-Stream desktop app is now available!</title>
-      <description>The P-Stream desktop app is now available for download! You can now stream movies and TV shows separately from your browser!
+      <title>StreamWatch desktop app is now available!</title>
+      <description>The StreamWatch desktop app is now available for download! You can now stream movies and TV shows separately from your browser!
 
 The app has the extension built in, so all the best sources are already configured and ready to use! You can still set up FED API from the settings page as well!
 
@@ -25,9 +25,9 @@ The app is available for Windows, macOS, and Linux. You can download it from the
     <item>
       <guid>notification-058</guid>
       <title>New TheIntroDB Skip Segments feature!</title>
-      <description>You can now quickly leave feedback, correct, and submit skip times for movies and TV shows using your TheIntroDB API key right within P-Stream!
+      <description>You can now quickly leave feedback, correct, and submit skip times for movies and TV shows using your TheIntroDB API key right within StreamWatch!
 
-If you haven't made an account on TheIntroDB yet, you can do so below! Generate your API key and add it to your P-Stream connections settings!
+If you haven't made an account on TheIntroDB yet, you can do so below! Generate your API key and add it to your StreamWatch connections settings!
 
 Then, the next time you encounter a skip button, you can leave feedback and correct the skip time if it's incorrect!
 
@@ -40,7 +40,7 @@ And if an episode does't have a segment yet, you can submit it yourself from the
 
     <item>
       <guid>notification-057</guid>
-      <title>P-Stream v5.3.4 released!</title>
+      <title>StreamWatch v5.3.4 released!</title>
       <description>I know it's been a while, but there's finally new features and fixes that many people have been waiting for!
 
 - Added a new Watch History page! Separate from the currently watching section. Accessible from the dropdown menu.
@@ -72,7 +72,7 @@ Also, my new project, TheIntroDB, is now available to everyone, please submit in
 
 TheIntroDB is powered by the community. You can contribute by adding skip intro times for movies and TV shows to the database!
 
-It's now available to P-Stream users and soon to available as a separate free API! 
+It's now available to StreamWatch users and soon to available as a separate free API!
 
 Join the waitlist below to get access to the API when it's ready!
       </description>
@@ -98,10 +98,10 @@ We've also introduced some new backend servers, so you can now choose which one 
 
     <item>
       <guid>notification-054</guid>
-      <title>P-Stream v5.3.3 released!</title>
+      <title>StreamWatch v5.3.3 released!</title>
       <description>Merry Christmas everyone! 🎄
 
-I hope everyone has a great holiday season this year, and thank you to everyone who has supported P-Stream! I'm very happy to have this community and give you all free movies and tv. This is a pretty big update thats been in the works, but I wanted to get it out before Christmas! Hopefully, we'll have another smaller update before the end of the year!
+I hope everyone has a great holiday season this year, and thank you to everyone who has supported StreamWatch! I'm very happy to have this community and give you all free movies and tv. This is a pretty big update thats been in the works, but I wanted to get it out before Christmas! Hopefully, we'll have another smaller update before the end of the year!
 
 Additions:
 - Revamped the captions menu to sort by language
@@ -172,11 +172,11 @@ I'll be reaching out to everyone who has donated to get custom email addresses f
       <title>Xprime has been disabled. More info below!</title>
       <description>Yes this is unfortunate, Xprime has been disabled due to funding issues on their end. 
 
-Xprime asked if we could introduce ads to P-Stream, and after some consideration and ad testing last week, the P-Stream team and I have decided not to add ads to P-Stream. Ads are not only unattractive, but unsafe and against the team's morals. 
+Xprime asked if we could introduce ads to StreamWatch, and after some consideration and ad testing last week, the StreamWatch team and I have decided not to add ads to StreamWatch. Ads are not only unattractive, but unsafe and against the team's morals.
 
-movie-web (what P-Stream was forked from) was created to be easily self-hostable and ad free. And though the media landscape has changed (cors on streams and our scrapers getting blocked) we've still take this into consideration. I still believe P-Stream is better without ads, and our single banner ad reflects this; its unobtrusive and safe. 
+movie-web (what StreamWatch was forked from) was created to be easily self-hostable and ad free. And though the media landscape has changed (cors on streams and our scrapers getting blocked) we've still take this into consideration. I still believe StreamWatch is better without ads, and our single banner ad reflects this; its unobtrusive and safe.
 
-Xprime may come back in the future, but we're already working on a new source that should be just as good or better. Plus we will continue to support FED API and all the extension sources that make P-Stream (and self hosted sites) amazing. 
+Xprime may come back in the future, but we're already working on a new source that should be just as good or better. Plus we will continue to support FED API and all the extension sources that make StreamWatch (and self hosted sites) amazing.
 
 Thanks to everyone who has supported and we'll be working hard to bring you new great things!
       </description>
@@ -195,11 +195,11 @@ Thanks to everyone who has supported and we'll be working hard to bring you new 
 
     <item>
       <guid>notification-049</guid>
-      <title>P-Stream v5.3.2 released!</title>
+      <title>StreamWatch v5.3.2 released!</title>
       <description>Many awesome changes and fixes in this release! Some seasonal additions as well! And yes, we skipped a version, it was super small.
 
 Additions:
-- Added auto-resume on playback error setting. Enabled by default. When enabled, P-Stream will automatically resume playback from the next source if the current source fails.
+- Added auto-resume on playback error setting. Enabled by default. When enabled, StreamWatch will automatically resume playback from the next source if the current source fails.
 - Added new trailers and similar media carousels to the details modal!
 - Added Transcript view for subtitles! View the entire transcript of the current subtitle.
 - Added nickname to user account settings (used in the XP app and for watch parties!)
@@ -217,7 +217,7 @@ Fixes:
 - Fixed captions not working for MP4 sources.
 - Fixed subtitle delay getting reset when double pressing to copy.
 
-Thanks to everyone who has supported P-Stream! We couldn't do it without you!
+Thanks to everyone who has supported StreamWatch! We couldn't do it without you!
 
 We're sorry about some of the connectivity issues recently, but they should be fixed now!
 
@@ -230,7 +230,7 @@ To give back to those who have supported, we will **soon** be including a custom
 
     <item>
       <guid>notification-048</guid>
-      <title>P-Stream v5.3.0 released!</title>
+      <title>StreamWatch v5.3.0 released!</title>
       <description>Lots of quality of life improvements and changes and a huge number of bugs fixed!
 
 Additions:
@@ -265,7 +265,7 @@ Fixes:
 
 Thanks to everyone who has been testing the beta and providing feedback!
 
-P-Stream has partnered with Neon Next Generation Pty Ltd. for this release! They offer high quality web and server hosting with a free virtual private container business plan! Use code "pstream" for 25% off your first 3 months! (link below)
+StreamWatch has partnered with Neon Next Generation Pty Ltd. for this release! They offer high quality web and server hosting with a free virtual private container business plan! Use code "pstream" for 25% off your first 3 months! (link below)
       </description>
       <link>https://neonnextgeneration.com</link>
       <pubDate>Mon, 10 Nov 2025 13:00:00 MST</pubDate>
@@ -284,7 +284,7 @@ P-Stream has partnered with Neon Next Generation Pty Ltd. for this release! They
 
     <item>
       <guid>notification-046</guid>
-      <title>P-Stream v5.2.1 released!</title>
+      <title>StreamWatch v5.2.1 released!</title>
       <description>Lots of great changes and improvements this time!
 
 - Added collection feature to the details modal (thanks @doug for the original idea)
@@ -301,7 +301,7 @@ P-Stream has partnered with Neon Next Generation Pty Ltd. for this release! They
 - Fixed progress saving and showing values larger than 100%
 - Various other bug fixes and improvements
 
-P-Stream has partnered with Neon Next Generation Pty Ltd. for this release! They offer high quality kVM web and server hosting with a free virtual private container business plan! Check them out using the link below!
+StreamWatch has partnered with Neon Next Generation Pty Ltd. for this release! They offer high quality kVM web and server hosting with a free virtual private container business plan! Check them out using the link below!
       </description>
       <link>https://billing.neonnextgeneration.com?ref=kAQ3bDhpmT</link>
       <pubDate>Tue, 28 Oct 2025 15:00:00 MST</pubDate>
@@ -310,7 +310,7 @@ P-Stream has partnered with Neon Next Generation Pty Ltd. for this release! They
 
     <item>
       <guid>notification-045</guid>
-      <title>P-Stream v5.2.0 released!</title>
+      <title>StreamWatch v5.2.0 released!</title>
       <description>Lots of great bug fixes this time around and a couple quality of life improvements!
 
 - Fixed watch progress getting reset when switching sources.
@@ -351,7 +351,7 @@ Also, we now have a new source: Mega 🔥! Thanks to @fifthwit for adding it!
 
     <item>
       <guid>notification-042</guid>
-      <title>P-Stream v5.1.3 released!</title>
+      <title>StreamWatch v5.1.3 released!</title>
       <description>New features and improvements in this update:
 
 - Added favorite episodes! Every episode now has a bookmark icon that can be toggled to sort your episodes into a new Favorites section! It's like a special season of just your picks!
@@ -365,7 +365,7 @@ Also, we now have a new source: Mega 🔥! Thanks to @fifthwit for adding it!
 
 Enjoy the new features!
 
-Also, P-Stream now has a SimpleX community! Feel free to join if you want to stay away from the prying eyes of Discord. Press the link below.</description>
+Also, StreamWatch now has a SimpleX community! Feel free to join if you want to stay away from the prying eyes of Discord. Press the link below.</description>
       <link>https://smp10.simplex.im/g#C1oMmXt1lMPqDZAs9Rne4SQ-LhvpwNv2UDLR8RA1zos</link>
       <pubDate>Mon, 29 Sep 2025 18:00:00 MST</pubDate>
       <category>update</category>
@@ -389,9 +389,9 @@ Sorry again!
     <item>
       <guid>notification-040</guid>
       <title>Extension issue for Firefox!</title>
-      <description>If you're using Firefox with the P-Stream extension, you may have noticed that it says updates are unavailable and that the extension is violating policies. Yikes!
+      <description>If you're using Firefox with the StreamWatch extension, you may have noticed that it says updates are unavailable and that the extension is violating policies. Yikes!
 
-Heres what happened: I accidently deleted my Firefox account that had the P-Stream extension. 
+Heres what happened: I accidently deleted my Firefox account that had the StreamWatch extension.
 The extension did NOT violate any policies, it was just deleted. For some it says that when it gets removed.
 
 I just created a new account and re-submitted it, so it should be back in the store soon. I'll post here when it is.
@@ -407,8 +407,8 @@ I apologize for the inconvenience!</description>
 
     <item>
       <guid>notification-039</guid>
-      <title>Help support P-Stream!</title>
-      <description>If you enjoy P-Stream, please consider donating to help maintain it!
+      <title>Help support StreamWatch!</title>
+      <description>If you enjoy StreamWatch, please consider donating to help maintain it!
 
 We're looking at a new server, but we need your help! If a couple people could chip in and cover the $20 (per month) that would be much appreciated. There is only one ad on the site, and we want to keep it that way!
 
@@ -426,7 +426,7 @@ If you are interested in donating, please check the link below!
       <title>New subtitle source badges!</title>
       <description>There's now a quick way to see the source of a subtitle on the external subtitle selection menu!
 
-In addition to the new badges, there's now a new subtitle source: Febbox! Thanks to Nemo for helping P-Stream fetch subtitles from Febbox without needing to set up the Febbox token! It also allows for the subtitles to be used on any source!
+In addition to the new badges, there's now a new subtitle source: Febbox! Thanks to Nemo for helping StreamWatch fetch subtitles from Febbox without needing to set up the Febbox token! It also allows for the subtitles to be used on any source!
       </description>
       <pubDate>Tue, 26 Aug 2025 21:50:00 MST</pubDate>
       <category>feature</category>
@@ -434,7 +434,7 @@ In addition to the new badges, there's now a new subtitle source: Febbox! Thanks
 
     <item>
       <guid>notification-037</guid>
-      <title>P-Stream v5.1.1 released!</title>
+      <title>StreamWatch v5.1.1 released!</title>
       <description>Minor updates to fix bugs and add some QoL features.
 
 - Now anyone can watch trailers on the details modal! A custom proxy or the extension no longer required. (Other IMDb info still requires the extension or proxy)
@@ -448,7 +448,7 @@ In addition to the new badges, there's now a new subtitle source: Febbox! Thanks
 - Fixed speed boost not working on mobile.
 - Other bug fixes!
 
-P.S. I wanted to highlight TrinityHades, a community member, who is working on adding Safari support to the P-Stream extension! It's not quire ready yet but soon mac users will be able to use the extension to watch P-Stream on Safari!
+P.S. I wanted to highlight TrinityHades, a community member, who is working on adding Safari support to the StreamWatch extension! It's not quire ready yet but soon mac users will be able to use the extension to watch StreamWatch on Safari!
       </description>
       <pubDate>Sun, 24 Aug 2025 22:37:00 MST</pubDate>
       <category>update</category>
@@ -462,7 +462,7 @@ Unfortunatly, many sources needed to be disabled due to them showing NSFW conten
 
 I recommend you set up the febbox token to get access to FED API and CIA API, the best sources at the moment. You can find the febbox token setting at the botton of the settings page!
 
-If you are interested in adding a new source to P-Stream, I recently created a new guide for it! Check the link below.</description>
+If you are interested in adding a new source to StreamWatch, I recently created a new guide for it! Check the link below.</description>
       <link>https://providers.pstream.mov/in-depth/development</link>
       <pubDate>Sat, 16 Aug 2025 11:12:00 MST</pubDate>
       <category>announcement</category>
@@ -472,7 +472,7 @@ If you are interested in adding a new source to P-Stream, I recently created a n
       <guid>notification-033</guid>
       <title>Clarifying current source issues</title>
       <description>I wanted to appologize for some recent issues with FED API and Vidify. 
-Firstly, I wanted to note that P-Stream does not host or control any of the content. Everything is streamed from third party sources.
+Firstly, I wanted to note that StreamWatch does not host or control any of the content. Everything is streamed from third party sources.
 
 Vidify:
 You may have noticed (hopefully not) that Vidify has been showing some NSFW content. This is due to protections they have to prevent us from using them as a source.
@@ -502,7 +502,7 @@ Source updates:
 - Fixed VidSrcCx (thanks mapler!)
 - Disabled SpeedStrm
 
-If you are interested in adding a new source to P-Stream, I recently created a new guide for it! Check the link below.</description>
+If you are interested in adding a new source to StreamWatch, I recently created a new guide for it! Check the link below.</description>
 <link>https://providers.pstream.mov/in-depth/development</link>
       <pubDate>Tue, 05 Aug 2025 10:55:00 MST</pubDate>
       <category>bugfix</category>
@@ -523,7 +523,7 @@ If you have a few minutes, please take the survey linked below!
 
     <item>
       <guid>notification-8-4-25</guid>
-      <title>P-Stream v5.1.0 released!</title>
+      <title>StreamWatch v5.1.0 released!</title>
       <link>https://pstream.mov/</link>
       <description>A bigger one this time. Tons of new quality-of-life features and changes!
 
@@ -548,7 +548,7 @@ Thanks to everyone who has been testing the beta and providing feedback!</descri
 
     <item>
       <guid>notification-028</guid>
-      <title>P-Stream v5.0.4 released!</title>
+      <title>StreamWatch v5.0.4 released!</title>
       <description>A bunch more quality-of-life improvements and fixes have been released.
 - Accounts are no longer required for migration downloads and uploads.
 - Right-click to open the details modal has been re-added.
@@ -576,7 +576,7 @@ Most pages should now be working. If you had an account on the old site, your da
 
     <item>
       <guid>notification-022</guid>
-      <title>P-Stream v5.0.2 released!</title>
+      <title>StreamWatch v5.0.2 released!</title>
       <description>This is another minor update with great quality-of-life features.
 - Added "open in..." button to the download menu.
 - Added the ability to set a custom playback speed.
@@ -593,7 +593,7 @@ Most pages should now be working. If you had an account on the old site, your da
 
     <item>
       <guid>notification-008</guid>
-      <title>P-Stream v5.0.1</title>
+      <title>StreamWatch v5.0.1</title>
       <description>Some minor updates this time:
 - Added network images to the details modal.
 - Added a letterboxd/trakt list page: "Discover All Lists."

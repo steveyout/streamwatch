@@ -1,6 +1,6 @@
 {
   "global": {
-    "name": "P-Stream",
+    "name": "StreamWatch",
     "pages": {
       "about": "About and FAQ",
       "legal": "Legal / DMCA",
@@ -8,7 +8,7 @@
       "support": "Support",
       "login": "Login",
       "onboarding": "Setup",
-      "pagetitle": "{{title}} - P-Stream",
+      "pagetitle": "{{title}} - StreamWatch",
       "register": "Register",
       "settings": "Settings",
       "migration": "Migrate Account",

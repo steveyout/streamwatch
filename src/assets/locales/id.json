@@ -1,14 +1,14 @@
 {
   "about": {
-    "description": "P-Stream adalah website yang mengumpulkan sumber media streaming dari internet. Didesain khusus dengan pendekatan minimalis agar mempermudah konsumsi konten.",
+    "description": "StreamWatch adalah website yang mengumpulkan sumber media streaming dari internet. Didesain khusus dengan pendekatan minimalis agar mempermudah konsumsi konten.",
     "faqTitle": "Pertanyaan umum",
     "q1": {
-      "body": "P-Stream tidak menyimpan berkas media apapun. Ketika anda mengklik sesuatu untuk ditonton, aplikasi akan mencari berkas media di internet (saat media dimuat dan pada tab 'sumber media' anda dapat melihat sumber mana yang digunakan). P-Stream tidak pernah mengunggah media apapun, semua media didapat melalui mekanisme pencarian di internet.",
+      "body": "StreamWatch tidak menyimpan berkas media apapun. Ketika anda mengklik sesuatu untuk ditonton, aplikasi akan mencari berkas media di internet (saat media dimuat dan pada tab 'sumber media' anda dapat melihat sumber mana yang digunakan). StreamWatch tidak pernah mengunggah media apapun, semua media didapat melalui mekanisme pencarian di internet.",
       "title": "Dari mana konten berasal?",
       "section": "Umum"
     },
     "q2": {
-      "body": "Kami tidak menerima permintaan penambahan serial televisi atau film, P-Stream tidak mengelola konten apapun. Semua konten ditonton melalui sumber-sumber dari internet.",
+      "body": "Kami tidak menerima permintaan penambahan serial televisi atau film, StreamWatch tidak mengelola konten apapun. Semua konten ditonton melalui sumber-sumber dari internet.",
       "title": "Di mana saya dapat meminta serial televisi atau film untuk ditambahkan?",
       "section": "Pencarian"
     },
@@ -17,7 +17,7 @@
       "title": "Hasil pencarian menampilkan serial televisi atau film yang saya cari, tapi mengapa saya tidak bisa memutarnya?",
       "section": "Pencarian"
     },
-    "title": "Tentang P-Stream",
+    "title": "Tentang StreamWatch",
     "sections": {
       "language": "Bahasa & Pengaturan Subtitle",
       "playback": "Masalah Pemutaran",
@@ -29,7 +29,7 @@
     "searchPlaceholder": "Pencarian FAQ...",
     "q6": {
       "body": "Belum ada. Tapi bisa kamu install sebagai PWA (Progressive Web App). Pada IOS, menggunakan safari → Share → Tambahkan ke Home Screen. APK tersedia dalam Discord dan masih experiment, tidak direkomendasikan.",
-      "title": "Apakah ada aplikasi P-Stream?",
+      "title": "Apakah ada aplikasi StreamWatch?",
       "section": "Umum"
     },
     "q10": {
@@ -59,7 +59,7 @@
     },
     "q5": {
       "title": "Bagaimana saya bisa mengetahui lebih lanjut?",
-      "body": "P-Stream memiliki Discord server yang bisa diakses melalui header dihalaman ini!",
+      "body": "StreamWatch memiliki Discord server yang bisa diakses melalui header dihalaman ini!",
       "section": "Umum"
     },
     "q7": {
@@ -157,7 +157,7 @@
   "footer": {
     "legal": {
       "disclaimer": "Sanggahan",
-      "disclaimerText": "P-Stream tidak menyimpan berkas media apapun, aplikasi ini hanya menampilkan tautan dari pihak ketiga. Sengketa hukum harus diajukan langsung kepada penyedia pihak ketiga. P-Stream tidak bertanggung jawab atas berkas media yang ditampilkan oleh penyedia pihak ketiga."
+      "disclaimerText": "StreamWatch tidak menyimpan berkas media apapun, aplikasi ini hanya menampilkan tautan dari pihak ketiga. Sengketa hukum harus diajukan langsung kepada penyedia pihak ketiga. StreamWatch tidak bertanggung jawab atas berkas media yang ditampilkan oleh penyedia pihak ketiga."
     },
     "links": {
       "discord": "Discord",
@@ -167,13 +167,13 @@
     "tagline": "Tonton serial televisi dan film favorit anda dengan aplikasi streaming sumber terbuka ini."
   },
   "global": {
-    "name": "P-Stream",
+    "name": "StreamWatch",
     "pages": {
       "about": "Tentang",
       "legal": "Legal / DMCA",
       "login": "Masuk",
       "onboarding": "Penyiapan",
-      "pagetitle": "{{title}} - P-Stream",
+      "pagetitle": "{{title}} - StreamWatch",
       "register": "Daftar",
       "settings": "Pengaturan"
     }
@@ -324,7 +324,7 @@
         "disclaimer": "Tautan unduhan diambil langsung dari penyedia pihak ketiga. Aplikasi ini tidak memiliki kendali bagaimana unduhan disediakan.",
         "downloadSubtitle": "Unduh subtitle saat ini",
         "downloadVideo": "Unduh media",
-        "hlsDisclaimer": "Unduhan didapatkan langsung dari penyedia. P-Stream tidak memiliki kendali bagaimana unduan disediakan.<br /><br />Harap diperhatikan bahwa Anda mengunduh daftar putar HLS, <bold>ini tidak direkomendasikan untuk diunduh jika Anda tidak terbiasa dengan format streaming tingkat lanjut</bold>Coba sumber berbeda untuk format berbeda.",
+        "hlsDisclaimer": "Unduhan didapatkan langsung dari penyedia. StreamWatch tidak memiliki kendali bagaimana unduan disediakan.<br /><br />Harap diperhatikan bahwa Anda mengunduh daftar putar HLS, <bold>ini tidak direkomendasikan untuk diunduh jika Anda tidak terbiasa dengan format streaming tingkat lanjut</bold>Coba sumber berbeda untuk format berbeda.",
         "onAndroid": {
           "1": "Untuk mengunduh di Android, klik tombol unduh, lalu di halaman baru <bold>klik dan tahan</bold> pada video, lalu pilih <bold>simpan</bold>.",
           "shortTitle": "Unduh / Android",

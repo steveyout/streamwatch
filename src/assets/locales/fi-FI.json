@@ -1,26 +1,26 @@
 {
   "about": {
-    "description": "P-Stream on movie-webin haarukka, joka pysyy pystyssä, vaikka movie-web.app suljettiin. P-Stream pyörii yksityisellä, itse ylläpitämälläni VPS:llä. Pyöritän sivua tappiolla; mainoksia ei ole, koska uskon ilmaiseen mediaan.",
+    "description": "StreamWatch on movie-webin haarukka, joka pysyy pystyssä, vaikka movie-web.app suljettiin. StreamWatch pyörii yksityisellä, itse ylläpitämälläni VPS:llä. Pyöritän sivua tappiolla; mainoksia ei ole, koska uskon ilmaiseen mediaan.",
     "faqTitle": "Yleisiä kysymyksiä",
     "q1": {
-      "body": "P-Stream ei isännöi mitään sisältöä. Kun klikkaat jotain katsottavaa, valittua mediaa etsitään internetistä (latausnäytössä ja 'videolähteet'-välilehdellä näet, mitä lähdettä käytät). P-Stream ei koskaan lataa mediaa, kaikki tapahtuu tämän hakumekanismin kautta.",
+      "body": "StreamWatch ei isännöi mitään sisältöä. Kun klikkaat jotain katsottavaa, valittua mediaa etsitään internetistä (latausnäytössä ja 'videolähteet'-välilehdellä näet, mitä lähdettä käytät). StreamWatch ei koskaan lataa mediaa, kaikki tapahtuu tämän hakumekanismin kautta.",
       "title": "Mistä sisältö tulee?"
     },
     "q2": {
-      "body": "Ohjelmaa tai elokuvaa ei voi pyytää, P-Stream ei hallinnoi sisältöä. Kaikki sisältö katsotaan internetin lähteistä.",
+      "body": "Ohjelmaa tai elokuvaa ei voi pyytää, StreamWatch ei hallinnoi sisältöä. Kaikki sisältö katsotaan internetin lähteistä.",
       "title": "Missä voin pyytää sarjaa tai elokuvaa?"
     },
     "q3": {
       "body": "Hakutuloksemme perustuvat The Movie Database (TMDB) -tietokantaan, ja ne näkyvät riippumatta siitä, onko sisältöä oikeasti lähteissämme.",
       "title": "Hakutuloksissa näytetään ohjelma tai elokuva. Miksi en voi toistaa sitä?"
     },
-    "title": "Tietoja P-Streamistä",
+    "title": "Tietoja StreamWatchistä",
     "q4": {
       "body": "Kaikki data synkronoidaan yhteisön taustajärjestelmään, ja kuka tahansa voi vapaasti käyttää tätä.",
       "title": "Entä tietoni ja muut asiat?"
     },
     "q5": {
-      "body": "P-Streamilla on Discord-palvelin, jonka löydät tämän sivun yläosasta!",
+      "body": "StreamWatchilla on Discord-palvelin, jonka löydät tämän sivun yläosasta!",
       "title": "Miten voin saada lisätietoa?"
     }
   },
@@ -90,7 +90,7 @@
   "footer": {
     "legal": {
       "disclaimer": "Vastuuvapauslauseke",
-      "disclaimerText": "P-Stream ei isännöi tiedostoja, se vain linkittää kolmannen osapuolen palveluihin. Lakiasioista tulee ottaa yhteyttä tiedostoisäntään ja palveluntarjoajiin. P-Stream ei ole vastuussa videontarjoajien näyttämistä mediatiedostoista."
+      "disclaimerText": "StreamWatch ei isännöi tiedostoja, se vain linkittää kolmannen osapuolen palveluihin. Lakiasioista tulee ottaa yhteyttä tiedostoisäntään ja palveluntarjoajiin. StreamWatch ei ole vastuussa videontarjoajien näyttämistä mediatiedostoista."
     },
     "links": {
       "discord": "Discord",
@@ -102,13 +102,13 @@
     "tagline": "Katso suosikkiohjelmiasi ja elokuviasi täysin ilmaiseksi ilman mainoksia! (っ'ヮ'c)"
   },
   "global": {
-    "name": "P-Stream",
+    "name": "StreamWatch",
     "pages": {
       "about": "Tietoja",
       "legal": "Legal / DMCA",
       "login": "Kirjaudu sisään",
       "onboarding": "asetus",
-      "pagetitle": "{{title}} - P-Stream",
+      "pagetitle": "{{title}} - StreamWatch",
       "register": "Rekisteröidy",
       "settings": "Asetukset",
       "migration": "Siirrä käyttäjätili",
@@ -138,11 +138,11 @@
           "Mitä tekisi mieli?",
           "Poistetaanko selaushistoriasi?",
           "Mitä haluat striimata?",
-          "P-Stream on paras sivusto ikinä!",
+          "StreamWatch on paras sivusto ikinä!",
           "Mitä katselulistallasi on tänään?",
           "Miten päiväsi sujui?",
           "Pahoittelut, sivusto ei toimi koskaan...",
-          "Eikö P-Stream olekin paras?",
+          "Eikö StreamWatch olekin paras?",
           ">ᴗ<"
         ]
       },

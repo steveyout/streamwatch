@@ -1,13 +1,13 @@
 {
   "about": {
-    "description": "P-Stream jest aplikacją internetową, która wyszukuje w internecie strumienia. Zespół dąży do minimalistycznego podejścia do konsumpcji treści.",
+    "description": "StreamWatch jest aplikacją internetową, która wyszukuje w internecie strumienia. Zespół dąży do minimalistycznego podejścia do konsumpcji treści.",
     "faqTitle": "Częste pytania",
     "q1": {
-      "body": "P-Stream nie udostępnia żadnych treści. Kiedy klikniesz na coś co chcesz obejrzeć, internet zostanie przeszukany pod kątem wybranych multimediów (na ekranie ładowania oraz w zakładce „źródła wideo” możesz zobaczyć, z jakiego źródła korzystasz). Media nigdy nie są przesyłane przez P-Stream, wszystko odbywa się za pośrednictwem tego mechanizmu wyszukiwania.",
+      "body": "StreamWatch nie udostępnia żadnych treści. Kiedy klikniesz na coś co chcesz obejrzeć, internet zostanie przeszukany pod kątem wybranych multimediów (na ekranie ładowania oraz w zakładce „źródła wideo” możesz zobaczyć, z jakiego źródła korzystasz). Media nigdy nie są przesyłane przez StreamWatch, wszystko odbywa się za pośrednictwem tego mechanizmu wyszukiwania.",
       "title": "Skąd pochodzą treści?"
     },
     "q2": {
-      "body": "Nie można złożyć wniosku o serialu ani filmu, P-Stream nie zarządza żadną treścią. Wszystkie treści są przeglądane za pośrednictwem źródeł w Internecie.",
+      "body": "Nie można złożyć wniosku o serialu ani filmu, StreamWatch nie zarządza żadną treścią. Wszystkie treści są przeglądane za pośrednictwem źródeł w Internecie.",
       "title": "Gdzie mogę złożyć wniosek o seriale lub filmie?",
       "section": "szukaj"
     },
@@ -16,10 +16,10 @@
       "title": "W wyniku wyszukiwania wyświetlany jest serial lub film. Dlaczego nie mogę go odtworzyć?",
       "section": "szukaj"
     },
-    "title": "O P-Stream oraz FAQ (^▽^)",
+    "title": "O StreamWatch oraz FAQ (^▽^)",
     "q5": {
       "title": "Jak mogę dowiedzieć się więcej?",
-      "body": "P-Stream ma swój serwer Discord, który znajdziesz w nagłówku strony!"
+      "body": "StreamWatch ma swój serwer Discord, który znajdziesz w nagłówku strony!"
     },
     "q4": {
       "title": "Co z moimi danymi?",
@@ -59,7 +59,7 @@
     },
     "q6": {
       "body": "Jeszcze nie, ale możesz zainstalować jako PWA (Progresywna Aplikacja Internetowa). Na IOS, w przeglądarce Safara → Udostępnij → Dodaj do ekranu głównego. Na Androidzie, w przeglądarce Google Chrome → Kliknij 3 kropki → Dodaj do ekranu głównego. Eksperymentalna wersja aplikacji jest dostępna na naszym serwerze Discord, ale nie rekomendujemy jej używania.",
-      "title": "Czy istnieje aplikacja P-Stream?"
+      "title": "Czy istnieje aplikacja StreamWatch?"
     },
     "q7": {
       "body": "Kliknij \"Synchronizuj do Chmury\" w menu, albo przejdź do Ustawień, aby stworzyć i zsynchronizować konto społeczności.",
@@ -198,7 +198,7 @@
   "footer": {
     "legal": {
       "disclaimer": "Zastrzeżenie ◝(ᵔᵕᵔ)◜",
-      "disclaimerText": "P-Stream nie przechowuje żadnych plików, zawiera jedynie łącza do usług stron trzecich. Kwestie prawne należy konsultować z hostami plików i dostawcami. P-Stream nie ponosi odpowiedzialności za jakiekolwiek pliki multimedialne prezentowane przez dostawców wideo."
+      "disclaimerText": "StreamWatch nie przechowuje żadnych plików, zawiera jedynie łącza do usług stron trzecich. Kwestie prawne należy konsultować z hostami plików i dostawcami. StreamWatch nie ponosi odpowiedzialności za jakiekolwiek pliki multimedialne prezentowane przez dostawców wideo."
     },
     "links": {
       "discord": "Discord",
@@ -210,13 +210,13 @@
     "tagline": "Oglądaj swoje ulubione seriale i filmy za darmo, bez reklam! (っ'ヮ'c)"
   },
   "global": {
-    "name": "P-Stream",
+    "name": "StreamWatch",
     "pages": {
       "about": "Informacje oraz FAQ",
       "legal": "Legal / DMCA",
       "login": "Zaloguj sie",
       "onboarding": "Konfiguracja",
-      "pagetitle": "{{title}} - P-Stream",
+      "pagetitle": "{{title}} - StreamWatch",
       "register": "Zarejestruj się",
       "settings": "Ustawienia",
       "discover": "Odkrywaj",
@@ -246,11 +246,11 @@
           "Na co masz ochotę?",
           "Czy mamy usunąć Twoją historię wyszukiwania?",
           "Co chcesz streamować?",
-          "P-Stream to najlepsza strona!",
+          "StreamWatch to najlepsza strona!",
           "Co jest dzisiaj na Twojej liście Do Obejrzenia?",
           "Jak Ci minął dzień?",
           "Mój błąd, ta strona nigdy nie działa...",
-          "Czy P-Stream nie jest najlepszy?",
+          "Czy StreamWatch nie jest najlepszy?",
           ">ᴗ<"
         ]
       },
@@ -270,15 +270,15 @@
     "titles": {
       "day": {
         "default": "Co chciałbyś obejrzeć dziś po południu?",
-        "extra": ["Viva la P-Stream!"]
+        "extra": ["Viva la StreamWatch!"]
       },
       "morning": {
         "default": "Co chciałbyś obejrzeć dziś rano?",
-        "extra": ["Viva la P-Stream!"]
+        "extra": ["Viva la StreamWatch!"]
       },
       "night": {
         "default": "Co chciałbyś obejrzeć dziś wieczorem?",
-        "extra": ["Viva la P-Stream!"]
+        "extra": ["Viva la StreamWatch!"]
       },
       "69": {
         "default": "Masz ochotę na coś pikantnego?",
@@ -387,17 +387,17 @@
         },
         "or": "lub"
       },
-      "title": "Przejdźmy do konfiguracji z P-Stream",
+      "title": "Przejdźmy do konfiguracji z StreamWatch",
       "moreInfo": {
         "explainer": {
           "fedapi": {
             "fedapiDescription": "Połącz swoje darmowe konto Febbox, aby uzyskać dostęp do FED API (Prywatne), najlepszego źródła z obsługą 4K, Dolby Atmos, pomijaniem czołówek oraz szybszym ładowaniem wideo! Rekomendowana opcja!",
             "fedapi": "Dodatkowe: FED API (Prywatny) token"
           },
-          "defaultDescription": "Używa wbudowanego Proxy P-Stream. Jest to najłatwiejsza opcja, ale może być wolniejsza przez udostępnianie przepustowości.",
+          "defaultDescription": "Używa wbudowanego Proxy StreamWatch. Jest to najłatwiejsza opcja, ale może być wolniejsza przez udostępnianie przepustowości.",
           "default": "3. Domyślna konfiguracja",
-          "outro": "Jeśli masz więcej pytań nad tym jak to działa, możesz śmiało zapytać na naszym serwerze! <0>P-Stream Discord</0>",
-          "intro": "P-Stream nie umieszcza plików wideo. Polegamy na treściach ze stron trzecich, więc musisz wybrać w jaki sposób platforma ma się z nimi połączyć.",
+          "outro": "Jeśli masz więcej pytań nad tym jak to działa, możesz śmiało zapytać na naszym serwerze! <0>StreamWatch Discord</0>",
+          "intro": "StreamWatch nie umieszcza plików wideo. Polegamy na treściach ze stron trzecich, więc musisz wybrać w jaki sposób platforma ma się z nimi połączyć.",
           "options": "Twoje Opcje:",
           "extension": "1. Rozszerzenie",
           "extensionDescription": "Rozszerzenie pozwala na dostęp do większości źródeł. Działa jako lokalne proxy i jest w stanie załadować strony, które wymagają pewnych plików cookies lub nagłówków.",
@@ -439,10 +439,10 @@
     "menus": {
       "downloads": {
         "copyHlsPlaylist": "Kopiuj link do listy odtwarzania HLS",
-        "disclaimer": "Pliki do pobrania są pobierane bezpośrednio od dostawcy. P-Stream nie ma kontroli nad sposobem dostarczania plików do pobrania.",
+        "disclaimer": "Pliki do pobrania są pobierane bezpośrednio od dostawcy. StreamWatch nie ma kontroli nad sposobem dostarczania plików do pobrania.",
         "downloadSubtitle": "Pobierz aktualne napisy",
         "downloadVideo": "Pobierz wideo",
-        "hlsDisclaimer": "Pliki do pobrania są pobierane bezpośrednio od dostawcy. P-Stream nie ma kontroli nad sposobem dostarczania plików do pobrania.<br /><br />Należy pamiętać, że pobierasz playlistę HLS, <bold>nie zaleca się pobierania, jeśli nie jesteś zaznajomiony z zaawansowanymi formatami przesyłania strumieniowego</bold>. Wypróbuj różne źródła dla innych formatów.",
+        "hlsDisclaimer": "Pliki do pobrania są pobierane bezpośrednio od dostawcy. StreamWatch nie ma kontroli nad sposobem dostarczania plików do pobrania.<br /><br />Należy pamiętać, że pobierasz playlistę HLS, <bold>nie zaleca się pobierania, jeśli nie jesteś zaznajomiony z zaawansowanymi formatami przesyłania strumieniowego</bold>. Wypróbuj różne źródła dla innych formatów.",
         "onAndroid": {
           "1": "Aby pobrać na Androidzie, kliknij przycisk pobierania, a następnie na nowej stronie <bold>dotknij i przytrzymaj</bold> na filmie, a następnie wybierz <bold>zapisz</bold>.",
           "shortTitle": "Pobierz / Android",
@@ -612,7 +612,7 @@
         "discoverButton": "Odkryj więcej"
       },
       "extensionFailure": {
-        "text": "Zainstalowałeś rozszerzenie P-Stream. Aby zaczęło działać musisz włączyć dla tej strony.",
+        "text": "Zainstalowałeś rozszerzenie StreamWatch. Aby zaczęło działać musisz włączyć dla tej strony.",
         "badge": "Rozszerzenie wyłączone",
         "homeButton": "Wróć na stronę główną",
         "enableExtension": "Włącz rozszerzenie",
@@ -648,7 +648,7 @@
       "shortRemaining": "-{{timeLeft}}"
     },
     "turnstile": {
-      "description": "Proszę potwierdź, że jesteś człowiekiem, wypełniając Captcha po prawej stronie. Ma to zapewnić bezpieczeństwo P-Stream.",
+      "description": "Proszę potwierdź, że jesteś człowiekiem, wypełniając Captcha po prawej stronie. Ma to zapewnić bezpieczeństwo StreamWatch.",
       "error": "Nie udało się zweryfikować. Proszę spróbuj ponownie. Wyczyść pamięć cache i spróbuj ponownie, lub zmień źródło (kliknij w zębatkę).",
       "title": "Czy jesteś robocikiem 🤖?",
       "verifyingHumanity": "Weryfikacja... (^▽^)👍"
@@ -722,7 +722,7 @@
       "title": "Konto",
       "admin": {
         "title": "Panel administracyjny",
-        "text": "Korzystaj z narzędzi stworzonych do sprawdzania stanu P-Stream.",
+        "text": "Korzystaj z narzędzi stworzonych do sprawdzania stanu StreamWatch.",
         "button": "Sprawdź to"
       }
     },
@@ -971,13 +971,13 @@
     "badge": "Problemy",
     "goHome": "Wróć do strony głównej",
     "title": "Problemy z dostawcą",
-    "message": "P-Stream napotkał problem z niektórymi dostawcami, jeśli nie możesz znaleźć albo odtworzyć serialu, proszę zmienić źródło. Możesz spodziewać sie tego problemu przez pewien czas."
+    "message": "StreamWatch napotkał problem z niektórymi dostawcami, jeśli nie możesz znaleźć albo odtworzyć serialu, proszę zmienić źródło. Możesz spodziewać sie tego problemu przez pewien czas."
   },
   "support": {
-    "text": "P-Stream jest zaprojektowany jak najbardziej przejrzyście, jak to możliwe. Aczkolwiek nie wykluczamy pytań lub problemów. Ta strona jest po to, aby Ci z tym pomóc",
+    "text": "StreamWatch jest zaprojektowany jak najbardziej przejrzyście, jak to możliwe. Aczkolwiek nie wykluczamy pytań lub problemów. Ta strona jest po to, aby Ci z tym pomóc",
     "title": "Wsparcie",
     "q1": {
-      "body": "Możesz dołączyć do oficjalnego serwera <0>P-Stream discord</0> i zadać nam pytania lub wysłać do nas maila, którego znajdziesz na dole strony.",
+      "body": "Możesz dołączyć do oficjalnego serwera <0>StreamWatch discord</0> i zadać nam pytania lub wysłać do nas maila, którego znajdziesz na dole strony.",
       "title": "Gdzie mogę otrzymać pomoc?"
     },
     "q2": {
@@ -987,9 +987,9 @@
   },
   "jip": {
     "title": "Jip",
-    "text": "P-Stream nie spadło z kokosa, zostało stworzone głównie przez jedną osobę (bardzo epicką).",
+    "text": "StreamWatch nie spadło z kokosa, zostało stworzone głównie przez jedną osobę (bardzo epicką).",
     "q1": {
-      "body": "Możesz dołączyć do oficjalnego serwera <0>P-Stream discord</0> i zadać nam pytania lub wysłać do nas maila, którego znajdziesz na dole strony.",
+      "body": "Możesz dołączyć do oficjalnego serwera <0>StreamWatch discord</0> i zadać nam pytania lub wysłać do nas maila, którego znajdziesz na dole strony.",
       "title": "Gdzie mogę otrzymać pomoc?"
     },
     "q2": {

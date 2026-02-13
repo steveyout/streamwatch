@@ -9,62 +9,64 @@ const tokens = {
     c200: "#262626",
     c250: "#333333",
   },
-  white: "#FFFFFF", // General white color
+  white: "#FFFFFF",
   semantic: {
     red: {
-      c100: "#F46E6E", // Error text
-      c200: "#E44F4F", // Video player scraping error
-      c300: "#D74747", // Danger button
-      c400: "#B43434", // Not currently used
+      c100: "#F46E6E",
+      c200: "#E44F4F",
+      c300: "#D74747",
+      c400: "#B43434",
     },
     green: {
-      c100: "#60D26A", // Success text
-      c200: "#40B44B", // Video player scraping success
-      c300: "#31A33C", // Not currently used
-      c400: "#237A2B", // Not currently used
+      c100: "#60D26A",
+      c200: "#40B44B",
+      c300: "#31A33C",
+      c400: "#237A2B",
     },
     silver: {
-      c100: "#DEDEDE", // Primary button hover
-      c200: "#B6CAD7", // Not currently used
-      c300: "#8EA3B0", // Secondary button text
-      c400: "#617A8A", // Main text in video player context
+      c100: "#DEDEDE",
+      c200: "#B6CAD7",
+      c300: "#8EA3B0",
+      c400: "#617A8A",
     },
     yellow: {
-      c100: "#FFF599", // Best onboarding highlight
-      c200: "#FCEC61", // Dropdown highlight hover
-      c300: "#D8C947", // Not currently used
-      c400: "#AFA349", // Dropdown highlight
+      c100: "#FFF599",
+      c200: "#FCEC61",
+      c300: "#D8C947",
+      c400: "#AFA349",
     },
     rose: {
-      c100: "#DB3D61", // Authentication error text
-      c200: "#8A293B", // Danger button hover
-      c300: "#812435", // Danger button
-      c400: "#701B2B", // Not currently used
+      c100: "#FF4D4D", // Brighter red for accents
+      c200: "#8A293B",
+      c300: "#812435",
+      c400: "#701B2B",
     },
   },
+  // Replaced Blue with Slate-Red
   blue: {
-    c50: "#ccccd6",
-    c100: "#a2a2a2",
-    c200: "#868686",
-    c300: "#646464",
-    c400: "#4e4e4e",
-    c500: "#383838",
-    c600: "#2e2e2e",
-    c700: "#272727",
-    c800: "#181818",
-    c900: "#0f0f0f",
+    c50: "#fce8e8",
+    c100: "#f3a5a5",
+    c200: "#eb7a7a", // Primary Gradient Point A
+    c300: "#e04f4f", // Primary Gradient Point B
+    c400: "#c53030",
+    c500: "#9b2c2c",
+    c600: "#822727",
+    c700: "#631717",
+    c800: "#4a1111",
+    c900: "#2d0808",
   },
+  // Replaced Purple with Deep Crimson/Vampire Red
   purple: {
-    c50: "#aaafff",
-    c100: "#8288fe",
-    c200: "#5a62eb",
-    c300: "#454cd4",
-    c400: "#333abe",
-    c500: "#292d86",
-    c600: "#1f2363",
-    c700: "#191b4a",
-    c800: "#111334", // Lightbar
-    c900: "#0b0d22",
+    c50: "#ff9999",
+    c100: "#ff5c5c", // Logo / Links
+    c200: "#ff3333", // Highlights
+    c300: "#e62e2e",
+    c400: "#cc1a1a",
+    c500: "#990000",
+    c600: "#7a0000", // Background Accents
+    c700: "#5c0000",
+    c800: "#3d0000", // Lightbar Deep Red
+    c900: "#1f0000",
   },
   ash: {
     c50: "#8d8d8d",
@@ -79,8 +81,8 @@ const tokens = {
     c900: "#111111",
   },
   shade: {
-    c25: "#939393", // Media card hover accent
-    c50: "#7c7c7c",
+    c25: "#b34d4d", // Reddish card hover accent
+    c50: "#998585",
     c100: "#666666",
     c200: "#4f4f4f",
     c300: "#404040",
@@ -106,19 +108,19 @@ export const defaultTheme = {
       pill: {
         background: tokens.black.c100,
         backgroundHover: tokens.black.c125,
-        highlight: tokens.blue.c200,
+        highlight: tokens.blue.c200, // Becomes a warm red
         activeBackground: tokens.shade.c700,
       },
 
-      // meta data for the theme itself
+      // Global Gradients Accents
       global: {
-        accentA: tokens.blue.c200,
-        accentB: tokens.blue.c300,
+        accentA: tokens.blue.c200, // Lighter Red
+        accentB: tokens.blue.c300, // Deeper Red
       },
 
-      // light bar
+      // light bar (The glow effect at the top)
       lightBar: {
-        light: tokens.purple.c800,
+        light: tokens.purple.c800, // Deep Blood Red glow
       },
 
       // Buttons
@@ -134,18 +136,18 @@ export const defaultTheme = {
         primary: tokens.white,
         primaryText: tokens.black.c50,
         primaryHover: tokens.semantic.silver.c100,
-        purple: tokens.purple.c600,
+        purple: tokens.purple.c600, // Red variant
         purpleHover: tokens.purple.c400,
         cancel: tokens.black.c100,
         cancelHover: tokens.black.c150,
       },
 
-      // only used for body colors/textures
+      // Body background
       background: {
         main: tokens.black.c75,
         secondary: tokens.black.c75,
         secondaryHover: tokens.black.c75,
-        accentA: tokens.purple.c600,
+        accentA: tokens.purple.c600, // Deep dark red wash
         accentB: tokens.black.c100,
       },
 
@@ -154,9 +156,9 @@ export const defaultTheme = {
         background: tokens.shade.c800,
       },
 
-      // typography
+      // Typography
       type: {
-        logo: tokens.purple.c100,
+        logo: tokens.purple.c100, // Bright Red logo
         emphasis: tokens.white,
         text: tokens.shade.c50,
         dimmed: tokens.shade.c50,
@@ -181,11 +183,11 @@ export const defaultTheme = {
       // media cards
       mediaCard: {
         hoverBackground: tokens.shade.c900,
-        hoverAccent: tokens.black.c250,
+        hoverAccent: tokens.shade.c25, // Reddish highlight on hover
         hoverShadow: tokens.black.c50,
         shadow: tokens.shade.c800,
         barColor: tokens.ash.c200,
-        barFillColor: tokens.purple.c100,
+        barFillColor: tokens.purple.c100, // Red progress bar
         badge: tokens.shade.c700,
         badgeText: tokens.ash.c100,
       },
