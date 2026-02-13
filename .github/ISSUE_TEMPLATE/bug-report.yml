@@ -47,4 +47,3 @@ body:
         Tip: You can attach files by clicking this textbox and dragging in files
     validations:
       required: false
-

@@ -7,11 +7,11 @@ import { useWindowSize } from "react-use";
 import { isExtensionActive } from "@/backend/extension/messaging";
 import { get, getMediaLogo } from "@/backend/metadata/tmdb";
 import {
-  TraktReleaseResponse,
   getDiscoverContent,
   getReleaseDetails,
 } from "@/backend/metadata/traktApi";
 import { TMDBContentTypes } from "@/backend/metadata/types/tmdb";
+import type { TraktReleaseResponse } from "@/backend/metadata/types/trakt";
 import { Button } from "@/components/buttons/Button";
 import { Icon, Icons } from "@/components/Icon";
 import { Movie, TVShow } from "@/pages/discover/common";
@@ -142,12 +142,13 @@ export function FeaturedCarousel({
   const enableImageLogos = usePreferencesStore(
     (state) => state.enableImageLogos,
   );
-  const userLanguage = useLanguageStore.getState().language;
+  const userLanguage = useLanguageStore((s) => s.language);
   const formattedLanguage = getTmdbLanguageCode(userLanguage);
   const { width: windowWidth, height: windowHeight } = useWindowSize();
   const [releaseInfo, setReleaseInfo] = useState<TraktReleaseResponse | null>(
     null,
   );
+  const [contentOpacity, setContentOpacity] = useState(1);
 
   const currentMedia = media[currentIndex];
 
@@ -170,7 +171,13 @@ export function FeaturedCarousel({
       if (!hasExtension.current || !currentMedia?.external_ids?.imdb_id) return;
 
       try {
-        const imdbData = await scrapeIMDb(currentMedia.external_ids.imdb_id);
+        const imdbData = await scrapeIMDb(
+          currentMedia.external_ids.imdb_id,
+          undefined,
+          undefined,
+          undefined,
+          currentMedia.type,
+        );
         // Only update if we have both rating and votes as non-null numbers
         if (
           typeof imdbData.imdb_rating === "number" &&
@@ -198,7 +205,12 @@ export function FeaturedCarousel({
   useEffect(() => {
     const fetchFeaturedMedia = async () => {
       setIsLoading(true);
-      setLogoUrl(undefined); // Clear logo when media changes
+      // Clear all previous data when transitioning
+      setLogoUrl(undefined);
+      setImdbRatings({});
+      setReleaseInfo(null);
+      setCurrentIndex(0);
+      setContentOpacity(1);
       if (logoFetchController.current) {
         logoFetchController.current.abort(); // Cancel any in-progress logo fetches
       }
@@ -372,7 +384,18 @@ export function FeaturedCarousel({
   }, [formattedLanguage, effectiveCategory]);
 
   const handlePrevSlide = () => {
-    setCurrentIndex((prev) => (prev - 1 + media.length) % media.length);
+    setContentOpacity(0);
+    setImdbRatings({});
+    setReleaseInfo(null);
+
+    // Wait for fade out, then change index and fade in
+    setTimeout(() => {
+      setCurrentIndex((prev) => (prev - 1 + media.length) % media.length);
+      // Clear logo after index change so new logo can load
+      setLogoUrl(undefined);
+      setTimeout(() => setContentOpacity(1), 100);
+    }, 150);
+
     // Reset autoplay timer
     if (autoPlayInterval.current) {
       clearInterval(autoPlayInterval.current);
@@ -385,7 +408,18 @@ export function FeaturedCarousel({
   };
 
   const handleNextSlide = () => {
-    setCurrentIndex((prev) => (prev + 1) % media.length);
+    setContentOpacity(0);
+    setImdbRatings({});
+    setReleaseInfo(null);
+
+    // Wait for fade out, then change index and fade in
+    setTimeout(() => {
+      setCurrentIndex((prev) => (prev + 1) % media.length);
+      // Clear logo after index change so new logo can load
+      setLogoUrl(undefined);
+      setTimeout(() => setContentOpacity(1), 100);
+    }, 150);
+
     // Reset autoplay timer
     if (autoPlayInterval.current) {
       clearInterval(autoPlayInterval.current);
@@ -482,7 +516,17 @@ export function FeaturedCarousel({
   useEffect(() => {
     if (isAutoPlaying && media.length > 0) {
       autoPlayInterval.current = setInterval(() => {
-        setCurrentIndex((prev) => (prev + 1) % media.length);
+        setContentOpacity(0);
+        setImdbRatings({});
+        setReleaseInfo(null);
+
+        // Wait for fade out, then change index and fade in
+        setTimeout(() => {
+          setCurrentIndex((prev) => (prev + 1) % media.length);
+          // Clear logo after index change so new logo can load
+          setLogoUrl(undefined);
+          setTimeout(() => setContentOpacity(1), 100);
+        }, 150);
       }, SLIDE_DURATION);
     }
 
@@ -529,10 +573,8 @@ export function FeaturedCarousel({
 
     if (hasDigitalRelease) {
       const digitalReleaseDate = new Date(releaseInfo.digital_release_date!);
-      const twoDaysAfter = new Date(digitalReleaseDate);
-      twoDaysAfter.setDate(twoDaysAfter.getDate() + 2);
 
-      if (new Date() >= twoDaysAfter) {
+      if (new Date() >= digitalReleaseDate) {
         return <span className="text-green-400">HD</span>;
       }
     }
@@ -541,10 +583,8 @@ export function FeaturedCarousel({
       const theatricalReleaseDate = new Date(
         releaseInfo.theatrical_release_date!,
       );
-      const fortyFiveDaysAfter = new Date(theatricalReleaseDate);
-      fortyFiveDaysAfter.setDate(fortyFiveDaysAfter.getDate() + 45);
 
-      if (new Date() >= fortyFiveDaysAfter) {
+      if (new Date() >= theatricalReleaseDate) {
         return (
           <div className="px-2 py-1 rounded-lg backdrop-blur-sm bg-gray-600/40">
             <span className="text-green-400">HD</span>
@@ -639,7 +679,18 @@ export function FeaturedCarousel({
             key={`dot-${item.id}`}
             type="button"
             onClick={() => {
-              setCurrentIndex(index);
+              setContentOpacity(0);
+              setImdbRatings({});
+              setReleaseInfo(null);
+
+              // Wait for fade out, then change index and fade in
+              setTimeout(() => {
+                setCurrentIndex(index);
+                // Clear logo after index change so new logo can load
+                setLogoUrl(undefined);
+                setTimeout(() => setContentOpacity(1), 100);
+              }, 150);
+
               // Reset autoplay timer when clicking dots
               if (autoPlayInterval.current) {
                 clearInterval(autoPlayInterval.current);
@@ -663,9 +714,10 @@ export function FeaturedCarousel({
       {/* Content Overlay */}
       <div
         className={classNames(
-          "absolute inset-0 flex items-end pb-20 z-10",
+          "absolute inset-0 flex items-end pb-20 z-10 transition-opacity duration-150",
           searchClasses,
         )}
+        style={{ opacity: contentOpacity }}
       >
         <div className="container mx-auto px-8 lg:px-4 flex justify-between items-end w-full">
           <div className="max-w-3xl">

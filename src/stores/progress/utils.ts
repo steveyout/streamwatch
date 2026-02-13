@@ -55,6 +55,19 @@ function isFirstEpisodeOfShow(
   return season.number === 1 && episode.number === 1;
 }
 
+export function getProgressPercentage(
+  watched: number,
+  duration: number,
+): number {
+  // Handle edge cases to prevent infinity or invalid percentages
+  if (!duration || duration <= 0) return 0;
+  if (!watched || watched < 0) return 0;
+
+  // Cap percentage at 100% to prevent >100% values
+  const percentage = Math.min((watched / duration) * 100, 100);
+  return percentage;
+}
+
 export function shouldShowProgress(
   item: ProgressMediaItem,
 ): ShowProgressResult {

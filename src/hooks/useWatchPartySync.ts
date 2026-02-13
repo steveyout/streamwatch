@@ -82,6 +82,13 @@ export function useWatchPartySync(
   // Get watch party state
   const { roomCode, isHost, enabled, enableAsGuest } = useWatchPartyStore();
 
+  // Reset URL parameter checking when watch party is disabled
+  useEffect(() => {
+    if (!enabled) {
+      syncStateRef.current.checkedUrlParams = false;
+    }
+  }, [enabled]);
+
   // Check URL parameters for watch party code
   useEffect(() => {
     if (syncStateRef.current.checkedUrlParams) return;
@@ -298,8 +305,8 @@ export function useWatchPartySync(
     // Initial fetch
     refreshRoomData();
 
-    // Set up interval - refresh every 2 seconds
-    const interval = setInterval(refreshRoomData, 2000);
+    // Set up interval - refresh every 1 second for faster updates
+    const interval = setInterval(refreshRoomData, 1000);
 
     return () => {
       clearInterval(interval);

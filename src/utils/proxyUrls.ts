@@ -2,7 +2,7 @@ import { conf } from "@/setup/config";
 import { useAuthStore } from "@/stores/auth";
 
 const originalUrls = conf().PROXY_URLS;
-const types = ["proxy", "api"] as const;
+const types = ["proxy"] as const;
 
 type ParsedUrlType = (typeof types)[number];
 
@@ -72,10 +72,4 @@ export function getProxyUrls() {
 
 export function getM3U8ProxyUrls(): string[] {
   return conf().M3U8_PROXY_URLS;
-}
-
-export function getProviderApiUrls() {
-  return getParsedUrls()
-    .filter((v) => v.type === "api")
-    .map((v) => v.url);
 }

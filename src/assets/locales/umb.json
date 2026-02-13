@@ -1,0 +1,18 @@
+{
+  "global": {
+    "name": "P-Stream",
+    "pages": {
+      "about": "About and FAQ",
+      "legal": "Legal / DMCA",
+      "discover": "Discover",
+      "support": "Support",
+      "login": "Login",
+      "onboarding": "Setup",
+      "pagetitle": "{{title}} - P-Stream",
+      "register": "Register",
+      "settings": "Settings",
+      "migration": "Migrate Account",
+      "jip": "Jip"
+    }
+  }
+}

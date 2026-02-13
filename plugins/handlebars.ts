@@ -1,10 +1,12 @@
 import { globSync } from "glob";
-import { viteStaticCopy } from 'vite-plugin-static-copy'
+import { viteStaticCopy } from "vite-plugin-static-copy";
 import { PluginOption } from "vite";
 import Handlebars from "handlebars";
 import path from "path";
 
-export const handlebars = (options: { vars?: Record<string, any> } = {}): PluginOption[] => {
+export const handlebars = (
+  options: { vars?: Record<string, any> } = {},
+): PluginOption[] => {
   const files = globSync("src/assets/**/**.hbs");
 
   function render(content: string): string {
@@ -14,28 +16,28 @@ export const handlebars = (options: { vars?: Record<string, any> } = {}): Plugin
 
   return [
     {
-      name: 'hbs-templating',
+      name: "hbs-templating",
       enforce: "pre",
       transformIndexHtml: {
-        order: 'pre',
+        order: "pre",
         handler(html) {
           return render(html);
-        }
+        },
       },
     },
     viteStaticCopy({
       silent: true,
-      targets: files.map(file => ({
+      targets: files.map((file) => ({
         src: file,
-        dest: '',
+        dest: "",
         rename: path.basename(file).slice(0, -4), // remove .hbs file extension
         transform: {
-          encoding: 'utf8',
+          encoding: "utf8",
           handler(content: string) {
             return render(content);
-          }
-        }
-      }))
-    })
-  ]
-}
+          },
+        },
+      })),
+    }),
+  ];
+};

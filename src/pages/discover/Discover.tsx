@@ -1,8 +1,6 @@
-import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
 
-import { DetailsModal } from "@/components/overlays/details/DetailsModal";
-import { useModal } from "@/components/overlays/Modal";
+import { useOverlayStack } from "@/stores/interface/overlayStack";
 
 import { SubPageLayout } from "../layouts/SubPageLayout";
 import { FeaturedCarousel } from "./components/FeaturedCarousel";
@@ -11,22 +9,13 @@ import DiscoverContent from "./discoverContent";
 import { PageTitle } from "../parts/util/PageTitle";
 
 export function Discover() {
-  const [detailsData, setDetailsData] = useState<any>();
-  const detailsModal = useModal("discover-details");
-
-  // Clear details data when modal is closed
-  useEffect(() => {
-    if (!detailsModal.isShown) {
-      setDetailsData(undefined);
-    }
-  }, [detailsModal.isShown]);
+  const { showModal } = useOverlayStack();
 
   const handleShowDetails = (media: FeaturedMedia) => {
-    setDetailsData({
+    showModal("discover-details", {
       id: Number(media.id),
       type: media.type,
     });
-    detailsModal.show();
   };
 
   return (
@@ -52,8 +41,6 @@ export function Discover() {
       <div className="relative z-20 px-4 md:px-10">
         <DiscoverContent />
       </div>
-
-      {detailsData && <DetailsModal id="discover-details" data={detailsData} />}
     </SubPageLayout>
   );
 }

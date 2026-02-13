@@ -40,6 +40,7 @@ function useIsIosHls() {
 export function QualityView({ id }: { id: string }) {
   const router = useOverlayRouter(id);
   const isIosHls = useIsIosHls();
+  const sourceType = usePlayerStore((s) => s.source?.type);
   const availableQualities = usePlayerStore((s) => s.qualities);
   const currentQuality = usePlayerStore((s) => s.currentQuality);
   const switchQuality = usePlayerStore((s) => s.switchQuality);
@@ -50,14 +51,18 @@ export function QualityView({ id }: { id: string }) {
   const setLastChosenQuality = useQualityStore((s) => s.setLastChosenQuality);
   const autoQuality = useQualityStore((s) => s.quality.automaticQuality);
 
+  // Auto quality only makes sense for HLS sources
+  const supportsAutoQuality = sourceType === "hls";
+
   const change = useCallback(
     (q: SourceQuality) => {
       setLastChosenQuality(q);
-      setAutomaticQuality(false);
+      // Don't disable auto quality when manually selecting a quality
+      // Keep auto quality enabled by default unless user explicitly toggles it
       switchQuality(q);
       router.close();
     },
-    [router, switchQuality, setLastChosenQuality, setAutomaticQuality],
+    [router, switchQuality, setLastChosenQuality],
   );
 
   const changeAutomatic = useCallback(() => {
@@ -90,12 +95,18 @@ export function QualityView({ id }: { id: string }) {
             {qualityToString(v)}
           </SelectableLink>
         ))}
-        <Menu.Divider />
-        <Menu.Link
-          rightSide={<Toggle onClick={changeAutomatic} enabled={autoQuality} />}
-        >
-          {t("player.menus.quality.automaticLabel")}
-        </Menu.Link>
+        {supportsAutoQuality && (
+          <>
+            <Menu.Divider />
+            <Menu.Link
+              rightSide={
+                <Toggle onClick={changeAutomatic} enabled={autoQuality} />
+              }
+            >
+              {t("player.menus.quality.automaticLabel")}
+            </Menu.Link>
+          </>
+        )}
         <Menu.SmallText>
           <Trans
             i18nKey={

@@ -3,7 +3,7 @@ name: Linting and Testing
 on:
   push:
     branches:
-      - main
+      - master
   pull_request:
 
 jobs:
@@ -14,7 +14,7 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-            
+
       - uses: pnpm/action-setup@v2
         with:
           version: 8
@@ -23,37 +23,13 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'pnpm'
-  
+          cache: "pnpm"
+
       - name: Install pnpm packages
         run: pnpm install
-      
+
       - name: Run ESLint
         run: pnpm run lint
-
-  building:
-    name: Build project
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-      
-      - uses: pnpm/action-setup@v2
-        with:
-          version: 8
-
-      - name: Install Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: 'pnpm'
-      
-      - name: Install pnpm packages
-        run: pnpm install
-
-      - name: Build Project
-        run: pnpm run build
 
   docker:
     name: Build Docker

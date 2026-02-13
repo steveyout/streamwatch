@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
 import { Button } from "@/components/buttons/Button";
+import { Icon, Icons } from "@/components/Icon";
 import { SettingsCard } from "@/components/layout/SettingsCard";
 import { Stepper } from "@/components/layout/Stepper";
 import { CenterContainer } from "@/components/layout/ThinContainer";
@@ -14,10 +15,14 @@ import { useMigration } from "@/hooks/auth/useMigration";
 import { MinimalPageLayout } from "@/pages/layouts/MinimalPageLayout";
 import { PageTitle } from "@/pages/parts/util/PageTitle";
 import { useAuthStore } from "@/stores/auth";
+import { useBookmarkStore } from "@/stores/bookmarks";
+import { useProgressStore } from "@/stores/progress";
 
 export function MigrationDirectPage() {
   const { t } = useTranslation();
   const user = useAuthStore();
+  const bookmarks = useBookmarkStore((state) => state.bookmarks);
+  const progressItems = useProgressStore((state) => state.items);
   const { logout } = useAuth();
   const navigate = useNavigate();
   const { migrate } = useMigration();
@@ -76,6 +81,49 @@ export function MigrationDirectPage() {
               <Paragraph className="text-lg max-w-md">
                 {t("migration.direct.description")}
               </Paragraph>
+
+              <SettingsCard>
+                <div className="space-y-4">
+                  <h3 className="font-bold text-white text-lg">
+                    {t("migration.preview.downloadDescription")}
+                  </h3>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div className="p-4 bg-background rounded-lg">
+                      <div className="flex items-center gap-2">
+                        <Icon icon={Icons.CLOCK} className="text-xl" />
+                        <span className="font-medium">
+                          {t("migration.preview.items.progress")}
+                        </span>
+                      </div>
+                      <div className="text-xl font-bold mt-2">
+                        {Object.keys(progressItems).length}
+                      </div>
+                    </div>
+
+                    <div className="p-4 bg-background rounded-lg">
+                      <div className="flex items-center gap-2">
+                        <Icon icon={Icons.BOOKMARK} className="text-xl" />
+                        <span className="font-medium">
+                          {t("migration.preview.items.bookmarks")}
+                        </span>
+                      </div>
+                      <div className="text-xl font-bold mt-2">
+                        {Object.keys(bookmarks).length}
+                      </div>
+                    </div>
+
+                    <div className="p-4 bg-background rounded-lg">
+                      <div className="flex items-center gap-2">
+                        <Icon icon={Icons.SETTINGS} className="text-xl" />
+                        <span className="font-medium">
+                          {t("migration.preview.items.settings")}
+                        </span>
+                      </div>
+                      <div className="text-xl font-bold mt-2">✓</div>
+                    </div>
+                  </div>
+                </div>
+              </SettingsCard>
               <SettingsCard>
                 <div className="flex justify-between items-center">
                   <p className="font-bold text-white">

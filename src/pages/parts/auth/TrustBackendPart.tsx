@@ -16,12 +16,14 @@ import { MwLink } from "@/components/text/Link";
 import { useBackendUrl } from "@/hooks/auth/useBackendUrl";
 
 interface TrustBackendPartProps {
+  backendUrl?: string | null;
   onNext?: (meta: MetaResponse) => void;
 }
 
 export function TrustBackendPart(props: TrustBackendPartProps) {
   const navigate = useNavigate();
-  const backendUrl = useBackendUrl();
+  const defaultBackendUrl = useBackendUrl();
+  const backendUrl = props.backendUrl ?? defaultBackendUrl;
   const hostname = useMemo(
     () => (backendUrl ? new URL(backendUrl).hostname : undefined),
     [backendUrl],

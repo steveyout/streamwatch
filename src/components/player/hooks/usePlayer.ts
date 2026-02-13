@@ -37,6 +37,7 @@ export function usePlayer() {
   const setCaption = usePlayerStore((s) => s.setCaption);
   const setSourceId = usePlayerStore((s) => s.setSourceId);
   const status = usePlayerStore((s) => s.status);
+  const setEmbedId = usePlayerStore((s) => (s as any).setEmbedId);
   const shouldStartFromBeginning = usePlayerStore(
     (s) => s.interface.shouldStartFromBeginning,
   );
@@ -54,6 +55,7 @@ export function usePlayer() {
     status,
     shouldStartFromBeginning,
     setShouldStartFromBeginning,
+    setStatus,
     setMeta(m: PlayerMeta, newStatus?: PlayerStatus) {
       setMeta(m, newStatus);
     },
@@ -65,6 +67,7 @@ export function usePlayer() {
     ) {
       const start = startAtOverride ?? getProgress(progressStore.items, meta);
       setCaption(null);
+      setEmbedId(null);
       setSource(source, captions, start);
       setSourceId(sourceId);
       setStatus(playerStatus.PLAYING);

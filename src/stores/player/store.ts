@@ -6,6 +6,7 @@ import { createDisplaySlice } from "@/stores/player/slices/display";
 import { createInterfaceSlice } from "@/stores/player/slices/interface";
 import { createPlayingSlice } from "@/stores/player/slices/playing";
 import { createProgressSlice } from "@/stores/player/slices/progress";
+import { createSkipSegmentsSlice } from "@/stores/player/slices/skipSegments";
 import { createSourceSlice } from "@/stores/player/slices/source";
 import { createThumbnailSlice } from "@/stores/player/slices/thumbnails";
 import { AllSlices } from "@/stores/player/slices/types";
@@ -19,5 +20,6 @@ export const usePlayerStore = create(
     ...createDisplaySlice(...a),
     ...createCastingSlice(...a),
     ...createThumbnailSlice(...a),
+    ...createSkipSegmentsSlice(...a),
   })),
 );

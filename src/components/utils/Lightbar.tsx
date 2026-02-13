@@ -167,18 +167,38 @@ function ParticlesCanvas() {
         imageParticleCount = particleCount * 0.1;
         break;
 
-      case (month === 9 && day >= 29 && day <= 31) || Math.random() < 0.05:
-        imageOverride = [
-          {
-            image: "/lightbar-images/ghost.png",
-            sizeRange: [20, 33] as [number, number],
-          },
-          {
-            image: "/lightbar-images/pumpkin.png",
-            sizeRange: [25, 35] as [number, number],
-          },
-        ];
-        imageParticleCount = particleCount * 0.0879;
+      case month === 9 && day === 31:
+        // Halloween (October 31st) - 95% chance for spooky particles
+        if (Math.random() < 0.95) {
+          imageOverride = [
+            {
+              image: "/lightbar-images/ghost.png",
+              sizeRange: [20, 33] as [number, number],
+            },
+            {
+              image: "/lightbar-images/pumpkin.png",
+              sizeRange: [25, 35] as [number, number],
+            },
+          ];
+          imageParticleCount = particleCount * 0.3;
+        }
+        break;
+
+      case month === 9:
+        // October - increased chance for Halloween particles
+        if (Math.random() < 0.25) {
+          imageOverride = [
+            {
+              image: "/lightbar-images/ghost.png",
+              sizeRange: [20, 33] as [number, number],
+            },
+            {
+              image: "/lightbar-images/pumpkin.png",
+              sizeRange: [25, 35] as [number, number],
+            },
+          ];
+          imageParticleCount = particleCount * 0.15;
+        }
         break;
 
       case Math.random() < 0.1:
@@ -413,13 +433,13 @@ function ParticlesCanvas() {
   return <canvas className="particles" ref={canvasRef} />;
 }
 
-export function Lightbar(props: { className?: string }) {
+export function Lightbar(props: { className?: string; noParticles?: boolean }) {
   return (
     <div className="absolute inset-0 w-full h-[680px] overflow-hidden pointer-events-none -mt-64">
       <div className="max-w-screen w-full h-[680px] relative pt-64">
         <div className={props.className}>
           <div className="lightbar">
-            <ParticlesCanvas />
+            {!props.noParticles && <ParticlesCanvas />}
             <div className="lightbar-visual" />
           </div>
         </div>

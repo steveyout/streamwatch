@@ -40,30 +40,31 @@ function getImdbLanguageCode(language: string): string {
 }
 
 interface IMDbMetadata {
-  title: string;
-  original_title: string;
-  title_type: string;
-  year: number | null;
-  end_year: number | null;
-  day: number | null;
-  month: number | null;
-  date: string;
-  runtime: number | null;
-  age_rating: string;
-  imdb_rating: number | null;
-  votes: number | null;
-  plot: string;
-  poster_url: string;
-  trailer_url: string;
-  url: string;
-  genre: string[];
-  cast: string[];
-  directors: string[];
-  writers: string[];
-  keywords: string[];
-  countries: string[];
-  languages: string[];
-  locations: string[];
+  title?: string;
+  original_title?: string;
+  title_type?: string;
+  year?: number | null;
+  end_year?: number | null;
+  day?: number | null;
+  month?: number | null;
+  date?: string;
+  runtime?: number | null;
+  age_rating?: string;
+  imdb_rating?: number | null;
+  votes?: number | null;
+  plot?: string;
+  poster_url?: string;
+  trailer_url?: string;
+  trailer_thumbnail?: string;
+  url?: string;
+  genre?: string[];
+  cast?: string[];
+  directors?: string[];
+  writers?: string[];
+  keywords?: string[];
+  countries?: string[];
+  languages?: string[];
+  locations?: string[];
   season?: number;
   episode?: number;
   episode_title?: string;
@@ -115,12 +116,23 @@ export async function scrapeIMDb(
   season?: number,
   episode?: number,
   language?: string,
+  type?: "movie" | "show",
 ): Promise<IMDbMetadata> {
   // Check if we have a proxy or extension
   const hasExtension = await isExtensionActive();
   const hasProxy = Boolean(useAuthStore.getState().proxySet);
 
   if (!hasExtension && !hasProxy) {
+    // Custom API for trailers:
+    const trailerResponse = await fetch(
+      `https://fed-trailers.pstream.mov/${type === "movie" ? "movie" : "tv"}/${imdbId}`,
+    ).then((res) => res.json());
+    if (trailerResponse.trailer?.embed_url) {
+      return {
+        trailer_url: trailerResponse.trailer.embed_url,
+      };
+    }
+    // END CUSTOM API
     throw new Error(
       "IMDb scraping requires either the browser extension or a custom proxy to be set up. " +
         "Please install the extension or set up a proxy in the settings.",
@@ -240,9 +252,9 @@ export async function scrapeIMDb(
     metadata.imdb_rating = aboveTheFold.ratingsSummary?.aggregateRating || null;
     metadata.votes = aboveTheFold.ratingsSummary?.voteCount || null;
     metadata.poster_url = aboveTheFold.primaryImage?.url || "";
-    metadata.trailer_url =
-      aboveTheFold.primaryVideos?.edges?.[0]?.node?.playbackURLs?.[0]?.url ||
-      "";
+    const trailerNode = aboveTheFold.primaryVideos?.edges?.[0]?.node;
+    metadata.trailer_url = trailerNode?.playbackURLs?.[0]?.url || "";
+    metadata.trailer_thumbnail = trailerNode?.thumbnail?.url || "";
 
     // Extract arrays
     metadata.genre = aboveTheFold.genres?.genres?.map((g: any) => g.text) || [];
@@ -300,17 +312,17 @@ export function printIMDbMetadata(metadata: IMDbMetadata): void {
   }
   console.log("Type:", metadata.title_type);
   console.log("Year:", metadata.year);
-  console.log("Runtime:", formatRuntime(metadata.runtime));
+  console.log("Runtime:", formatRuntime(metadata.runtime || null));
   console.log("Date:", metadata.date);
   console.log("Age Rating:", metadata.age_rating);
-  console.log("Genre:", arrayToString(metadata.genre));
-  console.log("Cast:", arrayToString(metadata.cast));
-  console.log("Directed by:", arrayToString(metadata.directors));
-  console.log("Writers:", arrayToString(metadata.writers));
-  console.log("Countries:", arrayToString(metadata.countries));
-  console.log("Filming Locations:", arrayToString(metadata.locations));
-  console.log("Languages:", arrayToString(metadata.languages));
-  console.log("Keywords:", arrayToString(metadata.keywords));
+  console.log("Genre:", arrayToString(metadata.genre || []));
+  console.log("Cast:", arrayToString(metadata.cast || []));
+  console.log("Directed by:", arrayToString(metadata.directors || []));
+  console.log("Writers:", arrayToString(metadata.writers || []));
+  console.log("Countries:", arrayToString(metadata.countries || []));
+  console.log("Filming Locations:", arrayToString(metadata.locations || []));
+  console.log("Languages:", arrayToString(metadata.languages || []));
+  console.log("Keywords:", arrayToString(metadata.keywords || []));
 
   if (metadata.season && metadata.episode) {
     console.log("\nEpisode Details:");

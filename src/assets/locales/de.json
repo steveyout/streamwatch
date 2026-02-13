@@ -1,876 +1,881 @@
 {
-    "about": {
-        "description": "StreamWatch ist eine Web-App, welche das Internet nach Streams durchsucht. Das Team versucht einen minimalistischen Ansatz umzusetzen.",
-        "faqTitle": "Häufig gestellte Fragen",
-        "q1": {
-            "body": "StreamWatch hostet keinen eigenen Inhalt. Wenn du auf etwas zum Anschauen klickst, wird das Internet danach durchsucht (Auf dem Ladebildschirm und im Tab \"Videoquellen\" kannst du einstellen, welche Quellen verwendet werden sollen). StreamWatch lädt keine Videos hoch, alleVideos stammen aus der Suche.",
-            "title": "Woher stammen die Videos?"
-        },
-        "q2": {
-            "body": "Das Anfragen von Serien oder Filmen ist nicht möglich. StreamWatch verwaltet keine Inhalte. Alle Videos stammen vom Quellen aus dem Internet.",
-            "title": "Wo kann ich eine Serie oder einen Film anfragen?"
-        },
-        "q3": {
-            "body": "Unsere Suchergebnisse werden von The Movie Database (TMDB) bereitgestellt und, egal ob unsere Videoquellen über dieses Video verfügen, angezeigt.",
-            "title": "Die Suche zeigt eine Serie oder einen Film an, warum kann ich den dann nicht abspielen?"
-        },
-        "title": "Über StreamWatch",
-        "q4": {
-            "title": "Was ist mit meinen Daten und dem ganzen Zeug?",
-            "body": "Alle Daten werden mit dem Community-Backend synchronisiert, jeder kann dies ebenfalls nutzen."
-        },
-        "q5": {
-            "title": "Wie kann ich mehr herausfinden?",
-            "body": "StreamWatch hat einen Discord-Server, der oben auf der Seite gefunden werden kann!"
-        }
+  "about": {
+    "description": "P-Stream ist eine Web-App, welche das Internet nach Streams durchsucht. Das Team versucht einen minimalistischen Ansatz umzusetzen.",
+    "faqTitle": "Häufig gestellte Fragen",
+    "q1": {
+      "body": "P-Stream hostet keinen eigenen Inhalt. Wenn du auf etwas zum Anschauen klickst, wird das Internet danach durchsucht (Auf dem Ladebildschirm und im Tab \"Videoquellen\" kannst du einstellen, welche Quellen verwendet werden sollen). P-Stream lädt keine Videos hoch, alleVideos stammen aus der Suche.",
+      "title": "Woher stammen die Videos?",
+      "section": "allgemein"
     },
-    "actions": {
-        "copied": "Kopiert",
-        "copy": "Kopieren"
+    "q2": {
+      "body": "Das Anfragen von Serien oder Filmen ist nicht möglich. P-Stream verwaltet keine Inhalte. Alle Videos stammen vom Quellen aus dem Internet.",
+      "title": "Wo kann ich eine Serie oder einen Film anfragen?",
+      "section": "suchen"
     },
-    "auth": {
-        "createAccount": "Du hast noch keinen Account? <0>Registriere dich jetzt.</0>",
-        "deviceNameLabel": "Gerätename",
-        "deviceNamePlaceholder": "Handy",
-        "generate": {
-            "description": "Deine Passphrase dient als dein Nutzername und Passwort. Speichere sie sicher ab, damit du dich in deinem Konto anmelden kannst. <bold>Verliere deine Passphrase auf keinen Fall!</bold>",
-            "next": "Ich habe meine Passphrase gespeichert",
-            "passphraseFrameLabel": "Passphrase",
-            "title": "Deine Passphrase"
-        },
-        "hasAccount": "Du hast bereits einen Account? <0>Anmelden.</0>",
-        "login": {
-            "description": "Gebe deine Passphrase ein, um dich in deinem Konto anzumelden",
-            "deviceLengthError": "Gebe einen Gerätenamen ein",
-            "passphraseLabel": "12-Wort Passphrase",
-            "passphrasePlaceholder": "Passphrase",
-            "submit": "Anmelden",
-            "title": "Melde dich in deinem Konto an",
-            "validationError": "Falsche oder unvollständige Passphrase"
-        },
-        "register": {
-            "information": {
-                "color1": "Profilfarbe 1",
-                "color2": "Profilfarbe 2",
-                "header": "Gebe einen Namen für dein Gerät ein und wähle Farben und ein Symbol deiner Wahl!",
-                "icon": "Symbol",
-                "next": "Weiter",
-                "title": "Kontoinformationen"
-            }
-        },
-        "trust": {
-            "failed": {
-                "text": "Hast du es korrekt konfiguriert?",
-                "title": "Server nicht erreichbar"
-            },
-            "host": "Du verbindest dich mit <0>{{hostname}}</0> - stelle sicher das du dem Server vertraust, bevor du ein Konto erstellst",
-            "no": "Zurück",
-            "noHost": "Da der Server nicht eingerichtet wurde, kannst du keinen Account erstellen",
-            "noHostTitle": "Server nicht eingerichtet!",
-            "title": "Vertraust du diesem Server?",
-            "yes": "Ich vertraue diesem Server"
-        },
-        "verify": {
-            "description": "Bitte gebe deine Passphrase ein, um zu bestätigen, dass du sie gespeichert hast und um dein Konto zu erstellen",
-            "invalidData": "Daten sind ungültig",
-            "noMatch": "Passphrasen stimmen nicht überein",
-            "passphraseLabel": "Deine 12-Wort Passphrase",
-            "recaptchaFailed": "ReCaptcha Verifizierung ist fehlgeschlagenen",
-            "register": "Konto erstellen",
-            "title": "Bestätige deine Passphrase"
-        }
+    "q3": {
+      "body": "Unsere Suchergebnisse werden von The Movie Database (TMDB) bereitgestellt und, egal ob unsere Videoquellen über dieses Video verfügen, angezeigt.",
+      "title": "Die Suche zeigt eine Serie oder einen Film an, warum kann ich den dann nicht abspielen?",
+      "section": "suchen"
     },
-    "errors": {
-        "badge": "Kaputt",
-        "details": "Fehlerdetails",
-        "reloadPage": "Seite neuladen",
-        "showError": "Zeige Fehlerdetails an",
-        "title": "Ein Fehler ist aufgetreten!"
+    "title": "Über P-Stream",
+    "q4": {
+      "title": "Was ist mit meinen Daten und dem ganzen Zeug?",
+      "body": "Alle Daten werden mit dem Community-Backend synchronisiert, jeder kann dies ebenfalls nutzen.",
+      "section": "allgemein"
     },
-    "footer": {
-        "legal": {
-            "disclaimer": "Hinweis",
-            "disclaimerText": "StreamWatch hostet keine Dateien, sondern verlinkt lediglich auf Dienste Dritter. Rechtliche Fragen sollten mit den Dateihostern und -anbietern geklärt werden. StreamWatch übernimmt keine Verantwortung für die von den Videoanbietern angezeigten Mediendateien."
-        },
-        "links": {
-            "discord": "Discord",
-            "dmca": "DMCA",
-            "github": "GitHub",
-            "twitter": "Twitter",
-            "funding": "Unterstütze uns"
-        },
-        "tagline": "Schau deine Lieblingsserien und Filme mit dieser quelloffenen Streaming App."
+    "q5": {
+      "title": "Wie kann ich mehr herausfinden?",
+      "body": "P-Stream hat einen Discord-Server, der oben auf der Seite gefunden werden kann!",
+      "section": "allgemein"
     },
-    "global": {
-        "name": "StreamWatch",
-        "pages": {
-            "about": "Über",
-            "dmca": "DMCA",
-            "login": "Anmelden",
-            "onboarding": "Einrichtung",
-            "pagetitle": "{{title}} - StreamWatch",
-            "register": "Registrieren",
-            "settings": "Einstellungen",
-            "discover": "Entdecken",
-            "support": "Unterstützung",
-            "migration": "Konto übertragen",
-            "jip": "Jip"
-        }
+    "help": "Keine Antwort gefunden? Kontaktiere uns hier.",
+    "sections": {
+      "language": "Sprach- & Untertiteleinstellungen",
+      "general": "Allgemeines",
+      "playback": "Wiedergabeprobleme",
+      "connections": "Verbindungen"
     },
-    "home": {
-        "bookmarks": {
-            "sectionTitle": "Favoriten"
-        },
-        "continueWatching": {
-            "sectionTitle": "Weiter ansehen"
-        },
-        "mediaList": {
-            "stopEditing": "Bearbeiten beenden"
-        },
-        "search": {
-            "allResults": "Das ist alles!",
-            "failed": "Das Medium wurde nicht gefunden, bitte versuchen Sie es erneut!",
-            "loading": "Wird geladen...",
-            "noResults": "Wir haben nichts gefunden!",
-            "placeholder": {
-                "default": "Was möchtest du schauen?",
-                "extra": [
-                    "Was möchtest du entdecken?",
-                    "Was ist auf deiner Merkliste?",
-                    "Was ist dein Lieblingsfilm?",
-                    "Was ist deine Lieblingsserie?",
-                    "Was willst du heute schauen?",
-                    "Wie war dein Tag?",
-                    "Mein Fehler die Seite funktioniert nie...",
-                    "Ist StreamWatch nicht das beste?",
-                    ">ᴗ<"
-                ]
-            },
-            "sectionTitle": "Suchergebnisse",
-            "empty": {
-                "default": "Willkommen, hier finden Sie Medien zum Anschauen!",
-                "extra": [
-                    "Hier ist nichts :(",
-                    "so leer...",
-                    "So eine Leere.",
-                    "Hallo neuer Benutzer :3"
-                ]
-            },
-            "discoverMore": "Entdecke mehr",
-            "discover": "Entdecken"
-        },
-        "titles": {
-            "day": {
-                "default": "Was würdest du diesem Nachmittag gerne schauen?",
-                "extra": [
-                    "Lust auf ein Abenteuer? Dann ist Jurassic Park genau das Richtige."
-                ]
-            },
-            "morning": {
-                "default": "Was würdest du diesen Morgen gerne schauen?",
-                "extra": [
-                    "Before Sunrise soll gut sein"
-                ]
-            },
-            "night": {
-                "default": "Was möchtest du diesen Abend gerne schauen?",
-                "extra": [
-                    "Müde? Ich hab gehört The Exorcist soll gut sein."
-                ]
-            },
-            "69": {
-                "default": "Lust auf etwas scharfes?",
-                "extra": [
-                    "Schönen 69. Tag 😘!"
-                ]
-            },
-            "420": {
-                "default": "Was möchten Sie am 4/20 sehen?",
-                "extra": [
-                    "Schönen 4/20 🥳!"
-                ]
-            }
-        },
-        "mediaCard": {
-            "moreInfo": "Mehr Infos",
-            "copyLink": "Link kopieren",
-            "close": "Schließen"
-        }
+    "searchPlaceholder": "FAQ durchsuchen...",
+    "q6": {
+      "title": "Gibt es eine P-Stream App?"
+    }
+  },
+  "actions": {
+    "copied": "Kopiert",
+    "copy": "Kopieren"
+  },
+  "auth": {
+    "createAccount": "Du hast noch keinen Account? <0>Registriere dich jetzt.</0>",
+    "deviceNameLabel": "Gerätename",
+    "deviceNamePlaceholder": "Handy",
+    "generate": {
+      "description": "Deine Passphrase dient als dein Nutzername und Passwort. Speichere sie sicher ab, damit du dich in deinem Konto anmelden kannst. <bold>Verliere deine Passphrase auf keinen Fall!</bold>",
+      "next": "Ich habe meine Passphrase gespeichert",
+      "passphraseFrameLabel": "Passphrase",
+      "title": "Deine Passphrase"
     },
-    "media": {
-        "episodeDisplay": "S{{season}} E{{episode}}",
-        "types": {
-            "movie": "Film",
-            "show": "Serie"
-        },
-        "unreleased": "Unveröffentlicht",
-        "episodeShort": "F",
-        "seasonShort": "S"
+    "hasAccount": "Du hast bereits einen Account? <0>Anmelden.</0>",
+    "login": {
+      "description": "Gebe deine Passphrase ein, um dich in deinem Konto anzumelden",
+      "deviceLengthError": "Gebe einen Gerätenamen ein",
+      "passphraseLabel": "12-Wort Passphrase",
+      "passphrasePlaceholder": "Passphrase",
+      "submit": "Anmelden",
+      "title": "Melde dich in deinem Konto an",
+      "validationError": "Falsche oder unvollständige Passphrase"
     },
-    "navigation": {
-        "banner": {
-            "offline": "Internetverbindung ist instabil"
-        },
-        "menu": {
-            "about": "Über uns",
-            "logout": "Abmelden",
-            "register": "Mit der Cloud synchronisieren",
-            "settings": "Einstellungen",
-            "support": "Support",
-            "discover": "Entdecken",
-            "development": "Entwicklung"
-        }
+    "register": {
+      "information": {
+        "color1": "Profilfarbe 1",
+        "color2": "Profilfarbe 2",
+        "header": "Gebe einen Namen für dein Gerät ein und wähle Farben und ein Symbol deiner Wahl!",
+        "icon": "Symbol",
+        "next": "Weiter",
+        "title": "Kontoinformationen"
+      }
     },
-    "notFound": {
-        "badge": "Nicht gefunden",
-        "goHome": "Zurück zur Startseite",
-        "message": "Wir haben überall gesucht: Unter den Eimern, im Schrank, hinter dem Proxy. Wir konnten die gesuchte Seite nicht finden.",
-        "title": "Diese Seite wurde nicht gefunden",
-        "reloadButton": "Versuchs nochmal"
+    "trust": {
+      "failed": {
+        "text": "Hast du es korrekt konfiguriert?",
+        "title": "Server nicht erreichbar"
+      },
+      "host": "Du verbindest dich mit <0>{{hostname}}</0> - stelle sicher das du dem Server vertraust, bevor du ein Konto erstellst",
+      "no": "Zurück",
+      "noHost": "Da der Server nicht eingerichtet wurde, kannst du keinen Account erstellen",
+      "noHostTitle": "Server nicht eingerichtet!",
+      "title": "Vertraust du diesem Server?",
+      "yes": "Ich vertraue diesem Server"
     },
-    "onboarding": {
-        "defaultConfirm": {
-            "cancel": "Abbrechen",
-            "confirm": "Standard-Setup verwenden",
-            "description": "Das Standard-Setup verfügt nicht über die besten Streams und kann unerträglich langsam sein.",
-            "title": "Sicher?"
+    "verify": {
+      "description": "Bitte gebe deine Passphrase ein, um zu bestätigen, dass du sie gespeichert hast und um dein Konto zu erstellen",
+      "invalidData": "Daten sind ungültig",
+      "noMatch": "Passphrasen stimmen nicht überein",
+      "passphraseLabel": "Deine 12-Wort Passphrase",
+      "recaptchaFailed": "ReCaptcha Verifizierung ist fehlgeschlagenen",
+      "register": "Konto erstellen",
+      "title": "Bestätige deine Passphrase"
+    }
+  },
+  "errors": {
+    "badge": "Kaputt",
+    "details": "Fehlerdetails",
+    "reloadPage": "Seite neuladen",
+    "showError": "Zeige Fehlerdetails an",
+    "title": "Ein Fehler ist aufgetreten!"
+  },
+  "footer": {
+    "legal": {
+      "disclaimer": "Hinweis",
+      "disclaimerText": "P-Stream hostet keine Dateien, sondern verlinkt lediglich auf Dienste Dritter. Rechtliche Fragen sollten mit den Dateihostern und -anbietern geklärt werden. P-Stream übernimmt keine Verantwortung für die von den Videoanbietern angezeigten Mediendateien."
+    },
+    "links": {
+      "discord": "Discord",
+      "legal": "Legal / DMCA",
+      "github": "GitHub",
+      "twitter": "Twitter",
+      "funding": "Unterstütze uns"
+    },
+    "tagline": "Schau deine Lieblingsserien und Filme mit dieser quelloffenen Streaming App."
+  },
+  "global": {
+    "name": "P-Stream",
+    "pages": {
+      "about": "Über",
+      "legal": "Legal / DMCA",
+      "login": "Anmelden",
+      "onboarding": "Einrichtung",
+      "pagetitle": "{{title}} - P-Stream",
+      "register": "Registrieren",
+      "settings": "Einstellungen",
+      "discover": "Entdecken",
+      "support": "Unterstützung",
+      "migration": "Konto übertragen",
+      "jip": "Jip"
+    }
+  },
+  "home": {
+    "bookmarks": {
+      "sectionTitle": "Favoriten"
+    },
+    "continueWatching": {
+      "sectionTitle": "Weiter ansehen"
+    },
+    "mediaList": {
+      "stopEditing": "Bearbeiten beenden"
+    },
+    "search": {
+      "allResults": "Das ist alles!",
+      "failed": "Das Medium wurde nicht gefunden, bitte versuchen Sie es erneut!",
+      "loading": "Wird geladen...",
+      "noResults": "Wir haben nichts gefunden!",
+      "placeholder": {
+        "default": "Was möchtest du schauen?",
+        "extra": [
+          "Was möchtest du entdecken?",
+          "Was ist auf deiner Merkliste?",
+          "Was ist dein Lieblingsfilm?",
+          "Was ist deine Lieblingsserie?",
+          "Was willst du heute schauen?",
+          "Wie war dein Tag?",
+          "Mein Fehler die Seite funktioniert nie...",
+          "Ist P-Stream nicht das beste?",
+          ">ᴗ<"
+        ]
+      },
+      "sectionTitle": "Suchergebnisse",
+      "empty": {
+        "default": "Willkommen, hier finden Sie Medien zum Anschauen!",
+        "extra": [
+          "Hier ist nichts :(",
+          "so leer...",
+          "So eine Leere.",
+          "Hallo neuer Benutzer :3"
+        ]
+      },
+      "discoverMore": "Entdecke mehr",
+      "discover": "Entdecken"
+    },
+    "titles": {
+      "day": {
+        "default": "Was würdest du diesem Nachmittag gerne schauen?",
+        "extra": [
+          "Lust auf ein Abenteuer? Dann ist Jurassic Park genau das Richtige."
+        ]
+      },
+      "morning": {
+        "default": "Was würdest du diesen Morgen gerne schauen?",
+        "extra": ["Before Sunrise soll gut sein"]
+      },
+      "night": {
+        "default": "Was möchtest du diesen Abend gerne schauen?",
+        "extra": ["Müde? Ich hab gehört The Exorcist soll gut sein."]
+      },
+      "69": {
+        "default": "Lust auf etwas scharfes?",
+        "extra": ["Schönen 69. Tag 😘!"]
+      },
+      "420": {
+        "default": "Was möchten Sie am 4/20 sehen?",
+        "extra": ["Schönen 4/20 🥳!"]
+      }
+    },
+    "mediaCard": {
+      "moreInfo": "Mehr Infos",
+      "copyLink": "Link kopieren",
+      "close": "Schließen"
+    }
+  },
+  "media": {
+    "episodeDisplay": "S{{season}} E{{episode}}",
+    "types": {
+      "movie": "Film",
+      "show": "Serie"
+    },
+    "unreleased": "Unveröffentlicht",
+    "episodeShort": "F",
+    "seasonShort": "S"
+  },
+  "navigation": {
+    "banner": {
+      "offline": "Internetverbindung ist instabil"
+    },
+    "menu": {
+      "about": "Über uns",
+      "logout": "Abmelden",
+      "register": "Mit der Cloud synchronisieren",
+      "settings": "Einstellungen",
+      "support": "Support",
+      "discover": "Entdecken",
+      "development": "Entwicklung"
+    }
+  },
+  "notFound": {
+    "badge": "Nicht gefunden",
+    "goHome": "Zurück zur Startseite",
+    "message": "Wir haben überall gesucht: Unter den Eimern, im Schrank, hinter dem Proxy. Wir konnten die gesuchte Seite nicht finden.",
+    "title": "Diese Seite wurde nicht gefunden",
+    "reloadButton": "Versuchs nochmal"
+  },
+  "onboarding": {
+    "defaultConfirm": {
+      "cancel": "Abbrechen",
+      "confirm": "Standard-Setup verwenden",
+      "description": "Das Standard-Setup verfügt nicht über die besten Streams und kann unerträglich langsam sein.",
+      "title": "Sicher?"
+    },
+    "extension": {
+      "back": "Zurück gehen",
+      "explainer": "Mit der Browser-Erweiterung kannst du die besten Streams benutzen, die wir zu bieten haben. Mit nur einer einfachen Installation.",
+      "explainerIos": "Leider ist die Browser-Extension unter iOS nicht unterstützt. Klicken Sie auf <bold>Zurück</bold>, um eine andere Option auszuwählen.",
+      "extensionHelp": "Falls du die Erweiterung installiert hast, aber sie aber nicht erkannt wird, <bold>öffne die Erweiterung über das Erweiterungsmenü Ihres Browsers</bold> und befolge die Schritte auf dem Bildschirm.",
+      "linkChrome": "Chrome Erweiterung installieren",
+      "linkFirefox": "Firefox Erweiterung installieren",
+      "notDetecting": "Auf Chrome Installiert, aber die Website erkennt es nicht? Versuche, die Seite wieder zu laden!",
+      "notDetectingAction": "Seite neuladen",
+      "status": {
+        "disallowed": "Browser-Erweiterung ist für diese Website nicht aktiviert",
+        "disallowedAction": "Browser-Erweiterung aktivieren",
+        "failed": "Statusanforderung fehlgeschlagen",
+        "loading": "Wartet dass du die Erweiterung installierst",
+        "outdated": "Erweiterungsversion zu alt",
+        "success": "Die Browser-Erweiterung funktioniert wie erwartet!"
+      },
+      "submit": "Weiter",
+      "title": "Lass uns mit einer Erweiterung starten"
+    },
+    "proxy": {
+      "back": "Zurück gehen",
+      "explainer": "Mit der Proxy-Methode kannst du Streams mit guter Qualität benutzen, indem du einen eigenen Proxy einstellst.",
+      "input": {
+        "errorConnection": "Es konnte keine Verbindung zum Proxy hergestellt werden",
+        "errorInvalidUrl": "Keine gültige URL",
+        "errorNotProxy": "Ein Proxy wurde erwartet, aber eine Website wurde eingegeben",
+        "label": "Proxy-URL",
+        "placeholder": "https://"
+      },
+      "link": "Erfahre, wie man einen Proxy einstellt",
+      "submit": "Proxy einreichen",
+      "title": "Lass uns eine neue Proxy erstellen"
+    },
+    "start": {
+      "explainer": "Um die bestmöglichen Streams zu erhalten, müssen Sie auswählen, welche Streaming-Methode Sie verwenden möchten.",
+      "options": {
+        "default": {
+          "text": "Ich möchte keine Streams mit guter Qualität. <0 /> <1>Standardeinstellung benutzen</1>"
         },
         "extension": {
-            "back": "Zurück gehen",
-            "explainer": "Mit der Browser-Erweiterung kannst du die besten Streams benutzen, die wir zu bieten haben. Mit nur einer einfachen Installation.",
-            "explainerIos": "Leider ist die Browser-Extension unter iOS nicht unterstützt. Klicken Sie auf <bold>Zurück</bold>, um eine andere Option auszuwählen.",
-            "extensionHelp": "Falls du die Erweiterung installiert hast, aber sie aber nicht erkannt wird, <bold>öffne die Erweiterung über das Erweiterungsmenü Ihres Browsers</bold> und befolge die Schritte auf dem Bildschirm.",
-            "linkChrome": "Chrome Erweiterung installieren",
-            "linkFirefox": "Firefox Erweiterung installieren",
-            "notDetecting": "Auf Chrome Installiert, aber die Website erkennt es nicht? Versuche, die Seite wieder zu laden!",
-            "notDetectingAction": "Seite neuladen",
-            "status": {
-                "disallowed": "Browser-Erweiterung ist für diese Website nicht aktiviert",
-                "disallowedAction": "Browser-Erweiterung aktivieren",
-                "failed": "Statusanforderung fehlgeschlagen",
-                "loading": "Wartet dass du die Erweiterung installierst",
-                "outdated": "Erweiterungsversion zu alt",
-                "success": "Die Browser-Erweiterung funktioniert wie erwartet!"
-            },
-            "submit": "Weiter",
-            "title": "Lass uns mit einer Erweiterung starten"
+          "action": "Browser-Erweitung installieren",
+          "description": "Installiere die Browser-Erweitung, um Zugriff auf die besten Quellen zu bekommen.",
+          "quality": "Beste Qualität",
+          "title": "Browser extension"
         },
         "proxy": {
-            "back": "Zurück gehen",
-            "explainer": "Mit der Proxy-Methode kannst du Streams mit guter Qualität benutzen, indem du einen eigenen Proxy einstellst.",
-            "input": {
-                "errorConnection": "Es konnte keine Verbindung zum Proxy hergestellt werden",
-                "errorInvalidUrl": "Keine gültige URL",
-                "errorNotProxy": "Ein Proxy wurde erwartet, aber eine Website wurde eingegeben",
-                "label": "Proxy-URL",
-                "placeholder": "https://"
-            },
-            "link": "Erfahre, wie man einen Proxy einstellt",
-            "submit": "Proxy einreichen",
-            "title": "Lass uns eine neue Proxy erstellen"
+          "action": "Proxy einstellen",
+          "description": "Richte in nur 5 Minuten einen Proxy ein und erhalte Zugriff auf großartige Quellen.",
+          "quality": "Gute Qualität",
+          "title": "Eigene Proxy"
         },
-        "start": {
-            "explainer": "Um die bestmöglichen Streams zu erhalten, müssen Sie auswählen, welche Streaming-Methode Sie verwenden möchten.",
-            "options": {
-                "default": {
-                    "text": "Ich möchte keine Streams mit guter Qualität. <0 /> <1>Standardeinstellung benutzen</1>"
-                },
-                "extension": {
-                    "action": "Browser-Erweitung installieren",
-                    "description": "Installiere die Browser-Erweitung, um Zugriff auf die besten Quellen zu bekommen.",
-                    "quality": "Beste Qualität",
-                    "title": "Browser extension"
-                },
-                "proxy": {
-                    "action": "Proxy einstellen",
-                    "description": "Richte in nur 5 Minuten einen Proxy ein und erhalte Zugriff auf großartige Quellen.",
-                    "quality": "Gute Qualität",
-                    "title": "Eigene Proxy"
-                },
-                "or": "oder"
-            },
-            "title": "Lass uns mit der Einrichtung von StreamWatch starten",
-            "moreInfo": {
-                "explainer": {
-                    "proxyDescription": "Der Proxy sammelt Medien von anderen Websites. Es umgeht Browser-Beschränkungen (wie CORS), um Scraping zu ermöglichen.",
-                    "intro": "StreamWatch hostet keine Videos. Es ist für den Inhalt auf Websites von Drittanbietern angewiesen, sodass Sie festlegen müssen, wie es mit diesen Websites verbunden wird.",
-                    "fedapi": {
-                        "fedapiDescription": "Wenn du ein eigenes Febbox-Konto hast, kannst du die FED-API freischalten. Unsere beste Quelle mit 4K-Qualität, Dolby Atmos, den meisten Inhalten und den besten (schnellsten) Ladezeiten. Dies ist sehr empfehlenswert!",
-                        "fedapi": "Optionale FED API (Febbox) UI Token"
-                    },
-                    "options": "Deine Optionen:",
-                    "extension": "1. Erweiterung (Empfohlen)",
-                    "extensionDescription": "Die Erweiterung gibt mir Zugriff auf weitere Quellen. Er fungiert als lokaler Proxy und kann mit Websites umgehen, die spezielle Cookies oder Headers zum Laden benötigen.",
-                    "proxy": "2. Proxy",
-                    "default": "3. Standard Einstellungen",
-                    "defaultDescription": "Benützt StreamWatch's eigener Proxy. Das ist die einfachste Option, kann aber aufgrund der gemeinsam genutzten Bandbreite, langsamer sein.",
-                    "outro": "Wenn du mehr Fragen hast, wie die Seite funktioniert, feel free und frag im <0>StreamWatch Discord</0> Server nach!"
-                },
-                "button": "Mehr Info"
-            }
-        }
+        "or": "oder"
+      },
+      "title": "Lass uns mit der Einrichtung von P-Stream starten",
+      "moreInfo": {
+        "explainer": {
+          "proxyDescription": "Der Proxy sammelt Medien von anderen Websites. Es umgeht Browser-Beschränkungen (wie CORS), um Scraping zu ermöglichen.",
+          "intro": "P-Stream hostet keine Videos. Es ist für den Inhalt auf Websites von Drittanbietern angewiesen, sodass Sie festlegen müssen, wie es mit diesen Websites verbunden wird.",
+          "fedapi": {
+            "fedapiDescription": "Wenn du ein eigenes Febbox-Konto hast, kannst du die FED-API freischalten. Unsere beste Quelle mit 4K-Qualität, Dolby Atmos, den meisten Inhalten und den besten (schnellsten) Ladezeiten. Dies ist sehr empfehlenswert!",
+            "fedapi": "Optionale FED API (Febbox) UI Token"
+          },
+          "options": "Deine Optionen:",
+          "extension": "1. Erweiterung (Empfohlen)",
+          "extensionDescription": "Die Erweiterung gibt mir Zugriff auf weitere Quellen. Er fungiert als lokaler Proxy und kann mit Websites umgehen, die spezielle Cookies oder Headers zum Laden benötigen.",
+          "proxy": "2. Proxy",
+          "default": "3. Standard Einstellungen",
+          "defaultDescription": "Benützt P-Stream's eigener Proxy. Das ist die einfachste Option, kann aber aufgrund der gemeinsam genutzten Bandbreite, langsamer sein.",
+          "outro": "Wenn du mehr Fragen hast, wie die Seite funktioniert, feel free und frag im <0>P-Stream Discord</0> Server nach!"
+        },
+        "button": "Mehr Info"
+      }
+    }
+  },
+  "overlays": {
+    "close": "Schließen"
+  },
+  "player": {
+    "back": {
+      "default": "Zurück zur Startseite",
+      "short": "Zurück"
     },
-    "overlays": {
-        "close": "Schließen"
+    "casting": {
+      "enabled": "Casting zum Gerät..."
     },
-    "player": {
-        "back": {
-            "default": "Zurück zur Startseite",
-            "short": "Zurück"
+    "menus": {
+      "downloads": {
+        "copyHlsPlaylist": "HLS-Playlist Link kopieren",
+        "disclaimer": "Videos werden direkt vom Provider heruntergeladen. P-Stream hat keinen Einfluss darauf, wie Downloads bereitgestellt werden.",
+        "downloadSubtitle": "Aktuelle Untertitel herunterladen",
+        "downloadVideo": "Video herunterladen",
+        "hlsDisclaimer": "P-Stream hat keinen Einfluss darauf, wie Downloads bereitgestellt werden. Downloads werden direkt vom Anbieter bezogen. <br /><br />Bitte beachte, dass du eine HLS-Wiedergabeliste herunterlädst, <bold>dies ist nicht empfohlen für Nutzer die nicht mit Erweiterten Streaming Formaten vertraut sind</bold>. Probiere andere Anbieter für andere Formate.",
+        "onAndroid": {
+          "1": "Um auf Android Herunterzuladen, tippe auf den Download-Button, <bold>tippe und halte</bold> auf der neuen Seite auf das Video und wähle <bold>Speichern</bold> aus.",
+          "shortTitle": "Download / Android",
+          "title": "Auf Android herunterladen"
         },
-        "casting": {
-            "enabled": "Casting zum Gerät..."
+        "onIos": {
+          "1": "Um Auf iOS herunterzuladen, klick auf den Download-Button. Klicke dann auf der neuen Seite auf<bold> <ios_share /></bold>, dann auf <bold>In Dateien sichern <ios_files /></bold>.",
+          "shortTitle": "Download / iOS",
+          "title": "Auf iOS herunterladen"
         },
-        "menus": {
-            "downloads": {
-                "copyHlsPlaylist": "HLS-Playlist Link kopieren",
-                "disclaimer": "Videos werden direkt vom Provider heruntergeladen. StreamWatch hat keinen Einfluss darauf, wie Downloads bereitgestellt werden.",
-                "downloadSubtitle": "Aktuelle Untertitel herunterladen",
-                "downloadVideo": "Video herunterladen",
-                "hlsDisclaimer": "StreamWatch hat keinen Einfluss darauf, wie Downloads bereitgestellt werden. Downloads werden direkt vom Anbieter bezogen. <br /><br />Bitte beachte, dass du eine HLS-Wiedergabeliste herunterlädst, <bold>dies ist nicht empfohlen für Nutzer die nicht mit Erweiterten Streaming Formaten vertraut sind</bold>. Probiere andere Anbieter für andere Formate.",
-                "onAndroid": {
-                    "1": "Um auf Android Herunterzuladen, tippe auf den Download-Button, <bold>tippe und halte</bold> auf der neuen Seite auf das Video und wähle <bold>Speichern</bold> aus.",
-                    "shortTitle": "Download / Android",
-                    "title": "Auf Android herunterladen"
-                },
-                "onIos": {
-                    "1": "Um Auf iOS herunterzuladen, klick auf den Download-Button. Klicke dann auf der neuen Seite auf<bold> <ios_share /></bold>, dann auf <bold>In Dateien sichern <ios_files /></bold>.",
-                    "shortTitle": "Download / iOS",
-                    "title": "Auf iOS herunterladen"
-                },
-                "onPc": {
-                    "1": "Um am PC herunterzuladen, klicke auf den Download-Button. Klicke dann mit der rechten Maustaste auf das Video und klicke auf <bold>Video speichern als</bold>",
-                    "shortTitle": "Download / PC",
-                    "title": "Am PC herunterladen"
-                },
-                "title": "Download",
-                "hlsDownloader": "Oder gehen Sie auf die <0>hls downloader website</0> und füg dort die URL der Wiedergabeliste von unten ein.",
-                "button": "Versuch herunterladen"
-            },
-            "episodes": {
-                "button": "Folgen",
-                "emptyState": "Keine Folgen in dieser Staffel, schau später noch einmal!",
-                "episodeBadge": "E{{episode}}",
-                "loadingError": "Fehler beim Laden der Sitzung",
-                "loadingList": "Wird geladen...",
-                "loadingTitle": "Wird geladen...",
-                "unairedEpisodes": "Eine oder mehrere Episoden dieser Staffel wurden deaktiviert, weil sie noch nicht ausgestrahlt wurden.",
-                "seasons": "Staffeln"
-            },
-            "playback": {
-                "speedLabel": "Wiedergabegeschwindigkeit",
-                "title": "Wiedergabeeinstellungen"
-            },
-            "quality": {
-                "automaticLabel": "Automatische Qualitätseinstellung",
-                "hint": "Du kannst versuchen die <0>Quelle zu ändern</0> um andere Qualitätsoptionen zu erhalten.",
-                "iosNoQuality": "Durch eine Einschränkung von Apple ist die Qualitätsauswahl für iOS für diese Quelle nicht verfügbar. Du kannst versuchen <0>einen andere Quelle auszuwählen</0> um andere Qualitätsoptionen zu erhalten.",
-                "title": "Qualität"
-            },
-            "settings": {
-                "audioItem": "Audio",
-                "downloadItem": "Download",
-                "enableSubtitles": "Untettitel aktivieren",
-                "experienceSection": "Anzeigeerlebnis",
-                "playbackItem": "Wiedergabeeinstellungen",
-                "qualityItem": "Qualität",
-                "sourceItem": "Videoquellen",
-                "subtitleItem": "Untertiteleinstellungen",
-                "videoSection": "Videoeinstellungen"
-            },
-            "sources": {
-                "failed": {
-                    "text": "Beim Versuch, Videos zu finden, ist ein Fehler aufgetreten. Bitte versuche es mit einer anderen Quelle.",
-                    "title": "Fehler beim Laden"
-                },
-                "noEmbeds": {
-                    "text": "Es konnten keine Embeds gefunden werden. Bitte versuchen es mit einer anderen Quelle.",
-                    "title": "Keine Embeds gefunden"
-                },
-                "noStream": {
-                    "text": "Diese Quelle bietet keine Streams für diesen Film oder diese Serie.",
-                    "title": "Kein Stream"
-                },
-                "title": "Quellen",
-                "unknownOption": "Unbekannt",
-                "editOrder": "Bestellung bearbeiten"
-            },
-            "subtitles": {
-                "customChoice": "Untertiteldatei auswählen oder hier ablegen",
-                "customizeLabel": "Anpassen",
-                "dropSubtitleFile": "Untertiteldatei hier ablegen",
-                "offChoice": "Aus",
-                "settings": {
-                    "backlink": "Eigene Untertitel",
-                    "delay": "Untertitelverzögerung",
-                    "fixCapitals": "Großschreibung korrigieren"
-                },
-                "title": "Untertitel",
-                "unknownLanguage": "Unbekannt",
-                "OpenSubtitlesChoice": "offene Untertitel",
-                "notFound": "Keine der verfügbaren Optionen entspricht Ihrer Anfrage",
-                "SourceChoice": "Quellenangaben",
-                "empty": "Es sind hierfür keine Untertitel verfügbar.",
-                "onChoice": "An"
-            },
-            "watchparty": {
-                "notice": "Watch Party ist möglicherweise für einige Quellen nicht verfügbar",
-                "watchpartyItem": "Watch Party"
-            }
+        "onPc": {
+          "1": "Um am PC herunterzuladen, klicke auf den Download-Button. Klicke dann mit der rechten Maustaste auf das Video und klicke auf <bold>Video speichern als</bold>",
+          "shortTitle": "Download / PC",
+          "title": "Am PC herunterladen"
         },
-        "metadata": {
-            "api": {
-                "text": "API Metadaten konnten nicht geladen werden, überprüfe deine Netzwerkverbindung.",
-                "title": "API Metadaten konnten nicht geladen werden"
-            },
-            "dmca": {
-                "badge": "Entfernt",
-                "text": "Das Video ist aufgrund einer Takedown-Anfrage oder eines Urheberrechtsanspruchs nicht mehr verfügbar.",
-                "title": "Video wurde entfernt"
-            },
-            "extensionPermission": {
-                "badge": "Berechtigung fehlt",
-                "button": "Verwende Erweiterung",
-                "text": "Du hast die Browser-Erweiterung, aber wir brauchen deine Berechtigung um mit der Erweiterung zu starten.",
-                "title": "Konfiguriere die Erweiterung"
-            },
-            "failed": {
-                "badge": "Fehlgeschlagen",
-                "homeButton": "Zurück zur Startseite",
-                "text": "Konnte die Videometadaten nicht von TMDB laden. Überprüfe ob TMDB funktioniert oder von deiner Internetverbindung gesperrt wird.",
-                "title": "Laden der Metadaten ist fehlgeschlagen"
-            },
-            "notFound": {
-                "badge": "Nicht gefunden",
-                "homeButton": "Zurück zur Startseite",
-                "text": "Wir konnten das angeforderte Video nicht finden.",
-                "title": "Das Video konnte nicht gefunden werden."
-            }
+        "title": "Download",
+        "hlsDownloader": "Oder gehen Sie auf die <0>hls downloader website</0> und füg dort die URL der Wiedergabeliste von unten ein.",
+        "button": "Versuch herunterladen"
+      },
+      "episodes": {
+        "button": "Folgen",
+        "emptyState": "Keine Folgen in dieser Staffel, schau später noch einmal!",
+        "episodeBadge": "E{{episode}}",
+        "loadingError": "Fehler beim Laden der Sitzung",
+        "loadingList": "Wird geladen...",
+        "loadingTitle": "Wird geladen...",
+        "unairedEpisodes": "Eine oder mehrere Episoden dieser Staffel wurden deaktiviert, weil sie noch nicht ausgestrahlt wurden.",
+        "seasons": "Staffeln"
+      },
+      "playback": {
+        "speedLabel": "Wiedergabegeschwindigkeit",
+        "title": "Wiedergabeeinstellungen"
+      },
+      "quality": {
+        "automaticLabel": "Automatische Qualitätseinstellung",
+        "hint": "Du kannst versuchen die <0>Quelle zu ändern</0> um andere Qualitätsoptionen zu erhalten.",
+        "iosNoQuality": "Durch eine Einschränkung von Apple ist die Qualitätsauswahl für iOS für diese Quelle nicht verfügbar. Du kannst versuchen <0>einen andere Quelle auszuwählen</0> um andere Qualitätsoptionen zu erhalten.",
+        "title": "Qualität"
+      },
+      "settings": {
+        "audioItem": "Audio",
+        "downloadItem": "Download",
+        "enableSubtitles": "Untettitel aktivieren",
+        "experienceSection": "Anzeigeerlebnis",
+        "playbackItem": "Wiedergabeeinstellungen",
+        "qualityItem": "Qualität",
+        "sourceItem": "Videoquellen",
+        "subtitleItem": "Untertiteleinstellungen",
+        "videoSection": "Videoeinstellungen"
+      },
+      "sources": {
+        "failed": {
+          "text": "Beim Versuch, Videos zu finden, ist ein Fehler aufgetreten. Bitte versuche es mit einer anderen Quelle.",
+          "title": "Fehler beim Laden"
         },
-        "nextEpisode": {
-            "next": "Nächste Folge",
-            "replay": "Wiederholung",
-            "nextSeason": "nächste Staffel"
+        "noEmbeds": {
+          "text": "Es konnten keine Embeds gefunden werden. Bitte versuchen es mit einer anderen Quelle.",
+          "title": "Keine Embeds gefunden"
         },
-        "playbackError": {
-            "badge": "Wiedergabefehler",
-            "errors": {
-                "errorAborted": "Das Laden des Videos wurde vom Nutzer abgebrochen.",
-                "errorDecode": "Beim Versuch, das Video zu dekodieren, ist ein Fehler aufgetreten, obwohl sie zuvor als brauchbar eingestuft worden war.",
-                "errorGenericMedia": "Unbekannter Videofehler ist aufgetreten.",
-                "errorNetwork": "Es ist ein Netzwerkfehler aufgetreten, der verhindert hat, dass das Video erfolgreich abgerufen werden konnten, obwohl es verfügbar waren.",
-                "errorNotSupported": "Das Video- oder Videoanbieter wird nicht unterstützt."
-            },
-            "homeButton": "Zurück zur Startseite",
-            "text": "Während der Wiedergabe ist ein Fehler aufgetreten. Versuche es erneut.",
-            "title": "Hoppla, etwas ist schiefgegangen!"
+        "noStream": {
+          "text": "Diese Quelle bietet keine Streams für diesen Film oder diese Serie.",
+          "title": "Kein Stream"
         },
-        "scraping": {
-            "extensionFailure": {
-                "badge": "Erweiterung deaktiviert",
-                "enableExtension": "Erweiterung aktivieren",
-                "homeButton": "Zur Startseite",
-                "text": "Du hast die StreamWatche Erweiterung installiert. Um die Erweiterung zu benutzen, musst du sie für diese Seite aktivieren.",
-                "title": "Bitte aktiviere die Erweiterung"
-            },
-            "items": {
-                "failure": "Ein Fehler ist aufgetreten",
-                "notFound": "Video nicht gefunden",
-                "pending": "Suche nach Videos..."
-            },
-            "notFound": {
-                "badge": "Nicht gefunden",
-                "detailsButton": "Details anzeigen",
-                "homeButton": "Zurück zur Startseite",
-                "text": "Wir haben alle Anbieter durchsucht, konnten aber nicht das Video finden nach dem du suchst! Wir stellen keine eigenen Videos bereit und haben keine Kontrolle darüber, was verfügbar ist. Bitte klicke auf \"Details anzeigen\" für mehr Details.",
-                "title": "Wir konnten das nicht finden",
-                "discoverButton": "Endecke mehr"
-            },
-            "tips": {
-                "1": "Klicke auf das Einstellungs-Icon, um die Quelle zu wechseln!",
-                "2": "Klicke auf den Titel, um den Link zu kopieren!",
-                "7": "Halte SHIFT gedrückt und klick auf den Titel, um den Link mit der Zeitangabe zu kopieren!",
-                "3": "Halte SHIFT für Breitbildschirm anstelle von Vollbildschirm!",
-                "4": "Manche Quellen funktionieren besser als andere!",
-                "5": "Hohle dir die Erweiterung für mehr Quellen!",
-                "6": "Halte das Lesezeichen gedrückt, um sie zu verwalten oder zu löschen!",
-                "8": "Lege eine eigene Untertitelfarbe fest!",
-                "9": "Migriere dein Account zu einer neuen Backend in den Einstellungen!",
-                "10": "Tritt dem Discord bei!",
-                "11": "Verwende Sie [ und ], um das Timing der Untertitel anzupassen!",
-                "12": "Drücke LEERTASTE oder K um Abzuspielen/Pausieren!",
-                "14": "Nutze J und L Tasten, um 10 Sekunden vor-/zurückzuspulen!",
-                "13": "Nutze die LINKS und RECHTS Pfeiltasten, um 5 Sekunden vor-/zurückzuspulen!",
-                "15": "Drücke F um den Vollbildmodus umzuschalten!"
-            }
+        "title": "Quellen",
+        "unknownOption": "Unbekannt",
+        "editOrder": "Bestellung bearbeiten"
+      },
+      "subtitles": {
+        "customChoice": "Untertiteldatei auswählen oder hier ablegen",
+        "customizeLabel": "Anpassen",
+        "dropSubtitleFile": "Untertiteldatei hier ablegen",
+        "offChoice": "Aus",
+        "settings": {
+          "backlink": "Eigene Untertitel",
+          "delay": "Untertitelverzögerung",
+          "fixCapitals": "Großschreibung korrigieren"
         },
-        "time": {
-            "regular": "{{timeWatched}} / {{duration}}",
-            "remaining": "{{timeLeft}} übrig • Fertig um {{timeFinished, datetime}}",
-            "shortRegular": "{{timeWatched}}",
-            "shortRemaining": "-{{timeLeft}}"
-        },
-        "turnstile": {
-            "description": "Bitte verifiziere deine Menschlichkeit mit dem Captcha auf der Rechten Seite. Dies ist um StreamWatch sicher zu halten!",
-            "error": "Menschlichkeit konnte nicht verifiziert werden. Bitte versuche es erneut.",
-            "title": "Wir müssen sicherstellen, dass du Menschlich bist.",
-            "verifyingHumanity": "Verifiziere deine Menschlichkeit..."
-        }
+        "title": "Untertitel",
+        "unknownLanguage": "Unbekannt",
+        "OpenSubtitlesChoice": "offene Untertitel",
+        "notFound": "Keine der verfügbaren Optionen entspricht Ihrer Anfrage",
+        "SourceChoice": "Quellenangaben",
+        "empty": "Es sind hierfür keine Untertitel verfügbar.",
+        "onChoice": "An"
+      },
+      "watchparty": {
+        "notice": "Watch Party ist möglicherweise für einige Quellen nicht verfügbar",
+        "watchpartyItem": "Watch Party"
+      }
     },
-    "screens": {
-        "dmca": {
-            "title": "DMCA"
-        },
-        "loadingApp": "Die App wird geladen",
-        "loadingUser": "Dein Profil wird geladen",
-        "loadingUserError": {
-            "logout": "Abmelden",
-            "reset": "Eigenen Server zurücksetzen",
-            "text": "Beim Laden deines Profils ist ein Fehler aufgetreten",
-            "textWithReset": "Beim Laden deines Profils von deinem Server ist ein Fehler aufgetreten, zurück zum Standard-Server wechseln?",
-            "reload": "Neu laden"
-        },
-        "migration": {
-            "failed": "Beim Migrieren deiner Daten ist ein Fehler aufgetreten.",
-            "inProgress": "Bitte warte, wir migrieren deine Daten. Das sollte nicht lange dauern."
-        }
+    "metadata": {
+      "api": {
+        "text": "API Metadaten konnten nicht geladen werden, überprüfe deine Netzwerkverbindung.",
+        "title": "API Metadaten konnten nicht geladen werden"
+      },
+      "legal": {
+        "badge": "Entfernt",
+        "text": "Das Video ist aufgrund einer Takedown-Anfrage oder eines Urheberrechtsanspruchs nicht mehr verfügbar.",
+        "title": "Video wurde entfernt"
+      },
+      "extensionPermission": {
+        "badge": "Berechtigung fehlt",
+        "button": "Verwende Erweiterung",
+        "text": "Du hast die Browser-Erweiterung, aber wir brauchen deine Berechtigung um mit der Erweiterung zu starten.",
+        "title": "Konfiguriere die Erweiterung"
+      },
+      "failed": {
+        "badge": "Fehlgeschlagen",
+        "homeButton": "Zurück zur Startseite",
+        "text": "Konnte die Videometadaten nicht von TMDB laden. Überprüfe ob TMDB funktioniert oder von deiner Internetverbindung gesperrt wird.",
+        "title": "Laden der Metadaten ist fehlgeschlagen"
+      },
+      "notFound": {
+        "badge": "Nicht gefunden",
+        "homeButton": "Zurück zur Startseite",
+        "text": "Wir konnten das angeforderte Video nicht finden.",
+        "title": "Das Video konnte nicht gefunden werden."
+      }
     },
-    "settings": {
-        "account": {
-            "accountDetails": {
-                "deviceNameLabel": "Gerätename",
-                "deviceNamePlaceholder": "Handy",
-                "editProfile": "Bearbeiten",
-                "logoutButton": "Abmelden"
-            },
-            "actions": {
-                "delete": {
-                    "button": "Konto löschen",
-                    "confirmButton": "Konto löschen",
-                    "confirmDescription": "Konto wirklich löschen? Alle deine Daten gehen dabei verloren!",
-                    "confirmTitle": "Bist du sicher?",
-                    "text": "Diese Aktion kann nicht rückgängig gemacht werden. Alle Daten werden gelöscht und können nicht wiederhergestellt werden.",
-                    "title": "Konto löschen"
-                },
-                "title": "Aktionen",
-                "logoutAllDevices": {
-                    "title": "Alle Sitzungen beenden",
-                    "text": "Dies wird dich von allen Geräten abmelden, die mit deinem Konto verbunden sind.",
-                    "button": "Von allen Geräten abmelden"
-                }
-            },
-            "devices": {
-                "deviceNameLabel": "Gerätename",
-                "failed": "Laden der Sitzungen fehlgeschlagen",
-                "removeDevice": "Entfernen",
-                "title": "Geräte"
-            },
-            "profile": {
-                "finish": "Bearbeiten beenden",
-                "firstColor": "Profilfarbe 1",
-                "secondColor": "Profilfarbe 2",
-                "title": "Profilbild bearbeiten",
-                "userIcon": "Symbol"
-            },
-            "register": {
-                "cta": "Los geht's",
-                "text": "Teilen deinen Fortschritt zwischen Geräten und halte sie synchronisiert.",
-                "title": "Mit der Cloud synchronisieren"
-            },
-            "title": "Konto",
-            "admin": {
-                "title": "Admin-Bereich",
-                "text": "Nutzen Sie Tools zum Testen des StreamWatch-Zustands."
-            }
-        },
-        "appearance": {
-            "activeTheme": "Aktiv",
-            "themes": {
-                "blue": "Blau",
-                "default": "Standard",
-                "gray": "Grau",
-                "red": "Rot",
-                "teal": "Türkis",
-                "green": "Grün",
-                "mocha": "Mokka",
-                "pink": "Pink",
-                "classic": "Klassik"
-            },
-            "title": "Aussehen",
-            "options": {
-                "discoverLabel": "Abschnitt „Entdecken“",
-                "discover": "Abschnitt „Entdecken“",
-                "discoverDescription": "Zeigen Sie den Abschnitt „Entdecken“ auf der Startseite unter Ihren mit Lesezeichen versehenen Medien an. Standardmäßig aktiviert."
-            }
-        },
-        "connections": {
-            "server": {
-                "description": "Falls du dich mit einem anderen Server verbinden willst, um deine Daten zu speichern. Aktiviere dies und gebe die URL an. <0>Anweisungen.</0>",
-                "label": "Eigener Server",
-                "urlLabel": "Eigene Server-URL",
-                "migration": {
-                    "link": "übertrage meine Daten"
-                }
-            },
-            "setup": {
-                "doSetup": "Einrichten",
-                "errorStatus": {
-                    "description": "Es scheint so, als bräuchte eine oder mehrere Schritte in dieser Einrichtung deine Aufmerksamkeit.",
-                    "title": "Etwas braucht deine Aufmerksamkeit"
-                },
-                "itemError": "Mit diesem Setup stimmt etwas nicht. Führen Sie das Setup erneut durch, um das Problem zu beheben.",
-                "items": {
-                    "default": "Standard Einstellungen",
-                    "extension": "Erweiterung",
-                    "proxy": "Eigene Proxy"
-                },
-                "redoSetup": "Erneut einrichten",
-                "successStatus": {
-                    "description": "Alles ist bereit, damit du deine Lieblingsserien und Filme ansehen kannst.",
-                    "title": "Alles eingerichtet!"
-                },
-                "unsetStatus": {
-                    "description": "Klicken Sie bitte auf den Button rechts, um die Setup zu starten.",
-                    "title": "Du hast das Setup noch nicht durchgeführt"
-                }
-            },
-            "title": "Verbindung",
-            "workers": {
-                "addButton": "Neuen Worker hinzufügen",
-                "description": "Damit die App funktioniert werden alle Anfrage durch einen Proxy geleitet. Aktiviere dies, falls du deinen eigenen Worker verwenden willst. <0>Anweisungen.</0>",
-                "emptyState": "Keine Worker vorhanden, füge einen unten hinzu",
-                "label": "Verwenden deinen eigenen Worker-Proxys",
-                "urlLabel": "Worker-URLs",
-                "urlPlaceholder": "https://"
-            }
-        },
-        "preferences": {
-            "language": "App-Sprache",
-            "languageDescription": "Sprache für die ganze App.",
-            "thumbnail": "Miniaturansichten generieren",
-            "thumbnailDescription": "Meistens haben Videos keine Miniaturansicht. Du kannst diese Einstellung anmachen, um sie automatisch zu generieren, aber sie können dein Video langsamer machen.",
-            "thumbnailLabel": "Miniaturansichten generieren",
-            "title": "Einstellungen",
-            "autoplayLabel": "Automatische Wiedergabe",
-            "skipCredits": "Abspann überspringen",
-            "skipCreditsDescription": "Wenn aktiviert, wird die nächste Episode automatisch abgespielt, wenn 99 % der Episode abgeschlossen sind, um den Abspann zu überspringen. Wenn deaktiviert, wird gewartet, bis die Episode vollständig abgeschlossen ist.",
-            "sourceOrder": "Quellen neu anordnen",
-            "sourceOrderEnableLabel": "Benutzerdefinierte Quellreihenfolge",
-            "autoplay": "Automatische Wiedergabe",
-            "autoplayDescription": "Nach Erreichen des Serienendes wird automatisch die nächste Folge abgespielt. Kann von Benutzern mit der Browsererweiterung, einem benutzerdefinierten Proxy oder mit der Standardkonfiguration aktiviert werden, sofern der Host dies zulässt.",
-            "sourceOrderDescription": "Per Drag & Drop können Sie Quellen neu anordnen. Dadurch wird die Reihenfolge bestimmt, in der die Quellen für die Medien, die Sie ansehen möchten, geprüft werden. Ist eine Quelle ausgegraut, bedeutet dies, dass die <bold>Erweiterung</bold> für diese Quelle erforderlich ist. <br><br> <strong>(Die Standardreihenfolge ist für die meisten Benutzer am besten geeignet)</strong>"
-        },
-        "reset": "Zurücksetzen",
-        "save": "Speichern",
-        "sidebar": {
-            "info": {
-                "appVersion": "App-Version",
-                "backendUrl": "Server-URL",
-                "backendVersion": "Server-Version",
-                "hostname": "Hostname",
-                "insecure": "Unsicher",
-                "notLoggedIn": "Du bist nicht angemeldet",
-                "secure": "Sicher",
-                "title": "App-Informationen",
-                "unknownVersion": "Unbekannt",
-                "userId": "Nutzer-ID"
-            }
-        },
-        "subtitles": {
-            "backgroundBlurLabel": "Hintergrundunschärfe",
-            "backgroundLabel": "Hintergrunddeckkraft",
-            "colorLabel": "Farbe",
-            "previewQuote": "Das Gras wächst nicht schneller, wenn man daran zieht.",
-            "textSizeLabel": "Schriftgröße",
-            "title": "Untertitel",
-            "textBoldLabel": "Fettgedruckter Text"
-        },
-        "unsaved": "Du hast ungespeicherte Änderungen"
+    "nextEpisode": {
+      "next": "Nächste Folge",
+      "replay": "Wiederholung",
+      "nextSeason": "nächste Staffel"
+    },
+    "playbackError": {
+      "badge": "Wiedergabefehler",
+      "errors": {
+        "errorAborted": "Das Laden des Videos wurde vom Nutzer abgebrochen.",
+        "errorDecode": "Beim Versuch, das Video zu dekodieren, ist ein Fehler aufgetreten, obwohl sie zuvor als brauchbar eingestuft worden war.",
+        "errorGenericMedia": "Unbekannter Videofehler ist aufgetreten.",
+        "errorNetwork": "Es ist ein Netzwerkfehler aufgetreten, der verhindert hat, dass das Video erfolgreich abgerufen werden konnten, obwohl es verfügbar waren.",
+        "errorNotSupported": "Das Video- oder Videoanbieter wird nicht unterstützt."
+      },
+      "homeButton": "Zurück zur Startseite",
+      "text": "Während der Wiedergabe ist ein Fehler aufgetreten. Versuche es erneut.",
+      "title": "Hoppla, etwas ist schiefgegangen!"
+    },
+    "scraping": {
+      "extensionFailure": {
+        "badge": "Erweiterung deaktiviert",
+        "enableExtension": "Erweiterung aktivieren",
+        "homeButton": "Zur Startseite",
+        "text": "Du hast die P-Streame Erweiterung installiert. Um die Erweiterung zu benutzen, musst du sie für diese Seite aktivieren.",
+        "title": "Bitte aktiviere die Erweiterung"
+      },
+      "items": {
+        "failure": "Ein Fehler ist aufgetreten",
+        "notFound": "Video nicht gefunden",
+        "pending": "Suche nach Videos..."
+      },
+      "notFound": {
+        "badge": "Nicht gefunden",
+        "detailsButton": "Details anzeigen",
+        "homeButton": "Zurück zur Startseite",
+        "text": "Wir haben alle Anbieter durchsucht, konnten aber nicht das Video finden nach dem du suchst! Wir stellen keine eigenen Videos bereit und haben keine Kontrolle darüber, was verfügbar ist. Bitte klicke auf \"Details anzeigen\" für mehr Details.",
+        "title": "Wir konnten das nicht finden",
+        "discoverButton": "Endecke mehr"
+      },
+      "tips": {
+        "1": "Klicke auf das Einstellungs-Icon, um die Quelle zu wechseln!",
+        "2": "Klicke auf den Titel, um den Link zu kopieren!",
+        "7": "Halte SHIFT gedrückt und klick auf den Titel, um den Link mit der Zeitangabe zu kopieren!",
+        "3": "Halte SHIFT für Breitbildschirm anstelle von Vollbildschirm!",
+        "4": "Manche Quellen funktionieren besser als andere!",
+        "5": "Hohle dir die Erweiterung für mehr Quellen!",
+        "6": "Halte das Lesezeichen gedrückt, um sie zu verwalten oder zu löschen!",
+        "8": "Lege eine eigene Untertitelfarbe fest!",
+        "9": "Migriere dein Account zu einer neuen Backend in den Einstellungen!",
+        "10": "Tritt dem Discord bei!",
+        "11": "Verwende Sie [ und ], um das Timing der Untertitel anzupassen!",
+        "12": "Drücke LEERTASTE oder K um Abzuspielen/Pausieren!",
+        "14": "Nutze J und L Tasten, um 10 Sekunden vor-/zurückzuspulen!",
+        "13": "Nutze die LINKS und RECHTS Pfeiltasten, um 5 Sekunden vor-/zurückzuspulen!",
+        "15": "Drücke F um den Vollbildmodus umzuschalten!"
+      }
+    },
+    "time": {
+      "regular": "{{timeWatched}} / {{duration}}",
+      "remaining": "{{timeLeft}} übrig • Fertig um {{timeFinished, datetime}}",
+      "shortRegular": "{{timeWatched}}",
+      "shortRemaining": "-{{timeLeft}}"
+    },
+    "turnstile": {
+      "description": "Bitte verifiziere deine Menschlichkeit mit dem Captcha auf der Rechten Seite. Dies ist um P-Stream sicher zu halten!",
+      "error": "Menschlichkeit konnte nicht verifiziert werden. Bitte versuche es erneut.",
+      "title": "Wir müssen sicherstellen, dass du Menschlich bist.",
+      "verifyingHumanity": "Verifiziere deine Menschlichkeit..."
+    }
+  },
+  "screens": {
+    "legal": {
+      "title": "Legal / DMCA"
+    },
+    "loadingApp": "Die App wird geladen",
+    "loadingUser": "Dein Profil wird geladen",
+    "loadingUserError": {
+      "logout": "Abmelden",
+      "reset": "Eigenen Server zurücksetzen",
+      "text": "Beim Laden deines Profils ist ein Fehler aufgetreten",
+      "textWithReset": "Beim Laden deines Profils von deinem Server ist ein Fehler aufgetreten, zurück zum Standard-Server wechseln?",
+      "reload": "Neu laden"
     },
     "migration": {
-        "start": {
-            "title": "übertrage deine Daten",
-            "options": {
-                "or": "oder",
-                "direct": {
-                    "title": "direkt übertragen",
-                    "quality": "Leichtestes und schnellstes",
-                    "action": "Daten übertragen",
-                    "description": "Dadurch werden Ihre Daten direkt auf den neuen Server übertragen. Dies ist die schnellste option. <br /><br /> dieser Option können Sie Ihre Passphrase beibehalten!"
-                },
-                "download": {
-                    "description": "Dadurch werden Ihre Daten auf Ihr Gerät heruntergeladen. Sie können sie dann auf den neuen Server hochladen oder zur sicheren Aufbewahrung behalten.",
-                    "title": "Daten Downloaden",
-                    "quality": "Technischer",
-                    "action": "Daten downloaden"
-                },
-                "upload": {
-                    "title": "Daten hochladen",
-                    "description": "Lade deine zuletzt übertragenen Daten hoch um deine Lesezeichen und deinen Fortschritt auf diesem Account zu speichern.",
-                    "quality": "Wiederherstellen aus der Sicherung",
-                    "action": "Daten Hochladen"
-                }
-            },
-            "explainer": "Wenn Sie Ihre Daten übertragen oder sichern möchten, können Sie dies mit den folgenden Optionen tun. So bleiben Ihre Daten beim Wechsel des Backend-Servers erhalten."
+      "failed": "Beim Migrieren deiner Daten ist ein Fehler aufgetreten.",
+      "inProgress": "Bitte warte, wir migrieren deine Daten. Das sollte nicht lange dauern."
+    }
+  },
+  "settings": {
+    "account": {
+      "accountDetails": {
+        "deviceNameLabel": "Gerätename",
+        "deviceNamePlaceholder": "Handy",
+        "editProfile": "Bearbeiten",
+        "logoutButton": "Abmelden"
+      },
+      "actions": {
+        "delete": {
+          "button": "Konto löschen",
+          "confirmButton": "Konto löschen",
+          "confirmDescription": "Konto wirklich löschen? Alle deine Daten gehen dabei verloren!",
+          "confirmTitle": "Bist du sicher?",
+          "text": "Diese Aktion kann nicht rückgängig gemacht werden. Alle Daten werden gelöscht und können nicht wiederhergestellt werden.",
+          "title": "Konto löschen"
         },
+        "title": "Aktionen",
+        "logoutAllDevices": {
+          "title": "Alle Sitzungen beenden",
+          "text": "Dies wird dich von allen Geräten abmelden, die mit deinem Konto verbunden sind.",
+          "button": "Von allen Geräten abmelden"
+        }
+      },
+      "devices": {
+        "deviceNameLabel": "Gerätename",
+        "failed": "Laden der Sitzungen fehlgeschlagen",
+        "removeDevice": "Entfernen",
+        "title": "Geräte"
+      },
+      "profile": {
+        "finish": "Bearbeiten beenden",
+        "firstColor": "Profilfarbe 1",
+        "secondColor": "Profilfarbe 2",
+        "title": "Profilbild bearbeiten",
+        "userIcon": "Symbol"
+      },
+      "register": {
+        "cta": "Los geht's",
+        "text": "Teilen deinen Fortschritt zwischen Geräten und halte sie synchronisiert.",
+        "title": "Mit der Cloud synchronisieren"
+      },
+      "title": "Konto",
+      "admin": {
+        "title": "Admin-Bereich",
+        "text": "Nutzen Sie Tools zum Testen des P-Stream-Zustands."
+      }
+    },
+    "appearance": {
+      "activeTheme": "Aktiv",
+      "themes": {
+        "blue": "Blau",
+        "default": "Standard",
+        "gray": "Grau",
+        "red": "Rot",
+        "teal": "Türkis",
+        "green": "Grün",
+        "mocha": "Mokka",
+        "pink": "Pink",
+        "classic": "Klassik"
+      },
+      "title": "Aussehen",
+      "options": {
+        "discoverLabel": "Abschnitt „Entdecken“",
+        "discover": "Abschnitt „Entdecken“",
+        "discoverDescription": "Zeigen Sie den Abschnitt „Entdecken“ auf der Startseite unter Ihren mit Lesezeichen versehenen Medien an. Standardmäßig aktiviert."
+      }
+    },
+    "connections": {
+      "server": {
+        "description": "Falls du dich mit einem anderen Server verbinden willst, um deine Daten zu speichern. Aktiviere dies und gebe die URL an. <0>Anweisungen.</0>",
+        "label": "Eigener Server",
+        "urlLabel": "Eigene Server-URL",
+        "migration": {
+          "link": "übertrage meine Daten"
+        }
+      },
+      "setup": {
+        "doSetup": "Einrichten",
+        "errorStatus": {
+          "description": "Es scheint so, als bräuchte eine oder mehrere Schritte in dieser Einrichtung deine Aufmerksamkeit.",
+          "title": "Etwas braucht deine Aufmerksamkeit"
+        },
+        "itemError": "Mit diesem Setup stimmt etwas nicht. Führen Sie das Setup erneut durch, um das Problem zu beheben.",
+        "items": {
+          "default": "Standard Einstellungen",
+          "extension": "Erweiterung",
+          "proxy": "Eigene Proxy"
+        },
+        "redoSetup": "Erneut einrichten",
+        "successStatus": {
+          "description": "Alles ist bereit, damit du deine Lieblingsserien und Filme ansehen kannst.",
+          "title": "Alles eingerichtet!"
+        },
+        "unsetStatus": {
+          "description": "Klicken Sie bitte auf den Button rechts, um die Setup zu starten.",
+          "title": "Du hast das Setup noch nicht durchgeführt"
+        }
+      },
+      "title": "Verbindung",
+      "workers": {
+        "addButton": "Neuen Worker hinzufügen",
+        "description": "Damit die App funktioniert werden alle Anfrage durch einen Proxy geleitet. Aktiviere dies, falls du deinen eigenen Worker verwenden willst. <0>Anweisungen.</0>",
+        "emptyState": "Keine Worker vorhanden, füge einen unten hinzu",
+        "label": "Verwenden deinen eigenen Worker-Proxys",
+        "urlLabel": "Worker-URLs",
+        "urlPlaceholder": "https://"
+      }
+    },
+    "preferences": {
+      "language": "App-Sprache",
+      "languageDescription": "Sprache für die ganze App.",
+      "thumbnail": "Miniaturansichten generieren",
+      "thumbnailDescription": "Meistens haben Videos keine Miniaturansicht. Du kannst diese Einstellung anmachen, um sie automatisch zu generieren, aber sie können dein Video langsamer machen.",
+      "thumbnailLabel": "Miniaturansichten generieren",
+      "title": "Einstellungen",
+      "autoplayLabel": "Automatische Wiedergabe",
+      "skipCredits": "Abspann überspringen",
+      "skipCreditsDescription": "Wenn aktiviert, wird die nächste Episode automatisch abgespielt, wenn 99 % der Episode abgeschlossen sind, um den Abspann zu überspringen. Wenn deaktiviert, wird gewartet, bis die Episode vollständig abgeschlossen ist.",
+      "sourceOrder": "Quellen neu anordnen",
+      "sourceOrderEnableLabel": "Benutzerdefinierte Quellreihenfolge",
+      "autoplay": "Automatische Wiedergabe",
+      "autoplayDescription": "Nach Erreichen des Serienendes wird automatisch die nächste Folge abgespielt. Kann von Benutzern mit der Browsererweiterung, einem benutzerdefinierten Proxy oder mit der Standardkonfiguration aktiviert werden, sofern der Host dies zulässt.",
+      "sourceOrderDescription": "Per Drag & Drop können Sie Quellen neu anordnen. Dadurch wird die Reihenfolge bestimmt, in der die Quellen für die Medien, die Sie ansehen möchten, geprüft werden. Ist eine Quelle ausgegraut, bedeutet dies, dass die <bold>Erweiterung</bold> für diese Quelle erforderlich ist. <br><br> <strong>(Die Standardreihenfolge ist für die meisten Benutzer am besten geeignet)</strong>"
+    },
+    "reset": "Zurücksetzen",
+    "save": "Speichern",
+    "sidebar": {
+      "info": {
+        "appVersion": "App-Version",
+        "backendUrl": "Server-URL",
+        "backendVersion": "Server-Version",
+        "hostname": "Hostname",
+        "insecure": "Unsicher",
+        "notLoggedIn": "Du bist nicht angemeldet",
+        "secure": "Sicher",
+        "title": "App-Informationen",
+        "unknownVersion": "Unbekannt",
+        "userId": "Nutzer-ID"
+      }
+    },
+    "subtitles": {
+      "backgroundBlurLabel": "Hintergrundunschärfe",
+      "backgroundLabel": "Hintergrunddeckkraft",
+      "colorLabel": "Farbe",
+      "previewQuote": "Das Gras wächst nicht schneller, wenn man daran zieht.",
+      "textSizeLabel": "Schriftgröße",
+      "title": "Untertitel",
+      "textBoldLabel": "Fettgedruckter Text"
+    },
+    "unsaved": "Du hast ungespeicherte Änderungen"
+  },
+  "migration": {
+    "start": {
+      "title": "übertrage deine Daten",
+      "options": {
+        "or": "oder",
         "direct": {
-            "title": "direkte Übertragung",
-            "status": {
-                "error": "Fehlgeschlagen übertragen ihrer Daten 😿",
-                "success": "Ihre Daten wurden erfolgreich übertragen!🎉"
-            },
-            "button": {
-                "migrate": "übertragen",
-                "processing": "Verarbeitet...",
-                "login": "Weiter zum login",
-                "home": "Zur Startseite"
-            },
-            "description": "Geben Sie die Ziel Backend URL ein, um Ihre aktuellen Kontodaten in ein neues Backend zu migrieren. Ihre Passphrase bleibt dabei unverändert!",
-            "backendLabel": "Ziel-Backend-URL",
-            "recaptchaLabel": "ReCaptcha-Schlüssel (optional)",
-            "toggleLable": "Benötigt ReCaptcha?"
+          "title": "direkt übertragen",
+          "quality": "Leichtestes und schnellstes",
+          "action": "Daten übertragen",
+          "description": "Dadurch werden Ihre Daten direkt auf den neuen Server übertragen. Dies ist die schnellste option. <br /><br /> dieser Option können Sie Ihre Passphrase beibehalten!"
         },
-        "loginRequired": "Du musst eingeloggt sein, um deine Daten zu migrieren! Bitte gehen sie zurück und loggen sie sich ein um fortzufahren.",
         "download": {
-            "status": {
-                "error": "Das Herunterladen Ihrer Daten ist fehlgeschlagen. 😿",
-                "success": "Ihre Daten wurden erfolgreich heruntergeladen! 🎉"
-            },
-            "title": "Daten downloaden",
-            "description": "Dadurch werden Ihre Daten auf Ihr Gerät heruntergeladen. Sie können sie dann auf den neuen Server hochladen oder zur sicheren Aufbewahrung behalten.",
-            "items": {
-                "description": "Der Download beinhaltet:",
-                "bookmarks": "Mit Lesezeichen versehene Medien",
-                "progress": "Beobachten Sie den Fortschritt"
-            },
-            "button": {
-                "download": "Daten downloaden",
-                "home": "Zur Startseite",
-                "login": "Weiter zum login"
-            }
+          "description": "Dadurch werden Ihre Daten auf Ihr Gerät heruntergeladen. Sie können sie dann auf den neuen Server hochladen oder zur sicheren Aufbewahrung behalten.",
+          "title": "Daten Downloaden",
+          "quality": "Technischer",
+          "action": "Daten downloaden"
         },
         "upload": {
-            "button": {
-                "processing": "Verarbeitet...",
-                "success": "Import Fertig",
-                "import": "Import Dateien",
-                "home": "Gehe zu home"
-            },
-            "title": "Daten uploaden",
-            "description": "Laden Sie Ihre zuvor exportierte Datendatei hoch, um Ihre Lesezeichen und Fortschritte in diesem Konto wiederherzustellen.",
-            "status": {
-                "processing": "Daten werden verarbeitet…",
-                "error": "Fehler bei Upload deiner Daten. 😿",
-                "success": "Deine Daten wurden erfolgreich hochgeladen! 🎉"
-            },
-            "file": {
-                "description": "Wähle das File, dass du Uploaden möchtest",
-                "select": "Wähle die Datei",
-                "change": "Datei ändern",
-                "name": "Datei Name"
-            },
-            "dataPreview": "Vorschau:",
-            "items": {
-                "progress": "Fortschritt anschauen"
-            },
-            "exportedOn": "Exportiert auf"
-        },
-        "back": "Zurück gehen"
+          "title": "Daten hochladen",
+          "description": "Lade deine zuletzt übertragenen Daten hoch um deine Lesezeichen und deinen Fortschritt auf diesem Account zu speichern.",
+          "quality": "Wiederherstellen aus der Sicherung",
+          "action": "Daten Hochladen"
+        }
+      },
+      "explainer": "Wenn Sie Ihre Daten übertragen oder sichern möchten, können Sie dies mit den folgenden Optionen tun. So bleiben Ihre Daten beim Wechsel des Backend-Servers erhalten."
     },
-    "downtimeNotice": {
-        "badge": "Fehler",
-        "title": "Probleme mit dem Anbieter",
-        "message": "StreamWatch hat erneut Probleme mit einigen Anbietern. Wenn Sie eine Sendung nicht finden oder abspielen können, ändern Sie bitte die Quelle. Dieser Fehler wird voraussichtlich für die unten angegebene Zeit bestehen bleiben.",
-        "goHome": "Zur Startseite"
+    "direct": {
+      "title": "direkte Übertragung",
+      "status": {
+        "error": "Fehlgeschlagen übertragen ihrer Daten 😿",
+        "success": "Ihre Daten wurden erfolgreich übertragen!🎉"
+      },
+      "button": {
+        "migrate": "übertragen",
+        "processing": "Verarbeitet...",
+        "login": "Weiter zum login",
+        "home": "Zur Startseite"
+      },
+      "description": "Geben Sie die Ziel Backend URL ein, um Ihre aktuellen Kontodaten in ein neues Backend zu migrieren. Ihre Passphrase bleibt dabei unverändert!",
+      "backendLabel": "Ziel-Backend-URL",
+      "recaptchaLabel": "ReCaptcha-Schlüssel (optional)",
+      "toggleLable": "Benötigt ReCaptcha?"
     },
-    "support": {
-        "title": "Unterstützung",
-        "q1": {
-            "body": "Nun, Sie können dem offiziellen <0>StreamWatch-Discord</0> beitreten und dort Fragen stellen oder Sie können eine E-Mail an den unten auf dieser Seite angegebenen mail senden.",
-            "title": "Wo bekomme ich Hilfe?"
-        },
-        "q2": {
-            "title": "Wo kann ich einen error oder Fehler reklamieren?",
-            "body": "Wir haben einen <0>GitHub</0>, auf dem Sie in unserem Repository ein detailliertes Problem melden können. Zusätzlich können Sie, wenn Sie möchten, einen Pull Request erstellen, um das Problem selbst zu beheben."
-        },
-        "text": "StreamWatch ist so benutzerfreundlich wie möglich gestaltet. Dennoch gibt es immer wieder Fragen und Probleme. Diese Seite soll helfen, diese Mängel zu beheben"
+    "loginRequired": "Du musst eingeloggt sein, um deine Daten zu migrieren! Bitte gehen sie zurück und loggen sie sich ein um fortzufahren.",
+    "download": {
+      "status": {
+        "error": "Das Herunterladen Ihrer Daten ist fehlgeschlagen. 😿",
+        "success": "Ihre Daten wurden erfolgreich heruntergeladen! 🎉"
+      },
+      "title": "Daten downloaden",
+      "description": "Dadurch werden Ihre Daten auf Ihr Gerät heruntergeladen. Sie können sie dann auf den neuen Server hochladen oder zur sicheren Aufbewahrung behalten.",
+      "items": {
+        "description": "Der Download beinhaltet:",
+        "bookmarks": "Mit Lesezeichen versehene Medien",
+        "progress": "Beobachten Sie den Fortschritt"
+      },
+      "button": {
+        "download": "Daten downloaden",
+        "home": "Zur Startseite",
+        "login": "Weiter zum login"
+      }
     },
-    "jip": {
-        "q1": {
-            "title": "Wo kann ich Hilfe bekommen?",
-            "body": "Nun, Sie können dem offiziellen <0>StreamWatch-Discord</0> beitreten und dort Fragen stellen oder Sie können eine E-Mail an den unten auf dieser Seite angegebenen mail senden."
-        },
-        "q2": {
-            "title": "Wie kann ich einen Fehler oder ein Problem melden?",
-            "body": "Wir haben einen <0>GitHub</0>, auf dem Sie in unserem Repository ein detailliertes Problem melden können. Zusätzlich können Sie, wenn Sie möchten, einen Pull Request erstellen, um das Problem selbst zu beheben."
-        },
-        "text": "StreamWatch ist nicht von einer Kokosnusspalme gefallen, es wurde größtenteils von einer einzigen Person (und zwar einer sehr epischen) gemacht.",
-        "title": "Jip"
+    "upload": {
+      "button": {
+        "processing": "Verarbeitet...",
+        "success": "Import Fertig",
+        "import": "Import Dateien",
+        "home": "Gehe zu home"
+      },
+      "title": "Daten uploaden",
+      "description": "Laden Sie Ihre zuvor exportierte Datendatei hoch, um Ihre Lesezeichen und Fortschritte in diesem Konto wiederherzustellen.",
+      "status": {
+        "processing": "Daten werden verarbeitet…",
+        "error": "Fehler bei Upload deiner Daten. 😿",
+        "success": "Deine Daten wurden erfolgreich hochgeladen! 🎉"
+      },
+      "file": {
+        "description": "Wähle das File, dass du Uploaden möchtest",
+        "select": "Wähle die Datei",
+        "change": "Datei ändern",
+        "name": "Datei Name"
+      },
+      "dataPreview": "Vorschau:",
+      "items": {
+        "progress": "Fortschritt anschauen"
+      },
+      "exportedOn": "Exportiert auf"
     },
-    "details": {
-        "director": "Direktor:",
-        "cast": "Besetzung:",
-        "imdb": "Auf IMDb anzeigen",
-        "resume": "Fortsetzen",
-        "play": "Wiedergeben",
-        "languange": "Sprache:",
-        "releaseDate": "Veröffentlichungsdatum:",
-        "rating": "Bewertung:",
-        "votes": "Stimmen",
-        "tmdb": "Auf TMDB anzeigen",
-        "episodes": "Folgen",
-        "season": "Staffel",
-        "runtime": "Laufzeit:"
+    "back": "Zurück gehen"
+  },
+  "downtimeNotice": {
+    "badge": "Fehler",
+    "title": "Probleme mit dem Anbieter",
+    "message": "P-Stream hat erneut Probleme mit einigen Anbietern. Wenn Sie eine Sendung nicht finden oder abspielen können, ändern Sie bitte die Quelle. Dieser Fehler wird voraussichtlich für die unten angegebene Zeit bestehen bleiben.",
+    "goHome": "Zur Startseite"
+  },
+  "support": {
+    "title": "Unterstützung",
+    "q1": {
+      "body": "Nun, Sie können dem offiziellen <0>P-Stream-Discord</0> beitreten und dort Fragen stellen oder Sie können eine E-Mail an den unten auf dieser Seite angegebenen mail senden.",
+      "title": "Wo bekomme ich Hilfe?"
     },
-    "discover": {
-        "tabs": {
-            "movies": "Filme",
-            "tvshows": "Serien",
-            "editorpicks": "Empfehlungen der Redaktion"
-        },
-        "carousel": {
-            "title": {
-                "movies": "{{category}} Filme",
-                "tvshows": "{{category}} Serien",
-                "inCinemas": "Im Kino",
-                "popular": "Am beliebtesten",
-                "nowPlaying": "Im Kino",
-                "topRated": "Am besten bewertet",
-                "latestReleases": "Neueste Veröffentlichungen",
-                "4kReleases": "4K-Veröffentlichungen",
-                "onTheAir": "Aktuell im TV",
-                "popularOn": "Beliebte {{type}} auf {{provider}}",
-                "editorPicksMovies": "Redaktionstipps Filme",
-                "editorPicksShows": "Redaktionstipps Serien",
-                "moviesOn": "Filme auf {{provider}}",
-                "tvshowsOn": "Serien auf {{provider}}",
-                "recommended": "Weil du gesehen hast: {{title}}",
-                "genreMovies": "{{genre}} Filme",
-                "genreShows": "{{genre}} Serien",
-                "categoryMovies": "{{category}} Filme",
-                "categoryShows": "{{category}} Serien"
-            },
-            "change": "Ändern",
-            "more": "Mehr anzeigen"
-        },
-        "featured": {
-            "playNow": "Jetzt abspielen",
-            "moreInfo": "Mehr Infos"
-        },
-        "randomMovie": {
-            "button": "Zufälligen Titel abspielen",
-            "cancel": "Countdown abbrechen",
-            "countdown": "{{countdown}}s",
-            "nowPlaying": "Jetzt läuft",
-            "in": "in"
-        },
-        "page": {
-            "title": "Filme & Serien entdecken",
-            "subtitle": "Entdecke aktuelle Highlights und zeitlose Klassiker.",
-            "loadMore": "Mehr laden",
-            "loading": "Lade...",
-            "back": "Zurück"
-        },
-        "scrollToTop": "Nach oben"
-    }
+    "q2": {
+      "title": "Wo kann ich einen error oder Fehler reklamieren?",
+      "body": "Wir haben einen <0>GitHub</0>, auf dem Sie in unserem Repository ein detailliertes Problem melden können. Zusätzlich können Sie, wenn Sie möchten, einen Pull Request erstellen, um das Problem selbst zu beheben."
+    },
+    "text": "P-Stream ist so benutzerfreundlich wie möglich gestaltet. Dennoch gibt es immer wieder Fragen und Probleme. Diese Seite soll helfen, diese Mängel zu beheben"
+  },
+  "jip": {
+    "q1": {
+      "title": "Wo kann ich Hilfe bekommen?",
+      "body": "Nun, Sie können dem offiziellen <0>P-Stream-Discord</0> beitreten und dort Fragen stellen oder Sie können eine E-Mail an den unten auf dieser Seite angegebenen mail senden."
+    },
+    "q2": {
+      "title": "Wie kann ich einen Fehler oder ein Problem melden?",
+      "body": "Wir haben einen <0>GitHub</0>, auf dem Sie in unserem Repository ein detailliertes Problem melden können. Zusätzlich können Sie, wenn Sie möchten, einen Pull Request erstellen, um das Problem selbst zu beheben."
+    },
+    "text": "P-Stream ist nicht von einer Kokosnusspalme gefallen, es wurde größtenteils von einer einzigen Person (und zwar einer sehr epischen) gemacht.",
+    "title": "Jip"
+  },
+  "details": {
+    "imdb": "Auf IMDb anzeigen",
+    "resume": "Fortsetzen",
+    "play": "Wiedergeben",
+    "releaseDate": "Veröffentlichungsdatum:",
+    "rating": "Bewertung:",
+    "votes": "Stimmen",
+    "tmdb": "Auf TMDB anzeigen",
+    "episodes": "Folgen",
+    "season": "Staffel",
+    "runtime": "Laufzeit:"
+  },
+  "discover": {
+    "tabs": {
+      "movies": "Filme",
+      "tvshows": "Serien",
+      "editorpicks": "Empfehlungen der Redaktion"
+    },
+    "carousel": {
+      "title": {
+        "movies": "{{category}} Filme",
+        "tvshows": "{{category}} Serien",
+        "inCinemas": "Im Kino",
+        "popular": "Am beliebtesten",
+        "nowPlaying": "Im Kino",
+        "topRated": "Am besten bewertet",
+        "latestReleases": "Neueste Veröffentlichungen",
+        "4kReleases": "4K-Veröffentlichungen",
+        "onTheAir": "Aktuell im TV",
+        "popularOn": "Beliebte {{type}} auf {{provider}}",
+        "editorPicksMovies": "Redaktionstipps Filme",
+        "editorPicksShows": "Redaktionstipps Serien",
+        "moviesOn": "Filme auf {{provider}}",
+        "tvshowsOn": "Serien auf {{provider}}",
+        "recommended": "Weil du gesehen hast: {{title}}",
+        "genreMovies": "{{genre}} Filme",
+        "genreShows": "{{genre}} Serien",
+        "categoryMovies": "{{category}} Filme",
+        "categoryShows": "{{category}} Serien"
+      },
+      "change": "Ändern",
+      "more": "Mehr anzeigen"
+    },
+    "featured": {
+      "playNow": "Jetzt abspielen",
+      "moreInfo": "Mehr Infos"
+    },
+    "randomMovie": {
+      "button": "Zufälligen Titel abspielen",
+      "cancel": "Countdown abbrechen",
+      "countdown": "{{countdown}}s",
+      "nowPlaying": "Jetzt läuft",
+      "in": "in"
+    },
+    "page": {
+      "title": "Filme & Serien entdecken",
+      "subtitle": "Entdecke aktuelle Highlights und zeitlose Klassiker.",
+      "loadMore": "Mehr laden",
+      "loading": "Lade...",
+      "back": "Zurück"
+    },
+    "scrollToTop": "Nach oben"
+  }
 }

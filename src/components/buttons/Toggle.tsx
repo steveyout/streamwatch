@@ -1,13 +1,19 @@
 import classNames from "classnames";
 
-export function Toggle(props: { onClick?: () => void; enabled?: boolean }) {
+export function Toggle(props: {
+  onClick?: () => void;
+  enabled?: boolean;
+  disabled?: boolean;
+}) {
   return (
     <button
       type="button"
-      onClick={props.onClick}
+      onClick={props.disabled ? undefined : props.onClick}
+      disabled={props.disabled}
       className={classNames(
         "w-11 h-6 p-1 rounded-full grid transition-colors duration-100 group/toggle tabbable",
         props.enabled ? "bg-buttons-toggle" : "bg-buttons-toggleDisabled",
+        props.disabled ? "opacity-50 cursor-not-allowed" : null,
       )}
     >
       <div className="relative w-full h-full">

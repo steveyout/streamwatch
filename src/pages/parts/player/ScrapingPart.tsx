@@ -1,4 +1,4 @@
-import { ProviderControls, ScrapeMedia } from "@movie-web/providers";
+import { ProviderControls, ScrapeMedia } from "@p-stream/providers";
 import classNames from "classnames";
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -21,8 +21,8 @@ import {
   useListCenter,
   useScrape,
 } from "@/hooks/useProviderScrape";
-
-import { WarningPart } from "../util/WarningPart";
+import { playerStatus } from "@/stores/player/slices/source";
+import { usePlayerStore } from "@/stores/player/store";
 
 export interface ScrapingProps {
   media: ScrapeMedia;
@@ -31,17 +31,21 @@ export interface ScrapingProps {
     sources: Record<string, ScrapingSegment>,
     sourceOrder: ScrapingItems[],
   ) => void;
+  startFromSourceId?: string;
 }
 
 export function ScrapingPart(props: ScrapingProps) {
   const { report } = useReportProviders();
-  const { startScraping, sourceOrder, sources, currentSource } = useScrape();
+  const { startScraping, resumeScraping, sourceOrder, sources, currentSource } =
+    useScrape();
   const isMounted = useMountedState();
   const { t } = useTranslation();
+  const setStatus = usePlayerStore((s) => s.setStatus);
+  const addFailedSource = usePlayerStore((s) => s.addFailedSource);
+  const sourceId = usePlayerStore((s) => s.sourceId);
 
   const containerRef = useRef<HTMLDivElement | null>(null);
   const listRef = useRef<HTMLDivElement | null>(null);
-  const [failedStartScrape, setFailedStartScrape] = useState<boolean>(false);
   const renderedOnce = useListCenter(
     containerRef,
     listRef,
@@ -60,12 +64,17 @@ export function ScrapingPart(props: ScrapingProps) {
     };
   }, [sourceOrder, sources]);
 
-  const started = useRef(false);
+  const started = useRef<string | null>(null);
   useEffect(() => {
-    if (started.current) return;
-    started.current = true;
+    // Only start scraping if we haven't started with this startFromSourceId before
+    const currentKey = props.startFromSourceId || "default";
+    if (started.current === currentKey) return;
+    started.current = currentKey;
+
     (async () => {
-      const output = await startScraping(props.media);
+      const output = props.startFromSourceId
+        ? await resumeScraping(props.media, props.startFromSourceId)
+        : await startScraping(props.media);
       if (!isMounted()) return;
       props.onResult?.(
         resultRef.current.sources,
@@ -79,17 +88,42 @@ export function ScrapingPart(props: ScrapingProps) {
         ),
       );
       props.onGetStream?.(output);
-    })().catch(() => setFailedStartScrape(true));
-  }, [startScraping, props, report, isMounted]);
+    })().catch((error) => {
+      if (!isMounted()) return;
+      // Treat scraping failure as fatal error
+      // Mark current source as failed if we have one
+      if (sourceId) {
+        addFailedSource(sourceId);
+      } else if (currentSource) {
+        addFailedSource(currentSource);
+      }
+      // Set error and status to trigger PlaybackErrorPart
+      usePlayerStore.setState((s) => {
+        s.interface.error = {
+          errorName: "ScrapingError",
+          message: error?.message || "Failed to start scraping",
+          type: "global",
+        };
+        s.status = playerStatus.PLAYBACK_ERROR;
+      });
+    });
+  }, [
+    startScraping,
+    resumeScraping,
+    props,
+    report,
+    isMounted,
+    setStatus,
+    addFailedSource,
+    sourceId,
+    currentSource,
+  ]);
 
   let currentProviderIndex = sourceOrder.findIndex(
     (s) => s.id === currentSource || s.children.includes(currentSource ?? ""),
   );
   if (currentProviderIndex === -1)
     currentProviderIndex = sourceOrder.length - 1;
-
-  if (failedStartScrape)
-    return <WarningPart>{t("player.turnstile.error")}</WarningPart>;
 
   return (
     <div
@@ -99,13 +133,12 @@ export function ScrapingPart(props: ScrapingProps) {
       {!sourceOrder || sourceOrder.length === 0 ? (
         <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-center flex flex-col justify-center z-0">
           <Loading className="mb-8" />
-          <p>{t("player.turnstile.verifyingHumanity")}</p>
+          <p>{t("player.scraping.items.pending")}</p>
         </div>
       ) : null}
       <div
         className={classNames({
-          "absolute transition-[transform,opacity] opacity-0 dir-neutral:left-0":
-            true,
+          "absolute transition-[transform,opacity] opacity-0 dir-neutral:left-0": true,
           "!opacity-100": renderedOnce,
         })}
         ref={listRef}
@@ -184,7 +217,7 @@ export function ScrapingPartInterruptButton() {
 export function Tips() {
   const { t } = useTranslation();
   const [tip] = useState(() => {
-    const randomIndex = Math.floor(Math.random() * 21) + 1;
+    const randomIndex = Math.floor(Math.random() * 11) + 1;
     return t(`player.scraping.tips.${randomIndex}`);
   });
 

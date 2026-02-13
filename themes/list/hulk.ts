@@ -84,7 +84,7 @@ const tokens = {
     c800: "hsla(135, 15%, 8%, 1)",
     c900: "hsla(135, 14%, 6%, 1)",
   },
-}
+};
 
 export default createTheme({
   name: "hulk",
@@ -340,4 +340,4 @@ export default createTheme({
       },
     },
   },
-})
+});

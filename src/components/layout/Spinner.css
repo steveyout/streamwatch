@@ -1,7 +1,7 @@
 .spinner {
   width: 1em;
   height: 1em;
-  border: 0.12em solid var(--color,white);
+  border: 0.12em solid var(--color, white);
   border-bottom-color: transparent;
   border-radius: 50%;
   display: inline-block;

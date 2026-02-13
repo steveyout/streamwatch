@@ -23,9 +23,6 @@ cache.initialize();
 // detect "tmdb:123456" or "tmdb:123456:movie" or "tmdb:123456:tv"
 const tmdbIdPattern = /^tmdb:(\d+)(?::(movie|tv))?$/i;
 
-// detect "year:YYYY"
-const yearPattern = /(.+?)\s+year:(\d{4})$/i;
-
 export async function searchForMedia(query: MWQuery): Promise<MediaItem[]> {
   if (cache.has(query)) return cache.get(query) as MediaItem[];
   const { searchQuery } = query;
@@ -72,30 +69,12 @@ export async function searchForMedia(query: MWQuery): Promise<MediaItem[]> {
     }
   }
 
-  // year extract logic
-  let yearValue: string | undefined;
-  let queryWithoutYear = searchQuery;
+  const data = await multiSearch(searchQuery);
 
-  const yearMatch = searchQuery.match(yearPattern);
-  if (yearMatch && yearMatch[2]) {
-    queryWithoutYear = yearMatch[1].trim();
-    yearValue = yearMatch[2];
-  }
-
-  // normal search
-  const data = await multiSearch(queryWithoutYear);
-  let results = data.map((v) => {
+  const results = data.map((v) => {
     const formattedResult = formatTMDBSearchResult(v, v.media_type);
     return formatTMDBMetaToMediaItem(formattedResult);
   });
-
-  // filter year
-  if (yearValue) {
-    results = results.filter((item) => {
-      const releaseYear = item.release_date?.getFullYear().toString();
-      return releaseYear === yearValue;
-    });
-  }
 
   const movieWithPosters = results.filter((movie) => movie.poster);
   const movieWithoutPosters = results.filter((movie) => !movie.poster);

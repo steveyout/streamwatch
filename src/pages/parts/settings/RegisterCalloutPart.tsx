@@ -17,7 +17,7 @@ export function RegisterCalloutPart() {
       >
         <div>
           <Heading3>{t("settings.account.register.title")}</Heading3>
-          <p className="text-type-text">
+          <p className="text-type-text max-w-[30rem]">
             {t("settings.account.register.text")}
           </p>
         </div>

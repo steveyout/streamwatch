@@ -1,5 +1,6 @@
 import classNames from "classnames";
 import { useMemo } from "react";
+import { useTranslation } from "react-i18next";
 
 import { base64ToBuffer, decryptData } from "@/backend/accounts/crypto";
 import { Icon, Icons } from "@/components/Icon";
@@ -55,11 +56,22 @@ export function UserAvatar(props: {
         : null,
     [auth],
   );
+  const { t } = useTranslation();
 
   if (!auth.account || auth.account === null) return null;
 
   const deviceName = bufferSeed
-    ? decryptData(auth.account.deviceName, bufferSeed)
+    ? (() => {
+        try {
+          return decryptData(auth.account.deviceName, bufferSeed);
+        } catch (error) {
+          console.warn(
+            "Failed to decrypt device name in Avatar, using fallback:",
+            error,
+          );
+          return t("settings.account.devices.unknownDevice");
+        }
+      })()
     : "...";
 
   return (

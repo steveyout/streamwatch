@@ -27,7 +27,7 @@ export function useSearchQuery(): [
     }
     navigate(
       generatePath("/browse/:query", {
-        query: inp,
+        query: encodeURIComponent(inp),
       }),
       { replace: true },
     );

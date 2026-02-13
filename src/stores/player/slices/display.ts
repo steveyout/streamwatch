@@ -121,6 +121,8 @@ export const createDisplaySlice: MakeSlice<DisplaySlice> = (set, get) => ({
     set((s) => {
       s.status = playerStatus.IDLE;
       s.meta = null;
+      s.embedId = null;
+      s.sourceId = null;
       s.thumbnails.images = [];
       s.progress.time = 0;
       s.progress.duration = 0;

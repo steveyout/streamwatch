@@ -9,7 +9,7 @@ const fileLocation = "./figmaTokens.json";
 const theme = "blue";
 
 const fileContents = fs.readFileSync(fileLocation, {
-  encoding: "utf-8"
+  encoding: "utf-8",
 });
 const tokens = JSON.parse(fileContents);
 

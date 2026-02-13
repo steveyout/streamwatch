@@ -18,7 +18,7 @@ export function RandomMovieButton() {
     useState<NodeJS.Timeout | null>(null);
   const [movies, setMovies] = useState<Movie[]>([]);
   const navigate = useNavigate();
-  const userLanguage = useLanguageStore.getState().language;
+  const userLanguage = useLanguageStore((s) => s.language);
   const formattedLanguage = getTmdbLanguageCode(userLanguage);
 
   // Fetch popular movies for random selection

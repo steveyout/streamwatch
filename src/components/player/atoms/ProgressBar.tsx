@@ -22,7 +22,7 @@ function ThumbnailDisplay(props: { at: number; show: boolean }) {
     offscreenLeft: 0,
     offscreenRight: 0,
   });
-  const ref = useRef<HTMLImageElement>(null);
+  const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!ref.current) return;
@@ -37,29 +37,33 @@ function ThumbnailDisplay(props: { at: number; show: boolean }) {
     });
   }, [props.at]);
 
-  if (!props.show || !currentThumbnail) return null;
+  // Keep time label width consistent and avoid recomputing
+  const formattedTime = useMemo(
+    () => formatSeconds(Math.max(props.at, 0), durationExceedsHour(props.at)),
+    [props.at],
+  );
+  const transformX =
+    offsets.offscreenLeft > 0 ? offsets.offscreenLeft : -offsets.offscreenRight;
+
+  if (!props.show) return null;
+
   return (
     <div className="flex flex-col items-center -translate-x-1/2 pointer-events-none">
       <div className="w-screen flex justify-center">
         <div ref={ref}>
           <div
             style={{
-              transform: `translateX(${
-                offsets.offscreenLeft > 0
-                  ? offsets.offscreenLeft
-                  : -offsets.offscreenRight
-              }px)`,
+              transform: `translateX(${transformX}px)`,
             }}
           >
-            <img
-              src={currentThumbnail.data}
-              className="h-24 border rounded-xl border-gray-800"
-            />
-            <p className="text-center mt-1">
-              {formatSeconds(
-                Math.max(props.at, 0),
-                durationExceedsHour(props.at),
-              )}
+            {currentThumbnail && (
+              <img
+                src={currentThumbnail.data}
+                className="h-24 border rounded-xl border-gray-800 no-fade"
+              />
+            )}
+            <p className="mt-1 mx-auto text-center border rounded-xl border-gray-800 px-3 py-1 backdrop-blur-lg bg-black bg-opacity-20 w-max">
+              {formattedTime}
             </p>
           </div>
         </div>

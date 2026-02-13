@@ -14,8 +14,7 @@ export function Card(props: {
     <div
       className={classNames(
         {
-          "bg-onboarding-card duration-300 border border-onboarding-border rounded-lg p-7":
-            true,
+          "bg-onboarding-card duration-300 border border-onboarding-border rounded-lg p-7": true,
           "hover:bg-onboarding-cardHover transition-colors cursor-pointer":
             !!props.onClick,
         },

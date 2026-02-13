@@ -1,3 +1,5 @@
+/// <reference types="chromecast-caf-sender"/>
+
 import fscreen from "fscreen";
 
 import { MWMediaType } from "@/backend/metadata/types/mw";
@@ -7,13 +9,14 @@ import {
   DisplayInterfaceEvents,
   DisplayMeta,
 } from "@/components/player/display/displayInterface";
+import {
+  createM3U8ProxyUrl,
+  createMP4ProxyUrl,
+  isUrlAlreadyProxied,
+} from "@/components/player/utils/proxy";
 import { LoadableSource } from "@/stores/player/utils/qualities";
 import { processCdnLink } from "@/utils/cdn";
-import {
-  canChangeVolume,
-  canFullscreen,
-  canFullscreenAnyElement,
-} from "@/utils/detectFeatures";
+import { canFullscreen, canFullscreenAnyElement } from "@/utils/detectFeatures";
 import { makeEmitter } from "@/utils/events";
 
 export interface ChromeCastDisplayInterfaceOptions {
@@ -49,10 +52,10 @@ export function makeChromecastDisplayInterface(
   let caption: DisplayCaption | null = null;
 
   function listenForEvents() {
-    const listen = async (e: cast.framework.RemotePlayerChangedEvent) => {
+    const listen = (e: cast.framework.RemotePlayerChangedEvent) => {
       switch (e.field) {
         case "volumeLevel":
-          if (await canChangeVolume()) emit("volumechange", e.value);
+          emit("volumechange", e.value);
           break;
         case "currentTime":
           emit("time", e.value);
@@ -70,7 +73,7 @@ export function makeChromecastDisplayInterface(
           isPaused = e.value === "PAUSED";
           break;
         case "isMuted":
-          emit("volumechange", e.value ? 1 : 0);
+          emit("volumechange", e.value ? 0 : ops.player.volumeLevel);
           break;
         case "displayStatus":
         case "canSeek":
@@ -112,31 +115,76 @@ export function makeChromecastDisplayInterface(
     const metaData = new chrome.cast.media.GenericMediaMetadata();
     metaData.title = meta.title;
 
-    const mediaInfo = new chrome.cast.media.MediaInfo("video", type);
-    (mediaInfo as any).contentUrl = processCdnLink(source.url);
+    let contentUrl = processCdnLink(source.url);
+
+    // Only proxy streams if they need it:
+    // 1. Not already proxied AND
+    // 2. Has headers (either preferredHeaders or headers)
+    const allHeaders = {
+      ...source.preferredHeaders,
+      ...source.headers,
+    };
+    const hasHeaders = Object.keys(allHeaders).length > 0;
+
+    // Handle HLS streams
+    if (source.type === "hls") {
+      if (!isUrlAlreadyProxied(source.url) && hasHeaders) {
+        contentUrl = createM3U8ProxyUrl(source.url, allHeaders);
+      }
+    }
+    // Handle MP4 streams with headers
+    else if (source.type === "mp4" && hasHeaders) {
+      contentUrl = createMP4ProxyUrl(source.url, source.headers || {});
+    }
+
+    const mediaInfo = new chrome.cast.media.MediaInfo(contentUrl, type);
     mediaInfo.streamType = chrome.cast.media.StreamType.BUFFERED;
     mediaInfo.metadata = metaData;
     mediaInfo.customData = {
       playbackRate,
     };
 
+    // Add basic VTT captions support if a caption URL is provided
+    if (caption?.url) {
+      try {
+        const textTrack = new chrome.cast.media.Track(
+          1,
+          chrome.cast.media.TrackType.TEXT,
+        );
+        textTrack.trackContentType = "text/vtt";
+        textTrack.trackContentId = caption.url;
+        textTrack.language = caption.language;
+        textTrack.name = caption.language || "Subtitles";
+        textTrack.subtype = chrome.cast.media.TextTrackType.SUBTITLES;
+        mediaInfo.tracks = [textTrack];
+      } catch {
+        // ignore track creation errors
+      }
+    }
+
     const request = new chrome.cast.media.LoadRequest(mediaInfo);
     request.autoplay = true;
     request.currentTime = startAt;
-
-    if (source.type === "hls") {
-      const staticMedia = chrome.cast.media as any;
-      const media = request.media as any;
-      media.hlsSegmentFormat = staticMedia.HlsSegmentFormat.FMP4;
-      media.hlsVideoSegmentFormat = staticMedia.HlsVideoSegmentFormat.FMP4;
-    }
+    if (caption?.url) request.activeTrackIds = [1];
 
     const session = ops.instance.getCurrentSession();
-    session?.loadMedia(request);
+    session
+      ?.loadMedia(request)
+      .then(() => {
+        emit("loading", false);
+      })
+      .catch((err: unknown) => {
+        emit("loading", false);
+        emit("error", {
+          type: "global",
+          errorName: "chromecast_load_failure",
+          message: (err as any)?.message ?? String(err),
+        });
+      });
   }
 
   function setSource() {
-    if (!videoElement || !source) return;
+    if (!source) return;
     setupSource();
   }
 
@@ -178,6 +226,19 @@ export function makeChromecastDisplayInterface(
     },
     setCaption(newCaption) {
       caption = newCaption;
+      // If a session and media exist, toggle active track IDs without reloading
+      const session = ops.instance.getCurrentSession();
+      const media = session?.getMediaSession();
+      try {
+        if (media) {
+          const ids = newCaption?.url ? [1] : [];
+          const req = new chrome.cast.media.EditTracksInfoRequest(ids);
+          (media as any).editTracksInfo(req);
+          return;
+        }
+      } catch {
+        // Fallback to reload if needed
+      }
       setSource();
     },
 
@@ -195,15 +256,13 @@ export function makeChromecastDisplayInterface(
     },
 
     pause() {
-      if (!isPaused) {
+      if (!ops.player.isPaused) {
         ops.controller.playOrPause();
-        isPaused = true;
       }
     },
     play() {
-      if (isPaused) {
+      if (ops.player.isPaused) {
         ops.controller.playOrPause();
-        isPaused = false;
       }
     },
     setSeeking(active) {
@@ -220,10 +279,12 @@ export function makeChromecastDisplayInterface(
       this.pause();
     },
     setTime(t) {
-      if (!videoElement) return;
-      // clamp time between 0 and max duration
-      let time = Math.min(t, ops.player.duration);
-      time = Math.max(0, time);
+      // clamp time between 0 and max duration if duration is known
+      let time = t;
+      if (!Number.isNaN(ops.player.duration)) {
+        time = Math.min(t, ops.player.duration);
+        time = Math.max(0, time);
+      }
 
       if (Number.isNaN(time)) return;
       emit("time", time);
@@ -231,20 +292,14 @@ export function makeChromecastDisplayInterface(
       ops.controller.seek();
     },
     async setVolume(v) {
-      // clamp time between 0 and 1
+      // clamp volume between 0 and 1
       let volume = Math.min(v, 1);
       volume = Math.max(0, volume);
 
-      // update state
-      const isChangeable = await canChangeVolume();
-      if (isChangeable) {
-        ops.player.volumeLevel = volume;
-        ops.controller.setVolumeLevel();
-        emit("volumechange", volume);
-      } else {
-        // For browsers where it can't be changed
-        emit("volumechange", volume === 0 ? 0 : 1);
-      }
+      // Always control remote cast volume regardless of local platform restrictions
+      ops.player.volumeLevel = volume;
+      ops.controller.setVolumeLevel();
+      emit("volumechange", volume);
     },
     toggleFullscreen() {
       if (isFullscreen) {
@@ -271,8 +326,10 @@ export function makeChromecastDisplayInterface(
       // cant airplay while chromecasting
     },
     setPlaybackRate(rate) {
+      // Default Media Receiver does not support changing playback rate dynamically.
+      // Store locally and notify UI without reloading media.
       playbackRate = rate;
-      setSource();
+      emit("playbackrate", rate);
     },
     getCaptionList() {
       return [];

@@ -6,6 +6,7 @@ import type { RequireExactlyOne } from "type-fest";
 import { Icon, Icons } from "@/components/Icon";
 import { BrandPill } from "@/components/layout/BrandPill";
 import { WideContainer } from "@/components/layout/WideContainer";
+import { shouldHaveLegalPage } from "@/pages/Legal";
 import { conf } from "@/setup/config";
 
 // to and href are mutually exclusive
@@ -42,14 +43,15 @@ function FooterLink(props: FooterLinkProps) {
   );
 }
 
-function Dmca() {
+function Legal() {
   const { t } = useTranslation();
 
-  if (window.location.hash === "#/dmca") return null;
+  if (!shouldHaveLegalPage()) return null;
+  if (window.location.hash === "#/legal") return null;
 
   return (
-    <FooterLink to="/dmca" icon={Icons.DRAGON}>
-      {t("footer.links.dmca")}
+    <FooterLink to="/legal" icon={Icons.DRAGON}>
+      {t("footer.links.legal")}
     </FooterLink>
   );
 }
@@ -73,18 +75,23 @@ export function Footer() {
           <p className="mt-3">{t("footer.legal.disclaimerText")}</p>
         </div>
         <div className="flex flex-wrap gap-[0.5rem] -ml-3">
+          {conf().GITHUB_LINK && (
+            <FooterLink icon={Icons.GITHUB} href={conf().GITHUB_LINK}>
+              {t("footer.links.github")}
+            </FooterLink>
+          )}
           <FooterLink icon={Icons.DISCORD} href={conf().DISCORD_LINK}>
             {t("footer.links.discord")}
           </FooterLink>
-          <FooterLink href="https://rentry.co/h5mypdfs" icon={Icons.TIP_JAR}>
+          <FooterLink href="https://rentry.co/nnqtas3e" icon={Icons.TIP_JAR}>
             {t("footer.links.funding")}
           </FooterLink>
           <div className="inline md:hidden">
-            <Dmca />
+            <Legal />
           </div>
         </div>
         <div className="hidden items-center justify-end md:flex -mr-3">
-          <Dmca />
+          <Legal />
         </div>
       </WideContainer>
     </footer>

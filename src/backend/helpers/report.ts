@@ -1,18 +1,31 @@
-import { ScrapeMedia } from "@movie-web/providers";
+import { ScrapeMedia } from "@p-stream/providers";
 import { nanoid } from "nanoid";
 import { ofetch } from "ofetch";
 import { useCallback } from "react";
 
 import { isExtensionActiveCached } from "@/backend/extension/messaging";
 import { ScrapingItems, ScrapingSegment } from "@/hooks/useProviderScrape";
-import { BACKEND_URL } from "@/setup/constants";
+import { conf } from "@/setup/config";
 import { useAuthStore } from "@/stores/auth";
 import { PlayerMeta } from "@/stores/player/slices/source";
 
 // for anybody who cares - these are anonymous metrics.
 // They are just used for figuring out if providers are broken or not
-const metricsEndpoint = `${BACKEND_URL}/metrics/providers`;
-const captchaMetricsEndpoint = `${BACKEND_URL}/metrics/captcha`;
+// Metrics are always sent to the first configured backend
+function getMetricsBackendUrl(): string | null {
+  const config = conf();
+  return config.BACKEND_URLS.length > 0
+    ? config.BACKEND_URLS[0]
+    : config.BACKEND_URL;
+}
+
+function getMetricsEndpoint(path: string): string | null {
+  const backendUrl = getMetricsBackendUrl();
+  return backendUrl ? `${backendUrl}${path}` : null;
+}
+
+const metricsEndpoint = getMetricsEndpoint("/metrics/providers");
+const captchaMetricsEndpoint = getMetricsEndpoint("/metrics/captcha");
 const batchId = () => nanoid(32);
 
 export type ProviderMetric = {
@@ -45,7 +58,7 @@ function getStackTrace(error: Error, lines: number) {
 }
 
 export async function reportProviders(items: ProviderMetric[]): Promise<void> {
-  if (!BACKEND_URL) return;
+  if (!metricsEndpoint) return;
   return ofetch(metricsEndpoint, {
     method: "POST",
     body: {
@@ -158,7 +171,7 @@ export function useReportProviders() {
 }
 
 export function reportCaptchaSolve(success: boolean) {
-  if (!BACKEND_URL) return;
+  if (!captchaMetricsEndpoint) return;
   ofetch(captchaMetricsEndpoint, {
     method: "POST",
     body: {

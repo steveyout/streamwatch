@@ -1,10 +1,8 @@
-import { useEffect, useState } from "react";
 import { Trans, useTranslation } from "react-i18next";
 
+import { isExtensionActiveCached } from "@/backend/extension/messaging";
 import { Button } from "@/components/buttons/Button";
-import { Toggle } from "@/components/buttons/Toggle";
 import { Icon, Icons } from "@/components/Icon";
-import { SettingsCard } from "@/components/layout/SettingsCard";
 import { Stepper } from "@/components/layout/Stepper";
 import { BiggerCenterContainer } from "@/components/layout/ThinContainer";
 import { VerticalLine } from "@/components/layout/VerticalLine";
@@ -14,12 +12,6 @@ import {
   ModalCard,
   useModal,
 } from "@/components/overlays/Modal";
-import {
-  StatusCircle,
-  StatusCircleProps,
-} from "@/components/player/internals/StatusCircle";
-import { MwLink } from "@/components/text/Link";
-import { AuthInputBox } from "@/components/text-inputs/AuthInputBox";
 import { Divider } from "@/components/utils/Divider";
 import { Ol } from "@/components/utils/Ol";
 import {
@@ -44,308 +36,7 @@ import { conf } from "@/setup/config";
 import { usePreferencesStore } from "@/stores/preferences";
 import { getProxyUrls } from "@/utils/proxyUrls";
 
-import {
-  Status,
-  testFebboxKey,
-  testRealDebridKey,
-} from "../parts/settings/SetupPart";
-
-async function getFebboxKeyStatus(febboxKey: string | null) {
-  if (febboxKey) {
-    const status: Status = await testFebboxKey(febboxKey);
-    return status;
-  }
-  return "unset";
-}
-
-export function FEDAPISetup() {
-  const { t } = useTranslation();
-  const febboxKey = usePreferencesStore((s) => s.febboxKey);
-  const setFebboxKey = usePreferencesStore((s) => s.setFebboxKey);
-
-  // Initialize isExpanded based on whether febboxKey has a value
-  const [isExpanded, setIsExpanded] = useState(
-    febboxKey !== null && febboxKey !== "",
-  );
-
-  // Add a separate effect to set the initial state
-  useEffect(() => {
-    // If we have a valid key, make sure the section is expanded
-    if (febboxKey && febboxKey.length > 0) {
-      setIsExpanded(true);
-    }
-  }, [febboxKey]);
-
-  const [status, setStatus] = useState<Status>("unset");
-  const statusMap: Record<Status, StatusCircleProps["type"]> = {
-    error: "error",
-    success: "success",
-    unset: "noresult",
-    api_down: "error",
-    invalid_token: "error",
-  };
-
-  useEffect(() => {
-    const checkTokenStatus = async () => {
-      const result = await getFebboxKeyStatus(febboxKey);
-      setStatus(result);
-    };
-    checkTokenStatus();
-  }, [febboxKey]);
-
-  // Toggle handler that preserves the key
-  const toggleExpanded = () => {
-    if (isExpanded) {
-      // Store the key temporarily instead of setting to null
-      setFebboxKey("");
-      setIsExpanded(false);
-    } else {
-      setIsExpanded(true);
-    }
-  };
-
-  const [showVideo, setShowVideo] = useState(false);
-
-  if (conf().ALLOW_FEBBOX_KEY) {
-    return (
-      <div className="mt-6">
-        <SettingsCard>
-          <div className="flex justify-between items-center gap-4">
-            <div className="my-3">
-              <p className="text-white font-bold mb-3">
-                {t("fedapi.onboarding.title")}
-              </p>
-              <p className="max-w-[30rem] font-medium">
-                <Trans i18nKey="fedapi.onboarding.description" />
-              </p>
-            </div>
-            <div>
-              <Toggle onClick={toggleExpanded} enabled={isExpanded} />
-            </div>
-          </div>
-          {isExpanded ? (
-            <>
-              <Divider marginClass="my-6 px-8 box-content -mx-8" />
-
-              <div className="my-3">
-                <p className="max-w-[30rem] font-medium">
-                  {t("fedapi.setup.title")}
-                  <br />
-                  <div
-                    onClick={() => setShowVideo(!showVideo)}
-                    className="flex items-center justify-between p-1 px-2 my-2 w-fit border border-type-secondary rounded-lg cursor-pointer text-type-secondary hover:text-white transition-colors duration-200"
-                  >
-                    <span className="text-sm">
-                      {showVideo
-                        ? t("fedapi.setup.hideVideo")
-                        : t("fedapi.setup.showVideo")}
-                    </span>
-                    {showVideo ? (
-                      <Icon icon={Icons.CHEVRON_UP} className="pl-1" />
-                    ) : (
-                      <Icon icon={Icons.CHEVRON_DOWN} className="pl-1" />
-                    )}
-                  </div>
-                  {showVideo && (
-                    <>
-                      <div className="relative pt-[56.25%] mt-2">
-                        <iframe
-                          src="https://player.vimeo.com/video/1059834885?h=c3ab398d42&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
-                          allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
-                          className="absolute top-0 left-0 w-full h-full border border-type-secondary rounded-lg bg-black"
-                          title="StreamWatch FED API Setup Tutorial"
-                        />
-                      </div>
-                      <br />
-                    </>
-                  )}
-                  <Trans i18nKey="fedapi.setup.step.1">
-                    <MwLink url="https://febbox.com" />
-                  </Trans>
-                  <br />
-                  <Trans i18nKey="fedapi.setup.step.2" />
-                  <br />
-                  <Trans i18nKey="fedapi.setup.step.3" />
-                  <br />
-                  <Trans i18nKey="fedapi.setup.step.4" />
-
-                  <br />
-                  <Trans i18nKey="fedapi.setup.step.5" />
-                </p>
-                <p className="text-type-danger mt-2">
-                  <Trans i18nKey="fedapi.setup.step.warning" />
-                </p>
-              </div>
-
-              <Divider marginClass="my-6 px-8 box-content -mx-8" />
-              <p className="text-white font-bold mb-3">
-                {t("settings.connections.febbox.tokenLabel", "Token")}
-              </p>
-              <div className="flex items-center w-full">
-                <StatusCircle type={statusMap[status]} className="mx-2 mr-4" />
-                <AuthInputBox
-                  onChange={(newToken) => {
-                    setFebboxKey(newToken);
-                  }}
-                  value={febboxKey ?? ""}
-                  placeholder="eyABCdE..."
-                  passwordToggleable
-                  className="flex-grow"
-                />
-              </div>
-              {status === "error" && (
-                <p className="text-type-danger mt-4">
-                  {t("fedapi.status.failure")}
-                </p>
-              )}
-              {status === "api_down" && (
-                <p className="text-type-danger mt-4">
-                  {t(
-                    "fedapi.status.api_down",
-                    "Febbox API is currently unavailable. Please try again later.",
-                  )}
-                </p>
-              )}
-              {status === "invalid_token" && (
-                <p className="text-type-danger mt-4">
-                  {t(
-                    "fedapi.status.invalid_token",
-                    "Invalid token. Please check your Febbox UI token.",
-                  )}
-                </p>
-              )}
-            </>
-          ) : null}
-        </SettingsCard>
-      </div>
-    );
-  }
-}
-
-async function getRealDebridKeyStatus(realDebridKey: string | null) {
-  if (realDebridKey) {
-    const status: Status = await testRealDebridKey(realDebridKey);
-    return status;
-  }
-  return "unset";
-}
-
-export function RealDebridSetup() {
-  const { t } = useTranslation();
-  const realDebridKey = usePreferencesStore((s) => s.realDebridKey);
-  const setRealDebridKey = usePreferencesStore((s) => s.setRealDebridKey);
-
-  // Initialize isExpanded based on whether realDebridKey has a value
-  const [isExpanded, setIsExpanded] = useState(
-    realDebridKey !== null && realDebridKey !== "",
-  );
-
-  // Add a separate effect to set the initial state
-  useEffect(() => {
-    // If we have a valid key, make sure the section is expanded
-    if (realDebridKey && realDebridKey.length > 0) {
-      setIsExpanded(true);
-    }
-  }, [realDebridKey]);
-
-  const [status, setStatus] = useState<Status>("unset");
-  const statusMap: Record<Status, StatusCircleProps["type"]> = {
-    error: "error",
-    success: "success",
-    unset: "noresult",
-    api_down: "error",
-    invalid_token: "error",
-  };
-
-  useEffect(() => {
-    const checkTokenStatus = async () => {
-      const result = await getRealDebridKeyStatus(realDebridKey);
-      setStatus(result);
-    };
-    checkTokenStatus();
-  }, [realDebridKey]);
-
-  // Toggle handler that preserves the key
-  const toggleExpanded = () => {
-    if (isExpanded) {
-      // Store the key temporarily instead of setting to null
-      setRealDebridKey("");
-      setIsExpanded(false);
-    } else {
-      setIsExpanded(true);
-    }
-  };
-
-  if (conf().ALLOW_REAL_DEBRID_KEY) {
-    return (
-      <div className="mt-6">
-        <SettingsCard>
-          <div className="flex justify-between items-center gap-4">
-            <div className="my-3">
-              <p className="text-white font-bold mb-3">
-                {t("settings.connections.realdebrid.title", "Real Debrid API")}
-              </p>
-              <p className="max-w-[30rem] font-medium">
-                {t(
-                  "settings.connections.realdebrid.description",
-                  "Enter your Real Debrid API key to access premium sources.",
-                )}
-              </p>
-            </div>
-            <div>
-              <Toggle onClick={toggleExpanded} enabled={isExpanded} />
-            </div>
-          </div>
-          {isExpanded ? (
-            <>
-              <Divider marginClass="my-6 px-8 box-content -mx-8" />
-              <p className="text-white font-bold mb-3">
-                {t("settings.connections.realdebrid.tokenLabel", "API Key")}
-              </p>
-              <div className="flex items-center w-full">
-                <StatusCircle type={statusMap[status]} className="mx-2 mr-4" />
-                <AuthInputBox
-                  onChange={(newToken) => {
-                    setRealDebridKey(newToken);
-                  }}
-                  value={realDebridKey ?? ""}
-                  placeholder="API Key"
-                  passwordToggleable
-                  className="flex-grow"
-                />
-              </div>
-              {status === "error" && (
-                <p className="text-type-danger mt-4">
-                  {t(
-                    "settings.connections.realdebrid.status.failure",
-                    "Failed to connect to Real Debrid. Please check your API key.",
-                  )}
-                </p>
-              )}
-              {status === "api_down" && (
-                <p className="text-type-danger mt-4">
-                  {t(
-                    "settings.connections.realdebrid.status.api_down",
-                    "Real Debrid API is currently unavailable. Please try again later.",
-                  )}
-                </p>
-              )}
-              {status === "invalid_token" && (
-                <p className="text-type-danger mt-4">
-                  {t(
-                    "settings.connections.realdebrid.status.invalid_token",
-                    "Invalid API key or non-premium account. Real Debrid requires a premium account.",
-                  )}
-                </p>
-              )}
-            </>
-          ) : null}
-        </SettingsCard>
-      </div>
-    );
-  }
-  return null;
-}
+import { DebridEdit, FebboxSetup } from "../parts/settings/ConnectionsPart";
 
 function Item(props: { title: string; children: React.ReactNode }) {
   return (
@@ -364,11 +55,7 @@ export function OnboardingPage() {
   const { t } = useTranslation();
   const noProxies = getProxyUrls().length === 0;
 
-  const isSafari =
-    typeof navigator !== "undefined" &&
-    /Safari/.test(navigator.userAgent) &&
-    !/Chrome/.test(navigator.userAgent) &&
-    !/Edg/.test(navigator.userAgent);
+  const isFebboxSetup = usePreferencesStore((s) => s.febboxKey) !== "";
 
   return (
     <MinimalPageLayout>
@@ -378,15 +65,23 @@ export function OnboardingPage() {
           <Heading1 className="!mt-0 !mb-4 !text-2xl">
             {t("onboarding.defaultConfirm.title")}
           </Heading1>
-          <Paragraph className="!mt-1 !mb-12">
+          <Paragraph className="!mt-1 !mb-0">
             {t("onboarding.defaultConfirm.description")}
           </Paragraph>
+          <Paragraph className="!mt-1 !mb-8">
+            {t("onboarding.defaultConfirm.tip")}
+          </Paragraph>
           <div className="flex flex-col-reverse gap-3 md:flex-row md:justify-between">
+            <Button
+              theme={
+                isFebboxSetup || isExtensionActiveCached() ? "purple" : "danger"
+              }
+              onClick={() => completeAndRedirect()}
+            >
+              {t("onboarding.defaultConfirm.confirm")}
+            </Button>
             <Button theme="secondary" onClick={skipModal.hide}>
               {t("onboarding.defaultConfirm.cancel")}
-            </Button>
-            <Button theme="purple" onClick={() => completeAndRedirect()}>
-              {t("onboarding.defaultConfirm.confirm")}
             </Button>
           </div>
         </ModalCard>
@@ -486,19 +181,24 @@ export function OnboardingPage() {
         </Paragraph>
 
         {/* Desktop Cards */}
-        <div className="hidden md:flex w-full flex-col md:flex-row gap-3 pb-6">
+        <div className="hidden md:flex w-full flex-row gap-3 pb-6">
           <Card
-            onClick={() => navigate("/onboarding/extension")}
-            className="md:w-1/3"
+            onClick={() =>
+              window.open(
+                "https://github.com/p-stream/p-stream-desktop/releases",
+                "_blank",
+              )
+            }
+            className="w-1/3"
           >
             <CardContent
               colorClass="!text-onboarding-best"
-              title={t("onboarding.start.options.extension.title")}
-              subtitle={t("onboarding.start.options.extension.quality")}
-              description={t("onboarding.start.options.extension.description")}
+              title={t("onboarding.start.options.desktopapp.title")}
+              subtitle={t("onboarding.start.options.desktopapp.quality")}
+              description={t("onboarding.start.options.desktopapp.description")}
             >
               <Link className="!text-onboarding-best">
-                {t("onboarding.start.options.extension.action")}
+                {t("onboarding.start.options.desktopapp.action")}
               </Link>
             </CardContent>
           </Card>
@@ -510,16 +210,18 @@ export function OnboardingPage() {
             <VerticalLine />
           </div>
           <Card
-            onClick={() => navigate("/onboarding/proxy")}
-            className="md:w-1/3"
+            onClick={() => navigate("/onboarding/extension")}
+            className="w-1/3"
           >
             <CardContent
               colorClass="!text-onboarding-good"
-              title={t("onboarding.start.options.proxy.title")}
-              subtitle={t("onboarding.start.options.proxy.quality")}
-              description={t("onboarding.start.options.proxy.description")}
+              title={t("onboarding.start.options.extension.title")}
+              subtitle={t("onboarding.start.options.extension.quality")}
+              description={t("onboarding.start.options.extension.description")}
             >
-              <Link>{t("onboarding.start.options.proxy.action")}</Link>
+              <Link className="!text-onboarding-good">
+                {t("onboarding.start.options.extension.action")}
+              </Link>
             </CardContent>
           </Card>
           {noProxies ? null : (
@@ -533,11 +235,11 @@ export function OnboardingPage() {
               </div>
               <Card
                 onClick={
-                  isSafari
-                    ? () => completeAndRedirect() // Skip modal on Safari
-                    : skipModal.show // Show modal on other browsers
+                  isFebboxSetup && isExtensionActiveCached()
+                    ? () => completeAndRedirect()
+                    : skipModal.show
                 }
-                className="md:w-1/3"
+                className="w-1/3"
               >
                 <CardContent
                   colorClass="!text-onboarding-bad"
@@ -553,35 +255,40 @@ export function OnboardingPage() {
         </div>
 
         {/* Mobile Cards */}
-        <div className="md:hidden flex w-full flex-col md:flex-row gap-3 pb-6">
+        <div className="md:hidden flex w-full flex-col gap-3 pb-6">
+          {/* <Card
+            onClick={() =>
+              window.open(
+                "https://github.com/p-stream/p-stream-desktop/releases",
+                "_blank",
+              )
+            }
+            className="w-full"
+          >
+            <MiniCardContent
+              colorClass="!text-onboarding-best"
+              title={t("onboarding.start.options.desktopapp.title")}
+              subtitle={t("onboarding.start.options.desktopapp.quality")}
+              description={t("onboarding.start.options.desktopapp.description")}
+            />
+          </Card> */}
           <Card
             onClick={() => navigate("/onboarding/extension")}
             className="md:w-1/3 md:h-full"
           >
             <MiniCardContent
-              colorClass="!text-onboarding-best"
+              colorClass="!text-onboarding-good"
               title={t("onboarding.start.options.extension.title")}
               subtitle={t("onboarding.start.options.extension.quality")}
               description={t("onboarding.start.options.extension.description")}
             />
           </Card>
-          <Card
-            onClick={() => navigate("/onboarding/proxy")}
-            className="md:w-1/3"
-          >
-            <MiniCardContent
-              colorClass="!text-onboarding-good"
-              title={t("onboarding.start.options.proxy.title")}
-              subtitle={t("onboarding.start.options.proxy.quality")}
-              description={t("onboarding.start.options.proxy.description")}
-            />
-          </Card>
           {noProxies ? null : (
             <Card
               onClick={
-                isSafari
-                  ? () => completeAndRedirect() // Skip modal on Safari
-                  : skipModal.show // Show modal on other browsers
+                isFebboxSetup && isExtensionActiveCached()
+                  ? () => completeAndRedirect()
+                  : skipModal.show
               }
               className="md:w-1/3"
             >
@@ -595,8 +302,27 @@ export function OnboardingPage() {
           )}
         </div>
 
-        {/* <RealDebridSetup /> */}
-        <FEDAPISetup />
+        {(conf().ALLOW_FEBBOX_KEY || conf().ALLOW_DEBRID_KEY) === true && (
+          <Heading3 className="text-white font-bold mb-3 mt-6">
+            {t("onboarding.start.options.addons.title")}
+          </Heading3>
+        )}
+        <div className="mt-6">
+          <FebboxSetup
+            febboxKey={usePreferencesStore((s) => s.febboxKey)}
+            setFebboxKey={usePreferencesStore((s) => s.setFebboxKey)}
+            mode="onboarding"
+          />
+        </div>
+        <div className="mt-6">
+          <DebridEdit
+            debridToken={usePreferencesStore((s) => s.debridToken)}
+            setdebridToken={usePreferencesStore((s) => s.setdebridToken)}
+            debridService={usePreferencesStore((s) => s.debridService)}
+            setdebridService={usePreferencesStore((s) => s.setdebridService)}
+            mode="onboarding"
+          />
+        </div>
       </BiggerCenterContainer>
     </MinimalPageLayout>
   );

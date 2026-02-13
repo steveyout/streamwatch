@@ -6,11 +6,13 @@ import { NoUserAvatar, UserAvatar } from "@/components/Avatar";
 import { IconPatch } from "@/components/buttons/IconPatch";
 import { Icons } from "@/components/Icon";
 import { LinksDropdown } from "@/components/LinksDropdown";
+import { useNotifications } from "@/components/overlays/notificationsModal";
 import { Lightbar } from "@/components/utils/Lightbar";
 import { useAuth } from "@/hooks/auth/useAuth";
 import { BlurEllipsis } from "@/pages/layouts/SubPageLayout";
 import { conf } from "@/setup/config";
 import { useBannerSize } from "@/stores/banner";
+import { usePreferencesStore } from "@/stores/preferences";
 
 import { BrandPill } from "./BrandPill";
 
@@ -26,6 +28,7 @@ export function Navigation(props: NavigationProps) {
   const navigate = useNavigate();
   const { loggedIn } = useAuth();
   const [scrollPosition, setScrollPosition] = useState(0);
+  const { openNotifications, getUnreadCount } = useNotifications();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -52,6 +55,10 @@ export function Navigation(props: NavigationProps) {
     return minLength + (maxLength - minLength) * (1 - scrollFactor);
   };
 
+  const enableLowPerformanceMode = usePreferencesStore(
+    (s) => s.enableLowPerformanceMode,
+  );
+
   return (
     <>
       {/* lightbar */}
@@ -63,7 +70,7 @@ export function Navigation(props: NavigationProps) {
           }}
         >
           <div className="absolute inset-x-0 -mt-[22%] flex items-center sm:mt-0">
-            <Lightbar />
+            <Lightbar noParticles={enableLowPerformanceMode} />
           </div>
         </div>
       ) : null}
@@ -121,7 +128,7 @@ export function Navigation(props: NavigationProps) {
 
       {/* content */}
       <div
-        className="top-content fixed pointer-events-none left-0 right-0 z-[60] top-0 min-h-[150px]"
+        className="top-content fixed pointer-events-none left-0 right-0 z-[500] top-0 min-h-[150px]"
         style={{
           top: `${bannerHeight}px`,
         }}
@@ -149,33 +156,51 @@ export function Navigation(props: NavigationProps) {
                   navigation
                 />
               </a>
-              {window.location.pathname !== "/discover" ? (
-                <a
-                  onClick={() => handleClick("/discover")}
-                  rel="noreferrer"
-                  className="text-xl text-white tabbable rounded-full backdrop-blur-lg"
-                >
-                  <IconPatch
-                    icon={Icons.RISING_STAR}
-                    clickable
-                    downsized
-                    navigation
-                  />
-                </a>
-              ) : (
-                <a
-                  onClick={() => handleClick("/")}
-                  rel="noreferrer"
-                  className="text-lg text-white tabbable rounded-full backdrop-blur-lg"
-                >
-                  <IconPatch
-                    icon={Icons.SEARCH}
-                    clickable
-                    downsized
-                    navigation
-                  />
-                </a>
-              )}
+              {!enableLowPerformanceMode &&
+                (window.location.pathname !== "/discover" ? (
+                  <a
+                    onClick={() => handleClick("/discover")}
+                    rel="noreferrer"
+                    className="text-xl text-white tabbable rounded-full backdrop-blur-lg"
+                  >
+                    <IconPatch
+                      icon={Icons.RISING_STAR}
+                      clickable
+                      downsized
+                      navigation
+                    />
+                  </a>
+                ) : (
+                  <a
+                    onClick={() => handleClick("/")}
+                    rel="noreferrer"
+                    className="text-lg text-white tabbable rounded-full backdrop-blur-lg"
+                  >
+                    <IconPatch
+                      icon={Icons.SEARCH}
+                      clickable
+                      downsized
+                      navigation
+                    />
+                  </a>
+                ))}
+              <a
+                onClick={() => openNotifications()}
+                rel="noreferrer"
+                className="text-xl text-white tabbable rounded-full backdrop-blur-lg relative"
+              >
+                <IconPatch icon={Icons.BELL} clickable downsized navigation />
+                {(() => {
+                  const count = getUnreadCount();
+                  const shouldShow =
+                    typeof count === "number" ? count > 0 : count === "99+";
+                  return shouldShow ? (
+                    <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full min-w-[16px] h-4 px-1 flex items-center justify-center">
+                      {count}
+                    </span>
+                  ) : null;
+                })()}
+              </a>
             </div>
             <div className="relative pointer-events-auto">
               <LinksDropdown>

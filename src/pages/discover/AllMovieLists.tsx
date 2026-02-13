@@ -2,49 +2,71 @@ import { t } from "i18next";
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { TmdbMovie, getLetterboxdLists } from "@/backend/metadata/letterboxd";
+import {
+  getCuratedMovieLists,
+  getMovieDetailsForIds,
+} from "@/backend/metadata/traktApi";
+import { TMDBMovieData } from "@/backend/metadata/types/tmdb";
+import type { CuratedMovieList } from "@/backend/metadata/types/trakt";
 import { Icon, Icons } from "@/components/Icon";
 import { WideContainer } from "@/components/layout/WideContainer";
 import { MediaCard } from "@/components/media/MediaCard";
-import { DetailsModal } from "@/components/overlays/details/DetailsModal";
-import { useModal } from "@/components/overlays/Modal";
 import { Heading1 } from "@/components/utils/Text";
 import { useIsMobile } from "@/hooks/useIsMobile";
 import { CarouselNavButtons } from "@/pages/discover/components/CarouselNavButtons";
 import { SubPageLayout } from "@/pages/layouts/SubPageLayout";
 import { useDiscoverStore } from "@/stores/discover";
+import { useOverlayStack } from "@/stores/interface/overlayStack";
 import { MediaItem } from "@/utils/mediaTypes";
 
-import { MediaCarousel } from "./components/MediaCarousel";
+import { LazyMediaCarousel } from "./components/LazyMediaCarousel";
 
 export function DiscoverMore() {
-  const [detailsData, setDetailsData] = useState<any>();
-  const [letterboxdLists, setLetterboxdLists] = useState<any[]>([]);
-  const detailsModal = useModal("discover-details");
+  const [curatedLists, setCuratedLists] = useState<CuratedMovieList[]>([]);
+  const [movieDetails, setMovieDetails] = useState<{
+    [listSlug: string]: TMDBMovieData[];
+  }>({});
+  const { showModal } = useOverlayStack();
   const carouselRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
   const navigate = useNavigate();
   const { lastView } = useDiscoverStore();
   const { isMobile } = useIsMobile();
 
   useEffect(() => {
-    const fetchLetterboxdLists = async () => {
+    const fetchCuratedLists = async () => {
       try {
-        const response = await getLetterboxdLists();
-        setLetterboxdLists(response.lists);
+        const lists = await getCuratedMovieLists();
+        setCuratedLists(lists);
+
+        // Fetch movie details for each list one after another
+        const details: { [listSlug: string]: TMDBMovieData[] } = {};
+        for (const list of lists) {
+          try {
+            const movies = await getMovieDetailsForIds(list.tmdbIds, 50);
+            if (movies.length > 0) {
+              details[list.listSlug] = movies;
+              setMovieDetails({ ...details });
+            }
+          } catch (error) {
+            console.error(
+              `Failed to fetch movies for list ${list.listSlug}:`,
+              error,
+            );
+          }
+        }
       } catch (error) {
-        console.error("Failed to fetch Letterboxd lists:", error);
+        console.error("Failed to fetch curated lists:", error);
       }
     };
 
-    fetchLetterboxdLists();
+    fetchCuratedLists();
   }, []);
 
   const handleShowDetails = async (media: MediaItem) => {
-    setDetailsData({
+    showModal("discover-details", {
       id: Number(media.id),
       type: media.type === "movie" ? "movie" : "show",
     });
-    detailsModal.show();
   };
 
   const handleBack = () => {
@@ -85,27 +107,29 @@ export function DiscoverMore() {
       <WideContainer ultraWide>
         {/* Latest Movies */}
         <div className="relative">
-          <MediaCarousel
+          <LazyMediaCarousel
             content={{ type: "latest", fallback: "nowPlaying" }}
             isTVShow={false}
             carouselRefs={carouselRefs}
             onShowDetails={handleShowDetails}
+            priority // Load immediately as first carousel
           />
         </div>
 
         {/* Top Rated Movies */}
         <div className="relative">
-          <MediaCarousel
+          <LazyMediaCarousel
             content={{ type: "latest4k", fallback: "topRated" }}
             isTVShow={false}
             carouselRefs={carouselRefs}
             onShowDetails={handleShowDetails}
+            priority // Load immediately as second carousel
           />
         </div>
 
-        {/* Letterboxd Lists */}
-        {letterboxdLists.map((list) => (
-          <div key={list.listUrl}>
+        {/* Curated Movie Lists */}
+        {curatedLists.map((list) => (
+          <div key={list.listSlug}>
             <div className="flex items-center justify-between ml-2 md:ml-8 mt-2">
               <div className="flex flex-col">
                 <div className="flex items-center gap-4">
@@ -119,12 +143,12 @@ export function DiscoverMore() {
               <div
                 className="grid grid-flow-col auto-cols-max gap-4 pt-0 overflow-x-scroll scrollbar-none rounded-xl overflow-y-hidden md:pl-8 md:pr-8"
                 ref={(el) => {
-                  carouselRefs.current[list.listUrl] = el;
+                  carouselRefs.current[list.listSlug] = el;
                 }}
                 onWheel={handleWheel}
               >
                 <div className="md:w-12" />
-                {list.tmdbMovies.map((movie: TmdbMovie) => (
+                {movieDetails[list.listSlug]?.map((movie: TMDBMovieData) => (
                   <div
                     key={movie.id}
                     className="relative mt-4 group cursor-pointer user-select-none rounded-xl p-2 bg-transparent transition-colors duration-300 w-[10rem] md:w-[11.5rem] h-auto"
@@ -150,7 +174,7 @@ export function DiscoverMore() {
               </div>
               {!isMobile && (
                 <CarouselNavButtons
-                  categorySlug={list.listUrl}
+                  categorySlug={list.listSlug}
                   carouselRefs={carouselRefs}
                 />
               )}
@@ -158,7 +182,6 @@ export function DiscoverMore() {
           </div>
         ))}
       </WideContainer>
-      {detailsData && <DetailsModal id="discover-details" data={detailsData} />}
     </SubPageLayout>
   );
 }

@@ -7,7 +7,7 @@ const tokens = {
     c125: "#141414",
     c150: "#1a1a1a",
     c200: "#262626",
-    c250: "#333333"
+    c250: "#333333",
   },
   white: "#FFFFFF", // General white color
   semantic: {
@@ -52,7 +52,7 @@ const tokens = {
     c600: "#2e2e2e",
     c700: "#272727",
     c800: "#181818",
-    c900: "#0f0f0f"
+    c900: "#0f0f0f",
   },
   purple: {
     c50: "#aaafff",
@@ -64,7 +64,7 @@ const tokens = {
     c600: "#1f2363",
     c700: "#191b4a",
     c800: "#111334", // Lightbar
-    c900: "#0b0d22"
+    c900: "#0b0d22",
   },
   ash: {
     c50: "#8d8d8d",
@@ -76,7 +76,7 @@ const tokens = {
     c600: "#252525",
     c700: "#1e1e1e",
     c800: "#181818",
-    c900: "#111111"
+    c900: "#111111",
   },
   shade: {
     c25: "#939393", // Media card hover accent
@@ -89,7 +89,7 @@ const tokens = {
     c600: "#202020",
     c700: "#1a1a1a",
     c800: "#151515",
-    c900: "#0e0e0e"
+    c900: "#0e0e0e",
   },
 };
 
@@ -137,7 +137,7 @@ export const defaultTheme = {
         purple: tokens.purple.c600,
         purpleHover: tokens.purple.c400,
         cancel: tokens.black.c100,
-        cancelHover: tokens.black.c150
+        cancelHover: tokens.black.c150,
       },
 
       // only used for body colors/textures
@@ -146,7 +146,7 @@ export const defaultTheme = {
         secondary: tokens.black.c75,
         secondaryHover: tokens.black.c75,
         accentA: tokens.purple.c600,
-        accentB: tokens.black.c100
+        accentB: tokens.black.c100,
       },
 
       // Modals
@@ -165,7 +165,7 @@ export const defaultTheme = {
         danger: tokens.semantic.red.c100,
         success: tokens.semantic.green.c100,
         link: tokens.purple.c100,
-        linkHover: tokens.purple.c50
+        linkHover: tokens.purple.c50,
       },
 
       // search bar
@@ -187,7 +187,7 @@ export const defaultTheme = {
         barColor: tokens.ash.c200,
         barFillColor: tokens.purple.c100,
         badge: tokens.shade.c700,
-        badgeText: tokens.ash.c100
+        badgeText: tokens.ash.c100,
       },
 
       // Large card
@@ -206,7 +206,7 @@ export const defaultTheme = {
         text: tokens.shade.c50,
         secondary: tokens.shade.c100,
         border: tokens.shade.c400,
-        contentBackground: tokens.black.c50
+        contentBackground: tokens.black.c50,
       },
 
       // Passphrase
@@ -231,24 +231,24 @@ export const defaultTheme = {
             inactive: tokens.shade.c50,
             icon: tokens.black.c200,
             iconActivated: tokens.purple.c200,
-            activated: tokens.purple.c100
+            activated: tokens.purple.c100,
           },
         },
 
         card: {
           border: tokens.shade.c700,
           background: tokens.black.c100,
-          altBackground: tokens.black.c100
+          altBackground: tokens.black.c100,
         },
 
         saveBar: {
-          background: tokens.black.c50
+          background: tokens.black.c50,
         },
       },
 
       // Utilities
       utils: {
-        divider: tokens.ash.c300
+        divider: tokens.ash.c300,
       },
 
       // Onboarding
@@ -277,14 +277,14 @@ export const defaultTheme = {
       // About page
       about: {
         circle: tokens.black.c100,
-        circleText: tokens.ash.c50
+        circleText: tokens.ash.c50,
       },
 
       // About page
       editBadge: {
         bg: tokens.ash.c500,
         bgHover: tokens.ash.c400,
-        text: tokens.ash.c50
+        text: tokens.ash.c50,
       },
 
       progress: {
@@ -307,7 +307,7 @@ export const defaultTheme = {
           error: tokens.semantic.red.c200,
           success: tokens.semantic.green.c200,
           loading: tokens.purple.c200,
-          noresult: tokens.black.c200
+          noresult: tokens.black.c200,
         },
 
         audio: {

@@ -13,6 +13,7 @@ import { useBackendUrl } from "@/hooks/auth/useBackendUrl";
 import { useOverlayRouter } from "@/hooks/useOverlayRouter";
 import { useWatchPartySync } from "@/hooks/useWatchPartySync";
 import { useAuthStore } from "@/stores/auth";
+import { getProgressPercentage } from "@/stores/progress";
 import { useWatchPartyStore } from "@/stores/watchParty";
 
 import { useDownloadLink } from "./Downloads";
@@ -32,6 +33,14 @@ export function WatchPartyView({ id }: { id: string }) {
   const [isValidating, setIsValidating] = useState(false);
   const [validationError, setValidationError] = useState<string | null>(null);
   const account = useAuthStore((s) => s.account);
+
+  // Get display name for a user (nickname if it's the current user, otherwise truncated userId)
+  const getDisplayName = (userId: string) => {
+    if (account?.userId === userId && account?.nickname) {
+      return account.nickname;
+    }
+    return `${userId.substring(0, 8)}...`;
+  };
 
   const backendMeta = useAsync(async () => {
     if (!backendUrl) return;
@@ -194,7 +203,7 @@ export function WatchPartyView({ id }: { id: string }) {
   return (
     <>
       <Menu.BackLink onClick={() => router.navigate("/")}>
-        {t("player.menus.watchparty.watchpartyItem")} (Beta)
+        {t("player.menus.watchparty.watchpartyItem")}
       </Menu.BackLink>
       <Menu.Section>
         <div className="pb-4">
@@ -211,7 +220,17 @@ export function WatchPartyView({ id }: { id: string }) {
                 ) : (
                   <>
                     <div className="flex flex-col gap-2">
-                      <div className="text-center">
+                      <div className="text-center space-y-2">
+                        <div className="text-xs text-type-logo font-semibold flex flex-col gap-1 bg-type-danger/10 px-2 py-1 rounded mb-2">
+                          <span className="text-xs">
+                            {t("watchParty.backendRequirement")}
+                          </span>
+                          <span className="text-xs">
+                            {t("watchParty.activeBackend", {
+                              backend: backendUrl || "Unknown",
+                            })}
+                          </span>
+                        </div>
                         <Trans
                           i18nKey={
                             isHost ? "watchParty.isHost" : "watchParty.isGuest"
@@ -321,12 +340,12 @@ export function WatchPartyView({ id }: { id: string }) {
                                       : "text-type-secondary"
                                   }
                                 >
-                                  {user.userId.substring(0, 8)}...
+                                  {getDisplayName(user.userId)}
                                 </span>
                               </span>
                               <span className="text-type-secondary">
                                 {user.player.duration > 0
-                                  ? `${Math.floor((user.player.time / user.player.duration) * 100)}%`
+                                  ? `${Math.floor(getProgressPercentage(user.player.time, user.player.duration))}%`
                                   : `${Math.floor(user.player.time)}s`}
                               </span>
                             </div>

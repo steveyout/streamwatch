@@ -5,6 +5,7 @@ import { useAsync } from "react-use";
 
 import { getMetaFromId } from "@/backend/metadata/getmeta";
 import { MWMediaType, MWSeasonMeta } from "@/backend/metadata/types/mw";
+import { Button } from "@/components/buttons/Button";
 import { Icon, Icons } from "@/components/Icon";
 import { usePlayerMeta } from "@/components/player/hooks/usePlayerMeta";
 import { Transition } from "@/components/utils/Transition";
@@ -27,7 +28,7 @@ function shouldShowNextEpisodeButton(
   return "none";
 }
 
-function Button(props: {
+function ActionButton(props: {
   className: string;
   onClick?: () => void;
   children: React.ReactNode;
@@ -94,6 +95,9 @@ export function NextEpisodeButton(props: {
   controlsShowing: boolean;
   onChange?: (meta: PlayerMeta) => void;
   inControl: boolean;
+  showAsButton?: boolean;
+  /** When true (e.g. in credits-to-end segment), show regardless of time/duration. */
+  forceShow?: boolean;
 }) {
   const { t } = useTranslation();
   const duration = usePlayerStore((s) => s.progress.duration);
@@ -104,12 +108,17 @@ export function NextEpisodeButton(props: {
   const time = usePlayerStore((s) => s.progress.time);
   const enableAutoplay = usePreferencesStore((s) => s.enableAutoplay);
   const enableSkipCredits = usePreferencesStore((s) => s.enableSkipCredits);
-  const showingState = shouldShowNextEpisodeButton(time, duration);
+  const setLastSuccessfulSource = usePreferencesStore(
+    (s) => s.setLastSuccessfulSource,
+  );
+  const timeBasedState = shouldShowNextEpisodeButton(time, duration);
+  const showingState = props.forceShow ? "always" : timeBasedState;
   const status = usePlayerStore((s) => s.status);
   const setShouldStartFromBeginning = usePlayerStore(
     (s) => s.setShouldStartFromBeginning,
   );
   const updateItem = useProgressStore((s) => s.updateItem);
+  const sourceId = usePlayerStore((s) => s.sourceId);
 
   const isLastEpisode =
     !meta?.episode?.number || !meta?.episodes?.at(-1)?.number
@@ -145,6 +154,12 @@ export function NextEpisodeButton(props: {
 
   const loadNextEpisode = useCallback(() => {
     if (!meta || !nextEp) return;
+
+    // Store the current source as the last successful source
+    if (sourceId) {
+      setLastSuccessfulSource(sourceId);
+    }
+
     const metaCopy = { ...meta };
     metaCopy.episode = nextEp;
     metaCopy.season =
@@ -171,6 +186,8 @@ export function NextEpisodeButton(props: {
     updateItem,
     isLastEpisode,
     nextSeason,
+    sourceId,
+    setLastSuccessfulSource,
   ]);
 
   const startCurrentEpisodeFromBeginning = useCallback(() => {
@@ -213,6 +230,22 @@ export function NextEpisodeButton(props: {
   if (!meta?.episode || !nextEp) return null;
   if (metaType !== "show") return null;
 
+  if (props.showAsButton) {
+    return (
+      <Button
+        onClick={() => loadNextEpisode()}
+        theme="secondary"
+        padding="md:px-12 p-2.5"
+        className="w-full"
+      >
+        <Icon className="mr-2" icon={Icons.SKIP_EPISODE} />
+        {isLastEpisode && nextEp
+          ? t("player.nextEpisode.nextSeason")
+          : t("player.nextEpisode.next")}
+      </Button>
+    );
+  }
+
   return (
     <Transition
       animation={animation}
@@ -225,13 +258,13 @@ export function NextEpisodeButton(props: {
           bottom,
         ])}
       >
-        <Button
+        <ActionButton
           className="py-px box-content bg-buttons-secondary hover:bg-buttons-secondaryHover bg-opacity-90 text-buttons-secondaryText justify-center items-center"
           onClick={() => startCurrentEpisodeFromBeginning()}
         >
           {t("player.nextEpisode.replay")}
-        </Button>
-        <Button
+        </ActionButton>
+        <ActionButton
           onClick={() => loadNextEpisode()}
           className="bg-buttons-primary hover:bg-buttons-primaryHover text-buttons-primaryText flex justify-center items-center"
         >
@@ -239,7 +272,7 @@ export function NextEpisodeButton(props: {
           {isLastEpisode && nextEp
             ? t("player.nextEpisode.nextSeason")
             : t("player.nextEpisode.next")}
-        </Button>
+        </ActionButton>
       </div>
     </Transition>
   );

@@ -21,7 +21,7 @@ export function useTMDBData(
     [categoryName: string]: Movie[] | TVShow[];
   }>({});
   const [isLoading, setIsLoading] = useState(false);
-  const userLanguage = useLanguageStore.getState().language;
+  const userLanguage = useLanguageStore((s) => s.language);
   const formattedLanguage = getTmdbLanguageCode(userLanguage);
 
   // Unified fetch function
@@ -108,7 +108,7 @@ export function useLazyTMDBData(
 ) {
   const [media, setMedia] = useState<Movie[] | TVShow[]>([]);
   const [isLoading, setIsLoading] = useState(false);
-  const userLanguage = useLanguageStore.getState().language;
+  const userLanguage = useLanguageStore((s) => s.language);
   const formattedLanguage = getTmdbLanguageCode(userLanguage);
 
   const fetchMedia = useCallback(

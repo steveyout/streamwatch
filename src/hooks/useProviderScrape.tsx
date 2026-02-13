@@ -1,19 +1,12 @@
-import {
-  FullScraperEvents,
-  RunOutput,
-  ScrapeMedia,
-} from "@movie-web/providers";
+import { FullScraperEvents, RunOutput, ScrapeMedia } from "@p-stream/providers";
 import { RefObject, useCallback, useEffect, useRef, useState } from "react";
 
 import { isExtensionActiveCached } from "@/backend/extension/messaging";
 import { prepareStream } from "@/backend/extension/streams";
-import {
-  connectServerSideEvents,
-  getCachedMetadata,
-  makeProviderUrl,
-} from "@/backend/helpers/providerApi";
-import { getLoadbalancedProviderApiUrl } from "@/backend/providers/fetchers";
+import { getCachedMetadata } from "@/backend/helpers/providerApi";
 import { getProviders } from "@/backend/providers/providers";
+import { getMediaKey } from "@/stores/player/slices/source";
+import { usePlayerStore } from "@/stores/player/store";
 import { usePreferencesStore } from "@/stores/preferences";
 
 export interface ScrapingItems {
@@ -159,34 +152,106 @@ export function useScrape() {
 
   const preferredSourceOrder = usePreferencesStore((s) => s.sourceOrder);
   const enableSourceOrder = usePreferencesStore((s) => s.enableSourceOrder);
+  const lastSuccessfulSource = usePreferencesStore(
+    (s) => s.lastSuccessfulSource,
+  );
+  const enableLastSuccessfulSource = usePreferencesStore(
+    (s) => s.enableLastSuccessfulSource,
+  );
+  const preferredEmbedOrder = usePreferencesStore((s) => s.embedOrder);
+  const enableEmbedOrder = usePreferencesStore((s) => s.enableEmbedOrder);
 
   const startScraping = useCallback(
-    async (media: ScrapeMedia) => {
-      const providerApiUrl = getLoadbalancedProviderApiUrl();
-      if (providerApiUrl && !isExtensionActiveCached()) {
-        startScrape();
-        const baseUrlMaker = makeProviderUrl(providerApiUrl);
-        const conn = await connectServerSideEvents<RunOutput | "">(
-          baseUrlMaker.scrapeAll(media),
-          ["completed", "noOutput"],
-        );
-        conn.on("init", initEvent);
-        conn.on("start", startEvent);
-        conn.on("update", updateEvent);
-        conn.on("discoverEmbeds", discoverEmbedsEvent);
-        const sseOutput = await conn.promise();
-        if (sseOutput && isExtensionActiveCached())
-          await prepareStream(sseOutput.stream);
+    async (media: ScrapeMedia, startFromSourceId?: string) => {
+      const providerInstance = getProviders();
+      const allSources = providerInstance.listSources();
+      const playerState = usePlayerStore.getState();
 
-        return getResult(sseOutput === "" ? null : sseOutput);
+      // Get media-specific failed sources/embeds
+      // Try to get media key from player state first, fallback to deriving from ScrapeMedia
+      let mediaKey = getMediaKey(playerState.meta);
+      if (!mediaKey) {
+        // Derive media key from ScrapeMedia if meta is not set yet
+        if (media.type === "movie") {
+          mediaKey = `movie-${media.tmdbId}`;
+        } else if (media.type === "show" && media.season && media.episode) {
+          mediaKey = `show-${media.tmdbId}-${media.season.tmdbId}-${media.episode.tmdbId}`;
+        } else if (media.type === "show") {
+          mediaKey = `show-${media.tmdbId}`;
+        }
       }
+      const failedSources = mediaKey
+        ? playerState.failedSourcesPerMedia[mediaKey] || []
+        : [];
+      const failedEmbeds = mediaKey
+        ? playerState.failedEmbedsPerMedia[mediaKey] || {}
+        : {};
+
+      // Start with all available sources (filtered by failed ones only)
+      let baseSourceOrder = allSources
+        .filter((source) => !failedSources.includes(source.id))
+        .map((source) => source.id);
+
+      // Apply custom source ordering if enabled
+      if (enableSourceOrder && (preferredSourceOrder || []).length > 0) {
+        const orderedSources: string[] = [];
+        const remainingSources = [...baseSourceOrder];
+
+        // Add sources in preferred order
+        for (const sourceId of preferredSourceOrder) {
+          const sourceIndex = remainingSources.indexOf(sourceId);
+          if (sourceIndex !== -1) {
+            orderedSources.push(sourceId);
+            remainingSources.splice(sourceIndex, 1);
+          }
+        }
+
+        // Add remaining sources
+        baseSourceOrder = [...orderedSources, ...remainingSources];
+      }
+
+      // If we have a last successful source and the feature is enabled, prioritize it
+      // BUT only if we're not resuming from a specific source (to preserve custom order)
+      if (
+        enableLastSuccessfulSource &&
+        lastSuccessfulSource &&
+        !startFromSourceId
+      ) {
+        const lastSourceIndex = baseSourceOrder.indexOf(lastSuccessfulSource);
+        if (lastSourceIndex !== -1) {
+          baseSourceOrder = [
+            lastSuccessfulSource,
+            ...baseSourceOrder.filter((id) => id !== lastSuccessfulSource),
+          ];
+        }
+      }
+
+      // If starting from a specific source ID, filter the order to start AFTER that source
+      // This preserves the custom order while starting from the next source
+      let filteredSourceOrder = baseSourceOrder;
+      if (startFromSourceId) {
+        const startIndex = filteredSourceOrder.indexOf(startFromSourceId);
+        if (startIndex !== -1) {
+          filteredSourceOrder = filteredSourceOrder.slice(startIndex + 1);
+        }
+      }
+
+      // Collect all failed embed IDs across all sources for current media
+      const allFailedEmbedIds = Object.values(failedEmbeds).flat();
+
+      // Filter out failed embeds from the embed order
+      const filteredEmbedOrder = enableEmbedOrder
+        ? (preferredEmbedOrder || []).filter(
+            (id) => !allFailedEmbedIds.includes(id),
+          )
+        : undefined;
 
       startScrape();
       const providers = getProviders();
       const output = await providers.runAll({
         media,
-        // Only pass sourceOrder if enableSourceOrder is true
-        sourceOrder: enableSourceOrder ? preferredSourceOrder : undefined,
+        sourceOrder: filteredSourceOrder,
+        embedOrder: filteredEmbedOrder,
         events: {
           init: initEvent,
           start: startEvent,
@@ -207,11 +272,23 @@ export function useScrape() {
       startScrape,
       preferredSourceOrder,
       enableSourceOrder,
+      lastSuccessfulSource,
+      enableLastSuccessfulSource,
+      preferredEmbedOrder,
+      enableEmbedOrder,
     ],
+  );
+
+  const resumeScraping = useCallback(
+    async (media: ScrapeMedia, startFromSourceId: string) => {
+      return startScraping(media, startFromSourceId);
+    },
+    [startScraping],
   );
 
   return {
     startScraping,
+    resumeScraping,
     sourceOrder,
     sources,
     currentSource,

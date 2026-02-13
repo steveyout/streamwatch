@@ -52,10 +52,11 @@ export function ScrollToActiveSection(props: {
 
     const activeYPos = activeLinkRect.top - boxRect.top;
 
-    scrollingContainer.current?.scrollTo(
-      0,
-      activeYPos - boxRect.height / 2 + activeLinkRect.height / 2,
-    );
+    scrollingContainer.current?.scrollTo({
+      top: activeYPos - boxRect.height / 2 + activeLinkRect.height / 2,
+      left: 0,
+      behavior: "smooth",
+    });
   }, [props.loaded]);
 
   return (

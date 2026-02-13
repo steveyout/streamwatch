@@ -3,6 +3,7 @@ import slugify from "slugify";
 import { conf } from "@/setup/config";
 import { useLanguageStore } from "@/stores/language";
 import { usePreferencesStore } from "@/stores/preferences";
+import { SimpleCache } from "@/utils/cache";
 import { getTmdbLanguageCode } from "@/utils/language";
 import { MediaItem } from "@/utils/mediaTypes";
 import { getProxyUrls } from "@/utils/proxyUrls";
@@ -23,6 +24,8 @@ import {
   TMDBSeasonMetaResult,
   TMDBShowData,
   TMDBShowSearchResult,
+  TMDBVideo,
+  TMDBVideosResponse,
 } from "./types/tmdb";
 import { mwFetch } from "../helpers/fetch";
 
@@ -162,6 +165,23 @@ const tmdbHeaders = {
   Authorization: `Bearer ${apiKey}`,
 };
 
+// Cache for TMDB API responses
+interface TMDBCacheKey {
+  url: string;
+  params: object;
+  language: string;
+}
+
+const tmdbCache = new SimpleCache<TMDBCacheKey, any>();
+tmdbCache.setCompare((a, b) => {
+  return (
+    a.url === b.url &&
+    JSON.stringify(a.params) === JSON.stringify(b.params) &&
+    a.language === b.language
+  );
+});
+tmdbCache.initialize();
+
 function abortOnTimeout(timeout: number): AbortSignal {
   const controller = new AbortController();
   setTimeout(() => controller.abort(), timeout);
@@ -186,6 +206,18 @@ export async function get<T>(url: string, params?: object): Promise<T> {
 
   if (!apiKey) throw new Error("TMDB API key not set");
 
+  // Check cache first
+  const cacheKey: TMDBCacheKey = {
+    url,
+    params: params || {},
+    language: formattedLanguage,
+  };
+
+  const cachedResult = tmdbCache.get(cacheKey);
+  if (cachedResult) {
+    return cachedResult as T;
+  }
+
   // directly writing parameters, otherwise it will start the first parameter in the proxied request as "&" instead of "?" because it doesnt understand its proxied
   const fullUrl = new URL(tmdbBaseUrl1 + url);
   const allParams = {
@@ -199,9 +231,11 @@ export async function get<T>(url: string, params?: object): Promise<T> {
     });
   }
 
+  let result: T;
+
   if (proxy && shouldProxyTmdb) {
     try {
-      return await mwFetch<T>(
+      result = await mwFetch<T>(
         `/?destination=${encodeURIComponent(fullUrl.toString())}`,
         {
           headers: tmdbHeaders,
@@ -211,24 +245,31 @@ export async function get<T>(url: string, params?: object): Promise<T> {
       );
     } catch (err) {
       console.error(err);
+      // Fall through to try direct connection
     }
   }
 
-  try {
-    return await mwFetch<T>(encodeURI(url), {
-      headers: tmdbHeaders,
-      baseURL: tmdbBaseUrl1,
-      params: allParams,
-      signal: abortOnTimeout(5000),
-    });
-  } catch (err) {
-    return mwFetch<T>(encodeURI(url), {
-      headers: tmdbHeaders,
-      baseURL: tmdbBaseUrl2,
-      params: allParams,
-      signal: abortOnTimeout(30000),
-    });
+  if (!result!) {
+    try {
+      result = await mwFetch<T>(encodeURI(url), {
+        headers: tmdbHeaders,
+        baseURL: tmdbBaseUrl1,
+        params: allParams,
+        signal: abortOnTimeout(5000),
+      });
+    } catch (err) {
+      result = await mwFetch<T>(encodeURI(url), {
+        headers: tmdbHeaders,
+        baseURL: tmdbBaseUrl2,
+        params: allParams,
+        signal: abortOnTimeout(30000),
+      });
+    }
   }
+
+  // Cache the result for 1 hour (3600 seconds)
+  tmdbCache.set(cacheKey, result, 3600);
+  return result;
 }
 
 export async function multiSearch(
@@ -246,6 +287,38 @@ export async function multiSearch(
       r.media_type === TMDBContentTypes.TV,
   );
   return results;
+}
+
+export async function searchMovies(
+  query: string,
+): Promise<TMDBMovieSearchResult[]> {
+  const data = await get<{
+    results: TMDBMovieSearchResult[];
+  }>("search/movie", {
+    query,
+    include_adult: false,
+    page: 1,
+  });
+  return data.results.map((result) => ({
+    ...result,
+    media_type: TMDBContentTypes.MOVIE,
+  }));
+}
+
+export async function searchTVShows(
+  query: string,
+): Promise<TMDBShowSearchResult[]> {
+  const data = await get<{
+    results: TMDBShowSearchResult[];
+  }>("search/tv", {
+    query,
+    include_adult: false,
+    page: 1,
+  });
+  return data.results.map((result) => ({
+    ...result,
+    media_type: TMDBContentTypes.TV,
+  }));
 }
 
 export async function generateQuickSearchMediaUrl(
@@ -338,6 +411,10 @@ export function getMediaPoster(posterPath: string | null): string | undefined {
   }
 
   if (posterPath) return imgUrl;
+}
+
+export async function getCollectionDetails(collectionId: number): Promise<any> {
+  return get<any>(`/collection/${collectionId}`);
 }
 
 export async function getEpisodes(
@@ -434,6 +511,36 @@ export async function getMediaCredits(
 ): Promise<TMDBCredits> {
   const endpoint = type === TMDBContentTypes.MOVIE ? "movie" : "tv";
   return get<TMDBCredits>(`/${endpoint}/${id}/credits`);
+}
+
+export async function getMediaVideos(
+  id: string,
+  type: TMDBContentTypes,
+): Promise<TMDBVideo[]> {
+  const endpoint = type === TMDBContentTypes.MOVIE ? "movie" : "tv";
+  const data = await get<TMDBVideosResponse>(`/${endpoint}/${id}/videos`);
+  return data.results.filter(
+    (video) =>
+      video.site === "YouTube" &&
+      (video.type === "Trailer" || video.type === "Teaser"),
+  );
+}
+
+/**
+ * Fetches recommended media from TMDB recommendations endpoint.
+ * Returns media that users commonly watch together based on ratings and popularity.
+ */
+export async function getRelatedMedia(
+  id: string,
+  type: TMDBContentTypes,
+  limit: number = 10,
+): Promise<TMDBMovieSearchResult[] | TMDBShowSearchResult[]> {
+  const endpoint = type === TMDBContentTypes.MOVIE ? "movie" : "tv";
+  const data = await get<{
+    results: TMDBMovieSearchResult[] | TMDBShowSearchResult[];
+  }>(`/${endpoint}/${id}/recommendations`);
+
+  return data.results.slice(0, limit);
 }
 
 export async function getPersonDetails(id: string): Promise<TMDBPerson> {

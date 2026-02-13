@@ -1,227 +1,783 @@
 {
-    "about": {
-        "description": "StreamWatch là một ứng dụng web tìm kiếm các nguồn truyền phát trực tuyến trên Internet. Nhóm phát triển ứng dụng này nhắm đến một cách dễ dàng hơn trong việc tiêu thụ nội dung.",
-        "faqTitle": "Các câu hỏi thường gặp",
-        "q1": {
-            "body": "StreamWatch không lưu trữ bất kì nội dung nào. Khi bạn chọn xem một nội dung nào đó, ứng dụng sẽ tìm kiếm nội dung đó trên Internet (Khi nội dung tải và trong tab 'nguồn video' bạn sẽ tìm thấy nguồn đang được dùng). Nội dung không bao giờ được tải lên trên StreamWatch, mọi thứ đều được tìm kiếm thông qua phương thức này.",
-            "title": "Nội dung đến từ đâu?"
-        },
-        "q2": {
-            "body": "Việc yêu cầu thêm một chương trình truyền hình hoặc phim là điều bất khả thi bởi vì StreamWatch không quản lý bất kỳ nội dung nào. Tất cả nội dung được truyền thông qua những nguồn trên internet.",
-            "title": "Tôi có thể yêu cầu thêm một chương trình truyền hình hoặc phim ở đâu?"
-        },
-        "q3": {
-            "body": "Các kết quả tìm kiếm được cung cấp bởi The Movie Database (TMDB) và hiện lên bất kể các nguồn của trang thực sự có lưu trữ nội dung đó hay không.",
-            "title": "Tại sao kết quả tìm kiếm hiển thị chương trình truyền hình hoặc phim nhưng tôi không thể xem nó?"
-        },
-        "title": "Về StreamWatch",
-        "q4": {
-            "body": "Tất cả dữ liệu đều được đồng bộ với hệ thống cộng đồng, bất kỳ ai cũng có thể sử dụng tự do.",
-            "title": "Còn dữ liệu với mấy thứ của tôi thì sao?"
-        },
-        "q5": {
-            "body": "StreamWatch có Discord server nằm ở phần đầu trang này đó!",
-            "title": "Muốn biết thêm thì làm sao?"
-        }
+  "about": {
+    "description": "P-Stream là một nhánh của movie-web được đảm bảo sẽ tiếp tục hoạt động ngay cả sau khi movie-web.app ngừng hoạt động. P-Stream chạy trên VPS riêng tư, tự lưu trữ. Tôi điều hành trang web này phi lợi nhuận; có rất ít quảng cáo vì tôi tin vào phương tiện truyền thông miễn phí.",
+    "faqTitle": "Các câu hỏi thường gặp",
+    "q1": {
+      "body": "P-Stream không lưu trữ bất kì nội dung nào. Khi bạn chọn xem một nội dung nào đó, ứng dụng sẽ tìm kiếm nội dung đó trên Internet (Khi nội dung tải và trong tab 'nguồn video' bạn sẽ tìm thấy nguồn đang được dùng). Nội dung không bao giờ được tải lên trên P-Stream, mọi thứ đều được tìm kiếm thông qua phương thức này.",
+      "title": "Nội dung đến từ đâu?",
+      "section": "chung"
     },
-    "actions": {
-        "copied": "Đã sao chép",
-        "copy": "Sao chép"
+    "q2": {
+      "body": "Việc yêu cầu thêm một chương trình truyền hình hoặc phim là điều bất khả thi bởi vì P-Stream không quản lý bất kỳ nội dung nào. Tất cả nội dung được truyền thông qua những nguồn trên internet.",
+      "title": "Tôi có thể yêu cầu thêm một chương trình truyền hình hoặc phim ở đâu?",
+      "section": "tìm kiếm"
     },
-    "auth": {
-        "createAccount": "Chưa có tài khoản? <0>Hãy tạo tài khoản.</0>",
-        "deviceNameLabel": "Tên thiết bị",
-        "deviceNamePlaceholder": "Điện thoại cá nhân",
-        "generate": {
-            "description": "Mật ngữ đóng vai trò là tên người dùng và mật khẩu của bạn. Hãy giữ nó an toàn vì bạn sẽ cần nó để đăng nhập vào tài khoản của bạn",
-            "next": "Tôi đã lưu giữ mật ngữ của mình",
-            "passphraseFrameLabel": "Mật ngữ",
-            "title": "Mật ngữ của bạn"
-        },
-        "hasAccount": "Đã có tài khoản? <0>Hãy đăng nhập.</0>",
-        "login": {
-            "description": "Hãy nhập mật ngữ của bạn để đăng nhập vào tài khoản",
-            "deviceLengthError": "Hãy nhập tên thiết bị",
-            "passphraseLabel": "Mật ngữ gồm 12 từ",
-            "passphrasePlaceholder": "Mật ngữ",
-            "submit": "Đăng nhập",
-            "title": "Đăng nhập vào tài khoản của bạn",
-            "validationError": "Mật ngữ không chính xác hoặc không đầy đủ"
-        },
-        "register": {
-            "information": {
-                "color1": "Màu hồ sơ số một",
-                "color2": "Màu hồ sơ số hai",
-                "header": "Hãy nhập tên cho thiết bị của bạn và chọn màu sắc và biểu tượng người dùng",
-                "icon": "Biểu tượng người dùng",
-                "next": "Tiếp theo",
-                "title": "Thông tin tài khoản"
-            }
-        },
-        "trust": {
-            "failed": {
-                "text": "Bạn đã cài đặt nó một cách chính xác chưa?",
-                "title": "Không thể truy vấn máy chủ"
-            },
-            "host": "Bạn đang kết nối đến máy chủ <0>{{hostname}}</0> - vui lòng chắc chắn rằng bạn tin tưởng máy chủ này trước khi tạo tài khoản",
-            "no": "Quay lại",
-            "title": "Bạn có tin tưởng máy chủ này không?",
-            "yes": "Tôi tin tưởng máy chủ này",
-            "noHostTitle": "Server chưa được cấu hình!",
-            "noHost": "Server chưa được cấu hình, nên bạn không thể tạo tài khoản"
-        },
-        "verify": {
-            "description": "Vui lòng nhập mật ngữ của bạn lúc nãy đễ chắc chắn rằng bạn đã lưu nó và để tạo tài khoản",
-            "invalidData": "Dữ liệu không hợp lệ",
-            "noMatch": "Mật ngữ không khớp",
-            "passphraseLabel": "Mật ngữ 12 ký tự của bạn",
-            "recaptchaFailed": "Xác minh bằng ReCaptcha không hợp lệ",
-            "register": "Tạo tài khoản",
-            "title": "Nhập lại mật ngữ của bạn"
-        }
+    "q3": {
+      "body": "Các kết quả tìm kiếm được cung cấp bởi The Movie Database (TMDB) và hiện lên bất kể các nguồn của trang thực sự có lưu trữ nội dung đó hay không.",
+      "title": "Tại sao kết quả tìm kiếm hiển thị chương trình truyền hình hoặc phim nhưng tôi không thể xem nó?",
+      "section": "tìm kiếm"
     },
-    "errors": {
-        "badge": "Lỗi",
-        "details": "Thông tin về lỗi",
-        "reloadPage": "Tải lại trang",
-        "showError": "Hiển thị thông tin về lỗi",
-        "title": "Đã xảy ra lỗi!"
+    "title": "Về P-Stream",
+    "q4": {
+      "body": "Tất cả dữ liệu đều được đồng bộ với hệ thống cộng đồng, bất kỳ ai cũng có thể sử dụng tự do.",
+      "title": "Còn dữ liệu với mấy thứ của tôi thì sao?",
+      "section": "chung"
     },
-    "footer": {
-        "legal": {
-            "disclaimer": "Tuyên bố miễn trừ trách nhiệm",
-            "disclaimerText": "StreamWatch không lưu trữ bất kì file nào, nó chỉ đến những đường dẫn của các dịch vụ bên thứ ba. Bất kỳ vấn đề nào về pháp lý nên được đưa đến chủ sỡ hữu của file hoặc những nhà cung cấp đó. StreamWatch hoàn toàn không chịu trách nhiệm cho bất kỳ nội dung nào được chiếu từ các nhà cung cấp."
-        },
-        "links": {
-            "discord": "Discord",
-            "dmca": "DMCA",
-            "github": "GitHub",
-            "twitter": "Twitter"
-        },
-        "tagline": "Xem các chương trình và phim yêu thích của bạn với ứng dụng phát trực tuyến nguồn mở này."
+    "q5": {
+      "body": "P-Stream có Discord server nằm ở phần đầu trang này đó!",
+      "title": "Muốn biết thêm thì làm sao?",
+      "section": "chung"
     },
-    "global": {
-        "name": "StreamWatch",
-        "pages": {
-            "about": "Thông tin",
-            "dmca": "DMCA",
-            "login": "Đăng nhập",
-            "onboarding": "Cài đặt",
-            "pagetitle": "{{title}} - StreamWatch",
-            "register": "Đăng ký",
-            "settings": "Cài đặt",
-            "migration": "Chuyển tài khoản",
-            "discover": "Khám phá",
-            "support": "Hỗ trợ khách hàng",
-            "jip": "Jip"
-        }
+    "q10": {
+      "body": "TMDB hỗ trợ tìm kiếm của chúng tôi. Hãy thử nhấn vào biểu tượng 🔎 để xem các tùy chọn tìm kiếm nâng cao nếu kết quả không chính xác.",
+      "title": "Tôi không thể tìm thấy bộ phim/chương trình mà tôi đang tìm kiếm!",
+      "section": "tìm kiếm"
     },
-    "home": {
-        "bookmarks": {
-            "sectionTitle": "Đánh dấu"
-        },
-        "continueWatching": {
-            "sectionTitle": "Tiếp tục xem"
-        },
-        "mediaList": {
-            "stopEditing": "Hoàn thành"
-        },
-        "search": {
-            "allResults": "Đó là tất cả chúng tôi có!",
-            "failed": "Không thể tìm thấy nội dung, hãy thử lại!",
-            "loading": "Đang tải...",
-            "noResults": "Chúng tôi không thể tìm thấy gì!",
-            "placeholder": {
-                "default": "Bạn muốn xem gì?",
-                "extra": [
-                    "Bạn đang muốn làm gì?"
-                ]
-            },
-            "sectionTitle": "Kết quả tìm kiếm"
-        },
-        "titles": {
-            "day": {
-                "default": "Chiều nay bạn muốn coi gì?",
-                "extra": [
-                    "Cảm thấy muốn phiêu lưu? Phim Công viên kỷ Jura có thể là sự lựa chọn hoàn hảo cho bạn."
-                ]
-            },
-            "morning": {
-                "default": "Sáng nay bạn muốn coi gì?",
-                "extra": [
-                    "Tôi nghe nói rằng bộ phim Before Sunrise hay đấy"
-                ]
-            },
-            "night": {
-                "default": "Đêm nay bạn muốn coi gì?",
-                "extra": [
-                    "Cảm thấy mệt? Tôi nghe nói phim The Exorcist hay đấy."
-                ]
-            }
-        }
+    "q23": {
+      "body": "Nó là một công cụ local proxy được dùng để kết nối các đường truyền mà ngăn chặn các máy quét. Nó bắt chước phiên duyệt web của bạn. Nó cũng hoàn toàn là một mã nguồn mở và có thể được tìm thấy trên github.",
+      "title": "Tiện ích mở rộng là gì? Nó có an toàn không?",
+      "section": "kết nối"
     },
-    "media": {
-        "episodeDisplay": "M{{season}} T{{episode}}",
-        "types": {
-            "movie": "Phim",
-            "show": "Chương trình truyền hình"
-        }
+    "q25": {
+      "body": "Chúng tôi ưu tiên Tiếng Anh, nhưng một số nguồn cung cấp những ngôn ngữ khác. Hãy thử chuyển nguồn. Đối với FED API, chỉ có Safari mới hỗ trợ đổi âm thanh trong những tệp MP4.",
+      "title": "Làm sao để tôi đổi ngôn ngữ?",
+      "section": "ngôn ngữ"
     },
-    "navigation": {
-        "banner": {
-            "offline": "Hãy kiểm tra kết nối Internet của bạn"
-        },
-        "menu": {
-            "about": "Về chúng tôi",
-            "logout": "Đăng xuất",
-            "register": "Đồng bộ hóa với đám mây",
-            "settings": "Cài đặt",
-            "support": "Hỗ trợ"
-        }
+    "q20": {
+      "body": "FED API là công cụ quét riêng của chúng tôi kéo các luồng trực tiếp từ Febbox. Mỗi tài khoản Febbox miễn phí bao gồm 100 GB/tháng băng thông không giới hạn và chúng tôi sử dụng UI token để thu thập nội dung như thể bạn đang tự xem. Thiết lập thông qua trình duyệt máy tính để bàn là dễ nhất, nhưng hướng dẫn di động có sẵn trên Discord của chúng tôi.",
+      "title": "FED API là gì?",
+      "section": "kết nối"
     },
-    "notFound": {
-        "badge": "Không tìm thấy",
-        "goHome": "Quay lại trang chính",
-        "message": "Chúng tôi đã tìm kiếm khắp nơi: dưới thùng rác, trong tủ quần áo, đằng sau máy chủ proxy nhưng vẫn không thể tìm thấy trang bạn đang tìm kiếm.",
-        "title": "Không thể tìm thấy trang"
+    "q19": {
+      "body": "Trong khi phát, hãy nhấn vào biểu tượng ⚙️ , sau đó chọn một nguồn khác trong \"nguồn video\".",
+      "title": "Làm cách nào để đổi nguồn?",
+      "section": "phát lại"
     },
-    "onboarding": {
-        "defaultConfirm": {
-            "cancel": "Huỷ",
-            "confirm": "Chọn cài đặt mặc định",
-            "description": "Cài đặt mặc định có thể dẫn đến việc phát video chậm.",
-            "title": "Bạn có chắc không?"
-        },
-        "extension": {
-            "back": "Trở lại",
-            "explainer": "Bạn có thể sử dụng các nguồn tốt nhất mà chúng tôi cung cấp bằng cách sử dụng tiện ích mở rộng trình duyệt. Đơn giản chỉ cần cài đặt."
-        }
+    "q26": {
+      "body": "Sử dụng lựa chọn \"Tùy chỉnh\" trong cài đặt phụ đề hoặc nhấn [ và ] trên bàn phím của bạn để điều chỉnh. Bạn cũng có thể tải lên tệp phụ đề riêng của bạn.",
+      "title": "Phụ đề của tôi không đồng bộ.",
+      "section": "ngôn ngữ"
     },
-    "player": {
-        "back": {
-            "default": "Quay lại trang chính",
-            "short": "Quay lại"
-        },
-        "menus": {
-            "episodes": {
-                "button": "Tập",
-                "loadingList": "Đang tải...",
-                "loadingTitle": "Đang tải..."
-            },
-            "sources": {
-                "title": "Nguồn"
-            }
-        },
-        "metadata": {
-            "notFound": {
-                "badge": "Không tìm thấy",
-                "homeButton": "Quay lại trang chính",
-                "text": "Chúng tôi không thể tìm thấy nội dung mà bạn yêu cầu. Hoặc là nó đã bị xóa, hoặc bạn đã xáo trộn URL.",
-                "title": "Không thể tìm thấy nội dung."
-            }
-        },
-        "playbackError": {
-            "title": "Rất tiếc, đã hỏng!"
-        }
+    "q6": {
+      "title": "Có ứng dụng P-Stream không?",
+      "body": "Chưa, nhưng bạn có thể cài đặt nó dưới dạng PWA (ỨProgressive Web App). Trên iOS, hãy sử dụng Safari → Chia sẻ → Thêm vào Màn hình chính. Trên Android, hãy sử dụng Chrome → 3 chấm → Thêm vào Màn hình chính. APK thử nghiệm có sẵn thông qua Discord của chúng tôi, nhưng không được khuyến khích.",
+      "section": "chung"
+    },
+    "q7": {
+      "title": "Làm cách nào để tạo tài khoản?",
+      "body": "Nhấn vào \"Đồng bộ hóa với đám mây\" trong menu thả xuống hoặc đi tới Cài đặt để tạo và đồng bộ hóa tài khoản cộng đồng.",
+      "section": "chung"
+    },
+    "q9": {
+      "title": "Phương tiện này bị thiếu / Tôi có thể yêu cầu phương tiện không?",
+      "body": "Không—vì chúng tôi không lưu trữ nội dung nên chúng tôi không thể thêm hoặc thay đổi nội dung có sẵn. Danh sách nội dung dựa trên những gì có thể truy cập công khai thông qua cơ chế tìm kiếm.",
+      "section": "tìm kiếm"
+    },
+    "help": "Không thể tìm được câu trả lời? <0>Nhận trợ giúp tại đây.</0>",
+    "searchPlaceholder": "Tìm kiếm câu hỏi thường gặp...",
+    "sections": {
+      "search": "Tính khả dụng của Tìm kiếm & Nội dung",
+      "playback": "Sự cố phát lại",
+      "language": "Cài đặt Ngôn ngữ & Phụ đề",
+      "general": "Chung",
+      "connections": "Kết nối"
+    },
+    "q11": {
+      "title": "Tại sao tôi lại thấy màn hình đen?",
+      "body": "Có khả năng là tệp video bị hỏng hoặc bị hỏng. Hãy thử chuyển đổi nguồn.",
+      "section": "phát lại"
+    },
+    "q12": {
+      "title": "Tập tôi đang xem không chính xác.",
+      "body": "Chuyển sang một nguồn khác. Chúng tôi không kiểm soát bất kỳ độ chính xác nào của nội dung hoặc tập.",
+      "section": "phát lại"
+    },
+    "q13": {
+      "title": "Chất lượng video không như tôi mong đợi.",
+      "body": "Hãy thử chuyển đổi nguồn. Chất lượng khác nhau tùy theo nhà cung cấp; API FED thường cung cấp nhiều tùy chọn hơn.",
+      "section": "phát lại"
+    },
+    "q14": {
+      "title": "4K không khả dụng.",
+      "body": "Nếu 4K không được hiển thị, có thể không có sẵn từ nguồn đó.",
+      "section": "phát lại"
+    },
+    "q15": {
+      "title": "Tại sao không có âm thanh?",
+      "body": "Đảm bảo thiết bị của bạn không bị tắt tiếng và thử chuyển đổi nguồn. Các vấn đề về âm thanh có thể là cụ thể do nguồn.",
+      "section": "phát lại"
+    },
+    "q16": {
+      "title": "Video bị nhuộm hoặc phai màu.",
+      "body": "Có thể là tệp bị lỗi hoặc video HDR. Đảm bảo thiết bị của bạn hỗ trợ HDR hoặc chuyển nguồn.",
+      "section": "phát lại"
+    },
+    "q17": {
+      "title": "Tôi đang gặp trục trặc về hình ảnh.",
+      "body": "Lỗi hình ảnh thường đến từ việc tải lên tệp kém. Hãy thử chuyển đổi nguồn.",
+      "section": "phát lại"
+    },
+    "q18": {
+      "title": "Nguồn đang tải chậm.",
+      "body": "Tốc độ phụ thuộc vào trang web lưu trữ. Chuyển sang một nguồn khác để có hiệu suất tốt hơn.",
+      "section": "phát lại"
+    },
+    "q21": {
+      "title": "FED API có hoạt động trên mọi thiết bị không?",
+      "body": "Có. Một khi hoàn tất cài đặt, token của bạn sẽ hoạt động trên mọi thiết bị đã đăng nhập.",
+      "section": "kết nối"
+    },
+    "q22": {
+      "title": "Tại sao tôi cần phần tiện ích mở rộng hoặc proxy tùy chỉnh?",
+      "body": "Một số nguồn chặn máy quét. Tiện ích mở rộng hoạt động như một local proxy và bỏ qua những chướng vật như chặn IP, headers và cookies.",
+      "section": "kết nối"
+    },
+    "q24": {
+      "title": "Febbox token của tôi thất bại trong lúc thiết lập. Tôi nên làm gì?",
+      "body": "ISP của bạn có thể đang chặn FED API. Cài đặt một DNS tùy chọn như 1.1.1.1 hay NextDNS. Bạn cũng có thể thay đổi khu vực của bạn trong panel người dùng.",
+      "section": "kết nối"
     }
+  },
+  "actions": {
+    "copied": "Đã sao chép",
+    "copy": "Sao chép"
+  },
+  "auth": {
+    "createAccount": "Chưa có tài khoản? <0>Hãy tạo tài khoản.</0>",
+    "deviceNameLabel": "Tên thiết bị",
+    "deviceNamePlaceholder": "Điện thoại cá nhân",
+    "generate": {
+      "description": "Passphrase đóng vai trò là tên người dùng và mật khẩu của bạn. Hãy giữ nó an toàn vì bạn sẽ cần nó để đăng nhập vào tài khoản của bạn.<bold>ĐỪNG làm mất passphrase của bạn!</bold>",
+      "next": "Tôi đã lưu giữ mật ngữ của mình",
+      "passphraseFrameLabel": "Mật ngữ",
+      "title": "Mật ngữ của bạn"
+    },
+    "hasAccount": "Đã có tài khoản? <0>Hãy đăng nhập.</0>",
+    "login": {
+      "description": "Hãy nhập mật ngữ của bạn để đăng nhập vào tài khoản",
+      "deviceLengthError": "Hãy nhập tên thiết bị",
+      "passphraseLabel": "Mật ngữ gồm 12 từ",
+      "passphrasePlaceholder": "Mật ngữ",
+      "submit": "Đăng nhập",
+      "title": "Đăng nhập vào tài khoản của bạn",
+      "validationError": "Mật ngữ không chính xác hoặc không đầy đủ"
+    },
+    "register": {
+      "information": {
+        "color1": "Màu hồ sơ số một",
+        "color2": "Màu hồ sơ số hai",
+        "header": "Hãy nhập tên cho thiết bị của bạn và chọn màu sắc và biểu tượng người dùng!",
+        "icon": "Biểu tượng người dùng",
+        "next": "Tiếp theo",
+        "title": "Thông tin tài khoản"
+      }
+    },
+    "trust": {
+      "failed": {
+        "text": "Bạn đã cài đặt nó một cách chính xác chưa?",
+        "title": "Không thể truy vấn máy chủ"
+      },
+      "host": "Bạn đang kết nối đến máy chủ <0>{{hostname}}</0> - vui lòng chắc chắn rằng bạn tin tưởng máy chủ này trước khi tạo tài khoản...",
+      "no": "Quay lại",
+      "title": "Bạn có tin tưởng máy chủ này không?",
+      "yes": "Tôi tin tưởng máy chủ này",
+      "noHostTitle": "Máy chủ chưa được cấu hình!",
+      "noHost": "Máy chủ chưa được cấu hình, nên bạn không thể tạo tài khoản"
+    },
+    "verify": {
+      "description": "Vui lòng nhập mật ngữ của bạn lúc nãy đễ chắc chắn rằng bạn đã lưu nó và để tạo tài khoản",
+      "invalidData": "Dữ liệu không hợp lệ",
+      "noMatch": "Mật ngữ không khớp",
+      "passphraseLabel": "Mật ngữ 12 ký tự của bạn",
+      "recaptchaFailed": "Xác minh bằng ReCaptcha không hợp lệ",
+      "register": "Tạo tài khoản",
+      "title": "Nhập lại mật ngữ của bạn"
+    }
+  },
+  "errors": {
+    "badge": "Lỗi",
+    "details": "Thông tin về lỗi",
+    "reloadPage": "Tải lại trang",
+    "showError": "Hiển thị thông tin về lỗi",
+    "title": "Đã xảy ra lỗi!"
+  },
+  "footer": {
+    "legal": {
+      "disclaimer": "Tuyên bố miễn trừ trách nhiệm",
+      "disclaimerText": "P-Stream không lưu trữ bất kì file nào, nó chỉ đến những đường dẫn của các dịch vụ bên thứ ba. Bất kỳ vấn đề nào về pháp lý nên được đưa đến chủ sỡ hữu của file hoặc những nhà cung cấp đó. P-Stream hoàn toàn không chịu trách nhiệm cho bất kỳ nội dung nào được chiếu từ các nhà cung cấp."
+    },
+    "links": {
+      "discord": "Discord",
+      "legal": "Legal / DMCA",
+      "github": "GitHub",
+      "twitter": "Twitter",
+      "funding": "Hỗ trợ chúng tôi"
+    },
+    "tagline": "Xem các chương trình và phim yêu thích của bạn với ứng dụng phát trực tuyến nguồn mở này! (っ'ヮ'c)"
+  },
+  "global": {
+    "name": "P-Stream",
+    "pages": {
+      "about": "Thông tin",
+      "legal": "Legal / DMCA",
+      "login": "Đăng nhập",
+      "onboarding": "Cài đặt",
+      "pagetitle": "{{title}} - P-Stream",
+      "register": "Đăng ký",
+      "settings": "Cài đặt",
+      "migration": "Chuyển tài khoản",
+      "discover": "Khám phá",
+      "support": "Hỗ trợ khách hàng",
+      "jip": "Jip"
+    }
+  },
+  "home": {
+    "bookmarks": {
+      "sectionTitle": "Đánh dấu"
+    },
+    "continueWatching": {
+      "sectionTitle": "Tiếp tục xem..."
+    },
+    "mediaList": {
+      "stopEditing": "Hoàn thành"
+    },
+    "search": {
+      "allResults": "Đó là tất cả chúng tôi có...",
+      "failed": "Không tìm thấy phương tiện, hãy thử lại!",
+      "loading": "Đang tải...",
+      "noResults": "Chúng tôi không thể tìm thấy gì :(",
+      "placeholder": {
+        "default": "Bạn muốn xem gì?",
+        "extra": [
+          "Bạn đang muốn làm gì?",
+          "Chúng tôi có nên xóa trình duyệt web của bạn không?",
+          "Ban muốn xem gì?",
+          "P-Stream là trang web tuyệt nhất!",
+          "Có gì trong danh sách phim của bạn hôm nay?",
+          "Hôm nay bạn thế nào?",
+          "Xin lỗi nha, trang này hay hỏng lắm...",
+          "Không phải P-Stream là tuyệt nhất sao?",
+          ">ᴗ<"
+        ]
+      },
+      "sectionTitle": "Kết quả tìm kiếm",
+      "discover": "Khám phá",
+      "empty": {
+        "default": "Chào mừng, tìm phương tiện truyền thông để xem tại đây!",
+        "extra": [
+          "Không có gì ở đây :(",
+          "Thật trống rỗng...",
+          "Trống trải thật.",
+          "Xin chào người dùng mới :3"
+        ]
+      },
+      "discoverMore": "Khám phá thêm"
+    },
+    "titles": {
+      "day": {
+        "default": "Chiều nay bạn muốn coi gì?",
+        "extra": [
+          "Cảm thấy muốn phiêu lưu? Phim Công viên kỷ Jura có thể là sự lựa chọn hoàn hảo cho bạn."
+        ]
+      },
+      "morning": {
+        "default": "Sáng nay bạn muốn coi gì?",
+        "extra": ["Tôi nghe nói rằng bộ phim Before Sunrise hay đấy"]
+      },
+      "night": {
+        "default": "Đêm nay bạn muốn coi gì?",
+        "extra": ["Cảm thấy mệt? Tôi nghe nói phim The Exorcist hay đấy."]
+      },
+      "420": {
+        "default": "Bạn muốn xem gì ngày 20/4 này?",
+        "extra": ["Chúc mừng ngày 20/4 🥳 !"]
+      },
+      "69": {
+        "default": "Muốn khuấy đảo tí cho đời thêm vui không?",
+        "extra": ["Chúc mừng 69 ngày 😘!"]
+      }
+    },
+    "mediaCard": {
+      "moreInfo": "Thông tin thêm",
+      "copyLink": "Sao chép Link",
+      "close": "Đóng"
+    }
+  },
+  "media": {
+    "episodeDisplay": "M{{season}} T{{episode}}",
+    "types": {
+      "movie": "Phim",
+      "show": "Chương trình truyền hình"
+    },
+    "unreleased": "Chưa phát hành",
+    "episodeShort": "T",
+    "seasonShort": "M"
+  },
+  "navigation": {
+    "banner": {
+      "offline": "Hãy kiểm tra kết nối Internet của bạn"
+    },
+    "menu": {
+      "about": "Về chúng tôi và FAQ",
+      "logout": "Đăng xuất",
+      "register": "Đồng bộ hóa với đám mây",
+      "settings": "Cài đặt",
+      "support": "Hỗ trợ",
+      "discover": "Khám phá",
+      "development": "Phát triển"
+    }
+  },
+  "notFound": {
+    "badge": "Không tìm thấy",
+    "goHome": "Quay lại trang chính",
+    "message": "Chúng tôi đã tìm kiếm khắp nơi: dưới thùng rác, trong tủ quần áo, đằng sau máy chủ proxy nhưng vẫn không thể tìm thấy trang bạn đang tìm kiếm. (ಥ﹏ಥ)",
+    "title": "Không thể tìm thấy trang",
+    "reloadButton": "Thử lại"
+  },
+  "onboarding": {
+    "defaultConfirm": {
+      "cancel": "Huỷ",
+      "confirm": "Chọn cài đặt mặc định",
+      "description": "Cài đặt mặc định có thể dẫn đến việc phát video chậm. Bạn sẽ bỏ lỡ những nguồn tốt nhất!",
+      "title": "Bạn có chắc không?"
+    },
+    "extension": {
+      "back": "Trở lại",
+      "explainer": "Bạn có thể sử dụng các nguồn tốt nhất mà chúng tôi cung cấp bằng cách sử dụng tiện ích mở rộng trình duyệt. Cài đặt rất đơn giản.👌",
+      "status": {
+        "outdated": "Phiên bản tiện ích mở rộng quá cũ",
+        "disallowed": "Tiện ích mở rộng chưa được bật cho trang này (,,>﹏<,,)",
+        "disallowedAction": "Bật tiện ích mở rộng",
+        "failed": "Không thể yêu cầu trạng thái",
+        "loading": "Đang chờ bạn cài đặt tiện ích mở rộng",
+        "success": "Tiện ích mở rộng đang hoạt động như mong đợi!"
+      },
+      "extensionHelp": "Nếu bạn đã cài đặt tiện ích mở rộng nhưng không được phát hiện, hãy <bold>mở tiện ích mở rộng thông qua menu tiện ích mở rộng của trình duyệt</bold> và làm theo các bước trên màn hình.",
+      "explainerIos": "Thật không may, tiện ích mở rộng của trình duyệt không được hỗ trợ trên iOS. Nhấn <bold>Quay lại</bold> để chọn tùy chọn khác.",
+      "linkChrome": "Cài đặt tiện ích mở rộng của Chrome",
+      "linkFirefox": "Cài đặt tiện ích mở rộng của Firefox",
+      "notDetecting": "Đã cài đặt trên Chrome nhưng trang web không phát hiện? Hãy thử tải lại trang!",
+      "notDetectingAction": "Tải lại trang",
+      "submit": "Tiếp tục",
+      "title": "Hãy bắt đầu với một tiện ích mở rộng"
+    },
+    "start": {
+      "moreInfo": {
+        "explainer": {
+          "outro": "Nếu bạn còn thắc mắc cách hoạt động của trang, liên hệ server <0>P-Stream Discord</0>!",
+          "proxy": "2. Proxy",
+          "extensionDescription": "Tiện ích mở rộng này cho phép bạn truy cập vào hầu hết các nguồn. Nó hoạt động như một proxy cục bộ và có thể xử lý các trang web cần cookie hoặc tiêu đề đặc biệt để tải.",
+          "proxyDescription": "Proxy thu thập phương tiện truyền thông từ các trang web khác. Nó bỏ qua các hạn chế của trình duyệt (như CORS) để cho phép thu thập.",
+          "fedapi": {
+            "fedapiDescription": "Mang theo tài khoản Febbox MIỄN PHÍ của riêng bạn để có quyền truy cập vào FED API (Riêng tư), nguồn tốt nhất với chất lượng 4K, Dolby Atmos, bỏ qua phần giới thiệu và thời gian tải nhanh nhất! Khuyến nghị cao!",
+            "fedapi": "Bổ sung: Mã token FED API (Riêng tư)"
+          },
+          "extension": "1. Tiện ích mở rộng",
+          "intro": "P-Stream không lưu trữ video. Nó dựa vào các trang web của bên thứ ba để có nội dung, vì vậy bạn cần chọn cách kết nối với các trang web đó.",
+          "options": "Các lựa chọn của bạn:",
+          "default": "3. Thiết lập mặc định",
+          "defaultDescription": "Sử dụng proxy tích hợp của P-Stream. Đây là lựa chọn dễ nhất nhưng có thể chậm hơn do băng thông được chia sẻ."
+        },
+        "recommended": {
+          "desktop": {
+            "description": "Tiện ích mở rộng + FED API (Riêng tư)",
+            "title": "Desktop:"
+          },
+          "android": {
+            "description": "Tiện ích mở rộng + FED API (Riêng tư)",
+            "title": "Android:"
+          },
+          "title": "Bạn không biết nên chọn gì?",
+          "subtitle": "Cấu hình được đề xuất:",
+          "iOS": {
+            "title": "iOS:",
+            "description": "Proxy tùy chỉnh + FED API (Riêng tư)"
+          }
+        },
+        "button": "Thêm thông tin",
+        "title": "Tìm hiểu thiết lập"
+      },
+      "explainer": "Để có được luồng phát trực tuyến tốt nhất có thể, bạn sẽ cần chọn phương pháp phát trực tuyến mà bạn muốn sử dụng.",
+      "options": {
+        "extension": {
+          "action": "Cài đặt tiện ích mở rộng",
+          "description": "Cài đặt tiện ích mở rộng trình duyệt và truy cập vào các nguồn bổ sung! Hãy nhớ bật tiện ích này cho trang web này.",
+          "quality": "Chất lượng tốt nhất + Nhiều nguồn hơn",
+          "title": "Tiện ích mở rộng trình duyệt"
+        },
+        "or": "hoặc",
+        "default": {
+          "text": "Tôi không muốn có luồng chất lượng tốt, hãy sử dụng thiết lập mặc định."
+        },
+        "proxy": {
+          "action": "Thiết lập proxy",
+          "description": "Thiết lập proxy miễn phí chỉ trong 5 phút! Cải thiện độ tin cậy khi tải!",
+          "quality": "Chất lượng tốt",
+          "title": "Proxy tùy chỉnh"
+        }
+      },
+      "title": "Hãy thiết lập P-Stream nào🥳"
+    },
+    "proxy": {
+      "explainer": "Bạn có thể có được luồng chất lượng cao bằng cách tạo và sử dụng proxy tự phục vụ.",
+      "title": "Hãy tạo một proxy mới",
+      "back": "Quay về",
+      "input": {
+        "errorConnection": "Không thể kết nối tới proxy",
+        "errorInvalidUrl": "URL không hợp lệ",
+        "errorNotProxy": "Không phải proxy mà là trang web",
+        "label": "Proxy URL",
+        "placeholder": "https://"
+      },
+      "link": "Tìm hiểu cách tạo proxy",
+      "submit": "Nhập proxy"
+    }
+  },
+  "player": {
+    "back": {
+      "default": "Quay lại trang chính",
+      "short": "Quay lại"
+    },
+    "menus": {
+      "episodes": {
+        "button": "Tập",
+        "loadingList": "Đang tải...",
+        "loadingTitle": "Đang tải...",
+        "markAsWatched": "Đánh dấu là đã xem",
+        "markAsUnwatched": "Đánh dấu là chưa xem",
+        "emptyState": "Không có tập nào trong mùa này, hãy quay lại sau (xin lỗi :3)...",
+        "episodeBadge": "T{{episode}}",
+        "loadingError": "Lỗi khi tải mùa này",
+        "unairedEpisodes": "Một hoặc nhiều tập trong mùa này đã bị tắt vì chúng chưa được phát sóng.",
+        "seasons": "Mùa",
+        "showMore": "Xem thêm",
+        "showLess": "Hiển thị ít hơn"
+      },
+      "sources": {
+        "title": "Nguồn",
+        "failed": {
+          "text": "Đã xảy ra lỗi khi cố gắng tìm video... Hãy thử nguồn khác?"
+        },
+        "noStream": {
+          "text": "Nguồn này không có luồng nào cho bộ phim hoặc chương trình này. /ᐠ - ˕ -マ Ⳋ",
+          "title": "Không có luồng :("
+        },
+        "noEmbeds": {
+          "text": "Chúng tôi không tìm thấy bất kỳ nội dung nhúng nào, vui lòng thử nguồn khác.",
+          "title": "Không tìm thấy mã nhúng"
+        },
+        "unknownOption": "Không rõ",
+        "editOrder": "Sắp xếp thứ tự"
+      },
+      "quality": {
+        "hint": "Bạn có thể thử <0>chuyển đổi nguồn</0> để có các tùy chọn chất lượng khác nhau.",
+        "iosNoQuality": "Do những hạn chế do Apple xác định, lựa chọn chất lượng không khả dụng trên iOS cho nguồn này. Bạn có thể thử <0>chuyển sang nguồn khác</0> để có các tùy chọn chất lượng khác.",
+        "automaticLabel": "Chất lượng tự động",
+        "title": "Chất lượng",
+        "auto": "Tự động"
+      },
+      "subtitles": {
+        "notFound": "Không có tùy chọn nào có sẵn phù hợp với truy vấn của bạn",
+        "customChoice": "Thả hoặc tải tập tin lên",
+        "customizeLabel": "Tùy chỉnh",
+        "onChoice": "Bật",
+        "settings": {
+          "backlink": "Phụ đề tùy chỉnh",
+          "delay": "Độ trễ phụ đề",
+          "fixCapitals": "Sửa lỗi viết hoa"
+        },
+        "title": "Phụ đề",
+        "unknownLanguage": "Không rõ",
+        "dropSubtitleFile": "Thả file phụ đề vào đây! >_<",
+        "empty": "Không có phụ đề nào được cung cấp cho video này.",
+        "useNativeSubtitles": "Sử dụng phụ đề video gốc",
+        "useNativeSubtitlesDescription": "Có thể sửa phụ đề khi phát và trong PiP",
+        "offChoice": "Tắt",
+        "SourceChoice": "Nguồn phụ đề",
+        "OpenSubtitlesChoice": "Phụ đề bên ngoài"
+      },
+      "playback": {
+        "speedLabel": "Tốc độ phát lại",
+        "title": "Cài đặt phát lại",
+        "disabled": "(Tắt trong buổi tiệc xem)"
+      },
+      "settings": {
+        "downloadItem": "Tải xuống",
+        "enableSubtitles": "Bật Phụ đề",
+        "experienceSection": "Trải nghiệm xem",
+        "playbackItem": "Cài đặt phát lại",
+        "audioItem": "Âm thanh",
+        "qualityItem": "Chất lượng",
+        "sourceItem": "Nguồn",
+        "subtitleItem": "Phụ đề",
+        "videoSection": "Cài đặt video"
+      },
+      "watchparty": {
+        "watchpartyItem": "Watch Party",
+        "notice": "Legacy Watch Party có thể không khả dụng đối với một số nguồn",
+        "legacyWatchparty": "Dùng legacy Watch Party"
+      },
+      "audio": {
+        "default": "Mặc định"
+      },
+      "downloads": {
+        "openIn": "Mở trong...",
+        "vlc": "VLC",
+        "iina": "IINA",
+        "hlsOpenInDisclaimer": "Mở luồng HLS với trình phát bên ngoài CÓ THỂ KHÔNG HOẠT ĐỘNG!",
+        "hlsDisclaimer": "Tải xuống được lấy trực tiếp từ nhà cung cấp. P-Stream không kiểm soát cách cung cấp tải xuống.<br /><br />Xin lưu ý rằng bạn đang tải xuống danh sách phát HLS, <bold>không nên tải xuống nếu bạn không quen với các định dạng phát trực tuyến nâng cao</bold>. Hãy thử các nguồn khác nhau cho các định dạng khác nhau.",
+        "onAndroid": {
+          "1": "Để tải xuống trên Android, hãy nhấp vào nút tải xuống, sau đó trên trang mới, <bold>nhấn và giữ</bold> vào video, sau đó chọn <bold>lưu</bold>.",
+          "shortTitle": "Tải xuống / Android",
+          "title": "Tải xuống trên Android"
+        },
+        "onIos": {
+          "1": "Để tải xuống trên iOS, hãy nhấp vào nút tải xuống, sau đó trên trang mới, nhấp vào <bold><ios_share /></bold>, sau đó <bold>Lưu vào Tệp <ios_files /></bold>.",
+          "shortTitle": "Tải xuống / iOS",
+          "title": "Tải xuống trên iOS"
+        },
+        "onPc": {
+          "1": "Trên PC, nhấp vào nút tải xuống, sau đó, trên trang mới, nhấp chuột phải vào video và chọn <bold>Lưu video thành</bold>",
+          "shortTitle": "Tải xuống / PC",
+          "title": "Tải xuống trên PC"
+        },
+        "title": "Tải xuống",
+        "button": "Lượt tải xuống",
+        "hlsDownloader": "Hoặc, hãy truy cập <0>trang web tải xuống hls</0> và dán URL danh sách phát bên dưới.",
+        "disclaimer": "Tải xuống được lấy trực tiếp từ nhà cung cấp. P-Stream không kiểm soát cách cung cấp tải xuống.",
+        "copyHlsPlaylist": "Sao chép liên kết danh sách phát HLS",
+        "downloadSubtitle": "Tải xuống phụ đề hiện tại",
+        "downloadVideo": "Tải xuống video"
+      }
+    },
+    "metadata": {
+      "notFound": {
+        "badge": "Không tìm thấy",
+        "homeButton": "Quay lại trang chính",
+        "text": "Chúng tôi không thể tìm thấy nội dung mà bạn yêu cầu. Hoặc là nó đã bị xóa, hoặc bạn đã xáo trộn URL.",
+        "title": "Không thể tìm thấy nội dung."
+      },
+      "failed": {
+        "homeButton": "Về trang chính",
+        "badge": "Thất bại"
+      },
+      "api": {
+        "text": "Không thể tải dữ liệu API, vui lòng kiểm tra kết nối internet của bạn.",
+        "title": "Không thể tải dữ liệu API"
+      },
+      "extensionPermission": {
+        "badge": "Quyền bị thiếu",
+        "button": "Sử dụng tiện ích mở rộng",
+        "text": "Bạn có tiện ích mở rộng cho trình duyệt, nhưng chúng tôi cần sự cho phép của bạn để bắt đầu sử dụng tiện ích mở rộng. (¬_¬)",
+        "title": "Cấu hình tiện ích mở rộng"
+      },
+      "legal": {
+        "text": "Phương tiện truyền thông này không còn khả dụng do thông báo gỡ xuống hoặc khiếu nại về bản quyền. 😨",
+        "badge": "Đã xóa",
+        "title": "Phương tiện truyền thông đã bị xóa"
+      }
+    },
+    "playbackError": {
+      "title": "Rất tiếc, đã hỏng!",
+      "homeButton": "Về trang chính"
+    },
+    "scraping": {
+      "notFound": {
+        "homeButton": "Về trang chính",
+        "text": "Chúng tôi đã tìm kiếm thông qua các nhà cung cấp của mình và không thể tìm thấy phương tiện truyền thông bạn đang tìm kiếm! Chúng tôi không host các phương tiện truyền thông và không có quyền kiểm soát những gì có sẵn. Vui lòng nhấp vào 'Hiển thị chi tiết' bên dưới để biết thêm chi tiết.",
+        "badge": "Không tìm thấy",
+        "detailsButton": "Chi tiết",
+        "discoverButton": "Khám phá thêm",
+        "title": "Chúng tôi không tìm thấy"
+      },
+      "extensionFailure": {
+        "homeButton": "Về trang chính",
+        "badge": "Tiện ích mở rộng đã bị vô hiệu hóa",
+        "text": "Bạn đã cài đặt tiện ích mở rộng P-Stream. Để bắt đầu sử dụng, bạn cần bật tiện ích mở rộng cho trang web này.",
+        "enableExtension": "Bật tiện ích mở rộng",
+        "title": "Vui lòng bật tiện ích mở rộng"
+      },
+      "tips": {
+        "5": "Tải tiện ích mở rộng để có thêm nhiều nguồn hơn!",
+        "2": "Nhấp vào tiêu đề để sao chép liên kết!"
+      }
+    },
+    "casting": {
+      "enabled": "Truyền đến thiết bị 🎬"
+    }
+  },
+  "settings": {
+    "connections": {
+      "setup": {
+        "items": {
+          "default": "Cài đặt mặc định",
+          "extension": "Tiện ích mở rộng",
+          "proxy": "Proxy tùy chỉnh"
+        },
+        "redoSetup": "Thiết lập lại",
+        "successStatus": {
+          "description": "Tất cả mọi thứ đã sẵn sàng để bạn bắt đầu xem phương tiện bạn yêu thích. (๑>◡<๑)",
+          "title": "Mọi thứ đã hoàn tất!"
+        },
+        "unsetStatus": {
+          "title": "Bạn vẫn chưa hoàn thành cài đặt",
+          "description": "Xin nhấn vào nút bên phải để bắt đầu quy trình cài đặt."
+        },
+        "itemError": "Cài đặt của bạn có gì đó sai. Hãy làm lại bước cài đặt để sửa chữa nó. (ᴗ_ ᴗ。)"
+      },
+      "title": "Kết nối",
+      "workers": {
+        "documentation": "Tài liệu Proxy",
+        "emptyState": "Chưa có workers (｡•́︿•̀｡), thêm ở phía dưới",
+        "label": "Sử dụng các proxy worker tùy chỉnh",
+        "urlLabel": "Worker URLs",
+        "addButton": "Thêm worker mới",
+        "urlPlaceholder": "https://",
+        "proxyTMDB": {
+          "title": "Proxy TMDB",
+          "description": "Chỉ cần thiết nếu bạn không thể truy cập TheMovieDB trực tiếp, chẳng hạn như nếu ISP của bạn chặn nó. Khuyên dùng để hủy kích hoạt mục Khám phá để cải thiện hiệu suất với cái này."
+        },
+        "description": "Để làm ứng dụng hoạt động, mọi traffic đều được thông qua proxy. Kích hoạt cái này nếu bạn muốn mang theo workers của riêng bạn. <0>Instructions.</0>"
+      }
+    },
+    "preferences": {
+      "lowPerformanceModeDescription": "Tối ưu hóa ứng dụng cho các kết nối và thiết bị chậm hơn bằng cách tắt các tính năng sử dụng nhiều băng thông. Chế độ này giúp giảm mức sử dụng dữ liệu và cải thiện hiệu suất trong khi vẫn giữ nguyên chức năng tìm kiếm và xem phim. ",
+      "sourceOrderDescription": "Kéo và thả để sắp xếp lại các nguồn. Thao tác này sẽ xác định thứ tự các nguồn được kiểm tra cho phương tiện bạn đang cố gắng xem. Nếu một nguồn bị mờ đi, điều đó có nghĩa là <bold>tiện ích mở rộng</bold> là bắt buộc đối với nguồn đó. <br><br> <strong>(Thứ tự mặc định là tốt nhất cho hầu hết người dùng)</strong>",
+      "autoplayDescription": "Tự động phát tập tiếp theo trong một loạt phim sau khi kết thúc. Người dùng có thể bật bằng tiện ích mở rộng trình duyệt, proxy tùy chỉnh hoặc bằng thiết lập mặc định nếu được máy chủ cho phép."
+    },
+    "appearance": {
+      "options": {
+        "modalDescription": "Hiển thị chi tiết khi bạn nhấp vào thẻ phương tiện thay vì đi đến trang xem. Cần có Proxy hoặc Tiện ích mở rộng cho đoạn giới thiệu. Bị tắt theo mặc định."
+      }
+    }
+  },
+  "migration": {
+    "loginRequired": "Bạn phải đăng nhập để nhập dữ liệu của bạn! Xin quay lại và đăng nhập để tiếp tục.",
+    "start": {
+      "explainer": "Nếu bạn muốn nhập hoặc sao lưu dữ liệu, bạn cóthể làm điều đó sử dụng những tùy chọn phía dưới. Nó sẽ cho phép bạn giữ dữ liệu của mình khi bạn đổi máy chủ đầu cuối.",
+      "options": {
+        "download": {
+          "description": "Điều này sẽ tải dữ liệu đến thiết bị của bạn. Bạn có thể tải nó lên máy chủ mới hoặc giữ nguyên để bảo mật.",
+          "title": "Tải dữ liệu",
+          "quality": "Nâng cao",
+          "action": "Tải dữ liệu"
+        },
+        "upload": {
+          "quality": "Phục hồi sao lưu",
+          "title": "Tải lên dữ liệu",
+          "description": "Tải lên tệp dữ liệu đã xuất của bạn để phục hồi các trang dấu và quá trình trên tài khoản này.",
+          "action": "Tải lên dữ liệu"
+        },
+        "or": "hoặc",
+        "direct": {
+          "description": "Điều này sẽ nhập trực tiếp dữ liệu của bạn vào máy chủ mới. Đây là cách nhanh nhất. <br /><br />Tùy chọn này cho phép bạn giữ nguyên passphrase!",
+          "title": "Nhập trực tiếp",
+          "quality": "Dễ nhất và nhanh nhất",
+          "action": "Chuyển đổi dữ liệu"
+        }
+      },
+      "title": "Nhập dữ liệu của bạn"
+    },
+    "download": {
+      "description": "Điều này sẽ tải dữ liệu đến thiết bị của bạn. Bạn có thể tải nó lên máy chủ mới hoặc giữ nguyên để bảo mật.",
+      "status": {
+        "success": "Dữ liệu của bạn đã được tải thành công! 🎉",
+        "error": "Tải dữ liệu thất bại. 😿"
+      },
+      "title": "Tải dữ liệu",
+      "items": {
+        "description": "Tải bao gồm:",
+        "bookmarks": "Phương tiện đã đánh dấu",
+        "progress": "Quá trình xem"
+      },
+      "button": {
+        "download": "Tải dữ liệu",
+        "login": "Tiếp tục đăng nhập",
+        "home": "Về trang chính"
+      }
+    },
+    "direct": {
+      "status": {
+        "success": "Dữ liệu của bạn đã được nhập thành công! 🎉",
+        "error": "Nhập dữ liệu thất bại.😿"
+      },
+      "title": "Nhập trực tiếp",
+      "description": "Nhập địa điểm URL cuối để gộp dữ liệu tài khoản hiện tại của bạn đến một đầu cuối mới. Passphrase của bạn vẫn được giữ nguyên!",
+      "recaptchaLabel": "Mã ReCaptcha (Tùy chọn)",
+      "toggleLable": "Cần ReCaptcha?",
+      "backendLabel": "Điểm đến URL cuối",
+      "button": {
+        "home": "Về trang chính",
+        "migrate": "Nhập",
+        "processing": "Đang xử lý...",
+        "login": "Tiếp tục đăng nhập"
+      }
+    },
+    "upload": {
+      "description": "Tải lên tệp dữ liệu đã xuất của bạn để phục hồi các trang dấu và quá trình trên tài khoản này.",
+      "button": {
+        "home": "Tiếp tục về trang chính",
+        "import": "Nhập dữ liệu",
+        "processing": "Đang xử lý...",
+        "success": "Hoàn tất quá trình nhập"
+      },
+      "title": "Tải lên dữ liệu",
+      "status": {
+        "processing": "Đang xử lý dữ liệu...",
+        "error": "Tải dữ liệu lên thất bại. 😿",
+        "success": "Dữ liệu của bạn đã được tải lên thành công! 🎉"
+      },
+      "file": {
+        "description": "Chọn tệp bạn muốn tải lên",
+        "select": "Chọn tệp",
+        "change": "Đổi tệp",
+        "name": "Tên tệp"
+      },
+      "dataPreview": "Xem trước:",
+      "items": {
+        "bookmarks": "Phương tiện đã đánh dấu",
+        "progress": "Quá trình xem"
+      },
+      "exportedOn": "Xuất ra"
+    },
+    "back": "Quay về"
+  },
+  "screens": {
+    "loadingUserError": {
+      "reset": "Đặt lại tùy chỉnh máy chủ"
+    }
+  },
+  "details": {
+    "releaseDate": "Ngày phát hành:",
+    "resume": "Tiếp tục",
+    "play": "Phát",
+    "runtime": "Thời lượng:",
+    "language": "Ngôn ngữ:",
+    "rating": "Đánh giá:",
+    "tmdb": "Xem trên TMDB",
+    "imdb": "Xem trên IMDb",
+    "episodes": "Tập phim",
+    "seasons": "Mùa phim",
+    "season": "Mùa",
+    "episode": "Tập",
+    "endsAt": "Kết thúc tại {{time}}",
+    "trailer": "Trailer",
+    "votes": "phiếu bầu",
+    "airs": "Phát sóng"
+  },
+  "downtimeNotice": {
+    "goHome": "Về trang chính",
+    "badge": "Sự cố",
+    "message": "P-Stream đang gặp sự cố với một số nhà cung cấp một lần nữa, nếu bạn không tìm thấy hoặc không phát được chương trình, vui lòng thay đổi nguồn. Dự kiến lỗi này sẽ tiếp diễn trong thời gian tới.",
+    "title": "Sự cố nhà cung cấp"
+  },
+  "realdebrid": {
+    "description": "Nhập mã API Real Debrid của bạn để truy cập Real Debrid. Cần có tiện ích mở rộng."
+  },
+  "watchParty": {
+    "linkCopied": "Đã sao chép!"
+  },
+  "overlays": {
+    "close": "Đóng"
+  }
 }

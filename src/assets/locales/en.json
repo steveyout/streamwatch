@@ -1,6 +1,6 @@
 {
   "about": {
-    "description": "StreamWatch is a fork of movie-web that is ensured to stay up even after the shutdown of movie-web.app. StreamWatch runs on a private, self-hosted VPS. I run this site at a loss; there are very minimal ads due to my beliefs in free media.",
+    "description": "P-Stream is a fork of movie-web that is ensured to stay up even after the shutdown of movie-web.app. P-Stream runs on a private, self-hosted VPS. I run this site at a loss; there are very minimal ads due to my beliefs in free media.",
     "help": "Can't find an answer? <0>Get support here.</0>",
     "faqTitle": "Common questions",
     "searchPlaceholder": "Search FAQ...",
@@ -13,12 +13,12 @@
     },
     "q1": {
       "title": "Where does the content come from?",
-      "body": "StreamWatch does not host any content. When you click on something to watch, the internet is searched for the selected media (On the loading screen and in the 'video sources' tab you can see which source you're using). Media never gets uploaded by StreamWatch, everything is through this searching mechanism.",
+      "body": "P-Stream does not host any content. When you click on something to watch, the internet is searched for the selected media (On the loading screen and in the 'video sources' tab you can see which source you're using). Media never gets uploaded by P-Stream, everything is through this searching mechanism.",
       "section": "general"
     },
     "q2": {
       "title": "Where can I request a show or movie?",
-      "body": "It's not possible to request a show or movie, StreamWatch does not manage any content. All content is viewed through sources on the internet.",
+      "body": "It's not possible to request a show or movie, P-Stream does not manage any content. All content is viewed through sources on the internet.",
       "section": "search"
     },
     "q3": {
@@ -33,12 +33,12 @@
     },
     "q5": {
       "title": "How can I find out more?",
-      "body": "StreamWatch has a Discord server that can be found at the header of this page!",
+      "body": "P-Stream has a Discord server that can be found at the header of this page!",
       "section": "general"
     },
     "q6": {
-      "title": "Is there a StreamWatch app?",
-      "body": "Not yet, but you can install it as a PWA (Progressive Web App). On iOS, use Safari → Share → Add to Home Screen. On Android, use Chrome → 3 dots → Add to Home Screen. An experimental APK is available via our Discord, but it's not recommended.",
+      "title": "Is there a P-Stream app?",
+      "body": "Yes! We now have an official desktop app available for download! https://github.com/p-stream/p-stream-desktop/releases",
       "section": "general"
     },
     "q7": {
@@ -108,7 +108,7 @@
     },
     "q21": {
       "title": "Does FED API work on all devices?",
-      "body": "Yes. Once set up, your token works across all logged-in devices.",
+      "body": "Yes. Once set up, your token works across all devices!",
       "section": "connections"
     },
     "q22": {
@@ -123,12 +123,12 @@
     },
     "q24": {
       "title": "My febbox token fails during setup. What should I do?",
-      "body": "Your ISP might be blocking FED API. Set a custom DNS like 1.1.1.1 or NextDNS. You can also change your region in the admin panel.",
+      "body": "Your ISP might be blocking FED API. Use a VPN to bypass the block, we recommend Cloudflare WARP because it's free and easy to use. You can also change your region in the admin panel.",
       "section": "connections"
     },
     "q25": {
       "title": "How do I change languages?",
-      "body": "We prioritize English, but some sources offer other languages. Try switching sources. For FED API, only Safari supports audio switching in MP4 files.",
+      "body": "We prioritize English, but some sources offer other languages. Try switching sources.",
       "section": "language"
     },
     "q26": {
@@ -136,11 +136,13 @@
       "body": "Use the \"Customize\" option in subtitle settings or tap [ and ] on your keyboard to adjust. You can also upload your own subtitle file.",
       "section": "language"
     },
-    "title": "About StreamWatch and FAQ (^▽^)"
+    "title": "About P-Stream and FAQ (^▽^)"
   },
   "actions": {
     "copied": "Copied",
-    "copy": "Copy"
+    "copy": "Copy",
+    "cancel": "Cancel",
+    "confirm": "Confirm"
   },
   "auth": {
     "createAccount": "Don't have an account yet 😬 <0>Create an account.</0>",
@@ -150,7 +152,14 @@
       "description": "Your passphrase acts as your username and password. Make sure to keep it safe as you will need to enter it to login to your account. <bold>Do NOT lose your passphrase!</bold>",
       "next": "I have saved my passphrase",
       "passphraseFrameLabel": "Passphrase",
-      "title": "Your passphrase"
+      "title": "Your passphrase",
+      "custom": "Custom",
+      "customPassphraseLabel": "Custom Passphrase",
+      "customPassphrasePlaceholder": "Enter your custom passphrase",
+      "useCustomPassphrase": "Use Custom Passphrase",
+      "invalidPassphraseCharacters": "Invalid passphrase characters. Only English letters, numbers 1-10, and normal symbols are allowed.",
+      "passphraseTooShort": "Passphrase must be at least 8 characters long.",
+      "usePasskeyInstead": "Use passkey instead"
     },
     "hasAccount": "Already have an account? <0>Login here.</0>",
     "login": {
@@ -160,7 +169,10 @@
       "passphrasePlaceholder": "Passphrase",
       "submit": "Login",
       "title": "Login to your account",
-      "validationError": "Incorrect or incomplete passphrase /ᐠ. .ᐟ\\"
+      "validationError": "Incorrect or incomplete passphrase /ᐠ. .ᐟ\\",
+      "usePasskey": "Use passkey",
+      "or": "or",
+      "noBackendUrl": "No backend URL"
     },
     "register": {
       "information": {
@@ -171,6 +183,16 @@
         "next": "Next",
         "title": "Account information"
       }
+    },
+    "backendSelection": {
+      "title": "Select Account Server",
+      "description": "Choose which backend server to connect to",
+      "customBackend": "Custom Backend",
+      "customBackendPlaceholder": "https://",
+      "confirm": "Confirm",
+      "cancel": "Cancel",
+      "active": "Active",
+      "selecting": "Selecting..."
     },
     "trust": {
       "failed": {
@@ -191,7 +213,10 @@
       "passphraseLabel": "Your 12-word passphrase",
       "recaptchaFailed": "ReCaptcha validation failed",
       "register": "Create account",
-      "title": "Confirm your passphrase"
+      "title": "Confirm your account",
+      "passkeyDescription": "Please authenticate with your passkey to complete registration.",
+      "authenticatePasskey": "Authenticate with Passkey",
+      "passkeyError": "Passkey verification failed"
     }
   },
   "errors": {
@@ -204,11 +229,11 @@
   "footer": {
     "legal": {
       "disclaimer": "Disclaimer ◝(ᵔᵕᵔ)◜",
-      "disclaimerText": "Please note: StreamWatch does not host any files itself but instead only display's content from 3rd party providers. Legal issues should be taken up with them."
+      "disclaimerText": "Please note: P-Stream does not host any files itself; instead, it only displays content from third-party providers. Legal issues should be taken up with them."
     },
     "links": {
       "discord": "Discord",
-      "dmca": "DMCA",
+      "legal": "Legal / DMCA",
       "github": "GitHub",
       "twitter": "Twitter",
       "funding": "Support us"
@@ -216,30 +241,146 @@
     "tagline": "Watch your favorite shows and movies for free with no ads ever! (っ'ヮ'c)"
   },
   "global": {
-    "name": "StreamWatch",
+    "name": "P-Stream",
     "pages": {
       "about": "About and FAQ",
-      "dmca": "DMCA",
+      "legal": "Legal / DMCA",
       "discover": "Discover",
       "support": "Support",
       "login": "Login",
       "onboarding": "Setup",
-      "pagetitle": "{{title}} - StreamWatch",
+      "pagetitle": "{{title}} - P-Stream",
       "register": "Register",
       "settings": "Settings",
       "migration": "Migrate Account",
       "jip": "Jip"
+    },
+    "keyboardShortcuts": {
+      "title": "Keyboard Shortcuts",
+      "subtitle": "Hold ` to show this help anytime",
+      "groups": {
+        "videoPlayback": "Video Playback",
+        "jumpToPosition": "Jump to Position",
+        "audioVideo": "Audio & Video",
+        "subtitlesAccessibility": "Subtitles & Accessibility",
+        "interface": "Interface"
+      },
+      "shortcuts": {
+        "playPause": "Play/pause (or hold for 2x speed when enabled)",
+        "playPauseAlt": "Play/pause",
+        "skipForward5": "Skip forward 5 seconds",
+        "skipBackward5": "Skip backward 5 seconds",
+        "skipBackward10": "Skip backward 10 seconds",
+        "skipForward10": "Skip forward 10 seconds",
+        "skipForward1": "Skip forward 1 second",
+        "skipBackward1": "Skip backward 1 second",
+        "jumpTo0": "Jump to 0% (beginning)",
+        "jumpTo9": "Jump to 90%",
+        "increaseVolume": "Increase volume",
+        "decreaseVolume": "Decrease volume",
+        "mute": "Mute/unmute",
+        "changeSpeed": "Increase/decrease playback speed",
+        "toggleFullscreen": "Toggle fullscreen",
+        "toggleCaptions": "Toggle captions",
+        "randomCaption": "Select random caption from last used language",
+        "syncSubtitlesEarlier": "Sync subtitles earlier (-0.5s)",
+        "syncSubtitlesLater": "Sync subtitles later (+0.5s)",
+        "toggleNativeSubtitles": "Toggle native subtitles",
+        "barrelRoll": "Do a barrel roll! 🌀",
+        "closeOverlay": "Close overlay/modal",
+        "nextEpisode": "Next episode",
+        "previousEpisode": "Previous episode",
+        "widescreenMode": "to toggle the widescreen button visibility",
+        "copyLinkWithTime": "+ click the title to copy the link with time"
+      },
+      "conditions": {
+        "notInWatchParty": "Not in watch party",
+        "showsOnly": "Shows only"
+      },
+      "editInSettings": "Edit keyboard commands from settings",
+      "clickToEdit": "Click on a key badge to edit it",
+      "conflict": "conflict",
+      "conflicts": "conflicts",
+      "detected": "detected",
+      "resetAllToDefault": "Reset All to Default",
+      "pressKey": "Press a key...",
+      "none": "None",
+      "save": "Save",
+      "cancel": "Cancel",
+      "saveChanges": "Save Changes",
+      "resetToDefault": "Reset to default"
     }
   },
   "home": {
     "bookmarks": {
-      "sectionTitle": "Bookmarks"
+      "sectionTitle": "Bookmarks",
+      "showAll": "Show all",
+      "groups": {
+        "dropdown": {
+          "placeholderButton": "Add to group",
+          "empty": "No groups yet",
+          "removeFromGroup": "Remove from group",
+          "removeAll": "Remove all"
+        },
+        "reorder": {
+          "button": "Reorder",
+          "done": "Done",
+          "title": "Edit Group Order",
+          "description": "Drag and drop to reorder your bookmark groups",
+          "cancel": "Cancel",
+          "save": "Save"
+        },
+        "editGroup": {
+          "title": "Edit Group",
+          "description": "Edit the name and icon of your bookmark group",
+          "cancel": "Cancel",
+          "save": "Save",
+          "affectsBookmarks": "This will affect {{count}} bookmark(s)",
+          "nameLabel": "Group name",
+          "namePlaceholder": "Enter a name for your group"
+        }
+      },
+      "edit": {
+        "title": "Edit Bookmark",
+        "description": "Edit the details for this bookmark",
+        "cancel": "Cancel",
+        "save": "Save",
+        "groupsLabel": "Groups",
+        "titleLabel": "Title",
+        "titlePlaceholder": "Enter a title for your bookmark",
+        "yearLabel": "Year",
+        "yearPlaceholder": "Enter a year for your bookmark"
+      },
+      "sorting": {
+        "label": "Sort by",
+        "options": {
+          "date": "Default (Date added)",
+          "titleAsc": "Title A-Z",
+          "titleDesc": "Title Z-A",
+          "yearAsc": "Release Date Oldest-Newest",
+          "yearDesc": "Release Date Newest-Oldest"
+        }
+      }
     },
     "continueWatching": {
-      "sectionTitle": "Continue Watching..."
+      "sectionTitle": "Continue Watching...",
+      "sorting": {
+        "label": "Sort by",
+        "options": {
+          "date": "Default (Date added)",
+          "titleAsc": "Title A-Z",
+          "titleDesc": "Title Z-A",
+          "yearAsc": "Release Date Oldest-Newest",
+          "yearDesc": "Release Date Newest-Oldest"
+        }
+      }
     },
     "mediaList": {
       "stopEditing": "Stop editing"
+    },
+    "watchHistory": {
+      "sectionTitle": "Watch History",
+      "recentlyWatched": "Recently Watched"
     },
     "search": {
       "allResults": "That's all we have...",
@@ -252,11 +393,11 @@
           "What are you in the mood for?",
           "Should we delete your browser history?",
           "What do you want to stream?",
-          "StreamWatch is the best site ever!",
+          "P-Stream is the best site ever!",
           "What's on your watchlist today?",
           "How was your day?",
           "My bad the site never works...",
-          "Isn't StreamWatch just the best?",
+          "Isn't P-Stream just the best?",
           ">ᴗ<"
         ]
       },
@@ -281,15 +422,15 @@
     "titles": {
       "day": {
         "default": "What would you like to watch this afternoon?",
-        "extra": ["Viva la StreamWatch!"]
+        "extra": ["Viva la P-Stream!"]
       },
       "morning": {
         "default": "What would you like to watch this morning?",
-        "extra": ["Viva la StreamWatch!"]
+        "extra": ["Viva la P-Stream!"]
       },
       "night": {
         "default": "What would you like to watch tonight?",
-        "extra": ["Viva la StreamWatch!"]
+        "extra": ["Viva la P-Stream!"]
       },
       "420": {
         "default": "What would you like to watch this 4/20?",
@@ -298,7 +439,28 @@
       "69": {
         "default": "Up for something spicy?",
         "extra": ["Happy 69 day 😘!"]
+      },
+      "halloween": {
+        "default": "What spooky movie would you like to watch this Halloween?",
+        "extra": [
+          "Happy Halloween! 🎃👻",
+          "Boo! 👻",
+          "Trick or treat! 🍬",
+          "It's the Great Pumpkin, Charlie Brown!"
+        ]
       }
+    },
+    "support": {
+      "title": "P-Stream needs your help!",
+      "description": "P-Stream is run at a loss, and we need help to keep it ad free! If you enjoy using P-Stream, please consider donating to help us cover our costs.",
+      "moreInfo": "More info",
+      "explanation": "If you aren't using the extension or don't have FED API set up, it may be harder to find content! We want to fix this, but it's a lot harder to provide content without expensive servers. So please, if you enjoy using P-Stream, please consider donating to help us cover our growing costs.",
+      "explanation2": "If you want more info, please join our ",
+      "discord": "Discord",
+      "thankYou": "Thank you for your support!",
+      "donate": "Donate",
+      "label": "Project Funding: ${{current}} / ${{goal}}",
+      "complete": "complete"
     }
   },
   "media": {
@@ -309,7 +471,9 @@
       "show": "Show"
     },
     "episodeShort": "E",
-    "seasonShort": "S"
+    "seasonShort": "S",
+    "seasonWatched": "Are you sure you want to mark the season as watched?",
+    "seasonUnwatched": "Are you sure you want to mark the season as unwatched?"
   },
   "details": {
     "resume": "Resume",
@@ -325,9 +489,19 @@
     "seasons": "Season/s",
     "season": "Season",
     "episode": "Episode",
+    "watched": "Watched {{watched}} of {{total}} ({{percentage}}%)",
     "airs": "Airs",
     "endsAt": "Ends at {{time}}",
-    "trailer": "Trailer"
+    "trailer": "Trailer",
+    "trailers": "Trailers",
+    "similar": "Similar",
+    "collection": {
+      "movies": "Movies",
+      "movie": "Movie",
+      "sortBy": "Sort by",
+      "releaseDate": "Release Date",
+      "rating": "Rating"
+    }
   },
   "migration": {
     "loginRequired": "You must be logged in to migrate your data! Please go back and login to continue.",
@@ -356,6 +530,15 @@
         }
       }
     },
+    "preview": {
+      "downloadDescription": "Download includes:",
+      "uploadDescription": "Data to upload:",
+      "items": {
+        "bookmarks": "Bookmarked media",
+        "progress": "Watch progress",
+        "settings": "Settings & Preferences"
+      }
+    },
     "direct": {
       "title": "Direct migration",
       "description": "Enter the destination backend URL to migrate your current account data to a new backend. This keeps your passphrase the same!",
@@ -376,11 +559,6 @@
     "download": {
       "title": "Download data",
       "description": "This will download your data to your device. You can then upload it to the new server or just keep it for safekeeping.",
-      "items": {
-        "description": "Download includes:",
-        "bookmarks": "Bookmarked media",
-        "progress": "Watch progress"
-      },
       "status": {
         "error": "Failed to download your data. 😿",
         "success": "Your data has been downloaded successfully! 🎉"
@@ -397,7 +575,8 @@
       "status": {
         "processing": "Processing data...",
         "error": "Failed to upload your data. 😿",
-        "success": "Your data has been uploaded successfully! 🎉"
+        "success": "Your data has been uploaded successfully! 🎉",
+        "successLocal": "Your data has been saved locally! 🎉"
       },
       "file": {
         "description": "Select the file you want to upload",
@@ -405,17 +584,14 @@
         "change": "Change file",
         "name": "File name"
       },
-      "dataPreview": "Preview:",
-      "items": {
-        "bookmarks": "Bookmarked media",
-        "progress": "Watch progress"
-      },
       "exportedOn": "Exported on",
+      "previewTitle": "Preview:",
       "button": {
         "import": "Import data",
         "processing": "Processing...",
         "success": "Import complete",
-        "home": "Continue to home"
+        "home": "Continue to home",
+        "saveLocal": "Save locally"
       }
     },
     "back": "Go back"
@@ -431,7 +607,8 @@
       "settings": "Settings",
       "support": "Support",
       "discover": "Discover",
-      "development": "Development"
+      "development": "Development",
+      "desktop": "App Settings"
     }
   },
   "notFound": {
@@ -444,7 +621,7 @@
   "downtimeNotice": {
     "badge": "Issues",
     "goHome": "Go home",
-    "message": "StreamWatch is experiencing issues with some providers again, if you cant find or play a show please change the source. Expect this error to persist throughout the below times.",
+    "message": "P-Stream is experiencing issues with some providers again, if you cant find or play a show please change the source. Expect this error to persist throughout the below times.",
     "title": "Provider issues"
   },
   "onboarding": {
@@ -452,6 +629,7 @@
       "cancel": "Cancel",
       "confirm": "Use default setup",
       "description": "The default setup does not have the best streams. You'll be missing out on the best sources!",
+      "tip": "It's recommended to set up the extension and/or FED API!",
       "title": "Are you sure?"
     },
     "extension": {
@@ -461,6 +639,8 @@
       "extensionHelp": "If you've installed the extension but it's not detected, <bold>open the extension through your browsers extension menu</bold> and follow the steps on screen.",
       "linkChrome": "Install Chrome extension",
       "linkFirefox": "Install Firefox extension",
+      "linkUserscript": "Alternative Userscript",
+      "userscriptNote": "(The extension is more reliable than the userscript!)",
       "notDetecting": "Installed on Chrome, but the site isn't detecting it? Try reloading the page!",
       "notDetectingAction": "Reload page",
       "status": {
@@ -491,37 +671,37 @@
     "start": {
       "explainer": "To get the best streams possible, you will need to choose which streaming method you want to use.",
       "moreInfo": {
-        "button": "More info",
+        "button": "Which setup should I choose?",
         "title": "Understanding a setup",
         "explainer": {
-          "intro": "StreamWatch doesn't host videos. It relies on third-party websites for content, so you need to choose how it connects to those sites.",
+          "intro": "P-Stream doesn't host videos. It relies on third-party websites for content, so you need to choose how it connects to those sites.",
           "options": "Your Options:",
-          "extension": "1. Extension",
+          "extension": "Extension",
           "extensionDescription": "The extension gives you access to the most sources. It acts as a local proxy and can handle sites that need special cookies or headers to load.",
-          "proxy": "2. Proxy",
+          "proxy": "Proxy",
           "proxyDescription": "The proxy scrapes media from other websites. It bypasses browser restrictions (like CORS) to allow scraping.",
-          "default": "3. Default Setup",
-          "defaultDescription": "Uses StreamWatch's built-in proxy. It's the easiest option but might be slower due to shared bandwidth.",
+          "default": "Default Setup",
+          "defaultDescription": "Uses P-Stream's built-in proxy. It's the easiest option but might be slower due to shared bandwidth.",
           "fedapi": {
-            "fedapi": "Additional: FED API (Private) token",
-            "fedapiDescription": "Bring your own FREE Febbox account to gain access to FED API (Private), the best source with 4K quality, Dolby Atmos, skip intro and the fastest load times! Highly recommended option!"
+            "fedapi": "Additional: Febbox token",
+            "fedapiDescription": "Bring your own FREE Febbox account to gain access to FED API, the best sources with 4K quality, Dolby Atmos, skip intro and the fastest load times! Highly recommended option!"
           },
-          "outro": "If you have more questions on how this works, feel free to ask on the <0>StreamWatch Discord</0> server!"
+          "outro": "If you have more questions on how this works, feel free to ask on the <0>P-Stream Discord</0> server!"
         },
         "recommended": {
           "title": "Not sure what to choose?",
           "subtitle": "Recommended Configurations:",
           "desktop": {
             "title": "Desktop:",
-            "description": "Extension + FED API (Private)"
+            "description": "Extension (or app) + Febbox token"
           },
           "iOS": {
             "title": "iOS:",
-            "description": "Custom proxy + FED API (Private)"
+            "description": "Custom proxy + Febbox token"
           },
           "android": {
             "title": "Android:",
-            "description": "Extension + FED API (Private)"
+            "description": "Extension + Febbox token"
           }
         }
       },
@@ -533,17 +713,26 @@
         "extension": {
           "action": "Install extension",
           "description": "Install browser extension and gain access to additional sources! Remember to enable it for this site.",
-          "quality": "Best quality + More Sources",
+          "quality": "Best quality + More sources",
           "title": "Browser extension"
+        },
+        "desktopapp": {
+          "action": "Install Desktop app",
+          "description": "Install desktop app and gain access to additional sources! Simple and easy to use!",
+          "quality": "Best quality + Even more sources",
+          "title": "P-Stream Desktop app"
         },
         "proxy": {
           "action": "Setup proxy",
           "description": "Setup a free proxy in just 5 minutes! Improves loading reliability!",
           "quality": "Good quality",
           "title": "Custom proxy"
+        },
+        "addons": {
+          "title": "Additional sources:"
         }
       },
-      "title": "Let's get you setup with StreamWatch 🥳"
+      "title": "Let's get you setup with P-Stream 🥳"
     }
   },
   "overlays": {
@@ -555,17 +744,24 @@
       "short": "Back"
     },
     "casting": {
+      "to": "Casting to {{device}} 📺",
+      "device": "device",
       "enabled": "Casting to device 🎬"
     },
     "menus": {
       "downloads": {
-        "button": "Atempt download",
+        "button": "Attempt download",
         "hlsDownloader": "Or, go to the <0>hls downloader website</0> and paste the playlist URL from below.",
-        "disclaimer": "Downloads are taken directly from the provider. StreamWatch does not have control over how the downloads are provided.",
+        "disclaimer": "Downloads are taken directly from the provider. P-Stream does not have control over how the downloads are provided.",
         "copyHlsPlaylist": "Copy HLS playlist link",
         "downloadSubtitle": "Download current subtitle",
         "downloadVideo": "Download video",
-        "hlsDisclaimer": "Downloads are taken directly from the provider. StreamWatch does not have control over how the downloads are provided.<br /><br />Please note you are downloading an HLS playlist, <bold>it is not recommended to download if you are not familiar with advanced streaming formats</bold>. Try different sources for different formats.",
+        "openIn": "Open in...",
+        "vlc": "VLC",
+        "iina": "IINA",
+        "outplayer": "Outplayer",
+        "hlsOpenInDisclaimer": "Opening HLS streams in an external player MAY NOT WORK!",
+        "hlsDisclaimer": "Downloads are taken directly from the provider. P-Stream does not have control over how the downloads are provided.<br /><br />Please note you are downloading an HLS playlist, <bold>it is not recommended to download if you are not familiar with advanced streaming formats</bold>. Try different sources for different formats.",
         "onAndroid": {
           "1": "To download on Android, click the download button then, on the new page, <bold>tap and hold</bold> on the video, then select <bold>save</bold>.",
           "shortTitle": "Download / Android",
@@ -593,12 +789,19 @@
         "unairedEpisodes": "One or more episodes in this season have been disabled because they haven't been aired yet.",
         "seasons": "Seasons",
         "showMore": "Show more",
-        "showLess": "Show less"
+        "showLess": "Show less",
+        "markAsWatched": "Mark as watched",
+        "markAsUnwatched": "Mark as unwatched",
+        "markAsFavorite": "Mark as favorite",
+        "favorites": "Favorites",
+        "noFavorites": "No favorite episodes yet. Star episodes to add them to your favorites!"
       },
       "playback": {
         "speedLabel": "Playback speed",
         "title": "Playback settings",
-        "disabled": "(Disabled in watch party)"
+        "disabled": "(Disabled in watch party)",
+        "speedBoosted": "2x",
+        "speedUnboosted": "{{speed}}x"
       },
       "quality": {
         "automaticLabel": "Automatic quality",
@@ -633,15 +836,22 @@
         },
         "title": "Sources",
         "unknownOption": "Unknown",
-        "editOrder": "Edit order"
+        "findNextSource": "Find next source"
       },
       "subtitles": {
         "customChoice": "Drop or upload file",
+        "pasteChoice": "Paste subtitle data",
+        "doubleClickToCopy": "Double click to copy subtitle data",
         "customizeLabel": "Customize",
+        "previewLabel": "Subtitle preview:",
         "offChoice": "Off",
         "onChoice": "On",
-        "SourceChoice": "Source Captions",
-        "OpenSubtitlesChoice": "OpenSubtitles",
+        "autoSelectChoice": "Auto select",
+        "autoSelectDifferentChoice": "Tap again to auto select different subtitle",
+        "SourceChoice": "Source Subtitles",
+        "OpenSubtitlesChoice": "External Subtitles",
+        "loadingExternal": "Loading external subtitles...",
+        "transcriptChoice": "Transcript",
         "settings": {
           "backlink": "Custom subtitles",
           "delay": "Subtitle delay",
@@ -651,10 +861,17 @@
         "unknownLanguage": "Unknown",
         "dropSubtitleFile": "Drop subtitle file here! >_<",
         "scrapeButton": "Scrape subtitles",
+        "refresh": "Refresh External Subtitles",
+        "refreshing": "Refreshing...",
         "empty": "There are no provided subtitles for this.",
         "notFound": "None of the available options match your query",
-        "useNativeSubtitles": "Use native video subtitles",
-        "useNativeSubtitlesDescription": "May fix subtitles when casting and in PiP"
+        "useNativeSubtitles": "Native video subtitles",
+        "useNativeSubtitlesDescription": "Broadcast subtitles for native fullscreen and PiP",
+        "delayLate": "Heard audio",
+        "delayEarly": "Saw caption",
+        "translate": {
+          "title": "Translate from {{language}}"
+        }
       },
       "watchparty": {
         "watchpartyItem": "Watch Party",
@@ -670,7 +887,7 @@
         "text": "Could not load API metadata, please check your internet connection.",
         "title": "Failed to load API metadata"
       },
-      "dmca": {
+      "legal": {
         "badge": "Removed",
         "text": "This media is no longer available due to a takedown notice or copyright claim. 😨",
         "title": "Media has been removed"
@@ -699,6 +916,12 @@
       "next": "Next episode",
       "nextSeason": "Next season"
     },
+    "resume": {
+      "title": "Continue watching?",
+      "description": "This episode is {{percentage}}% watched",
+      "resume": "Resume",
+      "restart": "Restart"
+    },
     "playbackError": {
       "badge": "Playback error",
       "errors": {
@@ -708,7 +931,11 @@
         "errorNetwork": "Some kind of network error occurred which prevented the media from being successfully fetched, despite having previously been available.",
         "errorNotSupported": "The media or media provider object is not supported."
       },
+      "autoResumeText": "There was an error trying to play the media 😖. Automatically trying the other sources...",
+      "copyDebugInfo": "Copy debug info",
+      "debugInfo": "Check console for more details.",
       "homeButton": "Go home",
+      "resumeButton": "Try next sources",
       "text": "There was an error trying to play the media 😖. Please try again or try a different source!",
       "title": "Failed to play video!"
     },
@@ -724,14 +951,16 @@
         "homeButton": "Go home",
         "discoverButton": "Discover more",
         "text": "We have searched through our providers and cannot find the media you are looking for! We do not host the media and have no control over what is available. Please click 'Show details' below for more details.",
-        "title": "We couldn't find that"
+        "title": "We couldn't find that",
+        "onboarding": "More sources might be avalible using the extension or febbox token!",
+        "onboardingButton": "Do setup again"
       },
       "extensionFailure": {
         "badge": "Extension disabled",
         "homeButton": "Go home",
         "enableExtension": "Enable extension",
         "title": "Please enable the extension",
-        "text": "You've installed the StreamWatch extension. To start using it, you need to enable the extension for this site."
+        "text": "You've installed the P-Stream extension. To start using it, you need to enable the extension for this site."
       },
       "tips": {
         "1": "Tap the gear icon to switch sources!",
@@ -744,17 +973,7 @@
         "8": "Set a custom subtitle color!",
         "9": "Migrate your account to a new backend in settings!",
         "10": "Join the Discord!",
-        "11": "Use [ and ] to adjust subtitle timing!",
-        "12": "Press SPACE or K to play/pause!",
-        "13": "Use LEFT and RIGHT arrow keys to skip 5 seconds!",
-        "14": "Use J and L keys to skip 10 seconds!",
-        "15": "Press F to toggle fullscreen!",
-        "16": "Press M to toggle mute!",
-        "17": "Use UP and DOWN arrows to change volume!",
-        "18": "Press < and > to change playback speed!",
-        "19": "Press . and , to move frame by frame when paused!",
-        "20": "Press C to toggle subtitles!",
-        "21": "Press R to do a barrel roll!"
+        "11": "Hold ` to view keyboard shortcuts!"
       }
     },
     "time": {
@@ -763,18 +982,116 @@
       "shortRegular": "{{timeWatched}}",
       "shortRemaining": "-{{timeLeft}}"
     },
-    "turnstile": {
-      "description": "Please prove your humanity by completing the quick challenge, this is to keep StreamWatch safe.",
-      "error": "Failed to verify your humanity - stream failed to load. Clear your cache and try again, or switch to a different source (tap the gear).",
-      "title": "Are You a Robot 🤖?",
-      "verifyingHumanity": "Verifying your humanity... (^▽^)👍"
+    "segment": {
+      "intro": "Intro",
+      "recap": "Recap",
+      "credits": "Credits"
+    },
+    "skipTime": {
+      "intro": "Skip Intro",
+      "recap": "Skip Recap",
+      "credits": "Skip Credits",
+      "skipSegments": "Skip Segments",
+      "submitSegment": "Submit Segment",
+      "noSegments": "No skip segments available",
+      "startsAt": "Starts at {{time}}",
+      "endsAt": "Ends at {{time}}",
+      "timeUnknown": "Time unknown",
+      "confidence": "confidence",
+      "submissions": "{{count}} submissions",
+      "connectApiKeyMessage": "To submit new segments, enter your TheIntroDB API key in the connections settings",
+      "endOfVideo": "End",
+      "feedback": {
+        "title": "Was this skip correct?",
+        "modal": {
+          "title": "Submit Timestamps to TheIntroDB",
+          "description": "Contribute to TheIntroDB by submitting accurate segment timestamps. All submissions are accepted by the community before being published.",
+          "segmentType": "Segment Type",
+          "types": {
+            "intro": "Intro",
+            "recap": "Recap",
+            "credits": "Credits",
+            "preview": "Preview"
+          },
+          "startTimeLabel": "Start (s)",
+          "endTimeLabel": "End (s)",
+          "placeholders": {
+            "start": {
+              "intro": "2:30 or 150 (leave empty for start at beginning)",
+              "recap": "2:30 or 150 (leave empty for start at beginning)",
+              "credits": "2:30 or 150 (required)",
+              "preview": "2:30 or 150 (required)"
+            },
+            "end": {
+              "intro": "3:30 or 210 (required)",
+              "recap": "3:30 or 210 (required)",
+              "credits": "3:30 or 210 (leave empty for end of media)",
+              "preview": "3:30 or 210 (leave empty for end of media)"
+            }
+          },
+          "whenToTitle": "Timestamps guide:",
+          "whenToDesc": "Enter timestamps in seconds (e.g. 150), mm:ss format (e.g. 2:30), or hh:mm:ss format (e.g. 1:42:20). We'll automatically convert the format for you.",
+          "guide": {
+            "startLabel": "Start:",
+            "startDesc": "Required - when credits begin rolling",
+            "endLabel": "End:",
+            "endDesc": "Optional - empty if extends to end",
+            "durationLabel": "Duration:",
+            "durationDesc": "Min 5s if end provided",
+            "excludeLabel": "Exclude:",
+            "excludeDesc": "Post-credits scenes",
+            "intro": {
+              "whenToTitle": "Intro timestamps guide:",
+              "startDesc": "Optional - leave empty if the intro starts at the beginning of the episode.",
+              "endDesc": "Required - when the intro ends (usually when the title card or main episode begins).",
+              "durationDesc": "Most intros are 30–90 seconds. Minimum 5s if both start and end are set.",
+              "excludeDesc": "Do not include cold opens or pre-intro scenes; only the main title sequence."
+            },
+            "recap": {
+              "whenToTitle": "Recap timestamps guide:",
+              "startDesc": "Optional - leave empty if the recap starts at the beginning of the episode.",
+              "endDesc": "Required - when the recap ends and the new content begins.",
+              "durationDesc": "Recaps vary in length. Minimum 5s if both start and end are set.",
+              "excludeDesc": "Only the \"previously on\" or recap segment; do not include the intro or new scenes."
+            },
+            "credits": {
+              "whenToTitle": "Credits timestamps guide:",
+              "startDesc": "Required - when the closing credits begin (e.g. when the first credit text appears).",
+              "endDesc": "Optional - leave empty if credits run to the end of the file.",
+              "durationDesc": "Minimum 5s if end is provided. Can extend to end of media.",
+              "excludeDesc": "Exclude mid-credits or post-credits scenes; only the main credit roll."
+            },
+            "preview": {
+              "whenToTitle": "Preview timestamps guide:",
+              "startDesc": "Required - when the preview starts (e.g. when the preview text appears).",
+              "endDesc": "Optional - leave empty if the preview ends at the end of the media.",
+              "durationDesc": "Preview varies in length. Minimum 5s.",
+              "excludeDesc": "Preview is usually 15-90 seconds at the end of the episode previewing the next episode."
+            }
+          },
+          "cancel": "Cancel",
+          "submit": "Submit",
+          "submitting": "Submitting...",
+          "error": {
+            "tidbKey": "TIDB API key is not set",
+            "mediaInfo": "Media information is not available",
+            "endTime": "End time is required",
+            "startTime": "Start time is required",
+            "submission": "Error submitting timestamps",
+            "segment": "No segment selected"
+          },
+          "success": {
+            "title": "Submission Successful! Thanks!"
+          }
+        }
+      }
     }
   },
   "support": {
     "title": "Support",
-    "text": "StreamWatch is designed to be as user-friendly as possible. However, people still have questions and issues. This page is here to help resolve these shortcomings",
+    "text": "P-Stream is designed to be as user-friendly as possible. However, people still have questions and issues. This page is here to help resolve these shortcomings",
     "q1": {
-      "body": "Well, you can join the official <0>StreamWatch discord</0> and ask questions there or you can email the one provided at the bottom of this page.",
+      "body": "You can join the official <0>P-Stream discord</0> and ask questions there or you can email the one provided at the bottom of this page.",
       "title": "Where can I get help?"
     },
     "q2": {
@@ -784,9 +1101,9 @@
   },
   "jip": {
     "title": "Jip",
-    "text": "StreamWatch didn't fall out of a coconut tree, it was made mostly by a single person (a very epic one at that).",
+    "text": "P-Stream didn't fall out of a coconut tree, it was made mostly by a single person (a very epic one at that).",
     "q1": {
-      "body": "Well, you can join the official <0>StreamWatch discord</0> and ask questions there or you can email the one provided at the bottom of this page.",
+      "body": "You can join the official <0>P-Stream discord</0> and ask questions there or you can email the one provided at the bottom of this page.",
       "title": "Where can I get help?"
     },
     "q2": {
@@ -795,17 +1112,22 @@
     }
   },
   "screens": {
-    "dmca": {
-      "title": "DMCA"
+    "legal": {
+      "title": "Legal / DMCA"
     },
     "loadingApp": "Loading application",
     "loadingUser": "Loading your profile",
     "loadingUserError": {
       "logout": "Logout",
       "reset": "Reset custom server",
+      "disconnect": "Disconnect from backend",
       "text": "Failed to load your profile",
       "reload": "Reload",
-      "textWithReset": "Failed to load your profile from your custom server, want to reset back to the default server?"
+      "textWithReset": "Failed to load your profile from your custom server, want to reset back to the default server?",
+      "disconnectTitle": "Disconnect from backend?",
+      "disconnectMessage": "Disconnect from the account server, maintaining the most recent local data. Changes and watched content will not sync until you're signed in again.",
+      "disconnectConfirm": "Confirm",
+      "disconectCancel": "Cancel"
     },
     "migration": {
       "failed": "Failed to migrate your data. 😿",
@@ -813,8 +1135,16 @@
     }
   },
   "settings": {
+    "search": {
+      "placeholder": "Search settings..."
+    },
+    "all": {
+      "title": "All Settings"
+    },
     "account": {
       "accountDetails": {
+        "nicknameLabel": "Nickname",
+        "nicknamePlaceholder": "Enter your nickname",
         "deviceNameLabel": "Device name",
         "deviceNamePlaceholder": "Personal phone",
         "editProfile": "Edit",
@@ -822,8 +1152,7 @@
       },
       "admin": {
         "title": "Admin panel",
-        "text": "Utilize tools made for testing StreamWatch's condition.",
-        "button": "Check it out"
+        "text": "Test P-Stream's condition."
       },
       "actions": {
         "delete": {
@@ -848,6 +1177,7 @@
       },
       "devices": {
         "deviceNameLabel": "Device name",
+        "unknownDevice": "Unknown device, error decrypting name",
         "failed": "Failed to load sessions",
         "removeDevice": "Remove",
         "title": "Devices"
@@ -887,7 +1217,11 @@
         "forest": "Forest",
         "wolverine": "Wolverine",
         "popsicle": "Popsicle",
-        "hulk": "Hulk"
+        "hulk": "Hulk",
+        "autumn": "Autumn",
+        "cobalt": "Cobalt",
+        "frost": "Frost",
+        "christmas": "Christmas"
       },
       "title": "Appearance",
       "options": {
@@ -907,21 +1241,39 @@
         "carouselView": "Carousel view",
         "carouselViewDescription": "Display your currently watching and bookmark sections as carousels instead of a grid. Disabled by default.",
         "carouselViewLabel": "Carousel view",
+        "minimalCards": "Minimal cards",
+        "minimalCardsDescription": "Hide text content (title, type, year) on media cards, showing only the poster image.",
+        "minimalCardsLabel": "Minimal cards",
         "forceCompactEpisodeView": "Force compact episode view",
         "forceCompactEpisodeViewDescription": "Force the episode carousel in the player to use the \"classic\" compact vertical view. Disabled by default.",
-        "forceCompactEpisodeViewLabel": "Compact episodes"
+        "homeSectionOrder": "Home section order",
+        "homeSectionOrderDescription": "Drag and drop to reorder the watching and bookmarks sections on your homepage. Group order can be editied from the home page.",
+        "forceCompactEpisodeViewLabel": "Compact episodes",
+        "homeSectionOrderGroups": "Reorder bookmark groups"
+      },
+      "sections": {
+        "watching": "Currently Watching",
+        "bookmarks": "Bookmarks"
       }
     },
     "connections": {
       "server": {
         "description": "If you would like to connect to a custom backend to store your data, enable this and provide the URL. <0>Instructions.</0>",
-        "label": "Custom server",
+        "label": "Backend Server",
         "urlLabel": "Custom server URL",
+        "selectBackend": "Select Backend Server",
+        "currentBackend": "Current Backend",
+        "changeWarning": "Changing backend server will log you out. Continue?",
+        "confirm": "Log out and change server",
+        "cancel": "Cancel",
+        "changeWarningTitle": "Change Backend Server",
         "migration": {
           "description": "<0>Migrate my data</0> to a new server.",
           "link": "Migrate my data"
         },
-        "documentation": "Backend documentation"
+        "documentation": "Backend documentation",
+        "error": "Error connecting to backend",
+        "notice": "Your account does NOT sync between backends, so remember which one you use!"
       },
       "setup": {
         "doSetup": "Do setup",
@@ -933,7 +1285,8 @@
         "items": {
           "default": "Default setup",
           "extension": "Extension",
-          "proxy": "Custom proxy"
+          "proxy": "Custom proxy",
+          "desktopapp": "Native app"
         },
         "redoSetup": "Redo setup",
         "successStatus": {
@@ -958,9 +1311,14 @@
           "title": "Proxy TMDB",
           "description": "Only needed if you can't access TheMovieDB directly, such as if your ISP blocks it. It is recomended to disable the Discover section to improve performance with this."
         }
+      },
+      "tidb": {
+        "description": "Contribute to TheIntroDB by leaving feedback on intro, recap, and credits segments. <0>Learn more.</0>",
+        "tokenLabel": "API Key"
       }
     },
     "preferences": {
+      "title": "Preferences",
       "language": "Application language",
       "languageDescription": "Language applied to the entire application, only English has silly stuff 🙁.",
       "thumbnail": "Generate thumbnails",
@@ -972,10 +1330,33 @@
       "skipCredits": "Skip End Credits",
       "skipCreditsDescription": "When enabled, automatically play the next episode at 99% completion to skip end credits. When disabled, wait until the episode is fully completed.",
       "skipCreditsLabel": "Skip end credits",
+      "lowPerformanceMode": "Low performance/bandwidth mode",
+      "lowPerformanceModeDescription": "Optimizes the application for slower connections and devices by disabling bandwidth-heavy features. This mode reduces data usage and improves performance while keeping the core search and watch functionality intact. ",
+      "lowPerformanceModeLabel": "Low performance mode",
+      "holdToBoost": "Hold to boost speed",
+      "holdToBoostDescription": "Hold spacebar or touch and hold the screen to temporarily increase playback speed to 2x. Release to return to previous speed.",
+      "holdToBoostLabel": "Enable hold to boost",
+      "doubleClickToSeek": "Double tap to seek",
+      "doubleClickToSeekDescription": "Double tap on the left or right side of the player to seek 10 seconds forward or backward.",
+      "doubleClickToSeekLabel": "Enable double tap to seek",
+      "keyboardShortcuts": "Keyboard Shortcuts",
+      "keyboardShortcutsDescription": "Customize the keyboard shortcuts for the application. Hold ` to show this help anytime",
+      "keyboardShortcutsLabel": "Customize Keyboard Shortcuts",
       "sourceOrder": "Reordering sources",
       "sourceOrderDescription": "Drag and drop to reorder sources. This will determine the order in which sources are checked for the media you are trying to watch. If a source is greyed out, it means the <bold>extension</bold> is required for that source. <br><br> <strong>(The default order is best for most users)</strong>",
-      "title": "Preferences",
-      "sourceOrderEnableLabel": "Custom source order"
+      "sourceOrderEnableLabel": "Custom source order",
+      "embedOrder": "Reordering embeds",
+      "embedOrderDescription": "Drag and drop to reorder embeds. This will determine the order in which embeds are checked for the media you are trying to watch. <br><br> <strong>(The default order is best for most users)</strong>",
+      "embedOrderEnableLabel": "Custom embed order",
+      "manualSource": "Manual source selection",
+      "manualSourceDescription": "Require picking a source before scraping. Disables automatic source selection and opens the source picker when starting playback.",
+      "manualSourceLabel": "Manual source selection",
+      "autoResumeOnPlaybackError": "Auto resume on playback error",
+      "autoResumeOnPlaybackErrorDescription": "Automatically continue searching for other sources when the current source fails during playback. If disabled, you'll see an error screen with a manual resume option.",
+      "autoResumeOnPlaybackErrorLabel": "Auto resume on playback error",
+      "lastSuccessfulSource": "Last used source",
+      "lastSuccessfulSourceDescription": "Automatically prioritize the source that successfully provided content for the previous episode. This helps ensure continuity when watching series.",
+      "lastSuccessfulSourceEnableLabel": "Last used source"
     },
     "reset": "Reset",
     "save": "Save",
@@ -986,6 +1367,7 @@
         "backendVersion": "Backend version",
         "hostname": "Hostname",
         "insecure": "Insecure",
+        "nickname": "Nickname",
         "notLoggedIn": "You are not logged in",
         "secure": "Secure",
         "title": "App stats",
@@ -995,23 +1377,26 @@
     },
     "subtitles": {
       "backgroundLabel": "Background opacity",
-      "backgroundBlurLabel": "Background blur",
+      "backgroundBlurEnabledLabel": "Background blur",
+      "backgroundBlurEnabledDescription": "Disabling caption background blur may fix some flickering issues",
+      "backgroundBlurLabel": "Background blur intensity",
       "colorLabel": "Color",
       "previewQuote": "Convinced life is meaningless, I lack the courage of my conviction.",
       "textSizeLabel": "Text size",
       "title": "Subtitles",
       "textBoldLabel": "Bold text",
       "verticalPositionLabel": "Vertical position",
-      "default": "Default",
-      "low": "Low",
+      "high": "High",
+      "low": "Default",
       "textStyle": {
         "title": "Text style",
         "default": "Default",
         "raised": "Raised",
         "depressed": "Depressed",
-        "uniform": "Uniform",
+        "Border": "Border",
         "dropShadow": "Drop Shadow"
-      }
+      },
+      "BorderThicknessLabel": "Border Thickness"
     },
     "unsaved": "You have unsaved changes... ฅ^•ﻌ•^ฅ"
   },
@@ -1040,6 +1425,7 @@
         "moviesOn": "Movies on {{provider}}",
         "tvshowsOn": "Shows on {{provider}}",
         "recommended": "Because You Watched: {{title}}",
+        "forYou": "For You",
         "genreMovies": "{{genre}} Movies",
         "genreShows": "{{genre}} Shows",
         "categoryMovies": "{{category}} Movies",
@@ -1072,8 +1458,8 @@
   },
   "fedapi": {
     "onboarding": {
-      "title": "FED API (Private) token",
-      "description": "Bring your own FREE Febbox account to gain access to FED API (Private), the best source with 4K quality, Dolby Atmos, skip intro and the fastest load times! Highly recommended option!"
+      "title": "Febbox token",
+      "description": "Bring your own FREE Febbox account to gain access to FED API, the best sources with 4K quality, Dolby Atmos, skip intro and the fastest load times! Highly recommended option!"
     },
     "setup": {
       "title": "To get your UI token:",
@@ -1083,10 +1469,20 @@
         "1": "1. Go to <0>febbox.com</0> and log in with Google (use a fresh account!)",
         "2": "2. Open DevTools or inspect the page",
         "3": "3. Go to Application tab → Cookies",
-        "4": "4. Copy the 'ui' cookie.",
-        "5": "5. Close the tab, but do NOT logout!",
-        "warning": "(Do not share this token!)"
-      }
+        "4": "4. Copy the 'ui' cookie's value.",
+        "5": "5. Close the tab, but do NOT logout!"
+      },
+      "tokenLabel": "Token",
+      "tokenExample": {
+        "button": "(Example)",
+        "title": "Example Token",
+        "description": "This is what a Febbox UI token looks like:",
+        "warning": "Don't try to use, it's fake.",
+        "close": "Got it"
+      },
+      "traffic": "{{used}} / {{limit}} High-speed Traffic • Resets in {{reset}}",
+      "trafficExplanation": "Febbox gives you 100GB/month of high-speed traffic, the streams might buffer more after you've used up your quota. Depends on your internet speed and the quality of the stream.",
+      "useMp4": "Enable MP4 streams. May be faster outside of the U.S., but audio tracks cannot be changed."
     },
     "status": {
       "success": "success",
@@ -1094,14 +1490,19 @@
       "invalid_token": "Failed to fetch a 'VIP' stream. Your token is invalid!"
     }
   },
-  "realdebrid": {
-    "title": "Real Debrid (Beta)",
-    "description": "Enter your Real Debrid API key to access Real Debrid. Extension required.",
+  "debrid": {
+    "title": "Debrid (Beta)",
+    "description": "Enter your Debrid API key to access Debrid services. Requires a paid <0>Real-Debrid</0> or <1>TorBox</1> account!",
+    "notice": "Notice: This may not work on all browsers, use Chromium for the best compatibility. If you hear no audio, use another source. :(",
     "tokenLabel": "API Key",
+    "serviceOptions": {
+      "realdebrid": "Real Debrid",
+      "torbox": "TorBox"
+    },
     "status": {
-      "failure": "Failed to connect to Real Debrid. Please check your API key.",
-      "api_down": "Real Debrid API is currently unavailable. Please try again later.",
-      "invalid_token": "Invalid API key or non-premium account. Real Debrid requires a premium account."
+      "failure": "Failed to connect to Debrid. Please check your API key.",
+      "api_down": "Hmm, something went wrong. Please try again later.",
+      "invalid_token": "Invalid API key or non-premium account. Debrid requires a premium account."
     }
   },
   "watchParty": {
@@ -1130,10 +1531,13 @@
     "cancel": "Cancel",
     "save": "Save",
     "emptyRoom": "No one is in this room yet",
+    "noHost": "No host in this watch party",
     "invalidRoom": "Unable to connect to this room",
     "contentMismatch": "Cannot join watch party: The content does not match the host's content.",
     "episodeMismatch": "Cannot join watch party: You are watching a different episode than the host.",
     "validating": "Validating watch party...",
-    "linkCopied": "Copied!"
+    "linkCopied": "Copied!",
+    "backendRequirement": "All users must use the same backend server",
+    "activeBackend": "Active Backend: {{backend}}"
   }
 }

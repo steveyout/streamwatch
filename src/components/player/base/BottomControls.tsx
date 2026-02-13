@@ -2,6 +2,7 @@ import { useEffect } from "react";
 
 import { Transition } from "@/components/utils/Transition";
 import { usePlayerStore } from "@/stores/player/store";
+import { useSubtitleStore } from "@/stores/subtitles";
 
 export function BottomControls(props: {
   show?: boolean;
@@ -9,6 +10,9 @@ export function BottomControls(props: {
 }) {
   const setHoveringAnyControls = usePlayerStore(
     (s) => s.setHoveringAnyControls,
+  );
+  const backgroundBlurEnabled = useSubtitleStore(
+    (s) => s.styling.backgroundBlurEnabled,
   );
 
   useEffect(() => {
@@ -19,11 +23,13 @@ export function BottomControls(props: {
 
   return (
     <div className="w-full text-white">
-      <Transition
-        animation="fade"
-        show={props.show}
-        className="pointer-events-none flex justify-end pt-32 bg-gradient-to-t from-black to-transparent transition-opacity duration-200 absolute bottom-0 w-full"
-      />
+      {backgroundBlurEnabled && (
+        <Transition
+          animation="fade"
+          show={props.show}
+          className="pointer-events-none flex justify-end pt-32 bg-gradient-to-t from-black to-transparent transition-opacity duration-200 absolute bottom-0 w-full"
+        />
+      )}
       <div
         onMouseOver={() => setHoveringAnyControls(true)}
         onMouseOut={() => setHoveringAnyControls(false)}

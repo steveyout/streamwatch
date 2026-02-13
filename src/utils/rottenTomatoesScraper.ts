@@ -132,11 +132,11 @@ export async function scrapeRottenTomatoes(
     const movies = movieRows.map((row) => {
       const nameMatch = row.match(/data-qa="info-name"[^>]*>([^<]+)</);
       const urlMatch = row.match(/href="([^"]+)"/);
-      const scoreMatch = row.match(/tomatometerscore="([^"]+)"/);
-      const sentimentMatch = row.match(/tomatometersentiment="([^"]+)"/);
-      const yearMatch = row.match(/releaseyear="([^"]+)"/);
+      const scoreMatch = row.match(/tomatometer-score="([^"]+)"/);
+      const sentimentMatch = row.match(/tomatometer-sentiment="([^"]+)"/);
+      const yearMatch = row.match(/release-year="([^"]+)"/);
       const tomatometeriscertified = row.match(
-        /tomatometeriscertified="([^"]+)"/,
+        /tomatometer-is-certified="([^"]+)"/,
       );
 
       return {

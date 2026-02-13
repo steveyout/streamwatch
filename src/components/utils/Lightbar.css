@@ -1,4 +1,5 @@
-.lightbar, .lightbar-visual {
+.lightbar,
+.lightbar-visual {
   position: absolute;
   width: 500vw;
   height: 800px;
@@ -12,7 +13,8 @@
 }
 
 @screen sm {
-  .lightbar, .lightbar-visual {
+  .lightbar,
+  .lightbar-visual {
     width: 150vw;
   }
 
@@ -20,7 +22,6 @@
     left: -25vw;
     transform: initial;
   }
-
 }
 
 [dir] .lightbar {
@@ -28,21 +29,23 @@
   justify-content: center;
   align-items: center;
   --d: 3s;
-  --animation: cubic-bezier(.75, -0.00, .25, 1);
+  --animation: cubic-bezier(0.75, -0, 0.25, 1);
   animation: boot var(--d) var(--animation) forwards;
 }
 
 [dir] .lightbar-visual {
   left: 0;
-  --top: theme('colors.background.main');
-  --bottom: theme('colors.lightBar.light');
+  --top: theme("colors.background.main");
+  --bottom: theme("colors.lightBar.light");
   --first: conic-gradient(from 90deg at 80% 50%, var(--top), var(--bottom));
   --second: conic-gradient(from 270deg at 20% 50%, var(--bottom), var(--top));
   mask-image: radial-gradient(100% 50% at center center, black, transparent);
   background-image: var(--first), var(--second);
   background-position-x: 1%, 99%;
   background-position-y: 0%, 0%;
-  background-size: 50% 100%, 50% 100%;
+  background-size:
+    50% 100%,
+    50% 100%;
   opacity: 1;
   transform: rotate(180deg) translateZ(0px) translateY(400px);
   transform-origin: center center;

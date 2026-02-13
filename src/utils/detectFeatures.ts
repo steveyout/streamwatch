@@ -6,6 +6,8 @@ export const isSafari = /^((?!chrome|android).)*safari/i.test(
   navigator.userAgent,
 );
 
+export const isFirefox = detect()?.name === "firefox";
+
 let cachedVolumeResult: boolean | null = null;
 export async function canChangeVolume(): Promise<boolean> {
   if (cachedVolumeResult === null) {

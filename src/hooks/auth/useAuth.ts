@@ -6,9 +6,13 @@ import {
   bytesToBase64,
   bytesToBase64Url,
   encryptData,
+  getCredentialId,
+  keysFromCredentialId,
   keysFromMnemonic,
   signChallenge,
+  storeCredentialMapping,
 } from "@/backend/accounts/crypto";
+import { getGroupOrder } from "@/backend/accounts/groupOrder";
 import { importBookmarks, importProgress } from "@/backend/accounts/import";
 import { getLoginChallengeToken, loginAccount } from "@/backend/accounts/login";
 import { progressMediaItemToInputs } from "@/backend/accounts/progress";
@@ -23,6 +27,7 @@ import {
   getBookmarks,
   getProgress,
   getUser,
+  getWatchHistory,
 } from "@/backend/accounts/user";
 import { useAuthData } from "@/hooks/auth/useAuthData";
 import { useBackendUrl } from "@/hooks/auth/useBackendUrl";
@@ -32,7 +37,8 @@ import { ProgressMediaItem } from "@/stores/progress";
 
 export interface RegistrationData {
   recaptchaToken?: string;
-  mnemonic: string;
+  mnemonic?: string;
+  credentialId?: string;
   userData: {
     device: string;
     profile: {
@@ -44,7 +50,8 @@ export interface RegistrationData {
 }
 
 export interface LoginData {
-  mnemonic: string;
+  mnemonic?: string;
+  credentialId?: string;
   userData: {
     device: string;
   };
@@ -64,8 +71,23 @@ export function useAuth() {
   const login = useCallback(
     async (loginData: LoginData) => {
       if (!backendUrl) return;
-      const keys = await keysFromMnemonic(loginData.mnemonic);
+      if (!loginData.mnemonic && !loginData.credentialId) {
+        throw new Error("Either mnemonic or credentialId must be provided");
+      }
+
+      const keys = loginData.credentialId
+        ? await keysFromCredentialId(loginData.credentialId)
+        : await keysFromMnemonic(loginData.mnemonic!);
       const publicKeyBase64Url = bytesToBase64Url(keys.publicKey);
+
+      // Try to get credential ID from storage if using mnemonic
+      let credentialId: string | null = null;
+      if (loginData.mnemonic) {
+        credentialId = getCredentialId(backendUrl, publicKeyBase64Url);
+      } else {
+        credentialId = loginData.credentialId || null;
+      }
+
       const { challenge } = await getLoginChallengeToken(
         backendUrl,
         publicKeyBase64Url,
@@ -82,6 +104,12 @@ export function useAuth() {
 
       const user = await getUser(backendUrl, loginResult.token);
       const seedBase64 = bytesToBase64(keys.seed);
+
+      // Store credential mapping if we have a credential ID
+      if (credentialId) {
+        storeCredentialMapping(backendUrl, publicKeyBase64Url, credentialId);
+      }
+
       return userDataLogin(loginResult, user.user, user.session, seedBase64);
     },
     [userDataLogin, backendUrl],
@@ -101,24 +129,55 @@ export function useAuth() {
     await userDataLogout();
   }, [userDataLogout, backendUrl, currentAccount]);
 
+  const disconnectFromBackend = useCallback(async () => {
+    if (!currentAccount || !backendUrl) return;
+    try {
+      await removeSession(
+        backendUrl,
+        currentAccount.token,
+        currentAccount.sessionId,
+      );
+    } catch {
+      // we dont care about failing to delete session
+    }
+    // Only remove the account, keep all local data
+    useAuthStore.getState().removeAccount();
+  }, [backendUrl, currentAccount]);
+
   const register = useCallback(
     async (registerData: RegistrationData) => {
       if (!backendUrl) return;
+      if (!registerData.mnemonic && !registerData.credentialId) {
+        throw new Error("Either mnemonic or credentialId must be provided");
+      }
+
       const { challenge } = await getRegisterChallengeToken(
         backendUrl,
         registerData.recaptchaToken,
       );
-      const keys = await keysFromMnemonic(registerData.mnemonic);
+      const keys = registerData.credentialId
+        ? await keysFromCredentialId(registerData.credentialId)
+        : await keysFromMnemonic(registerData.mnemonic!);
       const signature = await signChallenge(keys, challenge);
+      const publicKeyBase64Url = bytesToBase64Url(keys.publicKey);
       const registerResult = await registerAccount(backendUrl, {
         challenge: {
           code: challenge,
           signature,
         },
-        publicKey: bytesToBase64Url(keys.publicKey),
+        publicKey: publicKeyBase64Url,
         device: await encryptData(registerData.userData.device, keys.seed),
         profile: registerData.userData.profile,
       });
+
+      // Store credential mapping if we have a credential ID
+      if (registerData.credentialId) {
+        storeCredentialMapping(
+          backendUrl,
+          publicKeyBase64Url,
+          registerData.credentialId,
+        );
+      }
 
       return userDataLogin(
         registerResult,
@@ -180,13 +239,34 @@ export function useAuth() {
         throw err;
       }
 
-      const [bookmarks, progress, settings] = await Promise.all([
-        getBookmarks(backendUrl, account),
-        getProgress(backendUrl, account),
-        getSettings(backendUrl, account),
-      ]);
+      const [bookmarks, progress, watchHistory, settings, groupOrder] =
+        await Promise.all([
+          getBookmarks(backendUrl, account),
+          getProgress(backendUrl, account),
+          getWatchHistory(backendUrl, account),
+          getSettings(backendUrl, account),
+          getGroupOrder(backendUrl, account),
+        ]);
 
-      syncData(user.user, user.session, progress, bookmarks, settings);
+      // Update account store with fresh user data (including nickname)
+      const { setAccount } = useAuthStore.getState();
+      if (account) {
+        setAccount({
+          ...account,
+          nickname: user.user.nickname,
+          profile: user.user.profile,
+        });
+      }
+
+      syncData(
+        user.user,
+        user.session,
+        progress,
+        bookmarks,
+        watchHistory,
+        settings,
+        groupOrder,
+      );
     },
     [backendUrl, syncData, logout],
   );
@@ -196,6 +276,7 @@ export function useAuth() {
     profile,
     login,
     logout,
+    disconnectFromBackend,
     register,
     restore,
     importData,

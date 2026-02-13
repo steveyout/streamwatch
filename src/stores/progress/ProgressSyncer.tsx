@@ -9,7 +9,7 @@ import { useBackendUrl } from "@/hooks/auth/useBackendUrl";
 import { AccountWithToken, useAuthStore } from "@/stores/auth";
 import { ProgressUpdateItem, useProgressStore } from "@/stores/progress";
 
-const syncIntervalMs = 5 * 1000;
+const syncIntervalMs = 20 * 1000; // 20 second intervals
 
 async function syncProgress(
   items: ProgressUpdateItem[],
@@ -59,6 +59,7 @@ export function ProgressSyncer() {
     clearUpdateQueue();
   }, [clearUpdateQueue]);
 
+  // Regular interval sync
   useEffect(() => {
     const interval = setInterval(() => {
       (async () => {
@@ -76,6 +77,59 @@ export function ProgressSyncer() {
 
     return () => {
       clearInterval(interval);
+    };
+  }, [removeUpdateItem, url]);
+
+  // Immediate sync when items are added or removed
+  useEffect(() => {
+    let syncTimeout: NodeJS.Timeout | null = null;
+
+    const syncImmediately = async () => {
+      if (!url) return;
+      const state = useProgressStore.getState();
+      const user = useAuthStore.getState();
+      // Only sync if there are items in the queue
+      if (state.updateQueue.length > 0) {
+        await syncProgress(
+          state.updateQueue,
+          removeUpdateItem,
+          url,
+          user.account,
+        );
+      }
+    };
+
+    const debouncedSync = () => {
+      if (syncTimeout) {
+        clearTimeout(syncTimeout);
+      }
+      syncTimeout = setTimeout(syncImmediately, 100);
+    };
+
+    // Override the updateItem function to trigger immediate sync
+    const originalUpdateItem = useProgressStore.getState().updateItem;
+    useProgressStore.setState({
+      updateItem: (...args) => {
+        originalUpdateItem(...args);
+        // Trigger debounced sync after updating item
+        debouncedSync();
+      },
+    });
+
+    // Override removeItem to trigger immediate sync
+    const originalRemoveItem = useProgressStore.getState().removeItem;
+    useProgressStore.setState({
+      removeItem: (...args) => {
+        originalRemoveItem(...args);
+        // Trigger debounced sync after removing item
+        debouncedSync();
+      },
+    });
+
+    return () => {
+      if (syncTimeout) {
+        clearTimeout(syncTimeout);
+      }
     };
   }, [removeUpdateItem, url]);
 

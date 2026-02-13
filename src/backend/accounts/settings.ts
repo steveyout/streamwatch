@@ -2,6 +2,7 @@ import { ofetch } from "ofetch";
 
 import { getAuthHeaders } from "@/backend/accounts/auth";
 import { AccountWithToken } from "@/stores/auth";
+import { KeyboardShortcuts } from "@/utils/keyboardShortcuts";
 
 export interface SettingsInput {
   applicationLanguage?: string;
@@ -9,7 +10,8 @@ export interface SettingsInput {
   defaultSubtitleLanguage?: string;
   proxyUrls?: string[] | null;
   febboxKey?: string | null;
-  realDebridKey?: string | null;
+  debridToken?: string | null;
+  debridService?: string;
   enableThumbnails?: boolean;
   enableAutoplay?: boolean;
   enableSkipCredits?: boolean;
@@ -18,10 +20,23 @@ export interface SettingsInput {
   enableDetailsModal?: boolean;
   enableImageLogos?: boolean;
   enableCarouselView?: boolean;
+  enableMinimalCards?: boolean;
   forceCompactEpisodeView?: boolean;
-  sourceOrder?: string[];
+  sourceOrder?: string[] | null;
   enableSourceOrder?: boolean;
+  lastSuccessfulSource?: string | null;
+  enableLastSuccessfulSource?: boolean;
+  embedOrder?: string[] | null;
+  enableEmbedOrder?: boolean;
   proxyTmdb?: boolean;
+  enableLowPerformanceMode?: boolean;
+  enableNativeSubtitles?: boolean;
+  enableHoldToBoost?: boolean;
+  homeSectionOrder?: string[] | null;
+  manualSourceSelection?: boolean;
+  enableDoubleClickToSeek?: boolean;
+  enableAutoResumeOnPlaybackError?: boolean;
+  keyboardShortcuts?: KeyboardShortcuts;
 }
 
 export interface SettingsResponse {
@@ -30,7 +45,8 @@ export interface SettingsResponse {
   defaultSubtitleLanguage?: string | null;
   proxyUrls?: string[] | null;
   febboxKey?: string | null;
-  realDebridKey?: string | null;
+  debridToken?: string | null;
+  debridService?: string;
   enableThumbnails?: boolean;
   enableAutoplay?: boolean;
   enableSkipCredits?: boolean;
@@ -39,9 +55,23 @@ export interface SettingsResponse {
   enableDetailsModal?: boolean;
   enableImageLogos?: boolean;
   enableCarouselView?: boolean;
-  sourceOrder?: string[];
+  enableMinimalCards?: boolean;
+  forceCompactEpisodeView?: boolean;
+  sourceOrder?: string[] | null;
   enableSourceOrder?: boolean;
+  lastSuccessfulSource?: string | null;
+  enableLastSuccessfulSource?: boolean;
+  embedOrder?: string[] | null;
+  enableEmbedOrder?: boolean;
   proxyTmdb?: boolean;
+  enableLowPerformanceMode?: boolean;
+  enableNativeSubtitles?: boolean;
+  enableHoldToBoost?: boolean;
+  homeSectionOrder?: string[] | null;
+  manualSourceSelection?: boolean;
+  enableDoubleClickToSeek?: boolean;
+  enableAutoResumeOnPlaybackError?: boolean;
+  keyboardShortcuts?: KeyboardShortcuts;
 }
 
 export function updateSettings(

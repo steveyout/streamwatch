@@ -11,18 +11,25 @@ import {
 
 import { convertLegacyUrl, isLegacyUrl } from "@/backend/metadata/getmeta";
 import { generateQuickSearchMediaUrl } from "@/backend/metadata/tmdb";
+import { DetailsModal } from "@/components/overlays/detailsModal";
+import { KeyboardCommandsEditModal } from "@/components/overlays/KeyboardCommandsEditModal";
+import { KeyboardCommandsModal } from "@/components/overlays/KeyboardCommandsModal";
+import { NotificationModal } from "@/components/overlays/notificationsModal";
+import { SupportInfoModal } from "@/components/overlays/SupportInfoModal";
+import { useGlobalKeyboardEvents } from "@/hooks/useGlobalKeyboardEvents";
 import { useOnlineListener } from "@/hooks/usePing";
 import { AboutPage } from "@/pages/About";
 import { AdminPage } from "@/pages/admin/AdminPage";
+import { AllBookmarks } from "@/pages/bookmarks/AllBookmarks";
 import VideoTesterView from "@/pages/developer/VideoTesterView";
 import { DiscoverMore } from "@/pages/discover/AllMovieLists";
 import { Discover } from "@/pages/discover/Discover";
 import { MoreContent } from "@/pages/discover/MoreContent";
-import { DmcaPage } from "@/pages/Dmca";
 import MaintenancePage from "@/pages/errors/MaintenancePage";
 import { NotFoundPage } from "@/pages/errors/NotFoundPage";
 import { HomePage } from "@/pages/HomePage";
 import { JipPage } from "@/pages/Jip";
+import { LegalPage, shouldHaveLegalPage } from "@/pages/Legal";
 import { LoginPage } from "@/pages/Login";
 import { MigrationPage } from "@/pages/migration/Migration";
 import { MigrationDirectPage } from "@/pages/migration/MigrationDirect";
@@ -33,8 +40,10 @@ import { OnboardingExtensionPage } from "@/pages/onboarding/OnboardingExtension"
 import { OnboardingProxyPage } from "@/pages/onboarding/OnboardingProxy";
 import { RegisterPage } from "@/pages/Register";
 import { SupportPage } from "@/pages/Support";
+import { WatchHistory } from "@/pages/watchHistory/WatchHistory";
 import { Layout } from "@/setup/Layout";
 import { useHistoryListener } from "@/stores/history";
+import { useClearModalsOnNavigation } from "@/stores/interface/overlayStack";
 import { LanguageProvider } from "@/stores/language";
 
 const DeveloperPage = lazy(() => import("@/pages/DeveloperPage"));
@@ -84,7 +93,7 @@ function QueryView() {
 
   useEffect(() => {
     if (query) {
-      navigate(`/browse/${query}`, { replace: true });
+      navigate(`/browse/${encodeURIComponent(query)}`, { replace: true });
     } else {
       navigate("/", { replace: true });
     }
@@ -98,6 +107,8 @@ export const maintenanceTime = "March 31th 11:00 PM - 5:00 AM EST";
 function App() {
   useHistoryListener();
   useOnlineListener();
+  useGlobalKeyboardEvents();
+  useClearModalsOnNavigation();
   const maintenance = false; // Shows maintance page
   const [showDowntime, setShowDowntime] = useState(maintenance);
 
@@ -116,6 +127,13 @@ function App() {
   return (
     <Layout>
       <LanguageProvider />
+      <NotificationModal id="notifications" />
+      <KeyboardCommandsModal id="keyboard-commands" />
+      <KeyboardCommandsEditModal id="keyboard-commands-edit" />
+      <SupportInfoModal id="support-info" />
+      <DetailsModal id="details" />
+      <DetailsModal id="discover-details" />
+      <DetailsModal id="player-details" />
       {!showDowntime && (
         <Routes>
           {/* functional routes */}
@@ -164,7 +182,9 @@ function App() {
           />
           <Route path="/migration/upload" element={<MigrationUploadPage />} />
 
-          <Route path="/dmca" element={<DmcaPage />} />
+          {shouldHaveLegalPage() ? (
+            <Route path="/legal" element={<LegalPage />} />
+          ) : null}
           {/* Support page */}
           <Route path="/support" element={<SupportPage />} />
           <Route path="/jip" element={<JipPage />} />
@@ -180,6 +200,10 @@ function App() {
           />
           <Route path="/discover/more/:category" element={<MoreContent />} />
           <Route path="/discover/all" element={<DiscoverMore />} />
+          {/* Bookmarks page */}
+          <Route path="/bookmarks" element={<AllBookmarks />} />
+          {/* Watch History page */}
+          <Route path="/watch-history" element={<WatchHistory />} />
           {/* Settings page */}
           <Route
             path="/settings"

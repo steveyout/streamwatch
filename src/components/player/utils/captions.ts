@@ -1,4 +1,4 @@
-import { RunOutput } from "@movie-web/providers";
+import { RunOutput } from "@p-stream/providers";
 import DOMPurify from "dompurify";
 import { convert, detect, parse } from "subsrt-ts";
 import { ContentCaption } from "subsrt-ts/dist/types/handler";
@@ -101,7 +101,14 @@ export function convertProviderCaption(
     id: v.id,
     language: v.language,
     url: v.url,
+    type: (v as any).type,
     needsProxy: v.hasCorsRestrictions,
     opensubtitles: v.opensubtitles,
+    // subtitle details from wyzie
+    display: (v as any).display,
+    media: (v as any).media,
+    isHearingImpaired: (v as any).isHearingImpaired,
+    source: (v as any).source,
+    encoding: (v as any).encoding,
   }));
 }

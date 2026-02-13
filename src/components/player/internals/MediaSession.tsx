@@ -10,176 +10,209 @@ export function MediaSession() {
     (s) => s.setShouldStartFromBeginning,
   );
 
+  const mediaPlaying = usePlayerStore((s) => s.mediaPlaying);
+  const progress = usePlayerStore((s) => s.progress);
+  const meta = usePlayerStore((s) => s.meta);
+  const display = usePlayerStore((s) => s.display);
+
   const shouldUpdatePositionState = useRef(false);
   const lastPlaybackPosition = useRef(0);
 
-  const data = usePlayerStore.getState();
-
   const changeEpisode = useCallback(
     (change: number) => {
-      const nextEp = data.meta?.episodes?.find(
-        (v) => v.number === (data.meta?.episode?.number ?? 0) + change,
+      const nextEp = meta?.episodes?.find(
+        (v) => v.number === (meta?.episode?.number ?? 0) + change,
       );
 
-      if (!data.meta || !nextEp) return;
-      const metaCopy = { ...data.meta };
+      if (!meta || !nextEp) return;
+      const metaCopy = { ...meta };
       metaCopy.episode = nextEp;
       setShouldStartFromBeginning(true);
       setDirectMeta(metaCopy);
     },
-    [data.meta, setDirectMeta, setShouldStartFromBeginning],
+    [meta, setDirectMeta, setShouldStartFromBeginning],
   );
 
   const updatePositionState = useCallback(
     (position: number) => {
-      // If the browser doesn't support setPositionState, return
       if (typeof navigator.mediaSession.setPositionState !== "function") return;
 
-      // If the updated position needs to be buffered, queue an update
-      if (position > data.progress.buffered) {
+      const { duration, buffered } = progress;
+      const { playbackRate } = mediaPlaying;
+
+      if (
+        typeof duration !== "number" ||
+        Number.isNaN(duration) ||
+        !Number.isFinite(duration) ||
+        duration <= 0
+      ) {
+        return;
+      }
+
+      if (
+        typeof position !== "number" ||
+        Number.isNaN(position) ||
+        position < 0
+      ) {
+        position = 0;
+      }
+
+      if (position > buffered) {
         shouldUpdatePositionState.current = true;
       }
-      if (position > data.progress.duration) return;
 
-      lastPlaybackPosition.current = data.progress.time;
+      if (position > duration) {
+        position = duration;
+      }
+
+      lastPlaybackPosition.current = progress.time;
+
       navigator.mediaSession.setPositionState({
-        duration: data.progress.duration,
-        playbackRate: data.mediaPlaying.playbackRate,
+        duration,
+        playbackRate,
         position,
       });
     },
-    [
-      data.mediaPlaying.playbackRate,
-      data.progress.buffered,
-      data.progress.duration,
-      data.progress.time,
-    ],
+    [mediaPlaying, progress],
   );
 
   useEffect(() => {
     if (!("mediaSession" in navigator)) return;
+    navigator.mediaSession.playbackState = mediaPlaying.isPaused
+      ? "paused"
+      : "playing";
+  }, [mediaPlaying.isPaused]);
 
-    // If the media is paused, update the navigator
-    if (data.mediaPlaying.isPaused) {
-      navigator.mediaSession.playbackState = "paused";
-    } else {
-      navigator.mediaSession.playbackState = "playing";
+  useEffect(() => {
+    if (!("mediaSession" in navigator)) return;
+    if (
+      typeof progress.duration !== "number" ||
+      Number.isNaN(progress.duration) ||
+      progress.duration <= 0
+    ) {
+      return;
     }
-  }, [data.mediaPlaying.isPaused]);
+    updatePositionState(progress.time);
+  }, [
+    progress.time,
+    mediaPlaying.playbackRate,
+    progress.duration,
+    updatePositionState,
+  ]);
 
   useEffect(() => {
     if (!("mediaSession" in navigator)) return;
 
-    updatePositionState(data.progress.time);
-  }, [data.progress.time, data.mediaPlaying.playbackRate, updatePositionState]);
+    const { time, duration } = progress;
+    const { isLoading } = mediaPlaying;
 
-  useEffect(() => {
-    if (!("mediaSession" in navigator)) return;
-    // If not already updating the position state, and the media is loading, queue an update
-    if (!shouldUpdatePositionState.current && data.mediaPlaying.isLoading) {
+    if (
+      typeof duration !== "number" ||
+      Number.isNaN(duration) ||
+      duration <= 0
+    ) {
+      return;
+    }
+
+    if (!shouldUpdatePositionState.current && isLoading) {
       shouldUpdatePositionState.current = true;
     }
 
-    // If the user has skipped (or MediaSession desynced) by more than 5 seconds, queue an update
     if (
-      Math.abs(data.progress.time - lastPlaybackPosition.current) >= 5 &&
-      !data.mediaPlaying.isLoading &&
-      !shouldUpdatePositionState.current
+      !isLoading &&
+      !shouldUpdatePositionState.current &&
+      Math.abs(time - lastPlaybackPosition.current) >= 5
     ) {
       shouldUpdatePositionState.current = true;
     }
 
-    // If not loading and the position state is queued, update it
-    if (shouldUpdatePositionState.current && !data.mediaPlaying.isLoading) {
+    if (shouldUpdatePositionState.current && !isLoading) {
       shouldUpdatePositionState.current = false;
-      updatePositionState(data.progress.time);
+      updatePositionState(time);
     }
 
-    lastPlaybackPosition.current = data.progress.time;
-  }, [updatePositionState, data.progress.time, data.mediaPlaying.isLoading]);
+    lastPlaybackPosition.current = time;
+  }, [mediaPlaying, progress, updatePositionState]);
 
   useEffect(() => {
     if (
       !("mediaSession" in navigator) ||
-      (!data.mediaPlaying.isLoading &&
-        data.mediaPlaying.isPlaying &&
-        !data.display)
-    )
+      (!mediaPlaying.isLoading && mediaPlaying.isPlaying && !display)
+    ) {
       return;
+    }
 
     let title: string | undefined;
     let artist: string | undefined;
 
-    if (data.meta?.type === "movie") {
-      title = data.meta?.title;
-    } else if (data.meta?.type === "show") {
-      artist = data.meta?.title;
-      title = `S${data.meta?.season?.number} E${data.meta?.episode?.number}: ${data.meta?.episode?.title}`;
+    if (meta?.type === "movie") {
+      title = meta.title;
+    } else if (meta?.type === "show") {
+      artist = meta.title;
+      title = `S${meta.season?.number} E${meta.episode?.number}: ${meta.episode?.title}`;
     }
 
     navigator.mediaSession.metadata = new MediaMetadata({
       title,
       artist,
       artwork: [
-        {
-          src: data.meta?.poster ?? "",
-          sizes: "342x513",
-          type: "image/png",
-        },
+        { src: meta?.poster ?? "", sizes: "342x513", type: "image/png" },
       ],
     });
 
     navigator.mediaSession.setActionHandler("play", () => {
-      if (data.mediaPlaying.isLoading) return;
-      data.display?.play();
-
-      updatePositionState(data.progress.time);
+      if (mediaPlaying.isLoading) return;
+      display?.play();
+      updatePositionState(progress.time);
     });
 
     navigator.mediaSession.setActionHandler("pause", () => {
-      if (data.mediaPlaying.isLoading) return;
-      data.display?.pause();
-
-      updatePositionState(data.progress.time);
+      if (mediaPlaying.isLoading) return;
+      display?.pause();
+      updatePositionState(progress.time);
     });
 
     navigator.mediaSession.setActionHandler("seekto", (e) => {
-      if (!e.seekTime) return;
-      data.display?.setTime(e.seekTime);
+      if (e.seekTime == null) return;
+      display?.setTime(e.seekTime);
       updatePositionState(e.seekTime);
     });
 
-    if ((data.meta?.episode?.number ?? 1) !== 1) {
-      navigator.mediaSession.setActionHandler("previoustrack", () => {
-        changeEpisode(-1);
-      });
+    if ((meta?.episode?.number ?? 1) > 1) {
+      navigator.mediaSession.setActionHandler("previoustrack", () =>
+        changeEpisode(-1),
+      );
     } else {
       navigator.mediaSession.setActionHandler("previoustrack", null);
     }
 
-    if (data.meta?.episode?.number !== data.meta?.episodes?.length) {
-      navigator.mediaSession.setActionHandler("nexttrack", () => {
-        changeEpisode(1);
-      });
+    const totalEpisodes = meta?.episodes?.length ?? 0;
+    const currentEpisodeNumber = meta?.episode?.number ?? 0;
+    if (currentEpisodeNumber > 0 && currentEpisodeNumber < totalEpisodes) {
+      navigator.mediaSession.setActionHandler("nexttrack", () =>
+        changeEpisode(1),
+      );
     } else {
       navigator.mediaSession.setActionHandler("nexttrack", null);
     }
   }, [
     changeEpisode,
     updatePositionState,
-    data.mediaPlaying.hasPlayedOnce,
-    data.mediaPlaying.isLoading,
-    data.progress.duration,
-    data.progress.time,
-    data.meta?.episode?.number,
-    data.meta?.episodes?.length,
-    data.display,
-    data.mediaPlaying,
-    data.meta?.episode?.title,
-    data.meta?.title,
-    data.meta?.type,
-    data.meta?.poster,
-    data.meta?.season?.number,
+    mediaPlaying.isLoading,
+    mediaPlaying.isPlaying,
+    display,
+    progress.duration,
+    progress.time,
+    meta?.episode?.number,
+    meta?.episodes?.length,
+    meta?.episode?.title,
+    meta?.title,
+    meta?.type,
+    meta?.poster,
+    meta?.season?.number,
   ]);
+
   return null;
 }
+
+// what did we learn today? never use isNaN instead of Number.isNaN !!!

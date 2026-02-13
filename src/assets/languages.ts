@@ -19,11 +19,13 @@ import gl from "@/assets/locales/gl.json";
 import gu from "@/assets/locales/gu.json";
 import he from "@/assets/locales/he.json";
 import hi from "@/assets/locales/hi.json";
+import hu from "@/assets/locales/hu.json";
 import id from "@/assets/locales/id.json";
 import is from "@/assets/locales/is-IS.json";
 import it from "@/assets/locales/it.json";
 import ja from "@/assets/locales/ja.json";
 import kitty from "@/assets/locales/kitty.json";
+import km from "@/assets/locales/km.json";
 import ko from "@/assets/locales/ko.json";
 import lv from "@/assets/locales/lv.json";
 import minion from "@/assets/locales/minion.json";
@@ -37,6 +39,7 @@ import ptbr from "@/assets/locales/pt-BR.json";
 import ptpt from "@/assets/locales/pt-PT.json";
 import ro from "@/assets/locales/ro.json";
 import ru from "@/assets/locales/ru.json";
+import si from "@/assets/locales/si.json";
 import sl from "@/assets/locales/sl.json";
 import sv from "@/assets/locales/sv.json";
 import ta from "@/assets/locales/ta.json";
@@ -44,6 +47,8 @@ import th from "@/assets/locales/th.json";
 import tok from "@/assets/locales/tok.json";
 import tr from "@/assets/locales/tr.json";
 import uk from "@/assets/locales/uk.json";
+import umb from "@/assets/locales/umb.json";
+import urPK from "@/assets/locales/ur_PK.json";
 import uwu from "@/assets/locales/uwu.json";
 import vi from "@/assets/locales/vi.json";
 import zhhant from "@/assets/locales/zh-Hant.json";
@@ -100,6 +105,11 @@ export const locales = {
   ro,
   fi,
   nv,
+  hu,
+  km,
+  si,
+  umb,
+  "ur-PK": urPK,
 };
 
 export type Locales = keyof typeof locales;

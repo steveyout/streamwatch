@@ -13,6 +13,8 @@ import { ProfileEditModal } from "@/pages/parts/settings/ProfileEditModal";
 export function AccountEditPart(props: {
   deviceName: string;
   setDeviceName: (s: string) => void;
+  nickname: string;
+  setNickname: (s: string) => void;
   colorA: string;
   setColorA: (s: string) => void;
   colorB: string;
@@ -59,24 +61,38 @@ export function AccountEditPart(props: {
           />
         </div>
         <div>
-          <div className="space-y-8 max-w-xs">
-            <AuthInputBox
-              label={
-                t("settings.account.accountDetails.deviceNameLabel") ??
-                undefined
-              }
-              placeholder={
-                t("settings.account.accountDetails.deviceNamePlaceholder") ??
-                undefined
-              }
-              value={props.deviceName}
-              onChange={(value) => props.setDeviceName(value)}
-            />
-            <div className="flex space-x-3">
-              <Button className="logout-button" theme="danger" onClick={logout}>
-                {t("settings.account.accountDetails.logoutButton")}
-              </Button>
+          <div className="flex flex-col md:flex-row md:gap-4 gap-4">
+            <div className="w-full">
+              <AuthInputBox
+                label={t("settings.account.accountDetails.nicknameLabel")}
+                placeholder={t(
+                  "settings.account.accountDetails.nicknamePlaceholder",
+                )}
+                value={props.nickname}
+                onChange={(value) => props.setNickname(value)}
+                className="w-full"
+              />
             </div>
+            <div className="w-full">
+              <AuthInputBox
+                label={
+                  t("settings.account.accountDetails.deviceNameLabel") ??
+                  undefined
+                }
+                placeholder={
+                  t("settings.account.accountDetails.deviceNamePlaceholder") ??
+                  undefined
+                }
+                value={props.deviceName}
+                onChange={(value) => props.setDeviceName(value)}
+                className="w-full"
+              />
+            </div>
+          </div>
+          <div className="flex space-x-3 mt-4">
+            <Button className="logout-button" theme="danger" onClick={logout}>
+              {t("settings.account.accountDetails.logoutButton")}
+            </Button>
           </div>
         </div>
       </div>

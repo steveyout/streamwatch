@@ -1,4 +1,5 @@
 import { useAutoAnimate } from "@formkit/auto-animate/react";
+import classNames from "classnames";
 import { useCallback, useRef } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -25,7 +26,12 @@ export function EditButton(props: EditButtonProps) {
         ref={buttonRef}
         type="button"
         onClick={onClick}
-        className="flex h-12 items-center overflow-hidden rounded-full bg-background-secondary px-4 py-2 text-white transition-[background-color,transform] hover:bg-background-secondaryHover active:scale-105"
+        className={classNames(
+          "h-12 items-center overflow-hidden rounded-full bg-background-secondary px-4 py-2 text-white transition-[background-color,transform] hover:bg-background-secondaryHover active:scale-105",
+          {
+            "hidden sm:flex": props.editing,
+          },
+        )}
         id={props.id} // Assign id to the button
       >
         <span ref={parent}>

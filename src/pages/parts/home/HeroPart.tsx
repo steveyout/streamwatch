@@ -1,12 +1,12 @@
 import classNames from "classnames";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import Sticky from "react-sticky-el";
-import { useWindowSize } from "react-use";
 
 import { SearchBarInput } from "@/components/form/SearchBar";
 import { ThinContainer } from "@/components/layout/ThinContainer";
 import { useSlashFocus } from "@/components/player/hooks/useSlashFocus";
 import { HeroTitle } from "@/components/text/HeroTitle";
+import { useIsIOS, useIsMobile, useIsPWA } from "@/hooks/useIsMobile";
 import { useIsTV } from "@/hooks/useIsTv";
 import { useRandomTranslation } from "@/hooks/useRandomTranslation";
 import { useSearchQuery } from "@/hooks/useSearchQuery";
@@ -19,11 +19,14 @@ export interface HeroPartProps {
   isInFeatured?: boolean;
 }
 
-function getTimeOfDay(date: Date): "night" | "morning" | "day" | "420" | "69" {
+function getTimeOfDay(
+  date: Date,
+): "night" | "morning" | "day" | "420" | "69" | "halloween" {
   const month = date.getMonth() + 1;
   const day = date.getDate();
   if (month === 4 && day === 20) return "420";
   if (month === 6 && day === 9) return "69";
+  if (month === 10 && day === 31) return "halloween";
   const hour = date.getHours();
   if (hour < 5) return "night";
   if (hour < 12) return "morning";
@@ -41,41 +44,28 @@ export function HeroPart({
   const [search, setSearch, setSearchUnFocus] = searchParams;
   const [showBg, setShowBg] = useState(false);
   const bannerSize = useBannerSize();
+  const { isMobile } = useIsMobile();
+  const { isTV } = useIsTV();
 
   const stickStateChanged = useCallback(
     (isFixed: boolean) => {
       setShowBg(isFixed);
       setIsSticky(isFixed);
     },
-    [setShowBg, setIsSticky],
+    [setIsSticky],
   );
 
-  const { width: windowWidth, height: windowHeight } = useWindowSize();
+  const isPWA = useIsPWA();
+  const isIOS = useIsIOS();
+  const isIOSPWA = isIOS && isPWA;
 
-  const { isTV } = useIsTV();
-
-  // Detect if running as a PWA on iOS
-  const isIOSPWA =
-    /iPad|iPhone|iPod/i.test(navigator.userAgent) &&
-    window.matchMedia("(display-mode: standalone)").matches;
-
-  const topSpacing = isIOSPWA ? 60 : 16;
-  const [stickyOffset, setStickyOffset] = useState(topSpacing);
-
-  const isLandscape = windowHeight < windowWidth && isIOSPWA;
-  const adjustedOffset = isLandscape
-    ? -40 // landscape
-    : 0; // portrait
-
-  useEffect(() => {
-    if (windowWidth > 1280) {
-      // On large screens the bar goes inline with the nav elements
-      setStickyOffset(topSpacing);
-    } else {
-      // On smaller screens the bar goes below the nav elements
-      setStickyOffset(topSpacing + 60 + adjustedOffset);
-    }
-  }, [adjustedOffset, topSpacing, windowWidth]);
+  // Navbar height is 80px (h-20)
+  const navbarHeight = 80;
+  // On desktop: inline with navbar (same top position + 14px adjustment)
+  // On mobile: below navbar (navbar height + banner)
+  const topOffset = isMobile
+    ? navbarHeight + bannerSize + (isIOSPWA ? 34 : 0)
+    : bannerSize + 14;
 
   const time = getTimeOfDay(new Date());
   const title = randomT(`home.titles.${time}`);
@@ -88,7 +78,7 @@ export function HeroPart({
       <div
         className={classNames(
           "space-y-16 text-center",
-          showTitle ? "mt-44" : `mt-4`,
+          showTitle ? "mt-44" : "mt-4",
         )}
       >
         {showTitle && (!isTV || search.length === 0) ? (
@@ -99,11 +89,12 @@ export function HeroPart({
 
         <div className="relative h-20 z-30">
           <Sticky
-            topOffset={stickyOffset * -1 + bannerSize}
+            topOffset={-topOffset}
             stickyStyle={{
-              paddingTop: `${stickyOffset + bannerSize}px`,
+              paddingTop: `${topOffset}px`,
             }}
             onFixedToggle={stickStateChanged}
+            scrollElement="window"
           >
             <SearchBarInput
               ref={inputRef}

@@ -3,6 +3,14 @@ import { persist } from "zustand/middleware";
 import { immer } from "zustand/middleware/immer";
 
 import { PlayerMeta } from "@/stores/player/slices/source";
+import { useWatchHistoryStore } from "@/stores/watchHistory";
+import {
+  ProgressModificationOptions,
+  ProgressModificationResult,
+  modifyProgressItems,
+} from "@/utils/progressModifications";
+
+export { getProgressPercentage } from "./utils";
 
 export interface ProgressItem {
   watched: number;
@@ -61,6 +69,10 @@ export interface ProgressStore {
   updateItem(ops: UpdateItemOptions): void;
   removeItem(id: string): void;
   replaceItems(items: Record<string, ProgressMediaItem>): void;
+  modifyProgressItems(
+    progressIds: string[],
+    options: ProgressModificationOptions,
+  ): ProgressModificationResult;
   clear(): void;
   clearUpdateQueue(): void;
   removeUpdateItem(id: string): void;
@@ -129,7 +141,19 @@ export const useProgressStore = create(
                 duration: 0,
                 watched: 0,
               };
+
+            const wasCompleted =
+              item.progress.duration > 0 &&
+              item.progress.watched / item.progress.duration > 0.9;
             item.progress = { ...progress };
+
+            // Update watch history only if becoming completed
+            const isCompleted =
+              progress.duration > 0 &&
+              progress.watched / progress.duration > 0.9;
+            if (isCompleted && !wasCompleted) {
+              useWatchHistoryStore.getState().addItem(meta, progress, true);
+            }
             return;
           }
 
@@ -155,7 +179,18 @@ export const useProgressStore = create(
               },
             };
 
-          item.episodes[meta.episode.tmdbId].progress = { ...progress };
+          const episodeItem = item.episodes[meta.episode.tmdbId];
+          const wasCompleted =
+            episodeItem.progress.duration > 0 &&
+            episodeItem.progress.watched / episodeItem.progress.duration > 0.9;
+          episodeItem.progress = { ...progress };
+
+          // Update watch history only if becoming completed
+          const isCompleted =
+            progress.duration > 0 && progress.watched / progress.duration > 0.9;
+          if (isCompleted && !wasCompleted) {
+            useWatchHistoryStore.getState().addItem(meta, progress, true);
+          }
         });
       },
       clear() {
@@ -172,6 +207,44 @@ export const useProgressStore = create(
         set((s) => {
           s.updateQueue = [...s.updateQueue.filter((v) => v.id !== id)];
         });
+      },
+      modifyProgressItems(
+        progressIds: string[],
+        options: ProgressModificationOptions,
+      ): ProgressModificationResult {
+        let result: ProgressModificationResult = {
+          modifiedIds: [],
+          hasChanges: false,
+        };
+
+        set((s) => {
+          const { modifiedProgressItems, result: modificationResult } =
+            modifyProgressItems(s.items, progressIds, options);
+          s.items = modifiedProgressItems;
+          result = modificationResult;
+
+          // Add to update queue for modified progress items
+          if (result.hasChanges) {
+            result.modifiedIds.forEach((progressId) => {
+              const progressItem = s.items[progressId];
+              if (progressItem) {
+                updateId += 1;
+                s.updateQueue.push({
+                  id: updateId.toString(),
+                  action: "upsert",
+                  tmdbId: progressId,
+                  title: progressItem.title,
+                  year: progressItem.year,
+                  poster: progressItem.poster,
+                  type: progressItem.type,
+                  progress: progressItem.progress,
+                });
+              }
+            });
+          }
+        });
+
+        return result;
       },
     })),
     {

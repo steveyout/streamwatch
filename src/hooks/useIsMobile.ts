@@ -28,3 +28,11 @@ export function useIsMobile(horizontal?: boolean) {
     isMobile,
   };
 }
+
+export function useIsPWA() {
+  return window.matchMedia("(display-mode: standalone)").matches;
+}
+
+export function useIsIOS() {
+  return /iPad|iPhone|iPod/.test(navigator.userAgent);
+}

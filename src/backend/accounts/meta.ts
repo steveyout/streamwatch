@@ -9,7 +9,14 @@ export interface MetaResponse {
 }
 
 export async function getBackendMeta(url: string): Promise<MetaResponse> {
-  return ofetch<MetaResponse>("/meta", {
+  const meta = await ofetch<MetaResponse>("/meta", {
     baseURL: url,
   });
+
+  // Remove escaped backslashes before apostrophes (e.g., \' becomes ')
+  return {
+    ...meta,
+    name: meta.name.replace(/\\'/g, "'"),
+    description: meta.description?.replace(/\\'/g, "'"),
+  };
 }

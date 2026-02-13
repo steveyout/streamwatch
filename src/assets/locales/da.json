@@ -1,660 +1,650 @@
 {
-    "about": {
-        "faqTitle": "Ofte stillede spørgsmål",
-        "q1": {
-            "title": "Hvor kommer indholdet fra?",
-            "body": "StreamWatch er ikke udbyder af indholdet. Når du klikker på et medie for at se det, søges der på internettet efter det valgte medie (på indlæsningsskærmen og i fanen 'videokilder' kan du se, hvilken kilde du bruger). Medier bliver aldrig uploadet af StreamWatch, alt sker gennem denne søgemaskine."
-        },
-        "q2": {
-            "body": "Det er ikke muligt at anmode om en serie eller film, StreamWatch administrerer ikke noget indhold. Alt indhold ses gennem kilder på internettet.",
-            "title": "Hvor kan jeg ønske en serie eller film?"
-        },
-        "q3": {
-            "body": "Vores søgeresultater er leveret af The Movie Database (TMDB) og vises, uanset om kilderne rent faktisk har indholdet.",
-            "title": "Søgeresultaterne viser serien eller filmen, men hvorfor kan jeg ikke afspille den?"
-        },
-        "q4": {
-            "title": "Hvad med mine data og andet?",
-            "body": "Alle oplysninger synkroniseres til sudo-backend, som er anderledes end community-backend og hostes selvstændigt af mig, men alle er velkomne til at bruge den."
-        },
-        "q5": {
-            "body": "StreamWatch har en Discord server, som kan findes i toppen af den side!",
-            "title": "Hvordan kan jeg finde ud af mere?"
-        },
-        "title": "Om StreamWatch (^▽^)",
-        "description": "StreamWatch er en variant af movie-web, som er sikret at forblive oppe, selv efter at movie-web.app er lukket ned. StreamWatch.lol kører på en privat, selvhostet VPS. Jeg driver denne hjemmeside med underskud; der er ingen reklamer på grund af min tro på gratis medie."
+  "about": {
+    "faqTitle": "Ofte stillede spørgsmål",
+    "q1": {
+      "title": "Hvor kommer indholdet fra?",
+      "body": "P-Stream er ikke udbyder af indholdet. Når du klikker på et medie for at se det, søges der på internettet efter det valgte medie (på indlæsningsskærmen og i fanen 'videokilder' kan du se, hvilken kilde du bruger). Medier bliver aldrig uploadet af P-Stream, alt sker gennem denne søgemaskine."
     },
-    "actions": {
-        "copied": "Kopieret",
-        "copy": "Kopier"
+    "q2": {
+      "body": "Det er ikke muligt at anmode om en serie eller film, P-Stream administrerer ikke noget indhold. Alt indhold ses gennem kilder på internettet.",
+      "title": "Hvor kan jeg ønske en serie eller film?"
     },
-    "auth": {
-        "createAccount": "Du har ikke en profil endnu 😬 <0>Opret en profil.</0>",
-        "deviceNameLabel": "Navn på enhed",
-        "deviceNamePlaceholder": "Personlig telefon",
-        "generate": {
-            "next": "Jeg har gemt min adgangssætning",
-            "passphraseFrameLabel": "Adgangssætning",
-            "title": "Din adgangssætning",
-            "description": "Din adgangssætning fungerer som dit brugernavn og adgangskode. Sørg for at opbevare den sikkert, da du skal bruge den til at logge ind på din profil. <bold>Husk IKKE at glemme din adgangskode!</bold>"
-        },
-        "hasAccount": "Har du allerede en profil? <0>Log ind her.</0>",
-        "login": {
-            "description": "Indtast din adgangssætning for at logge ind på din profil",
-            "deviceLengthError": "Indtast venligst et enhedens navn",
-            "passphraseLabel": "Adgangssætning på 12 ord",
-            "passphrasePlaceholder": "Adgangssætning",
-            "submit": "Log ind",
-            "title": "Log ind på din profil",
-            "validationError": "Forkert eller ukomplet adgangssætning /ᐠ. .ᐟ\\"
-        },
-        "register": {
-            "information": {
-                "icon": "Brugerikon",
-                "next": "Næste",
-                "title": "Oplysninger om din profil",
-                "color1": "Profil farve 1",
-                "color2": "Profil farve 2",
-                "header": "Indtast et navn til din enhed, vælg farver og et brugerikon efter eget valg!"
-            }
-        },
-        "trust": {
-            "failed": {
-                "text": "Har du konfigureret det korrekt?",
-                "title": "Det lykkedes ikke at kontakte serveren"
-            },
-            "noHostTitle": "Serveren er ikke konfigureret!",
-            "noHost": "Serveren er ikke konfigureret, derfor kan du ikke oprette en profil",
-            "title": "Stoler du på den her server?",
-            "no": "Gå tilbage",
-            "yes": "Jeg stoler på denne server 🤞",
-            "host": "Du forbinder til <0>{{hostname}}</0> - vær sikker på, at du stoler på den, før du opretter en profil..."
-        },
-        "verify": {
-            "invalidData": "Oplysningerne er ikke gyldige",
-            "noMatch": "Adgangssætningen stemmer ikke overens 😭",
-            "passphraseLabel": "Din adgangssætning på 12 ord",
-            "recaptchaFailed": "ReCaptcha validering mislykkedes",
-            "register": "Opret profil",
-            "title": "Bekræft din adgangssætning",
-            "description": "Indtast din adgangssætning fra tidligere for at bekræfte, at du har gemt den, og for at oprette din profil"
-        }
+    "q3": {
+      "body": "Vores søgeresultater er leveret af The Movie Database (TMDB) og vises, uanset om kilderne rent faktisk har indholdet.",
+      "title": "Søgeresultaterne viser serien eller filmen, men hvorfor kan jeg ikke afspille den?"
     },
-    "errors": {
-        "details": "Fejloplysninger",
-        "reloadPage": "Genindlæs siden",
-        "showError": "Vis fejloplysninger",
-        "title": "Der er opstået en fejl!",
-        "badge": "Noget gik galt 💀"
+    "q4": {
+      "title": "Hvad med mine data og andet?",
+      "body": "Alle oplysninger synkroniseres til sudo-backend, som er anderledes end community-backend og hostes selvstændigt af mig, men alle er velkomne til at bruge den."
     },
-    "footer": {
-        "legal": {
-            "disclaimer": "Ansvarsfraskrivelse ◝(ᵔᵕᵔ)◜",
-            "disclaimerText": "Bemærk: StreamWatch hoster ikke selv nogen filer, men viser i stedet kun indhold fra tredjepartsudbydere. Lovmæssige forhold bør afklares med dem."
-        },
-        "links": {
-            "discord": "Discord",
-            "dmca": "DMCA",
-            "github": "GitHub",
-            "twitter": "Twitter"
-        },
-        "tagline": "Se dine favoritserier og -film gratis og uden reklamer! (っ'ヮ'c)"
+    "q5": {
+      "body": "P-Stream har en Discord server, som kan findes i toppen af den side!",
+      "title": "Hvordan kan jeg finde ud af mere?"
     },
-    "global": {
-        "name": "StreamWatch",
-        "pages": {
-            "about": "Om os",
-            "dmca": "DMCA",
-            "support": "Support",
-            "login": "Log ind",
-            "onboarding": "Opsætning",
-            "pagetitle": "{{title}} - StreamWatch",
-            "register": "Registrer",
-            "settings": "Indstillinger",
-            "discover": "Opdag",
-            "migration": "Migrer Profil"
-        }
+    "title": "Om P-Stream (^▽^)",
+    "description": "P-Stream er en variant af movie-web, som er sikret at forblive oppe, selv efter at movie-web.app er lukket ned. P-Stream.lol kører på en privat, selvhostet VPS. Jeg driver denne hjemmeside med underskud; der er ingen reklamer på grund af min tro på gratis medie."
+  },
+  "actions": {
+    "copied": "Kopieret",
+    "copy": "Kopier"
+  },
+  "auth": {
+    "createAccount": "Du har ikke en profil endnu 😬 <0>Opret en profil.</0>",
+    "deviceNameLabel": "Navn på enhed",
+    "deviceNamePlaceholder": "Personlig telefon",
+    "generate": {
+      "next": "Jeg har gemt min adgangssætning",
+      "passphraseFrameLabel": "Adgangssætning",
+      "title": "Din adgangssætning",
+      "description": "Din adgangssætning fungerer som dit brugernavn og adgangskode. Sørg for at opbevare den sikkert, da du skal bruge den til at logge ind på din profil. <bold>Husk IKKE at glemme din adgangskode!</bold>"
     },
-    "home": {
-        "continueWatching": {
-            "sectionTitle": "Fortsæt med at se..."
-        },
-        "mediaList": {
-            "stopEditing": "Stop med at redigere"
-        },
-        "search": {
-            "allResults": "Det er alt, hvad vi har...",
-            "failed": "Kunne ikke finde noget, prøv igen!",
-            "loading": "Indlæser...",
-            "noResults": "Vi kunne ikke finde noget :(",
-            "placeholder": {
-                "extra": [
-                    "Hvad har du lyst til?",
-                    "Skal vi slette din browserhistorik?",
-                    "Hvad ønsker du at streame?",
-                    "StreamWatch er den bedste side nogensinde!",
-                    "Hvad er der på din favoritliste i dag?",
-                    "Hvordan har din dag været?",
-                    "Min fejl, siden virker aldrig...",
-                    "Er StreamWatch ikke bare det bedste?",
-                    ">ᴗ<"
-                ],
-                "default": "Hvad har du lyst til at se?"
-            },
-            "empty": {
-                "default": "Velkommen, find noget at se her!",
-                "extra": [
-                    "Der er intet her :(",
-                    "Så tomt...",
-                    "Sikke en masse luft.",
-                    "Hej nye medlem :3"
-                ]
-            },
-            "sectionTitle": "Søgeresultater",
-            "discoverMore": "Opdag mere",
-            "discover": "Opdag"
-        },
-        "bookmarks": {
-            "sectionTitle": "Bogmærker"
-        },
-        "titles": {
-            "day": {
-                "default": "Hvad vil du gerne se i eftermiddag?",
-                "extra": [
-                    "Længe leve StreamWatch!"
-                ]
-            },
-            "morning": {
-                "default": "Hvad vil du gerne se her til morgen?",
-                "extra": [
-                    "Længe leve StreamWatch!"
-                ]
-            },
-            "night": {
-                "extra": [
-                    "Længe leve StreamWatch!"
-                ],
-                "default": "Hvad vil du gerne se i aften?"
-            },
-            "420": {
-                "default": "Hvad vil du gerne se denne 4/20?",
-                "extra": [
-                    "Glædelig 4/20 🥳!"
-                ]
-            },
-            "69": {
-                "default": "Har du lyst til at \"hygge\"?",
-                "extra": [
-                    "Glædelig 69-dag 😘!"
-                ]
-            }
-        }
+    "hasAccount": "Har du allerede en profil? <0>Log ind her.</0>",
+    "login": {
+      "description": "Indtast din adgangssætning for at logge ind på din profil",
+      "deviceLengthError": "Indtast venligst et enhedens navn",
+      "passphraseLabel": "Adgangssætning på 12 ord",
+      "passphrasePlaceholder": "Adgangssætning",
+      "submit": "Log ind",
+      "title": "Log ind på din profil",
+      "validationError": "Forkert eller ukomplet adgangssætning /ᐠ. .ᐟ\\"
     },
-    "media": {
-        "episodeDisplay": "S{{season}} - E{{episode}}",
-        "unreleased": "Ikke udgivet",
-        "types": {
-            "movie": "Film",
-            "show": "Serie"
-        }
+    "register": {
+      "information": {
+        "icon": "Brugerikon",
+        "next": "Næste",
+        "title": "Oplysninger om din profil",
+        "color1": "Profil farve 1",
+        "color2": "Profil farve 2",
+        "header": "Indtast et navn til din enhed, vælg farver og et brugerikon efter eget valg!"
+      }
     },
-    "navigation": {
-        "menu": {
-            "about": "Om os",
-            "logout": "Log ud",
-            "register": "Synkroniser til Cloud",
-            "settings": "Indstillinger",
-            "support": "Support",
-            "discover": "Opdag"
-        },
-        "banner": {
-            "offline": "Kontroller din internetforbindelse, fjollehoved!"
-        }
+    "trust": {
+      "failed": {
+        "text": "Har du konfigureret det korrekt?",
+        "title": "Det lykkedes ikke at kontakte serveren"
+      },
+      "noHostTitle": "Serveren er ikke konfigureret!",
+      "noHost": "Serveren er ikke konfigureret, derfor kan du ikke oprette en profil",
+      "title": "Stoler du på den her server?",
+      "no": "Gå tilbage",
+      "yes": "Jeg stoler på denne server 🤞",
+      "host": "Du forbinder til <0>{{hostname}}</0> - vær sikker på, at du stoler på den, før du opretter en profil..."
     },
-    "notFound": {
-        "badge": "Ikke fundet",
-        "reloadButton": "Prøv igen",
-        "title": "Kunne ikke finde den side",
-        "goHome": "Tilbage til hjem",
-        "message": "Vi har ledt overalt: under skraldespandene, i skabet, bag proxy'en, men i sidste ende kunne vi ikke finde den side, du leder efter. (ಥ﹏ಥ)"
+    "verify": {
+      "invalidData": "Oplysningerne er ikke gyldige",
+      "noMatch": "Adgangssætningen stemmer ikke overens 😭",
+      "passphraseLabel": "Din adgangssætning på 12 ord",
+      "recaptchaFailed": "ReCaptcha validering mislykkedes",
+      "register": "Opret profil",
+      "title": "Bekræft din adgangssætning",
+      "description": "Indtast din adgangssætning fra tidligere for at bekræfte, at du har gemt den, og for at oprette din profil"
+    }
+  },
+  "errors": {
+    "details": "Fejloplysninger",
+    "reloadPage": "Genindlæs siden",
+    "showError": "Vis fejloplysninger",
+    "title": "Der er opstået en fejl!",
+    "badge": "Noget gik galt 💀"
+  },
+  "footer": {
+    "legal": {
+      "disclaimer": "Ansvarsfraskrivelse ◝(ᵔᵕᵔ)◜",
+      "disclaimerText": "Bemærk: P-Stream hoster ikke selv nogen filer, men viser i stedet kun indhold fra tredjepartsudbydere. Lovmæssige forhold bør afklares med dem."
     },
-    "downtimeNotice": {
-        "badge": "Problemer",
-        "goHome": "Gå til hjem",
-        "title": "Problemer med udbydere",
-        "message": "StreamWatch.lol har igen problemer med nogle udbydere. Hvis du ikke kan finde eller afspille et afsnit, skal du skifte kilde. Vi forventer, at denne fejl fortsætter i tidsrummet nedenfor."
+    "links": {
+      "discord": "Discord",
+      "legal": "Legal / DMCA",
+      "github": "GitHub",
+      "twitter": "Twitter"
     },
-    "onboarding": {
-        "defaultConfirm": {
-            "cancel": "Annuller",
-            "confirm": "Brug standardopsætning",
-            "description": "Standardopsætningen har ikke de bedste streams og kan være ulideligt langsom ( ͠° ͟ʖ ͡°)",
-            "title": "Er du sikker?"
-        },
+    "tagline": "Se dine favoritserier og -film gratis og uden reklamer! (っ'ヮ'c)"
+  },
+  "global": {
+    "name": "P-Stream",
+    "pages": {
+      "about": "Om os",
+      "legal": "Legal / DMCA",
+      "support": "Support",
+      "login": "Log ind",
+      "onboarding": "Opsætning",
+      "pagetitle": "{{title}} - P-Stream",
+      "register": "Registrer",
+      "settings": "Indstillinger",
+      "discover": "Opdag",
+      "migration": "Migrer Profil"
+    }
+  },
+  "home": {
+    "continueWatching": {
+      "sectionTitle": "Fortsæt med at se..."
+    },
+    "mediaList": {
+      "stopEditing": "Stop med at redigere"
+    },
+    "search": {
+      "allResults": "Det er alt, hvad vi har...",
+      "failed": "Kunne ikke finde noget, prøv igen!",
+      "loading": "Indlæser...",
+      "noResults": "Vi kunne ikke finde noget :(",
+      "placeholder": {
+        "extra": [
+          "Hvad har du lyst til?",
+          "Skal vi slette din browserhistorik?",
+          "Hvad ønsker du at streame?",
+          "P-Stream er den bedste side nogensinde!",
+          "Hvad er der på din favoritliste i dag?",
+          "Hvordan har din dag været?",
+          "Min fejl, siden virker aldrig...",
+          "Er P-Stream ikke bare det bedste?",
+          ">ᴗ<"
+        ],
+        "default": "Hvad har du lyst til at se?"
+      },
+      "empty": {
+        "default": "Velkommen, find noget at se her!",
+        "extra": [
+          "Der er intet her :(",
+          "Så tomt...",
+          "Sikke en masse luft.",
+          "Hej nye medlem :3"
+        ]
+      },
+      "sectionTitle": "Søgeresultater",
+      "discoverMore": "Opdag mere",
+      "discover": "Opdag"
+    },
+    "bookmarks": {
+      "sectionTitle": "Bogmærker"
+    },
+    "titles": {
+      "day": {
+        "default": "Hvad vil du gerne se i eftermiddag?",
+        "extra": ["Længe leve P-Stream!"]
+      },
+      "morning": {
+        "default": "Hvad vil du gerne se her til morgen?",
+        "extra": ["Længe leve P-Stream!"]
+      },
+      "night": {
+        "extra": ["Længe leve P-Stream!"],
+        "default": "Hvad vil du gerne se i aften?"
+      },
+      "420": {
+        "default": "Hvad vil du gerne se denne 4/20?",
+        "extra": ["Glædelig 4/20 🥳!"]
+      },
+      "69": {
+        "default": "Har du lyst til at \"hygge\"?",
+        "extra": ["Glædelig 69-dag 😘!"]
+      }
+    }
+  },
+  "media": {
+    "episodeDisplay": "S{{season}} - E{{episode}}",
+    "unreleased": "Ikke udgivet",
+    "types": {
+      "movie": "Film",
+      "show": "Serie"
+    }
+  },
+  "navigation": {
+    "menu": {
+      "about": "Om os",
+      "logout": "Log ud",
+      "register": "Synkroniser til Cloud",
+      "settings": "Indstillinger",
+      "support": "Support",
+      "discover": "Opdag"
+    },
+    "banner": {
+      "offline": "Kontroller din internetforbindelse, fjollehoved!"
+    }
+  },
+  "notFound": {
+    "badge": "Ikke fundet",
+    "reloadButton": "Prøv igen",
+    "title": "Kunne ikke finde den side",
+    "goHome": "Tilbage til hjem",
+    "message": "Vi har ledt overalt: under skraldespandene, i skabet, bag proxy'en, men i sidste ende kunne vi ikke finde den side, du leder efter. (ಥ﹏ಥ)"
+  },
+  "downtimeNotice": {
+    "badge": "Problemer",
+    "goHome": "Gå til hjem",
+    "title": "Problemer med udbydere",
+    "message": "P-Stream.lol har igen problemer med nogle udbydere. Hvis du ikke kan finde eller afspille et afsnit, skal du skifte kilde. Vi forventer, at denne fejl fortsætter i tidsrummet nedenfor."
+  },
+  "onboarding": {
+    "defaultConfirm": {
+      "cancel": "Annuller",
+      "confirm": "Brug standardopsætning",
+      "description": "Standardopsætningen har ikke de bedste streams og kan være ulideligt langsom ( ͠° ͟ʖ ͡°)",
+      "title": "Er du sikker?"
+    },
+    "extension": {
+      "back": "Gå tilbage",
+      "explainer": "Ved hjælp af browserudvidelsen kan du få de bedste streams, vi har at byde på. Med blot en simpel installation. 👌",
+      "explainerIos": "Desværre understøttes browserudvidelsen ikke på iOS, tryk på <bold>Gå tilbage</bold> for at vælge en anden mulighed.",
+      "extensionHelp": "Hvis du har installeret udvidelsen, men den ikke registreres, skal du <bold>åbne udvidelsen via din browsers udvidelsesmenu</bold> og følge trinnene på skærmen.",
+      "linkChrome": "Installer Chrome-udvidelse",
+      "linkFirefox": "Installer Firefox-udvidelse",
+      "notDetecting": "Installeret på Chrome, men siden registrerer den ikke? Prøv at genindlæse siden!",
+      "notDetectingAction": "Genindlæs siden",
+      "status": {
+        "disallowed": "Udvidelse er ikke aktiveret for denne side (,,>﹏<,,)",
+        "failed": "Anmodning om status mislykkedes",
+        "loading": "Venter på, at du installerer udvidelsen",
+        "outdated": "Udvidelsesversion for gammel",
+        "success": "Udvidelsen fungerer som forventet!",
+        "disallowedAction": "Aktiver udvidelse"
+      },
+      "submit": "Fortsæt",
+      "title": "Lad os starte med en udvidelse"
+    },
+    "proxy": {
+      "back": "Gå tilbage",
+      "input": {
+        "errorConnection": "Kunne ikke forbinde til proxy",
+        "errorInvalidUrl": "Ikke en gyldig webadresse",
+        "errorNotProxy": "Forventede en proxy, men fik en hjemmeside",
+        "label": "Proxy URL",
+        "placeholder": "https://"
+      },
+      "link": "Lær, hvordan du laver en proxy",
+      "submit": "Indsend proxy",
+      "title": "Lad os lave en ny proxy",
+      "explainer": "Med proxymetoden kan du få streams af høj kvalitet ved at lave en selvbetjent proxy."
+    },
+    "start": {
+      "options": {
         "extension": {
-            "back": "Gå tilbage",
-            "explainer": "Ved hjælp af browserudvidelsen kan du få de bedste streams, vi har at byde på. Med blot en simpel installation. 👌",
-            "explainerIos": "Desværre understøttes browserudvidelsen ikke på iOS, tryk på <bold>Gå tilbage</bold> for at vælge en anden mulighed.",
-            "extensionHelp": "Hvis du har installeret udvidelsen, men den ikke registreres, skal du <bold>åbne udvidelsen via din browsers udvidelsesmenu</bold> og følge trinnene på skærmen.",
-            "linkChrome": "Installer Chrome-udvidelse",
-            "linkFirefox": "Installer Firefox-udvidelse",
-            "notDetecting": "Installeret på Chrome, men siden registrerer den ikke? Prøv at genindlæse siden!",
-            "notDetectingAction": "Genindlæs siden",
-            "status": {
-                "disallowed": "Udvidelse er ikke aktiveret for denne side (,,>﹏<,,)",
-                "failed": "Anmodning om status mislykkedes",
-                "loading": "Venter på, at du installerer udvidelsen",
-                "outdated": "Udvidelsesversion for gammel",
-                "success": "Udvidelsen fungerer som forventet!",
-                "disallowedAction": "Aktiver udvidelse"
-            },
-            "submit": "Fortsæt",
-            "title": "Lad os starte med en udvidelse"
+          "action": "Installer udvidelse",
+          "description": "Installer browserudvidelsen og få adgang til de bedste kilder, men husk at aktivere den for denne side.",
+          "quality": "Bedste kvalitet",
+          "title": "Browserudvidelse"
         },
         "proxy": {
-            "back": "Gå tilbage",
-            "input": {
-                "errorConnection": "Kunne ikke forbinde til proxy",
-                "errorInvalidUrl": "Ikke en gyldig webadresse",
-                "errorNotProxy": "Forventede en proxy, men fik en hjemmeside",
-                "label": "Proxy URL",
-                "placeholder": "https://"
-            },
-            "link": "Lær, hvordan du laver en proxy",
-            "submit": "Indsend proxy",
-            "title": "Lad os lave en ny proxy",
-            "explainer": "Med proxymetoden kan du få streams af høj kvalitet ved at lave en selvbetjent proxy."
+          "quality": "God kvalitet",
+          "title": "Brugerdefineret proxy",
+          "description": "Opret en gratis proxy på bare 5 minutter, og få adgang til gode kilder...",
+          "action": "Opsæt proxy"
         },
-        "start": {
-            "options": {
-                "extension": {
-                    "action": "Installer udvidelse",
-                    "description": "Installer browserudvidelsen og få adgang til de bedste kilder, men husk at aktivere den for denne side.",
-                    "quality": "Bedste kvalitet",
-                    "title": "Browserudvidelse"
-                },
-                "proxy": {
-                    "quality": "God kvalitet",
-                    "title": "Brugerdefineret proxy",
-                    "description": "Opret en gratis proxy på bare 5 minutter, og få adgang til gode kilder...",
-                    "action": "Opsæt proxy"
-                },
-                "default": {
-                    "text": "Jeg vil ikke have god kvalitet, <0 /> <1>brug standardopsætningen ▄︻デ══━一 ʕ-͡--ʔ</1>"
-                }
-            },
-            "title": "Lad os få dig sat op med StreamWatch 🥳",
-            "explainer": "For at få de bedst mulige streams skal du vælge, hvilken streamingmetode du vil bruge."
+        "default": {
+          "text": "Jeg vil ikke have god kvalitet, <0 /> <1>brug standardopsætningen ▄︻デ══━一 ʕ-͡--ʔ</1>"
         }
-    },
-    "overlays": {
-        "close": "Luk"
-    },
-    "player": {
-        "back": {
-            "default": "Tilbage til hjem",
-            "short": "Tilbage"
-        },
-        "casting": {
-            "enabled": "Cast til enhed 🎬"
-        },
-        "menus": {
-            "downloads": {
-                "copyHlsPlaylist": "Kopier link til HLS-playliste",
-                "downloadSubtitle": "Download aktuel undertekst",
-                "downloadVideo": "Download video",
-                "onAndroid": {
-                    "1": "For at downloade på Android skal du klikke på download-knappen og derefter, på den nye side, <bold>trykke og holde</bold> på videoen og derefter vælge <bold>gem</bold>.",
-                    "shortTitle": "Download / Android",
-                    "title": "Download på Android"
-                },
-                "onIos": {
-                    "1": "For at downloade på iOS skal du klikke på download-knappen og derefter på den nye side klikke på <bold><ios_share /></bold> og derefter <bold>Save to Files <ios_files /></bold>.",
-                    "shortTitle": "Download / iOS",
-                    "title": "Download på iOS"
-                },
-                "onPc": {
-                    "shortTitle": "Download / PC",
-                    "title": "Download på pc",
-                    "1": "På PC skal du klikke på download-knappen og derefter højreklikke på videoen på den nye side og vælge <bold>Gem video som</bold>"
-                },
-                "title": "Download",
-                "hlsDisclaimer": "Downloads tages direkte fra udbyderen. StreamWatch har ikke kontrol over, hvordan downloads leveres.<br /><br />Vær opmærksom på, at du downloader en HLS-playliste, <bold>det anbefales ikke at downloade, hvis du ikke er bekendt med avancerede streamingformater</bold>. Prøv forskellige kilder til forskellige formater.",
-                "disclaimer": "Downloads tages direkte fra udbyderen. StreamWatch har ikke kontrol over, hvordan downloads leveres."
-            },
-            "episodes": {
-                "button": "Episoder",
-                "emptyState": "Der er ingen episoder i denne sæson, kom tilbage senere (undskyld :3)...",
-                "episodeBadge": "E{{episode}}",
-                "loadingError": "Fejl under indlæsning af sæson",
-                "loadingList": "Indlæser...",
-                "loadingTitle": "Indlæser...",
-                "unairedEpisodes": "Et eller flere afsnit i denne sæson er blevet deaktiveret, fordi de ikke er blevet udgivet endnu.",
-                "seasons": "Sæsoner"
-            },
-            "playback": {
-                "title": "Afspilningsindstillinger",
-                "speedLabel": "Afspilningshastighed"
-            },
-            "quality": {
-                "automaticLabel": "Automatisk kvalitet",
-                "title": "Kvalitet",
-                "hint": "Du kan prøve <0>at skifte kilde</0> for at få forskellige muligheder for kvalitet.",
-                "iosNoQuality": "På grund af Apple-definerede (almindelige IOS L) begrænsninger er valg af kvalitet ikke tilgængelig på iOS for denne kilde. Du kan prøve <0>at skifte til en anden kilde</0> for at få forskellige muligheder for kvalitet."
-            },
-            "settings": {
-                "downloadItem": "Download",
-                "experienceSection": "Oplevelse af visning",
-                "playbackItem": "Afspilningsindstillinger",
-                "audioItem": "Lyd",
-                "qualityItem": "Kvalitet",
-                "sourceItem": "Videokilder",
-                "subtitleItem": "Undertekstindstillinger",
-                "videoSection": "Videoindstillinger",
-                "enableSubtitles": "Aktiver undertekster"
-            },
-            "sources": {
-                "failed": {
-                    "text": "Der skete en fejl under søgningen efter videoer... Prøv en anden kilde?",
-                    "title": "Kunne ikke scrape"
-                },
-                "noEmbeds": {
-                    "text": "Vi kunne ikke finde nogen embeds, prøv venligst en anden kilde.",
-                    "title": "Ingen embeds fundet"
-                },
-                "noStream": {
-                    "text": "Denne kilde har ingen streams for denne film eller serie. /ᐠ - ˕ -マ Ⳋ",
-                    "title": "Ingen stream :("
-                },
-                "title": "Kilder",
-                "unknownOption": "Ukendt"
-            },
-            "subtitles": {
-                "customChoice": "Drop eller upload fil",
-                "customizeLabel": "Tilpasning",
-                "offChoice": "Fra",
-                "OpenSubtitlesChoice": "OpenSubtitles",
-                "settings": {
-                    "delay": "Undertekstforsinkelse",
-                    "fixCapitals": "Ret store bogstaver",
-                    "backlink": "Brugerdefinerede undertekster"
-                },
-                "title": "Undertekster",
-                "unknownLanguage": "Ukendt",
-                "dropSubtitleFile": "Drop undertekstfilen her! >_<",
-                "scrapeButton": "Scrape undertekster",
-                "empty": "Der er ingen undertekster til dette."
-            }
-        },
-        "metadata": {
-            "api": {
-                "text": "API-metadata kunne ikke indlæses, tjek venligst din internetforbindelse.",
-                "title": "API-metadata kunne ikke indlæses"
-            },
-            "dmca": {
-                "badge": "Fjernet",
-                "title": "Mediet er blevet fjernet",
-                "text": "Dette medie er ikke længere tilgængeligt på grund af en meddelelse om fjernelse eller krav om ophavsret. 😨"
-            },
-            "extensionPermission": {
-                "badge": "Tilladelse mangler",
-                "button": "Brug udvidelse",
-                "text": "Du har browserudvidelsen, men vi har brug for din tilladelse til at komme i gang med at bruge udvidelsen. (¬_¬)",
-                "title": "Konfigurer udvidelsen"
-            },
-            "failed": {
-                "homeButton": "Gå til hjem",
-                "title": "Kunne ikke indlæse metadata",
-                "badge": "Fejlede",
-                "text": "Mediets metadata kunne ikke indlæses fra TMDB. Tjek venligst, om TMDB er nede eller blokeret på din internetforbindelse."
-            },
-            "notFound": {
-                "badge": "Ikke fundet",
-                "homeButton": "Tilbage til hjem",
-                "title": "Kunne ikke finde det medie.",
-                "text": "Vi kunne ikke finde det medie, du bad om. Enten er det blevet fjernet, eller også har du pillet ved URL'en (din pillefinger)."
-            }
-        },
-        "playbackError": {
-            "homeButton": "Gå til hjem",
-            "badge": "Afspilningsfejl",
-            "errors": {
-                "errorAborted": "Indlæsningen af mediet blev afbrudt efter brugerens anmodning.",
-                "errorDecode": "På trods af at mediet tidligere er blevet vurderet til at være brugbart, opstod der en fejl under forsøget på at afkode medieressourcen, hvilket resulterede i en fejl.",
-                "errorGenericMedia": "Der opstod en ukendt mediefejl.",
-                "errorNotSupported": "Mediet eller medieudbyderobjektet understøttes ikke.",
-                "errorNetwork": "Der opstod en netværksfejl, som forhindrede, at mediet kunne hentes, selv om det tidligere havde været tilgængeligt."
-            },
-            "text": "Der opstod en fejl under forsøget på at afspille mediet 😖. Prøv venligst igen!",
-            "title": "Kunne ikke afspille videoen!"
-        },
-        "scraping": {
-            "notFound": {
-                "homeButton": "Gå til hjem",
-                "badge": "Ikke fundet",
-                "detailsButton": "Vis detaljer",
-                "title": "Vi kunne ikke finde det",
-                "discoverButton": "Opdag mere",
-                "text": "Vi har søgt gennem vores udbydere og kan ikke finde de medier, du leder efter! Vi hoster ikke medierne og har ingen kontrol over, hvad der er tilgængeligt. Klik på 'Vis detaljer' nedenfor for at få flere detaljer."
-            },
-            "extensionFailure": {
-                "homeButton": "Gå til hjem",
-                "badge": "Udvidelse deaktiveret",
-                "text": "Du har installeret StreamWatch-udvidelsen. For at begynde at bruge den skal du aktivere udvidelsen for dette websted.",
-                "enableExtension": "Aktiver udvidelse",
-                "title": "Aktiver venligst udvidelsen"
-            },
-            "items": {
-                "failure": "Der opstod en fejl",
-                "notFound": "Har ikke videoen (╥﹏╥)",
-                "pending": "Tjekker for videoer..."
-            }
-        },
-        "nextEpisode": {
-            "replay": "Gentag",
-            "next": "Næste episode",
-            "nextSeason": "Næste sæson"
-        },
-        "time": {
-            "regular": "{{timeWatched}} / {{duration}}",
-            "remaining": "{{timeLeft}} tilbage • Færdig til {{timeFinished, datetime}}",
-            "shortRegular": "{{timeWatched}}",
-            "shortRemaining": "-{{timeLeft}}"
-        },
-        "turnstile": {
-            "description": "Bevis at du er et menneske ved at udføre den hurtige opgave, det er for at holde StreamWatch sikker.",
-            "verifyingHumanity": "Bekræfter at du er et menneske... (^▽^)👍",
-            "title": "Er du en robot 🤖?",
-            "error": "Kunne ikke bekræfte at du er et menneske! Prøv venligst igen."
-        }
-    },
-    "support": {
-        "title": "Support",
-        "q1": {
-            "body": "Du kan deltage i den officielle <0>StreamWatch discord</0> og stille spørgsmål der, eller du kan sende en e-mail til den, der er angivet nederst på denne side.",
-            "title": "Hvor kan jeg få hjælp?"
-        },
-        "q2": {
-            "title": "Hvordan kan jeg rapportere en fejl eller et problem?",
-            "body": "Vi har en <0>GitHub</0>, hvor du kan oprette et detaljeret problem i vores repository. Hvis du ønsker det, kan du desuden oprette en pull request for selv at løse problemet."
-        },
-        "text": "StreamWatch er designet til at være så brugervenlig som muligt. Men folk har stadig spørgsmål og problemer. Denne side er her for at hjælpe med at løse disse problemer"
-    },
-    "screens": {
-        "dmca": {
-            "title": "DMCA :("
-        },
-        "loadingApp": "Indlæser applikation",
-        "loadingUser": "Indlæser din profil",
-        "loadingUserError": {
-            "logout": "Log ud",
-            "reset": "Nulstil brugerdefineret server",
-            "text": "Kunne ikke indlæse din profil",
-            "reload": "Genindlæs",
-            "textWithReset": "Kunne du ikke indlæse din profil fra din brugerdefinerede server, og vil du nulstille til standardserveren?"
-        },
-        "migration": {
-            "failed": "Det lykkedes ikke at migrere dine data. 😿",
-            "inProgress": "Vent venligst, vi er ved at overfører dine data. Det burde ikke tage lang tid..."
-        }
-    },
-    "settings": {
-        "account": {
-            "devices": {
-                "deviceNameLabel": "Navn på enhed",
-                "failed": "Kunne ikke indlæse sessioner",
-                "removeDevice": "Fjern",
-                "title": "Enheder"
-            },
-            "accountDetails": {
-                "deviceNameLabel": "Navn på enhed",
-                "deviceNamePlaceholder": "Personlig telefon",
-                "editProfile": "Rediger",
-                "logoutButton": "Log ud"
-            },
-            "admin": {
-                "title": "Administratorpanel",
-                "text": "Brug værktøjer, der er lavet til at teste StreamWatch' tilstand.",
-                "button": "Tjek det ud"
-            },
-            "actions": {
-                "delete": {
-                    "title": "Slet profil",
-                    "confirmButton": "Bekræft sletning",
-                    "button": "Slet profil",
-                    "confirmDescription": "Er du sikker på, at du vil slette din profil? Alle dine data vil gå tabt! ૮₍˶Ó﹏Ò ⑅₎ა",
-                    "confirmTitle": "Er du sikker?",
-                    "text": "Denne handling er permanent. Alle data slettes, og intet kan gendannes."
-                },
-                "title": "Handlinger",
-                "logoutAllDevices": {
-                    "title": "Afslut alle sessioner",
-                    "text": "Dette vil logge dig ud fra alle enheder, der er tilknyttet din konto.",
-                    "button": "Log ud af alle enheder"
-                }
-            },
-            "profile": {
-                "finish": "Afslut redigering",
-                "firstColor": "Profil farve 1",
-                "secondColor": "Profil farve 2",
-                "title": "Rediger profilbillede",
-                "userIcon": "Brugerikon"
-            },
-            "register": {
-                "text": "Del fremskridt mellem enheder, og hold dem synkroniseret. ( ̧⸝⸝⍢⸝⸝)ෆ",
-                "title": "Synkroniser med Cloud",
-                "cta": "Kom godt i gang"
-            },
-            "title": "Profil"
-        },
-        "appearance": {
-            "activeTheme": "Aktiv",
-            "themes": {
-                "blue": "Blå",
-                "default": "Standard",
-                "gray": "Grå",
-                "red": "Rød",
-                "teal": "Blågrøn",
-                "classic": "Classic"
-            },
-            "title": "Udseende"
-        },
-        "connections": {
-            "server": {
-                "label": "Brugerdefineret server",
-                "urlLabel": "Brugerdefineret server URL",
-                "description": "Hvis du gerne vil oprette forbindelse til en brugerdefineret server for at gemme dine data, skal du aktivere dette og angive URL'en. <0>Instruktioner.</0>"
-            },
-            "setup": {
-                "doSetup": "Lav opsætning",
-                "errorStatus": {
-                    "description": "Det ser ud til, at en eller flere ting i denne opsætning kræver din opmærksomhed.",
-                    "title": "Noget kræver din opmærksomhed 😱"
-                },
-                "itemError": "Der er noget galt med denne indstilling. Gå gennem opsætningen igen for at rette det. (ᴗ_ ᴗ。)",
-                "items": {
-                    "default": "Standardopsætning",
-                    "extension": "Udvidelse",
-                    "proxy": "Brugerdefineret proxy"
-                },
-                "redoSetup": "Gentag opsætning",
-                "successStatus": {
-                    "title": "Alt er sat op!",
-                    "description": "Alt er på plads, så du kan begynde at se dine yndlingsmedier. (๑>◡<๑)"
-                },
-                "unsetStatus": {
-                    "description": "Klik på knappen til højre for at starte opsætningen.",
-                    "title": "Du har ikke gennemgået opsætningen"
-                }
-            },
-            "title": "Forbindelser",
-            "workers": {
-                "addButton": "Tilføj ny arbejder",
-                "emptyState": "Ingen arbejdere endnu (｡-́︿-̀｡), tilføj en nedenfor",
-                "label": "Brug brugerdefinerede proxy-arbejdere",
-                "urlLabel": "Arbejder-URL'er",
-                "urlPlaceholder": "https://",
-                "description": "For at få applikationen til at fungere dirigeres al trafik gennem proxyer. Aktiver dette, hvis du vil have dine egne arbejdere. <0>Instruktioner.</0>"
-            }
-        },
-        "preferences": {
-            "language": "Applikationens sprog",
-            "languageDescription": "Sproget gælder for hele applikationen, kun engelsk har fjollede ting 🙁.",
-            "thumbnailLabel": "Generer miniaturebilleder",
-            "thumbnail": "Generer miniaturebilleder",
-            "autoplay": "Autoplay",
-            "autoplayLabel": "Autoplay",
-            "sourceOrder": "Omorganisering af kilder",
-            "sourceOrderDescription": "Træk og slip for at omarrangere kilder. Det afgør, i hvilken rækkefølge kilderne tjekkes for de medier, du prøver at se. Hvis en kilde er nedtonet, betyder det, at den ikke er tilgængelig på din enhed.",
-            "title": "Præferencer",
-            "thumbnailDescription": "Det meste af tiden har videoer ikke miniaturebilleder. Du kan aktivere denne indstilling for at generere dem undervejs, men de kan gøre din video mere langsom.",
-            "autoplayDescription": "Afspil automatisk den næste episode i en serie, når den er slut. Kan aktiveres af brugere med browserudvidelsen, en brugerdefineret proxy eller med standardopsætningen, hvis hosten tillader det."
-        },
-        "reset": "Nulstil",
-        "save": "Gem",
-        "sidebar": {
-            "info": {
-                "appVersion": "App version",
-                "backendUrl": "Backend URL",
-                "backendVersion": "Backend version",
-                "hostname": "Hostname",
-                "insecure": "Usikker",
-                "notLoggedIn": "Du er ikke logget ind",
-                "secure": "Sikker",
-                "title": "Appstatistik (for nørder) 🤓",
-                "unknownVersion": "Ukendt",
-                "userId": "Bruger ID"
-            }
-        },
-        "subtitles": {
-            "backgroundLabel": "Baggrundsopacitet",
-            "colorLabel": "Farve",
-            "previewQuote": "Vil du helst have en lesbisk datter eller en homoseksuel søn? 🤔",
-            "textSizeLabel": "Tekststørrelse",
-            "title": "Undertekster",
-            "textBoldLabel": "Fed tekst",
-            "backgroundBlurLabel": "Sløring af baggrund"
-        },
-        "unsaved": "Du har ændringer, der ikke er gemt... ฅ^•ﻌ•^ฅ"
-    },
-    "fedapi": {
-        "setup": {
-            "showVideo": "Vis video vejledning",
-            "title": "For at få din Ui-token:"
-        },
-        "onboarding": {
-            "description": "Brug din egen Febbox-konto for at få det bedste streaming med 4k kvalitet, Dolby Atmos, spring intro og de bedste (hurtigste) indlæsningstider!",
-            "title": "Valgfrit: FED API (Fedbox) token"
-        }
-    },
-    "discover": {
-        "scrollToTop": "Tilbage til toppen",
-        "page": {
-            "subtitle": "Udforsk de seneste hits og tidløse klassikere.",
-            "title": "Opdag Film og TV"
-        },
-        "randomMovie": {
-            "in": "i"
-        }
+      },
+      "title": "Lad os få dig sat op med P-Stream 🥳",
+      "explainer": "For at få de bedst mulige streams skal du vælge, hvilken streamingmetode du vil bruge."
     }
+  },
+  "overlays": {
+    "close": "Luk"
+  },
+  "player": {
+    "back": {
+      "default": "Tilbage til hjem",
+      "short": "Tilbage"
+    },
+    "casting": {
+      "enabled": "Cast til enhed 🎬"
+    },
+    "menus": {
+      "downloads": {
+        "copyHlsPlaylist": "Kopier link til HLS-playliste",
+        "downloadSubtitle": "Download aktuel undertekst",
+        "downloadVideo": "Download video",
+        "onAndroid": {
+          "1": "For at downloade på Android skal du klikke på download-knappen og derefter, på den nye side, <bold>trykke og holde</bold> på videoen og derefter vælge <bold>gem</bold>.",
+          "shortTitle": "Download / Android",
+          "title": "Download på Android"
+        },
+        "onIos": {
+          "1": "For at downloade på iOS skal du klikke på download-knappen og derefter på den nye side klikke på <bold><ios_share /></bold> og derefter <bold>Save to Files <ios_files /></bold>.",
+          "shortTitle": "Download / iOS",
+          "title": "Download på iOS"
+        },
+        "onPc": {
+          "shortTitle": "Download / PC",
+          "title": "Download på pc",
+          "1": "På PC skal du klikke på download-knappen og derefter højreklikke på videoen på den nye side og vælge <bold>Gem video som</bold>"
+        },
+        "title": "Download",
+        "hlsDisclaimer": "Downloads tages direkte fra udbyderen. P-Stream har ikke kontrol over, hvordan downloads leveres.<br /><br />Vær opmærksom på, at du downloader en HLS-playliste, <bold>det anbefales ikke at downloade, hvis du ikke er bekendt med avancerede streamingformater</bold>. Prøv forskellige kilder til forskellige formater.",
+        "disclaimer": "Downloads tages direkte fra udbyderen. P-Stream har ikke kontrol over, hvordan downloads leveres."
+      },
+      "episodes": {
+        "button": "Episoder",
+        "emptyState": "Der er ingen episoder i denne sæson, kom tilbage senere (undskyld :3)...",
+        "episodeBadge": "E{{episode}}",
+        "loadingError": "Fejl under indlæsning af sæson",
+        "loadingList": "Indlæser...",
+        "loadingTitle": "Indlæser...",
+        "unairedEpisodes": "Et eller flere afsnit i denne sæson er blevet deaktiveret, fordi de ikke er blevet udgivet endnu.",
+        "seasons": "Sæsoner"
+      },
+      "playback": {
+        "title": "Afspilningsindstillinger",
+        "speedLabel": "Afspilningshastighed"
+      },
+      "quality": {
+        "automaticLabel": "Automatisk kvalitet",
+        "title": "Kvalitet",
+        "hint": "Du kan prøve <0>at skifte kilde</0> for at få forskellige muligheder for kvalitet.",
+        "iosNoQuality": "På grund af Apple-definerede (almindelige IOS L) begrænsninger er valg af kvalitet ikke tilgængelig på iOS for denne kilde. Du kan prøve <0>at skifte til en anden kilde</0> for at få forskellige muligheder for kvalitet."
+      },
+      "settings": {
+        "downloadItem": "Download",
+        "experienceSection": "Oplevelse af visning",
+        "playbackItem": "Afspilningsindstillinger",
+        "audioItem": "Lyd",
+        "qualityItem": "Kvalitet",
+        "sourceItem": "Videokilder",
+        "subtitleItem": "Undertekstindstillinger",
+        "videoSection": "Videoindstillinger",
+        "enableSubtitles": "Aktiver undertekster"
+      },
+      "sources": {
+        "failed": {
+          "text": "Der skete en fejl under søgningen efter videoer... Prøv en anden kilde?",
+          "title": "Kunne ikke scrape"
+        },
+        "noEmbeds": {
+          "text": "Vi kunne ikke finde nogen embeds, prøv venligst en anden kilde.",
+          "title": "Ingen embeds fundet"
+        },
+        "noStream": {
+          "text": "Denne kilde har ingen streams for denne film eller serie. /ᐠ - ˕ -マ Ⳋ",
+          "title": "Ingen stream :("
+        },
+        "title": "Kilder",
+        "unknownOption": "Ukendt"
+      },
+      "subtitles": {
+        "customChoice": "Drop eller upload fil",
+        "customizeLabel": "Tilpasning",
+        "offChoice": "Fra",
+        "OpenSubtitlesChoice": "OpenSubtitles",
+        "settings": {
+          "delay": "Undertekstforsinkelse",
+          "fixCapitals": "Ret store bogstaver",
+          "backlink": "Brugerdefinerede undertekster"
+        },
+        "title": "Undertekster",
+        "unknownLanguage": "Ukendt",
+        "dropSubtitleFile": "Drop undertekstfilen her! >_<",
+        "scrapeButton": "Scrape undertekster",
+        "empty": "Der er ingen undertekster til dette."
+      }
+    },
+    "metadata": {
+      "api": {
+        "text": "API-metadata kunne ikke indlæses, tjek venligst din internetforbindelse.",
+        "title": "API-metadata kunne ikke indlæses"
+      },
+      "legal": {
+        "badge": "Fjernet",
+        "title": "Mediet er blevet fjernet",
+        "text": "Dette medie er ikke længere tilgængeligt på grund af en meddelelse om fjernelse eller krav om ophavsret. 😨"
+      },
+      "extensionPermission": {
+        "badge": "Tilladelse mangler",
+        "button": "Brug udvidelse",
+        "text": "Du har browserudvidelsen, men vi har brug for din tilladelse til at komme i gang med at bruge udvidelsen. (¬_¬)",
+        "title": "Konfigurer udvidelsen"
+      },
+      "failed": {
+        "homeButton": "Gå til hjem",
+        "title": "Kunne ikke indlæse metadata",
+        "badge": "Fejlede",
+        "text": "Mediets metadata kunne ikke indlæses fra TMDB. Tjek venligst, om TMDB er nede eller blokeret på din internetforbindelse."
+      },
+      "notFound": {
+        "badge": "Ikke fundet",
+        "homeButton": "Tilbage til hjem",
+        "title": "Kunne ikke finde det medie.",
+        "text": "Vi kunne ikke finde det medie, du bad om. Enten er det blevet fjernet, eller også har du pillet ved URL'en (din pillefinger)."
+      }
+    },
+    "playbackError": {
+      "homeButton": "Gå til hjem",
+      "badge": "Afspilningsfejl",
+      "errors": {
+        "errorAborted": "Indlæsningen af mediet blev afbrudt efter brugerens anmodning.",
+        "errorDecode": "På trods af at mediet tidligere er blevet vurderet til at være brugbart, opstod der en fejl under forsøget på at afkode medieressourcen, hvilket resulterede i en fejl.",
+        "errorGenericMedia": "Der opstod en ukendt mediefejl.",
+        "errorNotSupported": "Mediet eller medieudbyderobjektet understøttes ikke.",
+        "errorNetwork": "Der opstod en netværksfejl, som forhindrede, at mediet kunne hentes, selv om det tidligere havde været tilgængeligt."
+      },
+      "text": "Der opstod en fejl under forsøget på at afspille mediet 😖. Prøv venligst igen!",
+      "title": "Kunne ikke afspille videoen!"
+    },
+    "scraping": {
+      "notFound": {
+        "homeButton": "Gå til hjem",
+        "badge": "Ikke fundet",
+        "detailsButton": "Vis detaljer",
+        "title": "Vi kunne ikke finde det",
+        "discoverButton": "Opdag mere",
+        "text": "Vi har søgt gennem vores udbydere og kan ikke finde de medier, du leder efter! Vi hoster ikke medierne og har ingen kontrol over, hvad der er tilgængeligt. Klik på 'Vis detaljer' nedenfor for at få flere detaljer."
+      },
+      "extensionFailure": {
+        "homeButton": "Gå til hjem",
+        "badge": "Udvidelse deaktiveret",
+        "text": "Du har installeret P-Stream-udvidelsen. For at begynde at bruge den skal du aktivere udvidelsen for dette websted.",
+        "enableExtension": "Aktiver udvidelse",
+        "title": "Aktiver venligst udvidelsen"
+      },
+      "items": {
+        "failure": "Der opstod en fejl",
+        "notFound": "Har ikke videoen (╥﹏╥)",
+        "pending": "Tjekker for videoer..."
+      }
+    },
+    "nextEpisode": {
+      "replay": "Gentag",
+      "next": "Næste episode",
+      "nextSeason": "Næste sæson"
+    },
+    "time": {
+      "regular": "{{timeWatched}} / {{duration}}",
+      "remaining": "{{timeLeft}} tilbage • Færdig til {{timeFinished, datetime}}",
+      "shortRegular": "{{timeWatched}}",
+      "shortRemaining": "-{{timeLeft}}"
+    },
+    "turnstile": {
+      "description": "Bevis at du er et menneske ved at udføre den hurtige opgave, det er for at holde P-Stream sikker.",
+      "verifyingHumanity": "Bekræfter at du er et menneske... (^▽^)👍",
+      "title": "Er du en robot 🤖?",
+      "error": "Kunne ikke bekræfte at du er et menneske! Prøv venligst igen."
+    }
+  },
+  "support": {
+    "title": "Support",
+    "q1": {
+      "body": "Du kan deltage i den officielle <0>P-Stream discord</0> og stille spørgsmål der, eller du kan sende en e-mail til den, der er angivet nederst på denne side.",
+      "title": "Hvor kan jeg få hjælp?"
+    },
+    "q2": {
+      "title": "Hvordan kan jeg rapportere en fejl eller et problem?",
+      "body": "Vi har en <0>GitHub</0>, hvor du kan oprette et detaljeret problem i vores repository. Hvis du ønsker det, kan du desuden oprette en pull request for selv at løse problemet."
+    },
+    "text": "P-Stream er designet til at være så brugervenlig som muligt. Men folk har stadig spørgsmål og problemer. Denne side er her for at hjælpe med at løse disse problemer"
+  },
+  "screens": {
+    "legal": {
+      "title": "Legal / DMCA :("
+    },
+    "loadingApp": "Indlæser applikation",
+    "loadingUser": "Indlæser din profil",
+    "loadingUserError": {
+      "logout": "Log ud",
+      "reset": "Nulstil brugerdefineret server",
+      "text": "Kunne ikke indlæse din profil",
+      "reload": "Genindlæs",
+      "textWithReset": "Kunne du ikke indlæse din profil fra din brugerdefinerede server, og vil du nulstille til standardserveren?"
+    },
+    "migration": {
+      "failed": "Det lykkedes ikke at migrere dine data. 😿",
+      "inProgress": "Vent venligst, vi er ved at overfører dine data. Det burde ikke tage lang tid..."
+    }
+  },
+  "settings": {
+    "account": {
+      "devices": {
+        "deviceNameLabel": "Navn på enhed",
+        "failed": "Kunne ikke indlæse sessioner",
+        "removeDevice": "Fjern",
+        "title": "Enheder"
+      },
+      "accountDetails": {
+        "deviceNameLabel": "Navn på enhed",
+        "deviceNamePlaceholder": "Personlig telefon",
+        "editProfile": "Rediger",
+        "logoutButton": "Log ud"
+      },
+      "admin": {
+        "title": "Administratorpanel",
+        "text": "Brug værktøjer, der er lavet til at teste P-Stream' tilstand.",
+        "button": "Tjek det ud"
+      },
+      "actions": {
+        "delete": {
+          "title": "Slet profil",
+          "confirmButton": "Bekræft sletning",
+          "button": "Slet profil",
+          "confirmDescription": "Er du sikker på, at du vil slette din profil? Alle dine data vil gå tabt! ૮₍˶Ó﹏Ò ⑅₎ა",
+          "confirmTitle": "Er du sikker?",
+          "text": "Denne handling er permanent. Alle data slettes, og intet kan gendannes."
+        },
+        "title": "Handlinger",
+        "logoutAllDevices": {
+          "title": "Afslut alle sessioner",
+          "text": "Dette vil logge dig ud fra alle enheder, der er tilknyttet din konto.",
+          "button": "Log ud af alle enheder"
+        }
+      },
+      "profile": {
+        "finish": "Afslut redigering",
+        "firstColor": "Profil farve 1",
+        "secondColor": "Profil farve 2",
+        "title": "Rediger profilbillede",
+        "userIcon": "Brugerikon"
+      },
+      "register": {
+        "text": "Del fremskridt mellem enheder, og hold dem synkroniseret. ( ̧⸝⸝⍢⸝⸝)ෆ",
+        "title": "Synkroniser med Cloud",
+        "cta": "Kom godt i gang"
+      },
+      "title": "Profil"
+    },
+    "appearance": {
+      "activeTheme": "Aktiv",
+      "themes": {
+        "blue": "Blå",
+        "default": "Standard",
+        "gray": "Grå",
+        "red": "Rød",
+        "teal": "Blågrøn",
+        "classic": "Classic"
+      },
+      "title": "Udseende"
+    },
+    "connections": {
+      "server": {
+        "label": "Brugerdefineret server",
+        "urlLabel": "Brugerdefineret server URL",
+        "description": "Hvis du gerne vil oprette forbindelse til en brugerdefineret server for at gemme dine data, skal du aktivere dette og angive URL'en. <0>Instruktioner.</0>"
+      },
+      "setup": {
+        "doSetup": "Lav opsætning",
+        "errorStatus": {
+          "description": "Det ser ud til, at en eller flere ting i denne opsætning kræver din opmærksomhed.",
+          "title": "Noget kræver din opmærksomhed 😱"
+        },
+        "itemError": "Der er noget galt med denne indstilling. Gå gennem opsætningen igen for at rette det. (ᴗ_ ᴗ。)",
+        "items": {
+          "default": "Standardopsætning",
+          "extension": "Udvidelse",
+          "proxy": "Brugerdefineret proxy"
+        },
+        "redoSetup": "Gentag opsætning",
+        "successStatus": {
+          "title": "Alt er sat op!",
+          "description": "Alt er på plads, så du kan begynde at se dine yndlingsmedier. (๑>◡<๑)"
+        },
+        "unsetStatus": {
+          "description": "Klik på knappen til højre for at starte opsætningen.",
+          "title": "Du har ikke gennemgået opsætningen"
+        }
+      },
+      "title": "Forbindelser",
+      "workers": {
+        "addButton": "Tilføj ny arbejder",
+        "emptyState": "Ingen arbejdere endnu (｡-́︿-̀｡), tilføj en nedenfor",
+        "label": "Brug brugerdefinerede proxy-arbejdere",
+        "urlLabel": "Arbejder-URL'er",
+        "urlPlaceholder": "https://",
+        "description": "For at få applikationen til at fungere dirigeres al trafik gennem proxyer. Aktiver dette, hvis du vil have dine egne arbejdere. <0>Instruktioner.</0>"
+      }
+    },
+    "preferences": {
+      "language": "Applikationens sprog",
+      "languageDescription": "Sproget gælder for hele applikationen, kun engelsk har fjollede ting 🙁.",
+      "thumbnailLabel": "Generer miniaturebilleder",
+      "thumbnail": "Generer miniaturebilleder",
+      "autoplay": "Autoplay",
+      "autoplayLabel": "Autoplay",
+      "sourceOrder": "Omorganisering af kilder",
+      "sourceOrderDescription": "Træk og slip for at omarrangere kilder. Det afgør, i hvilken rækkefølge kilderne tjekkes for de medier, du prøver at se. Hvis en kilde er nedtonet, betyder det, at den ikke er tilgængelig på din enhed.",
+      "title": "Præferencer",
+      "thumbnailDescription": "Det meste af tiden har videoer ikke miniaturebilleder. Du kan aktivere denne indstilling for at generere dem undervejs, men de kan gøre din video mere langsom.",
+      "autoplayDescription": "Afspil automatisk den næste episode i en serie, når den er slut. Kan aktiveres af brugere med browserudvidelsen, en brugerdefineret proxy eller med standardopsætningen, hvis hosten tillader det."
+    },
+    "reset": "Nulstil",
+    "save": "Gem",
+    "sidebar": {
+      "info": {
+        "appVersion": "App version",
+        "backendUrl": "Backend URL",
+        "backendVersion": "Backend version",
+        "hostname": "Hostname",
+        "insecure": "Usikker",
+        "notLoggedIn": "Du er ikke logget ind",
+        "secure": "Sikker",
+        "title": "Appstatistik (for nørder) 🤓",
+        "unknownVersion": "Ukendt",
+        "userId": "Bruger ID"
+      }
+    },
+    "subtitles": {
+      "backgroundLabel": "Baggrundsopacitet",
+      "colorLabel": "Farve",
+      "previewQuote": "Vil du helst have en lesbisk datter eller en homoseksuel søn? 🤔",
+      "textSizeLabel": "Tekststørrelse",
+      "title": "Undertekster",
+      "textBoldLabel": "Fed tekst",
+      "backgroundBlurLabel": "Sløring af baggrund"
+    },
+    "unsaved": "Du har ændringer, der ikke er gemt... ฅ^•ﻌ•^ฅ"
+  },
+  "fedapi": {
+    "setup": {
+      "showVideo": "Vis video vejledning",
+      "title": "For at få din Ui-token:"
+    },
+    "onboarding": {
+      "description": "Brug din egen Febbox-konto for at få det bedste streaming med 4k kvalitet, Dolby Atmos, spring intro og de bedste (hurtigste) indlæsningstider!",
+      "title": "Valgfrit: FED API (Fedbox) token"
+    }
+  },
+  "discover": {
+    "scrollToTop": "Tilbage til toppen",
+    "page": {
+      "subtitle": "Udforsk de seneste hits og tidløse klassikere.",
+      "title": "Opdag Film og TV"
+    },
+    "randomMovie": {
+      "in": "i"
+    }
+  }
 }

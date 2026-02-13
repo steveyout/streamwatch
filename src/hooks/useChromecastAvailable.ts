@@ -1,4 +1,4 @@
-/// <reference types="chromecast-caf-sender"/>
+/// <reference types="chromecast-caf-sender" />
 
 import { useEffect, useState } from "react";
 
@@ -8,7 +8,17 @@ export function useChromecastAvailable() {
   const [available, setAvailable] = useState<boolean | null>(null);
 
   useEffect(() => {
-    isChromecastAvailable((bool) => setAvailable(bool));
+    let isMounted = true;
+
+    isChromecastAvailable((bool) => {
+      if (isMounted) {
+        setAvailable(bool);
+      }
+    });
+
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   return available;

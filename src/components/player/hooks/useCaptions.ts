@@ -1,9 +1,10 @@
-import { useCallback, useMemo } from "react";
+import { useCallback, useEffect, useMemo } from "react";
 import subsrt from "subsrt-ts";
 
 import { downloadCaption, downloadWebVTT } from "@/backend/helpers/subs";
-import { Caption } from "@/stores/player/slices/source";
+import { Caption, CaptionListItem } from "@/stores/player/slices/source";
 import { usePlayerStore } from "@/stores/player/store";
+import { usePreferencesStore } from "@/stores/preferences";
 import { useSubtitleStore } from "@/stores/subtitles";
 
 import {
@@ -18,21 +19,60 @@ export function useCaptions() {
     (s) => s.resetSubtitleSpecificSettings,
   );
   const setCaption = usePlayerStore((s) => s.setCaption);
+  const currentTranslateTask = usePlayerStore((s) => s.caption.translateTask);
   const lastSelectedLanguage = useSubtitleStore((s) => s.lastSelectedLanguage);
   const setIsOpenSubtitles = useSubtitleStore((s) => s.setIsOpenSubtitles);
 
   const captionList = usePlayerStore((s) => s.captionList);
   const getHlsCaptionList = usePlayerStore((s) => s.display?.getCaptionList);
+  const source = usePlayerStore((s) => s.source);
+  const selectedCaption = usePlayerStore((s) => s.caption.selected);
 
   const getSubtitleTracks = usePlayerStore((s) => s.display?.getSubtitleTracks);
   const setSubtitlePreference = usePlayerStore(
     (s) => s.display?.setSubtitlePreference,
+  );
+  const setCaptionAsTrack = usePlayerStore((s) => s.setCaptionAsTrack);
+  const enableNativeSubtitles = usePreferencesStore(
+    (s) => s.enableNativeSubtitles,
   );
 
   const captions = useMemo(
     () =>
       captionList.length !== 0 ? captionList : (getHlsCaptionList?.() ?? []),
     [captionList, getHlsCaptionList],
+  );
+
+  const setDirectCaption = useCallback(
+    (caption: Caption, listItem: CaptionListItem) => {
+      setIsOpenSubtitles(!!listItem.opensubtitles);
+      setCaption(caption);
+
+      // Only reset subtitle settings if selecting a different caption
+      if (selectedCaption?.id !== caption.id) {
+        resetSubtitleSpecificSettings();
+      }
+
+      setLanguage(caption.language);
+
+      // Use native tracks for MP4 streams instead of custom rendering
+      if (source?.type === "file" && enableNativeSubtitles) {
+        setCaptionAsTrack(true);
+      } else {
+        // For HLS sources or when native subtitles are disabled, use custom rendering
+        setCaptionAsTrack(false);
+      }
+    },
+    [
+      setIsOpenSubtitles,
+      setLanguage,
+      setCaption,
+      resetSubtitleSpecificSettings,
+      source,
+      setCaptionAsTrack,
+      enableNativeSubtitles,
+      selectedCaption,
+    ],
   );
 
   const selectCaptionById = useCallback(
@@ -78,20 +118,9 @@ export function useCaptions() {
         captionToSet.srtData = srtData;
       }
 
-      setIsOpenSubtitles(!!caption.opensubtitles);
-      setCaption(captionToSet);
-      resetSubtitleSpecificSettings();
-      setLanguage(caption.language);
+      setDirectCaption(captionToSet, caption);
     },
-    [
-      setIsOpenSubtitles,
-      setLanguage,
-      captions,
-      setCaption,
-      resetSubtitleSpecificSettings,
-      getSubtitleTracks,
-      setSubtitlePreference,
-    ],
+    [captions, getSubtitleTracks, setSubtitlePreference, setDirectCaption],
   );
 
   const selectLanguage = useCallback(
@@ -124,12 +153,89 @@ export function useCaptions() {
     if (enabled) await selectLastUsedLanguage();
   }, [selectLastUsedLanguage, enabled]);
 
+  const selectRandomCaptionFromLastUsedLanguage = useCallback(async () => {
+    const language = lastSelectedLanguage ?? "en";
+
+    // Filter captions by language
+    const languageCaptions = captions.filter(
+      (caption) => caption.language === language,
+    );
+
+    // If no captions exist for that language, return early
+    if (languageCaptions.length === 0) return;
+
+    // Filter out the currently selected caption if possible
+    const availableCaptions = languageCaptions.filter(
+      (caption) => caption.id !== selectedCaption?.id,
+    );
+
+    // If we filtered out all captions (only one caption available), use all captions
+    const captionsToChooseFrom =
+      availableCaptions.length > 0 ? availableCaptions : languageCaptions;
+
+    // Pick a random caption
+    const randomIndex = Math.floor(Math.random() * captionsToChooseFrom.length);
+    const randomCaption = captionsToChooseFrom[randomIndex];
+
+    // Select the random caption
+    await selectCaptionById(randomCaption.id);
+  }, [lastSelectedLanguage, captions, selectedCaption, selectCaptionById]);
+
+  // Validate selected caption when caption list changes
+  useEffect(() => {
+    if (!selectedCaption) return;
+
+    // Skip validation for custom/pasted captions that aren't in the caption list
+    const isCustomCaption =
+      selectedCaption.id === "custom-caption" ||
+      selectedCaption.id === "pasted-caption";
+
+    if (isCustomCaption) return;
+
+    const isSelectedCaptionStillAvailable = captions.some(
+      (caption) =>
+        caption.id ===
+        (currentTranslateTask
+          ? currentTranslateTask.targetCaption
+          : selectedCaption
+        ).id,
+    );
+
+    if (!isSelectedCaptionStillAvailable) {
+      // Try to find a caption with the same language
+      const sameLanguageCaption = captions.find(
+        (caption) =>
+          caption.language ===
+          (currentTranslateTask
+            ? currentTranslateTask.targetCaption
+            : selectedCaption
+          ).language,
+      );
+
+      if (sameLanguageCaption) {
+        // Automatically select the first caption with the same language
+        selectCaptionById(sameLanguageCaption.id);
+      } else {
+        // No caption with the same language found, clear the selection
+        setCaption(null);
+      }
+    }
+  }, [
+    captions,
+    selectedCaption,
+    setCaption,
+    selectCaptionById,
+    currentTranslateTask,
+  ]);
+
   return {
     selectLanguage,
     disable,
     selectLastUsedLanguage,
     toggleLastUsed,
     selectLastUsedLanguageIfEnabled,
+    setDirectCaption,
     selectCaptionById,
+    selectRandomCaptionFromLastUsedLanguage,
   };
 }

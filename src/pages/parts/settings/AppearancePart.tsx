@@ -1,10 +1,18 @@
 import classNames from "classnames";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 
+import { Button } from "@/components/buttons/Button";
 import { Toggle } from "@/components/buttons/Toggle";
+import { SortableList } from "@/components/form/SortableList";
 import { Icon, Icons } from "@/components/Icon";
+import { EditGroupOrderModal } from "@/components/overlays/EditGroupOrderModal";
+import { useModal } from "@/components/overlays/Modal";
 import { Heading1 } from "@/components/utils/Text";
+import { useBackendUrl } from "@/hooks/auth/useBackendUrl";
+import { useAuthStore } from "@/stores/auth";
+import { useBookmarkStore } from "@/stores/bookmarks";
+import { useGroupOrderStore } from "@/stores/groupOrder";
 
 const availableThemes = [
   {
@@ -48,6 +56,16 @@ const availableThemes = [
     key: "settings.appearance.themes.forest",
   },
   {
+    id: "autumn",
+    selector: "theme-autumn",
+    key: "settings.appearance.themes.autumn",
+  },
+  {
+    id: "frost",
+    selector: "theme-frost",
+    key: "settings.appearance.themes.frost",
+  },
+  {
     id: "mocha",
     selector: "theme-mocha",
     key: "settings.appearance.themes.mocha",
@@ -78,6 +96,11 @@ const availableThemes = [
     key: "settings.appearance.themes.spark",
   },
   {
+    id: "cobalt",
+    selector: "theme-cobalt",
+    key: "settings.appearance.themes.cobalt",
+  },
+  {
     id: "grape",
     selector: "theme-grape",
     key: "settings.appearance.themes.grape",
@@ -101,6 +124,11 @@ const availableThemes = [
     id: "popsicle",
     selector: "theme-popsicle",
     key: "settings.appearance.themes.popsicle",
+  },
+  {
+    id: "christmas",
+    selector: "theme-christmas",
+    key: "settings.appearance.themes.christmas",
   },
 ];
 
@@ -217,8 +245,16 @@ export function AppearancePart(props: {
   enableCarouselView: boolean;
   setEnableCarouselView: (v: boolean) => void;
 
+  enableMinimalCards: boolean;
+  setEnableMinimalCards: (v: boolean) => void;
+
   forceCompactEpisodeView: boolean;
   setForceCompactEpisodeView: (v: boolean) => void;
+
+  homeSectionOrder: string[];
+  setHomeSectionOrder: (v: string[]) => void;
+
+  enableLowPerformanceMode: boolean;
 }) {
   const { t } = useTranslation();
 
@@ -226,6 +262,55 @@ export function AppearancePart(props: {
   const activeThemeRef = useRef<HTMLDivElement>(null);
   const [isAtTop, setIsAtTop] = useState(true);
   const [isAtBottom, setIsAtBottom] = useState(false);
+
+  // Group order modal
+  const bookmarks = useBookmarkStore((s) => s.bookmarks);
+  const setGroupOrder = useGroupOrderStore((s) => s.setGroupOrder);
+  const editGroupOrderModal = useModal("bookmark-edit-order-settings");
+  const backendUrl = useBackendUrl();
+  const account = useAuthStore((s) => s.account);
+
+  // Check if there are groups
+  const hasGroups = useMemo(() => {
+    const groups = new Set<string>();
+
+    Object.values(bookmarks).forEach((bookmark) => {
+      if (Array.isArray(bookmark.group)) {
+        bookmark.group.forEach((group) => groups.add(group));
+      }
+    });
+
+    groups.add("bookmarks");
+
+    return groups.size > 1;
+  }, [bookmarks]);
+
+  const {
+    enableLowPerformanceMode,
+    setEnableDiscover,
+    setEnableFeatured,
+    setEnableDetailsModal,
+    setEnableImageLogos,
+    setForceCompactEpisodeView,
+  } = props;
+
+  // Apply low performance mode restrictions
+  useEffect(() => {
+    if (enableLowPerformanceMode) {
+      setEnableDiscover(false);
+      setEnableFeatured(false);
+      setEnableDetailsModal(false);
+      setEnableImageLogos(false);
+      setForceCompactEpisodeView(true);
+    }
+  }, [
+    enableLowPerformanceMode,
+    setEnableDiscover,
+    setEnableFeatured,
+    setEnableDetailsModal,
+    setEnableImageLogos,
+    setForceCompactEpisodeView,
+  ]);
 
   const checkScrollPosition = () => {
     const container = carouselRef.current;
@@ -268,6 +353,26 @@ export function AppearancePart(props: {
     }
   }, [props.active]);
 
+  const handleEditGroupOrder = () => {
+    editGroupOrderModal.show();
+  };
+
+  const handleCancelGroupOrder = () => {
+    editGroupOrderModal.hide();
+  };
+
+  const handleSaveGroupOrder = (newOrder: string[]) => {
+    setGroupOrder(newOrder);
+    editGroupOrderModal.hide();
+
+    // Save to backend
+    if (backendUrl && account) {
+      useGroupOrderStore
+        .getState()
+        .saveGroupOrderToBackend(backendUrl, account);
+    }
+  };
+
   return (
     <div className="space-y-12">
       <Heading1 border>{t("settings.appearance.title")}</Heading1>
@@ -285,13 +390,20 @@ export function AppearancePart(props: {
             </p>
             <div
               onClick={() => {
-                const newDiscoverValue = !props.enableDiscover;
-                props.setEnableDiscover(newDiscoverValue);
-                if (!newDiscoverValue) {
-                  props.setEnableFeatured(false);
+                if (!props.enableLowPerformanceMode) {
+                  const newDiscoverValue = !props.enableDiscover;
+                  props.setEnableDiscover(newDiscoverValue);
+                  if (!newDiscoverValue) {
+                    props.setEnableFeatured(false);
+                  }
                 }
               }}
-              className="bg-dropdown-background hover:bg-dropdown-hoverBackground select-none my-4 cursor-pointer space-x-3 flex items-center max-w-[25rem] py-3 px-4 rounded-lg"
+              className={classNames(
+                "bg-dropdown-background hover:bg-dropdown-hoverBackground select-none my-4 cursor-pointer space-x-3 flex items-center max-w-[25rem] py-3 px-4 rounded-lg",
+                props.enableLowPerformanceMode
+                  ? "cursor-not-allowed opacity-50 pointer-events-none"
+                  : "cursor-pointer opacity-100 pointer-events-auto",
+              )}
             >
               <Toggle enabled={props.enableDiscover} />
               <p className="flex-1 text-white font-bold">
@@ -300,7 +412,7 @@ export function AppearancePart(props: {
             </div>
           </div>
           {/* Featured Carousel */}
-          {props.enableDiscover && (
+          {props.enableDiscover && !props.enableLowPerformanceMode && (
             <div className="pt-4 pl-4 border-l-8 border-dropdown-background">
               <p className="text-white font-bold mb-3">
                 {t("settings.appearance.options.featured")}
@@ -329,11 +441,14 @@ export function AppearancePart(props: {
             </p>
             <div
               onClick={() =>
+                !props.enableLowPerformanceMode &&
                 props.setEnableDetailsModal(!props.enableDetailsModal)
               }
               className={classNames(
                 "bg-dropdown-background hover:bg-dropdown-hoverBackground select-none my-4 cursor-pointer space-x-3 flex items-center max-w-[25rem] py-3 px-4 rounded-lg",
-                "cursor-pointer opacity-100 pointer-events-auto",
+                props.enableLowPerformanceMode
+                  ? "cursor-not-allowed opacity-50 pointer-events-none"
+                  : "cursor-pointer opacity-100 pointer-events-auto",
               )}
             >
               <Toggle enabled={props.enableDetailsModal} />
@@ -356,10 +471,15 @@ export function AppearancePart(props: {
               {t("settings.appearance.options.logosNotice")}
             </p>
             <div
-              onClick={() => props.setEnableImageLogos(!props.enableImageLogos)}
+              onClick={() =>
+                !props.enableLowPerformanceMode &&
+                props.setEnableImageLogos(!props.enableImageLogos)
+              }
               className={classNames(
                 "bg-dropdown-background hover:bg-dropdown-hoverBackground select-none my-4 cursor-pointer space-x-3 flex items-center max-w-[25rem] py-3 px-4 rounded-lg",
-                "cursor-pointer opacity-100 pointer-events-auto",
+                props.enableLowPerformanceMode
+                  ? "cursor-not-allowed opacity-50 pointer-events-none"
+                  : "cursor-pointer opacity-100 pointer-events-auto",
               )}
             >
               <Toggle enabled={props.enableImageLogos} />
@@ -393,6 +513,30 @@ export function AppearancePart(props: {
             </div>
           </div>
 
+          {/* Minimal Cards */}
+          <div>
+            <p className="text-white font-bold mb-3">
+              {t("settings.appearance.options.minimalCards")}
+            </p>
+            <p className="max-w-[25rem] font-medium">
+              {t("settings.appearance.options.minimalCardsDescription")}
+            </p>
+            <div
+              onClick={() =>
+                props.setEnableMinimalCards(!props.enableMinimalCards)
+              }
+              className={classNames(
+                "bg-dropdown-background hover:bg-dropdown-hoverBackground select-none my-4 cursor-pointer space-x-3 flex items-center max-w-[25rem] py-3 px-4 rounded-lg",
+                "cursor-pointer opacity-100 pointer-events-auto",
+              )}
+            >
+              <Toggle enabled={props.enableMinimalCards} />
+              <p className="flex-1 text-white font-bold">
+                {t("settings.appearance.options.minimalCardsLabel")}
+              </p>
+            </div>
+          </div>
+
           {/* Force Compact Episode View */}
           <div>
             <p className="text-white font-bold mb-3">
@@ -405,11 +549,14 @@ export function AppearancePart(props: {
             </p>
             <div
               onClick={() =>
+                !props.enableLowPerformanceMode &&
                 props.setForceCompactEpisodeView(!props.forceCompactEpisodeView)
               }
               className={classNames(
                 "bg-dropdown-background hover:bg-dropdown-hoverBackground select-none my-4 cursor-pointer space-x-3 flex items-center max-w-[25rem] py-3 px-4 rounded-lg",
-                "cursor-pointer opacity-100 pointer-events-auto",
+                props.enableLowPerformanceMode
+                  ? "cursor-not-allowed opacity-50 pointer-events-none"
+                  : "cursor-pointer opacity-100 pointer-events-auto",
               )}
             >
               <Toggle enabled={props.forceCompactEpisodeView} />
@@ -417,6 +564,39 @@ export function AppearancePart(props: {
                 {t("settings.appearance.options.forceCompactEpisodeViewLabel")}
               </p>
             </div>
+          </div>
+
+          {/* Home Section Order */}
+          <div>
+            <p className="text-white font-bold mb-3">
+              {t("settings.appearance.options.homeSectionOrder")}
+            </p>
+            <p className="max-w-[25rem] font-medium">
+              {t("settings.appearance.options.homeSectionOrderDescription")}
+            </p>
+            <div className="my-4 max-w-[25rem]">
+              <SortableList
+                items={props.homeSectionOrder.map((section) => ({
+                  id: section,
+                  name: t(`settings.appearance.sections.${section}`),
+                }))}
+                setItems={(items) => {
+                  const newOrder = items.map((item) => item.id);
+                  props.setHomeSectionOrder(newOrder);
+                }}
+              />
+            </div>
+            {hasGroups && (
+              <div className="mt-4 max-w-[25rem]">
+                <Button
+                  theme="secondary"
+                  onClick={handleEditGroupOrder}
+                  className="w-full"
+                >
+                  {t("settings.appearance.options.homeSectionOrderGroups")}
+                </Button>
+              </div>
+            )}
           </div>
         </div>
 
@@ -450,6 +630,14 @@ export function AppearancePart(props: {
           </div>
         </div>
       </div>
+
+      {/* Edit Group Order Modal */}
+      <EditGroupOrderModal
+        id={editGroupOrderModal.id}
+        isShown={editGroupOrderModal.isShown}
+        onCancel={handleCancelGroupOrder}
+        onSave={handleSaveGroupOrder}
+      />
     </div>
   );
 }

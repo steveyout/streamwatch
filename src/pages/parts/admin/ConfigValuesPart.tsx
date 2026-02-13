@@ -6,37 +6,59 @@ import { conf } from "@/setup/config";
 import { BACKEND_URL } from "@/setup/constants";
 
 async function getAccountNumber() {
-  const response = await fetch(`${BACKEND_URL}/metrics`);
-  const text = await response.text();
-
-  // Adjusted regex to match any hostname
-  const regex =
-    /mw_provider_hostname_count{hostname="https?:\/\/[^"}]+"} (\d+)/g;
-  let total = 0;
-  let match = regex.exec(text); // Initial assignment outside the loop
-
-  while (match !== null) {
-    total += parseInt(match[1], 10);
-    match = regex.exec(text); // Update the assignment at the end of the loop body
+  if (!BACKEND_URL) {
+    return "N/A";
   }
 
-  if (total > 0) {
-    return total.toString();
+  try {
+    const response = await fetch(`${BACKEND_URL}/metrics`);
+    if (!response.ok) {
+      return "N/A";
+    }
+    const text = await response.text();
+
+    // Adjusted regex to match any hostname
+    const regex =
+      /mw_provider_hostname_count{hostname="https?:\/\/[^"}]+"} (\d+)/g;
+    let total = 0;
+    let match = regex.exec(text); // Initial assignment outside the loop
+
+    while (match !== null) {
+      total += parseInt(match[1], 10);
+      match = regex.exec(text); // Update the assignment at the end of the loop body
+    }
+
+    if (total > 0) {
+      return total.toString();
+    }
+    return "0";
+  } catch (error) {
+    return "N/A";
   }
-  throw new Error("ACCOUNT_NUMBER not found");
 }
 
 async function getAllAccounts() {
-  const response = await fetch(`${BACKEND_URL}/metrics`);
-  const text = await response.text();
-
-  const regex = /mw_user_count{namespace="movie-web"} (\d+)/;
-  const match = text.match(regex);
-
-  if (match) {
-    return match[1];
+  if (!BACKEND_URL) {
+    return "N/A";
   }
-  throw new Error("USER_COUNT not found");
+
+  try {
+    const response = await fetch(`${BACKEND_URL}/metrics`);
+    if (!response.ok) {
+      return "N/A";
+    }
+    const text = await response.text();
+
+    const regex = /mw_user_count{namespace="movie-web"} (\d+)/;
+    const match = text.match(regex);
+
+    if (match) {
+      return match[1];
+    }
+    return "0";
+  } catch (error) {
+    return "N/A";
+  }
 }
 
 function ConfigValue(props: { name: string; children?: ReactNode }) {
@@ -65,6 +87,7 @@ export function ConfigValuesPart() {
       })
       .catch((error) => {
         console.error("Error fetching account number:", error);
+        setAccountNumber("N/A");
       });
 
     getAllAccounts()
@@ -73,6 +96,7 @@ export function ConfigValuesPart() {
       })
       .catch((error) => {
         console.error("Error fetching all accounts:", error);
+        setAllAccounts("N/A");
       });
   }, []);
 

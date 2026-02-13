@@ -2,8 +2,10 @@ import classNames from "classnames";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
+import { useAsync } from "react-use";
 
 import { base64ToBuffer, decryptData } from "@/backend/accounts/crypto";
+import { getBackendMeta } from "@/backend/accounts/meta";
 import { getRoomStatuses } from "@/backend/player/status";
 import { UserAvatar } from "@/components/Avatar";
 import { Icon, Icons } from "@/components/Icon";
@@ -11,8 +13,10 @@ import { Spinner } from "@/components/layout/Spinner";
 import { Transition } from "@/components/utils/Transition";
 import { useAuth } from "@/hooks/auth/useAuth";
 import { useBackendUrl } from "@/hooks/auth/useBackendUrl";
+import { useIsDesktopApp } from "@/hooks/useIsDesktopApp";
 import { conf } from "@/setup/config";
 import { useAuthStore } from "@/stores/auth";
+import { usePreferencesStore } from "@/stores/preferences";
 
 function Divider() {
   return <hr className="border-0 w-full h-px bg-dropdown-border" />;
@@ -212,6 +216,17 @@ export function LinksDropdown(props: { children: React.ReactNode }) {
     [seed],
   );
   const { logout } = useAuth();
+  const backendUrl = useBackendUrl();
+
+  // Check backend compatibility for watch party
+  const backendMeta = useAsync(async () => {
+    if (!backendUrl) return;
+    return getBackendMeta(backendUrl);
+  }, [backendUrl]);
+
+  const backendSupportsWatchParty = backendMeta?.value?.version
+    ? backendMeta.value.version >= "2.0.1"
+    : false;
 
   useEffect(() => {
     function onWindowClick(evt: MouseEvent) {
@@ -226,6 +241,11 @@ export function LinksDropdown(props: { children: React.ReactNode }) {
   const toggleOpen = useCallback(() => {
     setOpen((s) => !s);
   }, []);
+
+  const enableLowPerformanceMode = usePreferencesStore(
+    (s) => s.enableLowPerformanceMode,
+  );
+  const isDesktopApp = useIsDesktopApp();
 
   return (
     <div className="relative is-dropdown">
@@ -248,11 +268,21 @@ export function LinksDropdown(props: { children: React.ReactNode }) {
         />
       </div>
       <Transition animation="slide-down" show={open}>
-        <div className="rounded-lg absolute w-64 bg-dropdown-altBackground top-full mt-3 right-0">
+        <div className="rounded-xl absolute w-64 bg-dropdown-altBackground top-full mt-3 right-0">
           {deviceName && bufferSeed ? (
             <DropdownLink className="text-white" href="/settings">
               <UserAvatar />
-              {decryptData(deviceName, bufferSeed)}
+              {(() => {
+                try {
+                  return decryptData(deviceName, bufferSeed);
+                } catch (error) {
+                  console.warn(
+                    "Failed to decrypt device name in LinksDropdown, using fallback:",
+                    error,
+                  );
+                  return t("settings.account.unknownDevice");
+                }
+              })()}
             </DropdownLink>
           ) : (
             <DropdownLink href="/login" icon={Icons.RISING_STAR} highlight>
@@ -263,6 +293,21 @@ export function LinksDropdown(props: { children: React.ReactNode }) {
           <DropdownLink href="/settings" icon={Icons.SETTINGS}>
             {t("navigation.menu.settings")}
           </DropdownLink>
+          {isDesktopApp && (
+            <DropdownLink
+              onClick={() =>
+                window.dispatchEvent(
+                  new CustomEvent("pstream-desktop-settings"),
+                )
+              }
+              icon={Icons.GEAR}
+            >
+              {t("navigation.menu.desktop")}
+            </DropdownLink>
+          )}
+          <DropdownLink href="/watch-history" icon={Icons.CLOCK}>
+            {t("home.watchHistory.sectionTitle")}
+          </DropdownLink>
           {process.env.NODE_ENV === "development" ? (
             <DropdownLink href="/dev" icon={Icons.COMPRESS}>
               {t("navigation.menu.development")}
@@ -271,10 +316,12 @@ export function LinksDropdown(props: { children: React.ReactNode }) {
           <DropdownLink href="/about" icon={Icons.CIRCLE_QUESTION}>
             {t("navigation.menu.about")}
           </DropdownLink>
-          <DropdownLink href="/discover" icon={Icons.RISING_STAR}>
-            {t("navigation.menu.discover")}
-          </DropdownLink>
-          <WatchPartyInputLink />
+          {!enableLowPerformanceMode && (
+            <DropdownLink href="/discover" icon={Icons.RISING_STAR}>
+              {t("navigation.menu.discover")}
+            </DropdownLink>
+          )}
+          {backendSupportsWatchParty && <WatchPartyInputLink />}
           {deviceName ? (
             <DropdownLink
               className="!text-type-danger opacity-75 hover:opacity-100"
@@ -286,13 +333,19 @@ export function LinksDropdown(props: { children: React.ReactNode }) {
           ) : null}
           <Divider />
           <div className="my-4 flex justify-center items-center gap-4">
+            {conf().GITHUB_LINK && (
+              <CircleDropdownLink
+                href={conf().GITHUB_LINK}
+                icon={Icons.GITHUB}
+              />
+            )}
             <CircleDropdownLink
               href={conf().DISCORD_LINK}
               icon={Icons.DISCORD}
             />
             <CircleDropdownLink href="/support" icon={Icons.SUPPORT} />
             <CircleDropdownLink
-              href="https://rentry.co/h5mypdfs"
+              href="https://rentry.co/nnqtas3e"
               icon={Icons.TIP_JAR}
             />
           </div>

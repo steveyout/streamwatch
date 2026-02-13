@@ -4,13 +4,13 @@ import { SessionResponse, getAuthHeaders } from "@/backend/accounts/auth";
 import { AccountWithToken } from "@/stores/auth";
 import { BookmarkMediaItem } from "@/stores/bookmarks";
 import { ProgressMediaItem } from "@/stores/progress";
+import { WatchHistoryItem } from "@/stores/watchHistory";
 
 export interface UserResponse {
   id: string;
   namespace: string;
-  name: string;
-  roles: string[];
-  createdAt: string;
+  nickname: string;
+  permissions: string[];
   profile: {
     colorA: string;
     colorB: string;
@@ -24,6 +24,7 @@ export interface UserEdit {
     colorB: string;
     icon: string;
   };
+  nickname?: string;
 }
 
 export interface BookmarkResponse {
@@ -34,6 +35,8 @@ export interface BookmarkResponse {
     poster?: string;
     type: "show" | "movie";
   };
+  group: string[];
+  favoriteEpisodes?: string[];
   updatedAt: string;
 }
 
@@ -58,10 +61,34 @@ export interface ProgressResponse {
   updatedAt: string;
 }
 
+export interface WatchHistoryResponse {
+  tmdbId: string;
+  season: {
+    id?: string;
+    number?: number;
+  };
+  episode: {
+    id?: string;
+    number?: number;
+  };
+  meta: {
+    title: string;
+    year: number;
+    poster?: string;
+    type: "show" | "movie";
+  };
+  duration: string;
+  watched: string;
+  watchedAt: string;
+  completed: boolean;
+}
+
 export function bookmarkResponsesToEntries(responses: BookmarkResponse[]) {
   const entries = responses.map((bookmark) => {
     const item: BookmarkMediaItem = {
       ...bookmark.meta,
+      group: bookmark.group?.length > 0 ? bookmark.group : undefined,
+      favoriteEpisodes: bookmark.favoriteEpisodes,
       updatedAt: new Date(bookmark.updatedAt).getTime(),
     };
     return [bookmark.tmdbId, item] as const;
@@ -124,6 +151,35 @@ export function progressResponsesToEntries(responses: ProgressResponse[]) {
   return items;
 }
 
+export function watchHistoryResponsesToEntries(
+  responses: WatchHistoryResponse[],
+) {
+  const items: Record<string, WatchHistoryItem> = {};
+
+  responses.forEach((v) => {
+    const key = v.episode?.id ? `${v.tmdbId}-${v.episode.id}` : v.tmdbId;
+
+    items[key] = {
+      type: v.meta.type,
+      title: v.meta.title,
+      poster: v.meta.poster,
+      year: v.meta.year,
+      progress: {
+        duration: Number(v.duration),
+        watched: Number(v.watched),
+      },
+      watchedAt: new Date(v.watchedAt).getTime(),
+      completed: v.completed,
+      episodeId: v.episode?.id,
+      seasonId: v.season?.id,
+      seasonNumber: v.season?.number,
+      episodeNumber: v.episode?.number,
+    };
+  });
+
+  return items;
+}
+
 export async function getUser(
   url: string,
   token: string,
@@ -176,4 +232,14 @@ export async function getProgress(url: string, account: AccountWithToken) {
     headers: getAuthHeaders(account.token),
     baseURL: url,
   });
+}
+
+export async function getWatchHistory(url: string, account: AccountWithToken) {
+  return ofetch<WatchHistoryResponse[]>(
+    `/users/${account.userId}/watch-history`,
+    {
+      headers: getAuthHeaders(account.token),
+      baseURL: url,
+    },
+  );
 }

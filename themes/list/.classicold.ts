@@ -84,7 +84,7 @@ const tokens = {
     c800: "#0F0F1B", // Background main, settings save bar, onboarding card
     c900: "#0A0A12", // Media card hover shadow
   },
-}
+};
 
 export default createTheme({
   name: "classic",
@@ -340,4 +340,4 @@ export default createTheme({
       },
     },
   },
-})
+});

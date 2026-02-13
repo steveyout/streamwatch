@@ -25,7 +25,7 @@ export function LargeCardText(props: {
 }) {
   return (
     <div className="flex flex-col items-center text-center mb-8">
-      <div className="flex flex-col items-center text-center max-w-[318px]">
+      <div className="flex flex-col items-center text-center max-w-[320px]">
         {props.icon ? (
           <div className="text-2xl mb-4 text-largeCard-icon">{props.icon}</div>
         ) : null}

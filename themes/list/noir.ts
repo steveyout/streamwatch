@@ -10,7 +10,7 @@ const tokens = {
     c125: "#141414",
     c150: "#1a1a1a",
     c200: "#262626",
-    c250: "#333333"
+    c250: "#333333",
   },
   semantic: {
     silver: {
@@ -30,7 +30,7 @@ const tokens = {
     c600: "#2c2c2c",
     c700: "#202020",
     c800: "#151515",
-    c900: "#0a0a0a"
+    c900: "#0a0a0a",
   },
   shade: {
     c50: "#7c7c7c",
@@ -42,7 +42,7 @@ const tokens = {
     c600: "#202020",
     c700: "#1a1a1a",
     c800: "#151515",
-    c900: "#0e0e0e"
+    c900: "#0e0e0e",
   },
   ash: {
     c50: "#8d8d8d",
@@ -54,7 +54,7 @@ const tokens = {
     c600: "#252525",
     c700: "#1e1e1e",
     c800: "#181818",
-    c900: "#111111"
+    c900: "#111111",
   },
   blue: {
     c50: "#ccccd6",
@@ -66,9 +66,9 @@ const tokens = {
     c600: "#2e2e2e",
     c700: "#272727",
     c800: "#181818",
-    c900: "#0f0f0f"
-  }
-}
+    c900: "#0f0f0f",
+  },
+};
 
 export default createTheme({
   name: "noir",
@@ -76,7 +76,7 @@ export default createTheme({
     colors: {
       themePreview: {
         primary: tokens.black.c80,
-        secondary: tokens.black.c100
+        secondary: tokens.black.c100,
       },
 
       pill: {
@@ -88,7 +88,7 @@ export default createTheme({
 
       global: {
         accentA: tokens.blue.c200,
-        accentB: tokens.blue.c300
+        accentB: tokens.blue.c300,
       },
 
       lightBar: {
@@ -103,7 +103,7 @@ export default createTheme({
         purple: tokens.purple.c600,
         purpleHover: tokens.purple.c400,
         cancel: tokens.black.c100,
-        cancelHover: tokens.black.c150
+        cancelHover: tokens.black.c150,
       },
 
       background: {
@@ -111,7 +111,7 @@ export default createTheme({
         secondary: tokens.black.c75,
         secondaryHover: tokens.black.c75,
         accentA: tokens.purple.c600,
-        accentB: tokens.black.c100
+        accentB: tokens.black.c100,
       },
 
       modal: {
@@ -125,7 +125,7 @@ export default createTheme({
         divider: tokens.ash.c500,
         secondary: tokens.ash.c100,
         link: tokens.purple.c100,
-        linkHover: tokens.purple.c50
+        linkHover: tokens.purple.c50,
       },
 
       search: {
@@ -133,7 +133,7 @@ export default createTheme({
         hoverBackground: tokens.shade.c900,
         focused: tokens.black.c125,
         placeholder: tokens.shade.c200,
-        icon: tokens.shade.c500
+        icon: tokens.shade.c500,
       },
 
       mediaCard: {
@@ -144,12 +144,12 @@ export default createTheme({
         barColor: tokens.shade.c200,
         barFillColor: tokens.shade.c50,
         badge: tokens.shade.c700,
-        badgeText: tokens.ash.c100
+        badgeText: tokens.ash.c100,
       },
 
       largeCard: {
         background: tokens.black.c100,
-        icon: tokens.purple.c400
+        icon: tokens.purple.c400,
       },
 
       dropdown: {
@@ -159,7 +159,7 @@ export default createTheme({
         text: tokens.shade.c50,
         secondary: tokens.shade.c100,
         border: tokens.shade.c400,
-        contentBackground: tokens.black.c50
+        contentBackground: tokens.black.c50,
       },
 
       authentication: {
@@ -168,7 +168,7 @@ export default createTheme({
         inputBgHover: tokens.black.c150,
         wordBackground: tokens.shade.c500,
         copyText: tokens.shade.c100,
-        copyTextHover: tokens.ash.c50
+        copyTextHover: tokens.ash.c50,
       },
 
       settings: {
@@ -181,23 +181,23 @@ export default createTheme({
             inactive: tokens.shade.c50,
             icon: tokens.black.c200,
             iconActivated: tokens.purple.c200,
-            activated: tokens.purple.c100
-          }
+            activated: tokens.purple.c100,
+          },
         },
 
         card: {
           border: tokens.shade.c700,
           background: tokens.black.c100,
-          altBackground: tokens.black.c100
+          altBackground: tokens.black.c100,
         },
 
         saveBar: {
-          background: tokens.black.c50
-        }
+          background: tokens.black.c50,
+        },
       },
 
       utils: {
-        divider: tokens.ash.c300
+        divider: tokens.ash.c300,
       },
 
       errors: {
@@ -205,25 +205,25 @@ export default createTheme({
         border: tokens.ash.c500,
 
         type: {
-          secondary: tokens.ash.c100
-        }
+          secondary: tokens.ash.c100,
+        },
       },
 
       about: {
         circle: tokens.black.c100,
-        circleText: tokens.ash.c50
+        circleText: tokens.ash.c50,
       },
 
       editBadge: {
         bg: tokens.ash.c500,
         bgHover: tokens.ash.c400,
-        text: tokens.ash.c50
+        text: tokens.ash.c50,
       },
 
       progress: {
         background: tokens.ash.c50,
         preloaded: tokens.ash.c50,
-        filled: tokens.purple.c200
+        filled: tokens.purple.c200,
       },
 
       video: {
@@ -231,17 +231,17 @@ export default createTheme({
 
         autoPlay: {
           background: tokens.ash.c800,
-          hover: tokens.ash.c600 
+          hover: tokens.ash.c600,
         },
 
         scraping: {
           card: tokens.black.c50,
           loading: tokens.purple.c200,
-          noresult: tokens.black.c200
+          noresult: tokens.black.c200,
         },
 
         audio: {
-          set: tokens.purple.c200
+          set: tokens.purple.c200,
         },
 
         context: {
@@ -260,7 +260,7 @@ export default createTheme({
 
           buttons: {
             list: tokens.ash.c700,
-            active: tokens.ash.c900
+            active: tokens.ash.c900,
           },
 
           closeHover: tokens.ash.c800,
@@ -268,10 +268,10 @@ export default createTheme({
           type: {
             secondary: tokens.ash.c200,
             accent: tokens.purple.c200,
-            main: tokens.semantic.silver.c300
-          }
-        }
-      }
-    }
-  }
+            main: tokens.semantic.silver.c300,
+          },
+        },
+      },
+    },
+  },
 });

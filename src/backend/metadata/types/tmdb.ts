@@ -381,3 +381,20 @@ export interface TMDBPersonImages {
   id: number;
   profiles: TMDBPersonImage[];
 }
+
+export interface TMDBVideo {
+  id: string;
+  key: string;
+  name: string;
+  site: string;
+  size: number;
+  type: string;
+  official: boolean;
+  published_at: string;
+  thumbnail?: string;
+}
+
+export interface TMDBVideosResponse {
+  id: number;
+  results: TMDBVideo[];
+}

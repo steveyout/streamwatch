@@ -1,28 +1,68 @@
 import Hls from "hls.js";
 import { useCallback, useEffect, useRef } from "react";
 
-import { playerStatus } from "@/stores/player/slices/source";
 import { ThumbnailImage } from "@/stores/player/slices/thumbnails";
 import { usePlayerStore } from "@/stores/player/store";
-import { LoadableSource, selectQuality } from "@/stores/player/utils/qualities";
+import {
+  LoadableSource,
+  SourceQuality,
+  SourceSliceSource,
+} from "@/stores/player/utils/qualities";
 import { usePreferencesStore } from "@/stores/preferences";
 import { processCdnLink } from "@/utils/cdn";
 import { isSafari } from "@/utils/detectFeatures";
 
-function makeQueue(layers: number): number[] {
-  const output = [0, 1];
-  let segmentSize = 0.5;
-  let lastSegmentAmount = 0;
-  for (let layer = 0; layer < layers; layer += 1) {
-    const segmentAmount = 1 / segmentSize - 1;
-    for (let i = 0; i < segmentAmount - lastSegmentAmount; i += 1) {
-      const offset = i * segmentSize * 2;
-      output.push(offset + segmentSize);
-    }
-    lastSegmentAmount = segmentAmount;
-    segmentSize /= 2;
+function makeQueue(thumbnails: number): number[] {
+  // Create a shuffled array of indices to ensure even distribution
+  const indices = Array.from({ length: thumbnails }, (_, i) => i);
+  for (let i = indices.length - 1; i > 0; i -= 1) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [indices[i], indices[j]] = [indices[j], indices[i]];
   }
-  return output;
+
+  // Convert shuffled indices to evenly distributed positions
+  return indices.map((i) => i / (thumbnails - 1));
+}
+
+function selectLowestQuality(source: SourceSliceSource): LoadableSource {
+  if (source.type === "hls") return source;
+
+  if (source.type === "file") {
+    const availableQualities = Object.entries(source.qualities)
+      .filter((entry) => (entry[1].url.length ?? 0) > 0)
+      .map((entry) => entry[0]) as SourceQuality[];
+
+    // Quality sorting by priority (higher number = higher quality)
+    const qualityPriority: Record<SourceQuality, number> = {
+      "360": 10,
+      "480": 20,
+      "720": 30,
+      "4k": 35,
+      "1080": 40,
+      unknown: 50, // unknown is typically the largest quality
+    };
+
+    // Find the lowest quality (smallest priority number) that's available
+    let lowestQuality: SourceQuality | null = null;
+    let lowestPriority = Infinity;
+
+    for (const quality of availableQualities) {
+      const priority = qualityPriority[quality] ?? 0;
+      if (priority < lowestPriority) {
+        lowestPriority = priority;
+        lowestQuality = quality;
+      }
+    }
+
+    if (lowestQuality) {
+      const stream = source.qualities[lowestQuality];
+      if (stream) {
+        return stream;
+      }
+    }
+  }
+
+  throw new Error("couldn't select lowest quality");
 }
 
 class ThumnbnailWorker {
@@ -42,6 +82,12 @@ class ThumnbnailWorker {
   }
 
   start(source: LoadableSource) {
+    // afari has extremely strict security policies around canvas operations with video content. When the thumbnail generation tries to:
+    // Load cross-origin video content into an off-screen <video> element
+    // Draw video frames to a <canvas> using drawImage()
+    // Extract image data with canvas.toDataURL()
+    // Safari marks the canvas as "tainted" and throws a security error, preventing the thumbnail generation entirely.
+    // While still technically possible to generate thumbnails in Safari, it's not worth the effort to fight their strict CORS policies and we just don't support it.
     if (isSafari) return false;
     const el = document.createElement("video");
     el.setAttribute("muted", "true");
@@ -115,7 +161,7 @@ class ThumnbnailWorker {
     if (!vid) return;
     await this.initVideo();
 
-    const queue = makeQueue(6); // 7 layers is 63 thumbnails evenly distributed
+    const queue = makeQueue(127); // 127 thumbnails evenly distributed across the video
     for (let i = 0; i < queue.length; i += 1) {
       if (this.interrupted) return;
       await this.takeSnapshot(vid.duration * queue[i]);
@@ -125,10 +171,11 @@ class ThumnbnailWorker {
 
 export function ThumbnailScraper() {
   const addImage = usePlayerStore((s) => s.thumbnails.addImage);
-  const status = usePlayerStore((s) => s.status);
   const resetImages = usePlayerStore((s) => s.thumbnails.resetImages);
   const meta = usePlayerStore((s) => s.meta);
   const source = usePlayerStore((s) => s.source);
+  const hasPlayedOnce = usePlayerStore((s) => s.mediaPlaying.hasPlayedOnce);
+  const duration = usePlayerStore((s) => s.progress.duration);
   const enableThumbnails = usePreferencesStore((s) => s.enableThumbnails);
   const workerRef = useRef<ThumnbnailWorker | null>(null);
 
@@ -137,32 +184,29 @@ export function ThumbnailScraper() {
 
   const start = useCallback(() => {
     let inputStream = null;
-    if (source)
-      inputStream = selectQuality(source, {
-        automaticQuality: false,
-        lastChosenQuality: "360",
-      });
+    if (source) inputStream = selectLowestQuality(source);
     // dont interrupt existing working
     if (workerRef.current) return;
-    if (status !== playerStatus.PLAYING) return;
+    // Allow thumbnail generation when video is loaded and has duration
+    if (!hasPlayedOnce || duration <= 0) return;
     if (!inputStream) return;
     resetImages();
     const ins = new ThumnbnailWorker({
       addImage,
     });
     workerRef.current = ins;
-    ins.start(inputStream.stream);
-  }, [source, addImage, resetImages, status]);
+    ins.start(inputStream);
+  }, [source, addImage, resetImages, hasPlayedOnce, duration]);
 
   const startRef = useRef(start);
   useEffect(() => {
     startRef.current = start;
-  }, [start, status]);
+  }, [start]);
 
   // start worker with the stream
   useEffect(() => {
     if (enableThumbnails) startRef.current();
-  }, [sourceSeralized, enableThumbnails]);
+  }, [sourceSeralized, enableThumbnails, hasPlayedOnce, duration]);
 
   // destroy worker on unmount
   useEffect(() => {
@@ -186,7 +230,13 @@ export function ThumbnailScraper() {
       workerRef.current = null;
     }
     if (enableThumbnails) startRef.current();
-  }, [serializedMeta, sourceSeralized, status, enableThumbnails]);
+  }, [
+    serializedMeta,
+    sourceSeralized,
+    enableThumbnails,
+    hasPlayedOnce,
+    duration,
+  ]);
 
   return null;
 }

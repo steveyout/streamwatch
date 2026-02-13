@@ -5,14 +5,10 @@ import type { AsyncReturnType } from "type-fest";
 
 import { isAllowedExtensionVersion } from "@/backend/extension/compatibility";
 import { extensionInfo, sendPage } from "@/backend/extension/messaging";
-import {
-  fetchMetadata,
-  setCachedMetadata,
-} from "@/backend/helpers/providerApi";
+import { setCachedMetadata } from "@/backend/helpers/providerApi";
 import { DetailedMeta, getMetaFromId } from "@/backend/metadata/getmeta";
 import { decodeTMDBId } from "@/backend/metadata/tmdb";
 import { MWMediaType } from "@/backend/metadata/types/mw";
-import { getLoadbalancedProviderApiUrl } from "@/backend/providers/fetchers";
 import { getProviders } from "@/backend/providers/providers";
 import { Button } from "@/components/buttons/Button";
 import { Icons } from "@/components/Icon";
@@ -52,20 +48,11 @@ export function MetaPart(props: MetaPartProps) {
       if (!info.hasPermission) throw new Error("extension-no-permission");
     }
 
-    // use api metadata or providers metadata
-    const providerApiUrl = getLoadbalancedProviderApiUrl();
-    if (providerApiUrl && !isValidExtension) {
-      try {
-        await fetchMetadata(providerApiUrl);
-      } catch (err) {
-        throw new Error("failed-api-metadata");
-      }
-    } else {
-      setCachedMetadata([
-        ...getProviders().listSources(),
-        ...getProviders().listEmbeds(),
-      ]);
-    }
+    // use providers metadata
+    setCachedMetadata([
+      ...getProviders().listSources(),
+      ...getProviders().listEmbeds(),
+    ]);
 
     // get media meta data
     let data: ReturnType<typeof decodeTMDBId> = null;
@@ -77,7 +64,7 @@ export function MetaPart(props: MetaPartProps) {
     }
     if (!data) return null;
 
-    if (isDisallowedMedia(data.id, data.type)) throw new Error("dmca");
+    if (isDisallowedMedia(data.id, data.type)) throw new Error("legal");
 
     let meta: AsyncReturnType<typeof getMetaFromId> = null;
     try {
@@ -138,37 +125,15 @@ export function MetaPart(props: MetaPartProps) {
     );
   }
 
-  if (error && error.message === "dmca") {
+  if (error && error.message === "legal") {
     return (
       <ErrorLayout>
         <ErrorContainer>
           <IconPill icon={Icons.DRAGON}>
-            {t("player.metadata.dmca.badge")}
+            {t("player.metadata.legal.badge")}
           </IconPill>
-          <Title>{t("player.metadata.dmca.title")}</Title>
-          <Paragraph>{t("player.metadata.dmca.text")}</Paragraph>
-          <Button
-            href="/"
-            theme="purple"
-            padding="md:px-12 p-2.5"
-            className="mt-6"
-          >
-            {t("player.metadata.failed.homeButton")}
-          </Button>
-        </ErrorContainer>
-      </ErrorLayout>
-    );
-  }
-
-  if (error && error.message === "failed-api-metadata") {
-    return (
-      <ErrorLayout>
-        <ErrorContainer>
-          <IconPill icon={Icons.WAND}>
-            {t("player.metadata.failed.badge")}
-          </IconPill>
-          <Title>{t("player.metadata.api.text")}</Title>
-          <Paragraph>{t("player.metadata.api.title")}</Paragraph>
+          <Title>{t("player.metadata.legal.title")}</Title>
+          <Paragraph>{t("player.metadata.legal.text")}</Paragraph>
           <Button
             href="/"
             theme="purple"

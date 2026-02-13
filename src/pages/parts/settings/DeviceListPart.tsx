@@ -75,7 +75,16 @@ export function DeviceListPart(props: {
   const deviceListSorted = useMemo(() => {
     if (!seed) return [];
     let list = sessions.map((session) => {
-      const decryptedName = decryptData(session.device, base64ToBuffer(seed));
+      let decryptedName: string;
+      try {
+        decryptedName = decryptData(session.device, base64ToBuffer(seed));
+      } catch (error) {
+        console.warn(
+          `Failed to decrypt device name for session ${session.id}:`,
+          error,
+        );
+        decryptedName = t("settings.account.devices.unknownDevice");
+      }
       return {
         current: session.id === currentSessionId,
         id: session.id,
@@ -88,7 +97,7 @@ export function DeviceListPart(props: {
       return a.name.localeCompare(b.name);
     });
     return list;
-  }, [seed, sessions, currentSessionId]);
+  }, [seed, sessions, currentSessionId, t]);
   if (!seed) return null;
 
   return (
@@ -96,10 +105,10 @@ export function DeviceListPart(props: {
       <Heading2 border className="mt-0 mb-9">
         {t("settings.account.devices.title")}
       </Heading2>
-      {props.error ? (
-        <p>{t("settings.account.devices.failed")}</p>
-      ) : props.loading ? (
+      {props.loading ? (
         <Loading />
+      ) : props.error && deviceListSorted.length === 0 ? (
+        <p>{t("settings.account.devices.failed")}</p>
       ) : (
         <div className="space-y-5">
           {deviceListSorted.map((session) => (

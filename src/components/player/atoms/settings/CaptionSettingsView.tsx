@@ -10,7 +10,9 @@ import { Menu } from "@/components/player/internals/ContextMenu";
 import { useOverlayRouter } from "@/hooks/useOverlayRouter";
 import { useProgressBar } from "@/hooks/useProgressBar";
 import { usePlayerStore } from "@/stores/player/store";
+import { usePreferencesStore } from "@/stores/preferences";
 import { SubtitleStyling, useSubtitleStore } from "@/stores/subtitles";
+import { isFirefox } from "@/utils/detectFeatures";
 
 export function ColorOption(props: {
   color: string;
@@ -35,6 +37,177 @@ export function ColorOption(props: {
         ) : null}
       </div>
     </button>
+  );
+}
+
+export function CaptionDelay(props: {
+  textTransformer?: (s: string) => string;
+  value: number;
+  onChange?: (val: number) => void;
+  max: number;
+  label: string;
+  min: number;
+  decimalsAllowed?: number;
+}) {
+  const { t } = useTranslation();
+
+  const inputRef = useRef<HTMLInputElement | null>(null);
+  const ref = useRef<HTMLDivElement>(null);
+
+  const currentPercentage = (props.value - props.min) / (props.max - props.min);
+  const commit = useCallback(
+    (percentage: number) => {
+      const range = props.max - props.min;
+      const newPercentage = Math.min(Math.max(percentage, 0), 1);
+      props.onChange?.(props.min + range * newPercentage);
+    },
+    [props],
+  );
+
+  const { dragging, dragPercentage, dragMouseDown } = useProgressBar(
+    ref,
+    commit,
+    true,
+  );
+
+  const [isFocused, setIsFocused] = useState(false);
+  const [inputValue, setInputValue] = useState("");
+
+  useEffect(() => {
+    function listener(e: KeyboardEvent) {
+      if (e.key === "Enter" && isFocused) {
+        inputRef.current?.blur();
+      }
+    }
+    window.addEventListener("keydown", listener);
+    return () => {
+      window.removeEventListener("keydown", listener);
+    };
+  }, [isFocused]);
+
+  const inputClasses =
+    "tabbable py-1 bg-video-context-inputBg rounded text-white cursor-text text-center px-4 w-24 h-12";
+  const textTransformer = props.textTransformer ?? ((s) => s);
+
+  return (
+    <div>
+      <Menu.FieldTitle>{props.label}</Menu.FieldTitle>
+      <div className="space-y-3">
+        {/* Slider */}
+        <div ref={ref}>
+          <div
+            className="group/progress w-full h-8 flex items-center cursor-pointer"
+            onMouseDown={dragMouseDown}
+            onTouchStart={dragMouseDown}
+          >
+            <div
+              dir="ltr"
+              className={[
+                "relative w-full h-1 bg-video-context-slider bg-opacity-25 rounded-full transition-[height] duration-100 group-hover/progress:h-1.5",
+                dragging ? "!h-1.5" : "",
+              ].join(" ")}
+            >
+              {/* Actual progress bar */}
+              <div
+                className="absolute top-0 left-0 h-full rounded-full bg-video-context-sliderFilled flex justify-end items-center"
+                style={{
+                  width: `${
+                    Math.max(
+                      0,
+                      Math.min(
+                        1,
+                        dragging ? dragPercentage / 100 : currentPercentage,
+                      ),
+                    ) * 100
+                  }%`,
+                }}
+              >
+                <div
+                  className={[
+                    "w-[1rem] min-w-[1rem] h-[1rem] border-[4px] border-video-context-sliderFilled rounded-full transform translate-x-1/2 bg-white transition-[transform] duration-100",
+                  ].join(" ")}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Control buttons and value display */}
+        <div className="flex items-center gap-2">
+          {/* Left arrow button - full width */}
+          <button
+            type="button"
+            onClick={() =>
+              props.onChange?.(
+                props.value - 1 / 10 ** (props.decimalsAllowed ?? 0),
+              )
+            }
+            className="flex-1 flex-col tabbable py-2 h-12 hover:text-white transition-colors duration-100 flex justify-center items-center hover:bg-video-context-buttonOverInputHover rounded bg-video-context-inputBg"
+          >
+            <Icon icon={Icons.CHEVRON_LEFT} />
+            <span className="text-xs">
+              {t("player.menus.subtitles.delayLate")}
+            </span>
+          </button>
+
+          {/* Value display/input */}
+          {isFocused ? (
+            <input
+              className={inputClasses}
+              value={inputValue}
+              autoFocus
+              onFocus={(e) => {
+                (e.target as HTMLInputElement).select();
+              }}
+              onBlur={(e) => {
+                setIsFocused(false);
+                const num = Number((e.target as HTMLInputElement).value);
+                if (!Number.isNaN(num))
+                  props.onChange?.(
+                    (props.decimalsAllowed ?? 0) === 0 ? Math.round(num) : num,
+                  );
+              }}
+              ref={inputRef}
+              onChange={(e) =>
+                setInputValue((e.target as HTMLInputElement).value)
+              }
+            />
+          ) : (
+            <button
+              className={inputClasses}
+              type="button"
+              tabIndex={0}
+              onClick={() => {
+                setInputValue(props.value.toFixed(props.decimalsAllowed ?? 0));
+                setIsFocused(true);
+              }}
+            >
+              {textTransformer(
+                props.value.toFixed(props.decimalsAllowed ?? 0) === "-0.0"
+                  ? "0.0"
+                  : props.value.toFixed(props.decimalsAllowed ?? 0),
+              )}
+            </button>
+          )}
+
+          {/* Right arrow button - full width */}
+          <button
+            type="button"
+            onClick={() =>
+              props.onChange?.(
+                props.value + 1 / 10 ** (props.decimalsAllowed ?? 0),
+              )
+            }
+            className="flex-1 flex-col tabbable py-2 h-12 hover:text-white transition-colors duration-100 flex justify-center items-center hover:bg-video-context-buttonOverInputHover rounded bg-video-context-inputBg"
+          >
+            <Icon icon={Icons.CHEVRON_RIGHT} />
+            <span className="text-xs">
+              {t("player.menus.subtitles.delayEarly")}
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -229,6 +402,7 @@ export function CaptionSettingsView({
   const { t } = useTranslation();
   const router = useOverlayRouter(id);
   const subtitleStore = useSubtitleStore();
+  const preferencesStore = usePreferencesStore();
   const styling = subtitleStore.styling;
   const overrideCasing = subtitleStore.overrideCasing;
   const delay = subtitleStore.delay;
@@ -236,11 +410,16 @@ export function CaptionSettingsView({
   const setDelay = subtitleStore.setDelay;
   const updateStyling = subtitleStore.updateStyling;
   const setCaptionAsTrack = usePlayerStore((s) => s.setCaptionAsTrack);
-  const captionAsTrack = usePlayerStore((s) => s.caption.asTrack);
+  const enableNativeSubtitles = preferencesStore.enableNativeSubtitles;
 
   useEffect(() => {
     subtitleStore.updateStyling(styling);
   }, [styling, subtitleStore]);
+
+  // Sync preferences with player store
+  useEffect(() => {
+    setCaptionAsTrack(enableNativeSubtitles);
+  }, [enableNativeSubtitles, setCaptionAsTrack]);
 
   const handleStylingChange = (newStyling: SubtitleStyling) => {
     updateStyling(newStyling);
@@ -249,11 +428,14 @@ export function CaptionSettingsView({
   const resetSubStyling = () => {
     subtitleStore.updateStyling({
       color: "#ffffff",
-      backgroundOpacity: 0.5,
-      size: 1,
-      backgroundBlur: 0.5,
+      backgroundOpacity: 0.25,
+      size: 0.75,
+      backgroundBlur: 0.25,
+      backgroundBlurEnabled: !isFirefox,
       bold: false,
+      verticalPosition: 1,
       fontStyle: "default",
+      borderThickness: 1,
     });
   };
 
@@ -267,7 +449,7 @@ export function CaptionSettingsView({
         {t("player.menus.subtitles.settings.backlink")}
       </Menu.BackLink>
       <Menu.Section className="space-y-6 pb-5">
-        {!captionAsTrack ? (
+        {!enableNativeSubtitles ? (
           <>
             <div className="flex justify-between items-center">
               <Menu.FieldTitle>
@@ -275,23 +457,26 @@ export function CaptionSettingsView({
               </Menu.FieldTitle>
               <div className="flex justify-center items-center">
                 <Toggle
-                  enabled={captionAsTrack}
-                  onClick={() => setCaptionAsTrack(!captionAsTrack)}
+                  enabled={enableNativeSubtitles}
+                  onClick={() =>
+                    preferencesStore.setEnableNativeSubtitles(
+                      !enableNativeSubtitles,
+                    )
+                  }
                 />
               </div>
             </div>
             <span className="text-xs text-type-secondary">
               {t("player.menus.subtitles.useNativeSubtitlesDescription")}
             </span>
-            <CaptionSetting
+            <CaptionDelay
               label={t("player.menus.subtitles.settings.delay")}
-              max={20}
-              min={-20}
+              max={40}
+              min={-40}
               onChange={(v) => setDelay(v)}
               value={delay}
               textTransformer={(s) => `${s}s`}
               decimalsAllowed={1}
-              controlButtons
             />
             <div className="flex justify-between items-center">
               <Menu.FieldTitle>
@@ -315,16 +500,37 @@ export function CaptionSettingsView({
               value={styling.backgroundOpacity * 100}
               textTransformer={(s) => `${s}%`}
             />
-            <CaptionSetting
-              label={t("settings.subtitles.backgroundBlurLabel")}
-              max={100}
-              min={0}
-              onChange={(v) =>
-                handleStylingChange({ ...styling, backgroundBlur: v / 100 })
-              }
-              value={styling.backgroundBlur * 100}
-              textTransformer={(s) => `${s}%`}
-            />
+            <div className="flex justify-between items-center">
+              <Menu.FieldTitle>
+                {t("settings.subtitles.backgroundBlurEnabledLabel")}
+              </Menu.FieldTitle>
+              <div className="flex justify-center items-center">
+                <Toggle
+                  enabled={styling.backgroundBlurEnabled}
+                  onClick={() =>
+                    handleStylingChange({
+                      ...styling,
+                      backgroundBlurEnabled: !styling.backgroundBlurEnabled,
+                    })
+                  }
+                />
+              </div>
+            </div>
+            <span className="text-xs text-type-secondary">
+              {t("settings.subtitles.backgroundBlurEnabledDescription")}
+            </span>
+            {styling.backgroundBlurEnabled && (
+              <CaptionSetting
+                label={t("settings.subtitles.backgroundBlurLabel")}
+                max={100}
+                min={0}
+                onChange={(v) =>
+                  handleStylingChange({ ...styling, backgroundBlur: v / 100 })
+                }
+                value={styling.backgroundBlur * 100}
+                textTransformer={(s) => `${s}%`}
+              />
+            )}
             <CaptionSetting
               label={t("settings.subtitles.textSizeLabel")}
               max={200}
@@ -354,8 +560,8 @@ export function CaptionSettingsView({
                     name: t("settings.subtitles.textStyle.depressed"),
                   },
                   {
-                    id: "uniform",
-                    name: t("settings.subtitles.textStyle.uniform"),
+                    id: "Border",
+                    name: t("settings.subtitles.textStyle.Border"),
                   },
                   {
                     id: "dropShadow",
@@ -376,6 +582,19 @@ export function CaptionSettingsView({
                 }
               />
             </div>
+            {styling.fontStyle === "Border" && (
+              <CaptionSetting
+                label={t("settings.subtitles.BorderThicknessLabel")}
+                max={10}
+                min={0}
+                onChange={(v) =>
+                  handleStylingChange({ ...styling, borderThickness: v })
+                }
+                value={styling.borderThickness}
+                textTransformer={(s) => `${s}px`}
+                decimalsAllowed={1}
+              />
+            )}
             <div className="flex justify-between items-center">
               <Menu.FieldTitle>
                 {t("settings.subtitles.textBoldLabel")}
@@ -427,23 +646,6 @@ export function CaptionSettingsView({
                   type="button"
                   className={classNames(
                     "px-3 py-1 rounded transition-colors duration-100",
-                    styling.verticalPosition === 3
-                      ? "bg-video-context-buttonFocus"
-                      : "bg-video-context-buttonFocus bg-opacity-0 hover:bg-opacity-50",
-                  )}
-                  onClick={() =>
-                    handleStylingChange({
-                      ...styling,
-                      verticalPosition: 3,
-                    })
-                  }
-                >
-                  {t("settings.subtitles.default")}
-                </button>
-                <button
-                  type="button"
-                  className={classNames(
-                    "px-3 py-1 rounded transition-colors duration-100",
                     styling.verticalPosition === 1
                       ? "bg-video-context-buttonFocus"
                       : "bg-video-context-buttonFocus bg-opacity-0 hover:bg-opacity-50",
@@ -456,6 +658,23 @@ export function CaptionSettingsView({
                   }
                 >
                   {t("settings.subtitles.low")}
+                </button>
+                <button
+                  type="button"
+                  className={classNames(
+                    "px-3 py-1 rounded transition-colors duration-100",
+                    styling.verticalPosition === 3
+                      ? "bg-video-context-buttonFocus"
+                      : "bg-video-context-buttonFocus bg-opacity-0 hover:bg-opacity-50",
+                  )}
+                  onClick={() =>
+                    handleStylingChange({
+                      ...styling,
+                      verticalPosition: 3,
+                    })
+                  }
+                >
+                  {t("settings.subtitles.high")}
                 </button>
               </div>
             </div>
@@ -478,8 +697,12 @@ export function CaptionSettingsView({
               </Menu.FieldTitle>
               <div className="flex justify-center items-center">
                 <Toggle
-                  enabled={captionAsTrack}
-                  onClick={() => setCaptionAsTrack(!captionAsTrack)}
+                  enabled={enableNativeSubtitles}
+                  onClick={() =>
+                    preferencesStore.setEnableNativeSubtitles(
+                      !enableNativeSubtitles,
+                    )
+                  }
                 />
               </div>
             </div>

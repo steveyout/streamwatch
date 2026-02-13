@@ -11,41 +11,50 @@ export function WatchPartyResetter() {
   const meta = usePlayerStore((s) => s.meta);
   const { disable } = useWatchPartyStore();
 
-  // Store the current meta to track changes
-  const previousMetaRef = useRef<string | null>(null);
+  // Store the current base media to track changes
+  const previousBaseMediaRef = useRef<string | null>(null);
 
-  // Memoize the metaId calculation
-  const metaId = useMemo(() => {
+  // Memoize the base media ID (without episode details for shows)
+  // This allows episode changes within the same show to keep the room active
+  const baseMediaId = useMemo(() => {
     if (!meta) return null;
 
-    return meta.type === "show"
-      ? `${meta.type}-${meta.tmdbId}-s${meta.season?.tmdbId || "0"}-e${meta.episode?.tmdbId || "0"}`
-      : `${meta.type}-${meta.tmdbId}`;
+    // For shows, only track the show ID, not the episode
+    // This allows episode navigation within the same show
+    return `${meta.type}-${meta.tmdbId}`;
   }, [meta]);
 
+  // Handle media changes (when switching to a different show/movie)
   useEffect(() => {
-    // If meta exists but has changed, reset watch party
+    // If base media has changed (different show/movie), reset watch party
     if (
-      metaId &&
-      previousMetaRef.current &&
-      metaId !== previousMetaRef.current
+      baseMediaId &&
+      previousBaseMediaRef.current !== null &&
+      baseMediaId !== previousBaseMediaRef.current
     ) {
       // eslint-disable-next-line no-console
-      console.log("Media changed, disabling watch party:", {
-        previous: previousMetaRef.current,
-        current: metaId,
+      console.log("Base media changed, disabling watch party:", {
+        previous: previousBaseMediaRef.current,
+        current: baseMediaId,
       });
       disable();
     }
 
-    // Update the ref with current meta
-    previousMetaRef.current = metaId;
+    // Update the ref with current base media
+    previousBaseMediaRef.current = baseMediaId;
+  }, [baseMediaId, disable]);
 
-    // Also reset when component unmounts (player exited)
+  // Handle component unmount (player exited) - separate effect
+  useEffect(() => {
     return () => {
+      // Only disable when component actually unmounts
+      // eslint-disable-next-line no-console
+      console.log("WatchPartyResetter unmounting, disabling watch party");
       disable();
     };
-  }, [metaId, disable]);
+    // Empty dependency array means this cleanup only runs on unmount
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return null; // This component doesn't render anything
 }

@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 
-import { useProgressStore } from "@/stores/progress";
+import { getProgressPercentage, useProgressStore } from "@/stores/progress";
 import {
   ShowProgressResult,
   shouldShowProgress,
@@ -24,6 +24,8 @@ export interface WatchedMediaCardProps {
   closable?: boolean;
   onClose?: () => void;
   onShowDetails?: (media: MediaItem) => void;
+  editable?: boolean;
+  onEdit?: () => void;
 }
 
 export function WatchedMediaCard(props: WatchedMediaCardProps) {
@@ -36,7 +38,10 @@ export function WatchedMediaCard(props: WatchedMediaCardProps) {
     [item],
   );
   const percentage = itemToDisplay?.show
-    ? (itemToDisplay.progress.watched / itemToDisplay.progress.duration) * 100
+    ? getProgressPercentage(
+        itemToDisplay.progress.watched,
+        itemToDisplay.progress.duration,
+      )
     : undefined;
 
   return (
@@ -48,6 +53,8 @@ export function WatchedMediaCard(props: WatchedMediaCardProps) {
       onClose={props.onClose}
       closable={props.closable}
       onShowDetails={props.onShowDetails}
+      editable={props.editable}
+      onEdit={props.onEdit}
     />
   );
 }

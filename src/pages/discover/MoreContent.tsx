@@ -9,8 +9,6 @@ import { Icon, Icons } from "@/components/Icon";
 import { WideContainer } from "@/components/layout/WideContainer";
 import { MediaCard } from "@/components/media/MediaCard";
 import { MediaGrid } from "@/components/media/MediaGrid";
-import { DetailsModal } from "@/components/overlays/details/DetailsModal";
-import { useModal } from "@/components/overlays/Modal";
 import { Heading1 } from "@/components/utils/Text";
 import {
   DiscoverContentType,
@@ -20,6 +18,7 @@ import {
 } from "@/pages/discover/hooks/useDiscoverMedia";
 import { SubPageLayout } from "@/pages/layouts/SubPageLayout";
 import { useDiscoverStore } from "@/stores/discover";
+import { useOverlayStack } from "@/stores/interface/overlayStack";
 import { useProgressStore } from "@/stores/progress";
 import { MediaItem } from "@/utils/mediaTypes";
 
@@ -30,7 +29,6 @@ interface MoreContentProps {
 export function MoreContent({ onShowDetails }: MoreContentProps) {
   const { mediaType = "movie", contentType, id, category } = useParams();
   const [currentPage, setCurrentPage] = useState(1);
-  const [detailsData, setDetailsData] = useState<any>();
   const [selectedProvider, setSelectedProvider] = useState<OptionItem | null>(
     null,
   );
@@ -40,7 +38,7 @@ export function MoreContent({ onShowDetails }: MoreContentProps) {
   const [isContentVisible, setIsContentVisible] = useState(false);
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const detailsModal = useModal("discover-details");
+  const { showModal } = useOverlayStack();
   const { lastView } = useDiscoverStore();
   const { width: windowWidth } = useWindowSize();
   const progressStore = useProgressStore();
@@ -84,6 +82,7 @@ export function MoreContent({ onShowDetails }: MoreContentProps) {
     mediaTitle: recommendationSources.find(
       (s) => s.id === selectedRecommendationId,
     )?.title,
+    isCarouselView: false,
   });
 
   // Handle content visibility
@@ -97,6 +96,11 @@ export function MoreContent({ onShowDetails }: MoreContentProps) {
     }
     setIsContentVisible(false);
   }, [isLoading, mediaItems, currentPage]);
+
+  // Scroll to top when entering the page
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [contentType, mediaType, id]);
 
   const handleBack = () => {
     if (lastView) {
@@ -112,11 +116,10 @@ export function MoreContent({ onShowDetails }: MoreContentProps) {
       onShowDetails(media);
       return;
     }
-    setDetailsData({
+    showModal("discover-details", {
       id: Number(media.id),
       type: media.type === "movie" ? "movie" : "show",
     });
-    detailsModal.show();
   };
 
   const handleLoadMore = async () => {
@@ -184,17 +187,19 @@ export function MoreContent({ onShowDetails }: MoreContentProps) {
           <div className="animate-pulse">
             <div className="h-8 bg-mediaCard-hoverBackground rounded w-1/4 mb-8" />
             <MediaGrid>
-              {Array.from({ length: 20 }).map((_, _i) => (
-                <div
-                  key={`loading-skeleton-${Math.random().toString(36).substring(7)}`}
-                  className="relative group cursor-default user-select-none rounded-xl p-2 bg-transparent"
-                >
-                  <div className="animate-pulse">
-                    <div className="w-full aspect-[2/3] bg-mediaCard-hoverBackground rounded-lg" />
-                    <div className="mt-2 h-4 bg-mediaCard-hoverBackground rounded w-3/4" />
+              {Array(20)
+                .fill(null)
+                .map(() => (
+                  <div
+                    key={`loading-skeleton-${Math.random().toString(36).substring(2)}`}
+                    className="relative group cursor-default user-select-none rounded-xl p-2 bg-transparent"
+                  >
+                    <div className="animate-pulse">
+                      <div className="w-full aspect-[2/3] bg-mediaCard-hoverBackground rounded-lg" />
+                      <div className="mt-2 h-4 bg-mediaCard-hoverBackground rounded w-3/4" />
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
             </MediaGrid>
           </div>
         </WideContainer>
@@ -383,7 +388,6 @@ export function MoreContent({ onShowDetails }: MoreContentProps) {
           )}
         </div>
       </WideContainer>
-      {detailsData && <DetailsModal id="discover-details" data={detailsData} />}
     </SubPageLayout>
   );
 }

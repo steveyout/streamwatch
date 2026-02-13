@@ -83,8 +83,8 @@ const tokens = {
     c700: "#160f1d",
     c800: "#110b16",
     c900: "#0c0610",
-  }
-}
+  },
+};
 
 export default createTheme({
   name: "grape",
@@ -340,4 +340,4 @@ export default createTheme({
       },
     },
   },
-})
+});

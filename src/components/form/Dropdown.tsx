@@ -33,7 +33,7 @@ export function Dropdown(props: DropdownProps) {
             {customButton ? (
               <Listbox.Button as={Fragment}>{customButton}</Listbox.Button>
             ) : (
-              <Listbox.Button className="relative z-[101] w-full rounded-lg bg-dropdown-background hover:bg-dropdown-hoverBackground py-3 pl-3 pr-10 text-left text-white shadow-md focus:outline-none tabbable cursor-pointer">
+              <Listbox.Button className="relative z-[30] w-full rounded-xl bg-dropdown-background hover:bg-dropdown-hoverBackground py-2 pl-3 pr-10 text-left text-white shadow-md focus:outline-none tabbable cursor-pointer">
                 <span className="flex gap-4 items-center truncate">
                   {props.selectedItem.leftIcon
                     ? props.selectedItem.leftIcon
@@ -51,7 +51,7 @@ export function Dropdown(props: DropdownProps) {
             <Transition
               animation="slide-down"
               show={open}
-              className={`absolute z-[102] min-w-[20px] w-fit max-h-60 overflow-auto rounded-lg bg-dropdown-background py-1 text-white shadow-lg ring-1 ring-black ring-opacity-5 scrollbar-thin scrollbar-track-background-secondary scrollbar-thumb-type-secondary focus:outline-none ${
+              className={`absolute z-[40] min-w-[20px] w-fit max-h-60 overflow-auto rounded-xl bg-dropdown-background py-1 text-white shadow-lg ring-1 ring-black ring-opacity-5 scrollbar-thin scrollbar-track-background-secondary scrollbar-thumb-type-secondary focus:outline-none ${
                 direction === "up" ? "bottom-full mb-4" : "top-full mt-1"
               } ${props.side === "right" ? "right-0" : "left-0"}`}
             >
@@ -60,7 +60,7 @@ export function Dropdown(props: DropdownProps) {
                   {customMenu}
                 </Listbox.Options>
               ) : (
-                <Listbox.Options static className="py-1">
+                <Listbox.Options static>
                   {props.options.map((opt) => (
                     <Listbox.Option
                       className={({ active }) =>

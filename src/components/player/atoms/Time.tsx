@@ -4,10 +4,12 @@ import { VideoPlayerButton } from "@/components/player/internals/Button";
 import { VideoPlayerTimeFormat } from "@/stores/player/slices/interface";
 import { usePlayerStore } from "@/stores/player/store";
 import { durationExceedsHour, formatSeconds } from "@/utils/formatSeconds";
+import { uses12HourClock } from "@/utils/uses12HourClock";
 
 export function Time(props: { short?: boolean }) {
   const timeFormat = usePlayerStore((s) => s.interface.timeFormat);
   const setTimeFormat = usePlayerStore((s) => s.setTimeFormat);
+  const playbackRate = usePlayerStore((s) => s.mediaPlaying.playbackRate);
 
   const {
     duration: timeDuration,
@@ -32,12 +34,16 @@ export function Time(props: { short?: boolean }) {
   );
   const secondsRemaining = Math.abs(currentTime - timeDuration);
 
+  // Adjust seconds remaining based on playback speed
+  const secondsRemainingAdjusted =
+    playbackRate > 0 ? secondsRemaining / playbackRate : secondsRemaining;
+
   const timeLeft = formatSeconds(
     secondsRemaining,
     durationExceedsHour(secondsRemaining),
   );
   const timeWatched = formatSeconds(currentTime, hasHours);
-  const timeFinished = new Date(Date.now() + secondsRemaining * 1e3);
+  const timeFinished = new Date(Date.now() + secondsRemainingAdjusted * 1e3);
   const duration = formatSeconds(timeDuration, hasHours);
 
   let localizationKey =
@@ -58,7 +64,11 @@ export function Time(props: { short?: boolean }) {
           timeLeft,
           duration,
           formatParams: {
-            timeFinished: { hour: "numeric", minute: "numeric" },
+            timeFinished: {
+              hour: "numeric",
+              minute: "numeric",
+              hour12: uses12HourClock(),
+            },
           },
         })}
       </span>

@@ -90,15 +90,17 @@ export function CastingInternal() {
   );
 
   useEffect(() => {
-    if (!available || !window.cast || !window.chrome || !window.chrome.cast)
-      return;
-
-    if (!chrome.cast || !chrome.cast.media) {
-      console.error(
-        "Chrome Cast API not fully initialized: chrome.cast.media is undefined",
-      );
+    if (
+      !available ||
+      !window.cast?.framework ||
+      !window.chrome?.cast?.media?.DEFAULT_MEDIA_RECEIVER_APP_ID ||
+      !window.chrome.cast.AutoJoinPolicy
+    ) {
       return;
     }
+
+    let newPlayer: cast.framework.RemotePlayer | null = null;
+    let newController: cast.framework.RemotePlayerController | null = null;
 
     try {
       const ins = cast.framework.CastContext.getInstance();
@@ -110,37 +112,33 @@ export function CastingInternal() {
       ins.setOptions({
         receiverApplicationId: receiverAppId,
         autoJoinPolicy,
+        androidReceiverCompatible: false,
+        resumeSavedSession: false,
       });
 
-      const newPlayer = new cast.framework.RemotePlayer();
+      newPlayer = new cast.framework.RemotePlayer();
+      newController = new cast.framework.RemotePlayerController(newPlayer);
       setPlayer(newPlayer);
-      const newControlller = new cast.framework.RemotePlayerController(
-        newPlayer,
-      );
-      setController(newControlller);
+      setController(newController);
 
-      newControlller.addEventListener(
+      newController.addEventListener(
         cast.framework.RemotePlayerEventType.IS_CONNECTED_CHANGED,
         connectionChanged,
       );
+    } catch (error) {
+      console.error("Error initializing Chromecast:", error);
+      return;
+    }
 
-      return () => {
-        newControlller.removeEventListener(
+    return () => {
+      if (newController) {
+        newController.removeEventListener(
           cast.framework.RemotePlayerEventType.IS_CONNECTED_CHANGED,
           connectionChanged,
         );
-      };
-    } catch (error) {
-      console.error("Error initializing Chromecast:", error);
-    }
-  }, [
-    available,
-    setPlayer,
-    setController,
-    setInstance,
-    setIsCasting,
-    connectionChanged,
-  ]);
+      }
+    };
+  }, [available, setPlayer, setController, setInstance, connectionChanged]);
 
   return null;
 }

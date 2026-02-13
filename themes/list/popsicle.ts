@@ -36,55 +36,55 @@ const tokens = {
     },
   },
   blue: {
-    c50: "hsla(200, 100%, 85%, 1)",     // soft cyan
-    c100: "hsla(200, 80%, 70%, 1)",     // brighter cyan
-    c200: "hsla(200, 70%, 60%, 1)",     // theme primary: cyan-blue
-    c300: "hsla(200, 60%, 45%, 1)",     // accent B: darker cyan-blue
-    c400: "hsla(200, 50%, 35%, 1)",     // light bar
-    c500: "hsla(200, 45%, 25%, 1)",     // accent B background
+    c50: "hsla(200, 100%, 85%, 1)", // soft cyan
+    c100: "hsla(200, 80%, 70%, 1)", // brighter cyan
+    c200: "hsla(200, 70%, 60%, 1)", // theme primary: cyan-blue
+    c300: "hsla(200, 60%, 45%, 1)", // accent B: darker cyan-blue
+    c400: "hsla(200, 50%, 35%, 1)", // light bar
+    c500: "hsla(200, 45%, 25%, 1)", // accent B background
     c600: "hsla(200, 42%, 20%, 1)",
     c700: "hsla(200, 40%, 16%, 1)",
     c800: "hsla(200, 35%, 10%, 1)",
     c900: "hsla(200, 30%, 7%, 1)",
   },
   purple: {
-    c50: "hsla(280, 100%, 85%, 1)",     // lavender for link hover
-    c100: "hsla(300, 100%, 75%, 1)",    // pink-violet logo/link
-    c200: "hsla(300, 80%, 65%, 1)",     // pinkish progress/loader
-    c300: "hsla(310, 65%, 55%, 1)",     // toggle/onboarding bar
-    c400: "hsla(320, 60%, 47%, 1)",     // card icon
-    c500: "hsla(325, 50%, 36%, 1)",     // accent A background
+    c50: "hsla(280, 100%, 85%, 1)", // lavender for link hover
+    c100: "hsla(300, 100%, 75%, 1)", // pink-violet logo/link
+    c200: "hsla(300, 80%, 65%, 1)", // pinkish progress/loader
+    c300: "hsla(310, 65%, 55%, 1)", // toggle/onboarding bar
+    c400: "hsla(320, 60%, 47%, 1)", // card icon
+    c500: "hsla(325, 50%, 36%, 1)", // accent A background
     c600: "hsla(325, 50%, 28%, 1)",
     c700: "hsla(325, 50%, 20%, 1)",
     c800: "hsla(325, 45%, 14%, 1)",
     c900: "hsla(325, 40%, 9%, 1)",
   },
   ash: {
-    c50: "hsla(60, 8%, 60%, 1)",        // neutral gold-tinted gray
-    c100: "hsla(60, 10%, 45%, 1)",      // warm muted gray
-    c200: "hsla(60, 11%, 35%, 1)",      // sidebar border
-    c300: "hsla(60, 12%, 28%, 1)",      // card divider
-    c400: "hsla(60, 14%, 22%, 1)",      // bg + hover accents
-    c500: "hsla(200, 45%, 25%, 1)",     // accent B background
+    c50: "hsla(60, 8%, 60%, 1)", // neutral gold-tinted gray
+    c100: "hsla(60, 10%, 45%, 1)", // warm muted gray
+    c200: "hsla(60, 11%, 35%, 1)", // sidebar border
+    c300: "hsla(60, 12%, 28%, 1)", // card divider
+    c400: "hsla(60, 14%, 22%, 1)", // bg + hover accents
+    c500: "hsla(200, 45%, 25%, 1)", // accent B background
     c600: "hsla(200, 42%, 20%, 1)",
     c700: "hsla(200, 40%, 16%, 1)",
     c800: "hsla(200, 35%, 10%, 1)",
-    c900: "hsla(200, 30%, 7%, 1)",        // deepest shade, shadows
+    c900: "hsla(200, 30%, 7%, 1)", // deepest shade, shadows
   },
   shade: {
-    c25: "hsla(0, 80%, 70%, 1)",        // red hover accent
-    c50: "hsla(30, 100%, 72%, 1)",      // orange for main text
-    c100: "hsla(30, 80%, 60%, 1)",      // placeholder/icon
-    c200: "hsla(200, 60%, 45%, 1)",     // hover bg
-    c300: "hsla(30, 60%, 35%, 1)",      // pill background, auth border
-    c400: "hsla(200, 50%, 35%, 1)",     // light bar
-    c500: "hsla(30, 50%, 21%, 1)",      // dropdown background
-    c600: "hsla(30, 45%, 16%, 1)",      // modal/dropdown background
-    c700: "hsla(30, 40%, 12%, 1)",      // alt bg
-    c800: "hsla(30, 38%, 9%, 1)",       // main bg
-    c900: "hsla(30, 35%, 6%, 1)",       // hover shadow
+    c25: "hsla(0, 80%, 70%, 1)", // red hover accent
+    c50: "hsla(30, 100%, 72%, 1)", // orange for main text
+    c100: "hsla(30, 80%, 60%, 1)", // placeholder/icon
+    c200: "hsla(200, 60%, 45%, 1)", // hover bg
+    c300: "hsla(30, 60%, 35%, 1)", // pill background, auth border
+    c400: "hsla(200, 50%, 35%, 1)", // light bar
+    c500: "hsla(30, 50%, 21%, 1)", // dropdown background
+    c600: "hsla(30, 45%, 16%, 1)", // modal/dropdown background
+    c700: "hsla(30, 40%, 12%, 1)", // alt bg
+    c800: "hsla(30, 38%, 9%, 1)", // main bg
+    c900: "hsla(30, 35%, 6%, 1)", // hover shadow
   },
-}
+};
 
 export default createTheme({
   name: "popsicle",
@@ -340,4 +340,4 @@ export default createTheme({
       },
     },
   },
-})
+});

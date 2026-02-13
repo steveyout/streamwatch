@@ -60,13 +60,13 @@ export function AdsPart(): JSX.Element | null {
           <>
             <div className="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0 justify-center w-full items-center md:items-start">
               {showAd1 ? (
-                <div className="rounded-xl bg-background-main hover:scale-[1.02] max-w-[16rem] transition-all duration-300 md:flex-1 relative group">
+                <div className="rounded-xl bg-background-main hover:scale-[1.02] max-w-[16rem] md:max-w-[20rem] transition-all duration-300 md:flex-1 relative group">
                   <div className="bg-opacity-10 bg-buttons-purple rounded-xl border-2 border-buttons-purple border-opacity-30 hover:border-opacity-70 hover:shadow-lg hover:shadow-buttons-purple/20">
                     {" "}
                     <button
                       onClick={dismissAd}
                       type="button"
-                      className="absolute z-50 -top-2 -right-2 w-6 h-6 bg-mediaCard-hoverBackground rounded-full flex items-center justify-center md:opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                      className="absolute z-20 -top-2 -right-2 w-6 h-6 bg-mediaCard-hoverBackground rounded-full flex items-center justify-center md:opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                       aria-label="Dismiss ad"
                     >
                       <Icon
@@ -90,12 +90,12 @@ export function AdsPart(): JSX.Element | null {
                 </div>
               ) : null}
               {showAd2 ? (
-                <div className="rounded-xl bg-background-main hover:scale-[1.02] max-w-[16rem] transition-all duration-300 md:flex-1 relative group">
+                <div className="rounded-xl bg-background-main hover:scale-[1.02] max-w-[16rem] md:max-w-[20rem] transition-all duration-300 md:flex-1 relative group">
                   <div className="bg-opacity-10 bg-buttons-purple rounded-xl border-2 border-buttons-purple border-opacity-30 hover:border-opacity-70 hover:shadow-lg hover:shadow-buttons-purple/20">
                     <button
                       onClick={dismissAd}
                       type="button"
-                      className="absolute z-50 -top-2 -right-2 w-6 h-6 bg-mediaCard-hoverBackground rounded-full flex items-center justify-center md:opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                      className="absolute z-20 -top-2 -right-2 w-6 h-6 bg-mediaCard-hoverBackground rounded-full flex items-center justify-center md:opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                       aria-label="Dismiss ad"
                     >
                       <Icon

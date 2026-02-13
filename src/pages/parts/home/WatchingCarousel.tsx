@@ -1,14 +1,17 @@
-import React, { useMemo, useRef, useState } from "react";
+import { Listbox } from "@headlessui/react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import { EditButton } from "@/components/buttons/EditButton";
-import { Icons } from "@/components/Icon";
+import { Dropdown, OptionItem } from "@/components/form/Dropdown";
+import { Icon, Icons } from "@/components/Icon";
 import { SectionHeading } from "@/components/layout/SectionHeading";
 import { WatchedMediaCard } from "@/components/media/WatchedMediaCard";
 import { useIsMobile } from "@/hooks/useIsMobile";
 import { CarouselNavButtons } from "@/pages/discover/components/CarouselNavButtons";
 import { useProgressStore } from "@/stores/progress";
 import { shouldShowProgress } from "@/stores/progress/utils";
+import { SortOption, sortMediaItems } from "@/utils/mediaSorting";
 import { MediaItem } from "@/utils/mediaTypes";
 
 interface WatchingCarouselProps {
@@ -18,11 +21,9 @@ interface WatchingCarouselProps {
   onShowDetails?: (media: MediaItem) => void;
 }
 
-const LONG_PRESS_DURATION = 500; // 0.5 seconds
-
 function MediaCardSkeleton() {
   return (
-    <div className="relative mt-4 group cursor-default user-select-none rounded-xl p-2 bg-transparent transition-colors duration-300 w-[10rem] md:w-[11.5rem] h-auto">
+    <div className="relative mt-4 group cursor-default rounded-xl p-2 bg-transparent transition-colors duration-300 w-[10rem] md:w-[11.5rem] h-auto">
       <div className="animate-pulse">
         <div className="w-full aspect-[2/3] bg-mediaCard-hoverBackground rounded-lg" />
         <div className="mt-2 h-4 bg-mediaCard-hoverBackground rounded w-3/4" />
@@ -39,8 +40,15 @@ export function WatchingCarousel({
   const browser = !!window.chrome;
   let isScrolling = false;
   const [editing, setEditing] = useState(false);
+  const [sortBy, setSortBy] = useState<SortOption>(() => {
+    const saved = localStorage.getItem("__MW::watchingSort");
+    return (saved as SortOption) || "date";
+  });
   const removeItem = useProgressStore((s) => s.removeItem);
-  const pressTimerRef = useRef<NodeJS.Timeout | null>(null);
+
+  useEffect(() => {
+    localStorage.setItem("__MW::watchingSort", sortBy);
+  }, [sortBy]);
 
   const { isMobile } = useIsMobile();
 
@@ -56,15 +64,14 @@ export function WatchingCarousel({
     const output: MediaItem[] = [];
     Object.entries(progressItems)
       .filter((entry) => shouldShowProgress(entry[1]).show)
-      .sort((a, b) => b[1].updatedAt - a[1].updatedAt)
       .forEach((entry) => {
         output.push({
           id: entry[0],
           ...entry[1],
         });
       });
-    return output;
-  }, [progressItems]);
+    return sortMediaItems(output, sortBy, undefined, progressItems);
+  }, [progressItems, sortBy]);
 
   const handleWheel = (e: React.WheelEvent) => {
     if (isScrolling) return;
@@ -84,40 +91,31 @@ export function WatchingCarousel({
     }
   };
 
+  const sortOptions: OptionItem[] = [
+    { id: "date", name: t("home.continueWatching.sorting.options.date") },
+    {
+      id: "title-asc",
+      name: t("home.continueWatching.sorting.options.titleAsc"),
+    },
+    {
+      id: "title-desc",
+      name: t("home.continueWatching.sorting.options.titleDesc"),
+    },
+    {
+      id: "year-asc",
+      name: t("home.continueWatching.sorting.options.yearAsc"),
+    },
+    {
+      id: "year-desc",
+      name: t("home.continueWatching.sorting.options.yearDesc"),
+    },
+  ];
+
+  const selectedSortOption =
+    sortOptions.find((opt) => opt.id === sortBy) || sortOptions[0];
+
   const categorySlug = "continue-watching";
   const SKELETON_COUNT = 10;
-
-  const handleLongPress = () => {
-    // Find the button by ID and simulate a click
-    const editButton = document.getElementById("edit-button-watching");
-    if (editButton) {
-      (editButton as HTMLButtonElement).click();
-    }
-  };
-
-  const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
-    e.preventDefault(); // Prevent default touch action
-    pressTimerRef.current = setTimeout(handleLongPress, LONG_PRESS_DURATION);
-  };
-
-  const handleTouchEnd = () => {
-    if (pressTimerRef.current) {
-      clearTimeout(pressTimerRef.current);
-      pressTimerRef.current = null;
-    }
-  };
-
-  const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
-    e.preventDefault(); // Prevent default mouse action
-    pressTimerRef.current = setTimeout(handleLongPress, LONG_PRESS_DURATION);
-  };
-
-  const handleMouseUp = () => {
-    if (pressTimerRef.current) {
-      clearTimeout(pressTimerRef.current);
-      pressTimerRef.current = null;
-    }
-  };
 
   if (itemsLength === 0) return null;
 
@@ -126,9 +124,9 @@ export function WatchingCarousel({
       <SectionHeading
         title={t("home.continueWatching.sectionTitle")}
         icon={Icons.CLOCK}
-        className="ml-2 md:ml-8 mt-2 -mb-5"
+        className="ml-4 lg:ml-12 mt-2 -mb-5 lg:pl-[48px]"
       >
-        <div className="mr-6">
+        <div className="mr-4 lg:mr-[88px] flex items-center gap-2">
           <EditButton
             editing={editing}
             onEdit={setEditing}
@@ -136,6 +134,65 @@ export function WatchingCarousel({
           />
         </div>
       </SectionHeading>
+      {editing && (
+        <div className="mt-4 -mb-4 ml-4 lg:ml-12 lg:pl-[48px]">
+          <Dropdown
+            selectedItem={selectedSortOption}
+            setSelectedItem={(item) => {
+              const newSort = item.id as SortOption;
+              setSortBy(newSort);
+              localStorage.setItem("__MW::watchingSort", newSort);
+            }}
+            options={sortOptions}
+            customButton={
+              <button
+                type="button"
+                className="px-2 py-1 text-sm bg-mediaCard-hoverBackground rounded-full hover:bg-mediaCard-background transition-colors flex items-center gap-1"
+              >
+                <span>{selectedSortOption.name}</span>
+                <Icon
+                  icon={Icons.UP_DOWN_ARROW}
+                  className="text-xs text-dropdown-secondary"
+                />
+              </button>
+            }
+            side="left"
+            customMenu={
+              <Listbox.Options static className="py-1">
+                {sortOptions.map((opt) => (
+                  <Listbox.Option
+                    className={({ active }) =>
+                      `cursor-pointer min-w-60 flex gap-4 items-center relative select-none py-2 px-4 mx-1 rounded-lg ${
+                        active
+                          ? "bg-background-secondaryHover text-type-link"
+                          : "text-type-secondary"
+                      }`
+                    }
+                    key={opt.id}
+                    value={opt}
+                  >
+                    {({ selected }) => (
+                      <>
+                        <span
+                          className={`block ${selected ? "font-medium" : "font-normal"}`}
+                        >
+                          {opt.name}
+                        </span>
+                        {selected && (
+                          <Icon
+                            icon={Icons.CHECKMARK}
+                            className="text-xs text-type-link"
+                          />
+                        )}
+                      </>
+                    )}
+                  </Listbox.Option>
+                ))}
+              </Listbox.Options>
+            }
+          />
+        </div>
+      )}
       <div className="relative overflow-hidden carousel-container md:pb-4">
         <div
           id={`carousel-${categorySlug}`}
@@ -145,21 +202,16 @@ export function WatchingCarousel({
           }}
           onWheel={handleWheel}
         >
-          <div className="md:w-12" />
+          <div className="lg:w-12" />
 
           {items.length > 0
             ? items.map((media) => (
                 <div
                   key={media.id}
-                  style={{ userSelect: "none" }}
                   onContextMenu={(e: React.MouseEvent<HTMLDivElement>) =>
                     e.preventDefault()
                   }
-                  onTouchStart={handleTouchStart}
-                  onTouchEnd={handleTouchEnd}
-                  onMouseDown={handleMouseDown}
-                  onMouseUp={handleMouseUp}
-                  className="relative mt-4 group cursor-pointer user-select-none rounded-xl p-2 bg-transparent transition-colors duration-300 w-[10rem] md:w-[11.5rem] h-auto"
+                  className="relative mt-4 group cursor-pointer rounded-xl p-2 bg-transparent transition-colors duration-300 w-[10rem] md:w-[11.5rem] h-auto"
                 >
                   <WatchedMediaCard
                     key={media.id}
@@ -176,7 +228,7 @@ export function WatchingCarousel({
                 />
               ))}
 
-          <div className="md:w-12" />
+          <div className="lg:w-12" />
         </div>
 
         {!isMobile && (

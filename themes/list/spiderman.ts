@@ -83,8 +83,8 @@ const tokens = {
     c700: "hsla(0, 28%, 10%, 1)",
     c800: "hsla(0, 26%, 8%, 1)",
     c900: "hsla(0, 24%, 5%, 1)",
-  }
-}
+  },
+};
 
 export default createTheme({
   name: "spiderman",
@@ -340,4 +340,4 @@ export default createTheme({
       },
     },
   },
-})
+});

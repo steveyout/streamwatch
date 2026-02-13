@@ -1,11 +1,7 @@
-import { Turnstile } from "@marsidev/react-turnstile";
-import classNames from "classnames";
-import { useRef } from "react";
 import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
 
 import { reportCaptchaSolve } from "@/backend/helpers/report";
-import { conf } from "@/setup/config";
 
 export interface TurnstileStore {
   isInWidget: boolean;
@@ -83,48 +79,4 @@ export async function getTurnstileToken() {
     reportCaptchaSolve(false);
     throw err;
   }
-}
-
-export function TurnstileProvider(props: {
-  isInPopout?: boolean;
-  onUpdateShow?: (show: boolean) => void;
-}) {
-  const siteKey = conf().TURNSTILE_KEY;
-  const idRef = useRef<string | null>(null);
-  const setTurnstile = useTurnstileStore((s) => s.setTurnstile);
-  const processToken = useTurnstileStore((s) => s.processToken);
-  if (!siteKey) return null;
-  return (
-    <div
-      className={classNames({
-        hidden: !props.isInPopout,
-      })}
-    >
-      <Turnstile
-        siteKey={siteKey}
-        options={{
-          refreshExpired: "never",
-          theme: "light",
-        }}
-        onWidgetLoad={(widgetId) => {
-          idRef.current = widgetId;
-          setTurnstile(widgetId, "sudo", !!props.isInPopout);
-        }}
-        onError={() => {
-          const id = idRef.current;
-          if (!id) return;
-          processToken(null, id);
-        }}
-        onSuccess={(token) => {
-          const id = idRef.current;
-          if (!id) return;
-          processToken(token, id);
-          props.onUpdateShow?.(false);
-        }}
-        onBeforeInteractive={() => {
-          props.onUpdateShow?.(true);
-        }}
-      />
-    </div>
-  );
 }

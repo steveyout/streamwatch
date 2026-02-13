@@ -3,7 +3,10 @@ import { useTranslation } from "react-i18next";
 
 import { Button } from "@/components/buttons/Button";
 import { Icon, Icons } from "@/components/Icon";
+import { useBackendUrl } from "@/hooks/auth/useBackendUrl";
 import { useWatchPartySync } from "@/hooks/useWatchPartySync";
+import { useAuthStore } from "@/stores/auth";
+import { getProgressPercentage } from "@/stores/progress";
 import { useWatchPartyStore } from "@/stores/watchParty";
 
 export function WatchPartyStatus() {
@@ -12,6 +15,9 @@ export function WatchPartyStatus() {
   const [expanded, setExpanded] = useState(false);
   const [showNotification, setShowNotification] = useState(false);
   const [lastUserCount, setLastUserCount] = useState(1);
+  const account = useAuthStore((s) => s.account);
+  const backendUrl = useBackendUrl();
+  const backendHostname = backendUrl ? new URL(backendUrl).hostname : null;
 
   const {
     roomUsers,
@@ -42,6 +48,14 @@ export function WatchPartyStatus() {
     setExpanded(!expanded);
   };
 
+  // Get display name for a user (nickname if it's the current user, otherwise truncated userId)
+  const getDisplayName = (userId: string) => {
+    if (account?.userId === userId && account?.nickname) {
+      return account.nickname;
+    }
+    return `${userId.substring(0, 12)}...`;
+  };
+
   return (
     <div
       className={`absolute top-4 right-4 z-50 p-2 bg-mediaCard-shadow bg-opacity-70 backdrop-blur-sm rounded-md text-white text-xs 
@@ -59,6 +73,11 @@ export function WatchPartyStatus() {
           {roomCode}
         </span>
       </div>
+      {backendHostname && (
+        <div className="w-full text-xs text-type-secondary text-center">
+          {t("watchParty.activeBackend", { backend: backendHostname })}
+        </div>
+      )}
 
       <div className="w-full text-type-secondary flex justify-between items-center space-x-2">
         <div className="cursor-pointer" onClick={handleToggleExpanded}>
@@ -105,12 +124,12 @@ export function WatchPartyStatus() {
                     className={`w-3 h-3 ${user.isHost ? "text-onboarding-best" : ""}`}
                   />
                   <span className={user.isHost ? "text-onboarding-best" : ""}>
-                    {user.userId.substring(0, 8)}...
+                    {getDisplayName(user.userId)}
                   </span>
                 </span>
                 <span className="text-type-secondary">
                   {user.player.duration > 0
-                    ? `${Math.floor((user.player.time / user.player.duration) * 100)}%`
+                    ? `${Math.floor(getProgressPercentage(user.player.time, user.player.duration))}%`
                     : `${Math.floor(user.player.time)}s`}
                 </span>
               </div>

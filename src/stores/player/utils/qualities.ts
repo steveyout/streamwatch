@@ -1,4 +1,4 @@
-import { Qualities, Stream } from "@movie-web/providers";
+import { Qualities, Stream } from "@p-stream/providers";
 
 import { QualityStore } from "@/stores/quality";
 
@@ -52,8 +52,11 @@ export function getPreferredQuality(
     qualityPreferences.automaticQuality ||
     qualityPreferences.lastChosenQuality === null ||
     qualityPreferences.lastChosenQuality === "unknown"
-  )
+  ) {
+    // For automatic quality, select the best available quality
+    // Sort by our quality preference order and pick the first (best) available
     return sortedQualities.find((v) => availableQualites.includes(v));
+  }
 
   // get preferred quality - not automatic or unknown
   const chosenQualityIndex = sortedQualities.indexOf(
@@ -96,7 +99,15 @@ export function selectQuality(
     const availableQualities = Object.entries(source.qualities)
       .filter((entry) => (entry[1].url.length ?? 0) > 0)
       .map((entry) => entry[0]) as SourceQuality[];
-    const quality = getPreferredQuality(availableQualities, qualityPreferences);
+    // For file sources (MP4), always use manual quality selection since they don't support switching
+    const manualQualityPreferences = {
+      ...qualityPreferences,
+      automaticQuality: false,
+    };
+    const quality = getPreferredQuality(
+      availableQualities,
+      manualQualityPreferences,
+    );
     if (quality) {
       const stream = source.qualities[quality];
       if (stream) {

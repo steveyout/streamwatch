@@ -15,6 +15,12 @@ const icons = [
   UserIcons.GHOST,
   UserIcons.COFFEE,
   UserIcons.FIRE,
+  UserIcons.MEGAPHONE,
+  UserIcons.DRAGON,
+  UserIcons.RISING_STAR,
+  UserIcons.CLOUD_ARROW_UP,
+  UserIcons.WAND,
+  UserIcons.CLAPPER_BOARD,
 ];
 export const initialIcon = icons[0];
 

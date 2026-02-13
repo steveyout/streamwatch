@@ -84,7 +84,7 @@ const tokens = {
     c800: "hsla(240, 30%, 8%, 1)", // Background main, settings save bar, onboarding card
     c900: "hsla(240, 29%, 5%, 1)", // Media card hover shadow
   },
-}
+};
 
 export default createTheme({
   name: "classic",
@@ -340,4 +340,4 @@ export default createTheme({
       },
     },
   },
-})
+});

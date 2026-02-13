@@ -4,6 +4,7 @@ import { makeVideoElementDisplayInterface } from "@/components/player/display/ba
 import { convertSubtitlesToObjectUrl } from "@/components/player/utils/captions";
 import { playerStatus } from "@/stores/player/slices/source";
 import { usePlayerStore } from "@/stores/player/store";
+import { usePreferencesStore } from "@/stores/preferences";
 
 import { useInitializeSource } from "../hooks/useInitializePlayer";
 
@@ -66,12 +67,18 @@ function VideoElement() {
   const trackEl = useRef<HTMLTrackElement>(null);
   const display = usePlayerStore((s) => s.display);
   const srtData = usePlayerStore((s) => s.caption.selected?.srtData);
-  const captionAsTrack = usePlayerStore((s) => s.caption.asTrack);
   const language = usePlayerStore((s) => s.caption.selected?.language);
+  const source = usePlayerStore((s) => s.source);
+  const enableNativeSubtitles = usePreferencesStore(
+    (s) => s.enableNativeSubtitles,
+  );
   const trackObjectUrl = useObjectUrl(
     () => (srtData ? convertSubtitlesToObjectUrl(srtData) : null),
     [srtData],
   );
+
+  // Use native tracks when the setting is enabled
+  const shouldUseNativeTrack = enableNativeSubtitles && source !== null;
 
   // report video element to display interface
   useEffect(() => {
@@ -80,24 +87,28 @@ function VideoElement() {
     }
   }, [display, videoEl]);
 
-  // select track as showing if it exists
+  // Control track visibility based on setting
   useEffect(() => {
     if (trackEl.current) {
-      trackEl.current.track.mode = "showing";
+      trackEl.current.track.mode = shouldUseNativeTrack ? "showing" : "hidden";
     }
-  }, [trackEl]);
+  }, [shouldUseNativeTrack, trackEl]);
 
+  // Attach track when native subtitles are enabled
+  // SubtitleView handles showing custom captions when native subtitles are disabled
   let subtitleTrack: ReactNode = null;
-  if (captionAsTrack && trackObjectUrl && language)
+  if (shouldUseNativeTrack && trackObjectUrl && language) {
     subtitleTrack = (
       <track
-        label="StreamWatch Captions"
+        ref={trackEl}
+        label="P-Stream Captions"
         kind="subtitles"
         srcLang={language}
         src={trackObjectUrl}
         default
       />
     );
+  }
 
   return (
     <video
@@ -106,6 +117,8 @@ function VideoElement() {
       autoPlay
       playsInline
       ref={videoEl}
+      preload="metadata"
+      onContextMenu={(e) => e.preventDefault()}
     >
       {subtitleTrack}
     </video>
