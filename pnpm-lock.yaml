@@ -44,7 +44,7 @@ importers:
         version: 1.8.0
       '@p-stream/providers':
         specifier: github:steveyout/providers#production
-        version: https://codeload.github.com/steveyout/providers/tar.gz/72d3be8f2aae503c50ca07ab22bcd9c8d8651c63
+        version: https://codeload.github.com/steveyout/providers/tar.gz/d5fd07835f29beda03642a0978b5d5d32f0a588a
       '@plasmohq/messaging':
         specifier: ^0.6.2
         version: 0.6.2(react@18.3.1)
@@ -1180,8 +1180,8 @@ packages:
     resolution: {integrity: sha512-nn5ozdjYQpUCZlWGuxcJY/KpxkWQs4DcbMCmKojjyrYDEAGy4Ce19NN4v5MduafTwJlbKc99UA8YhSVqq9yPZA==}
     engines: {node: '>=12.4.0'}
 
-  '@p-stream/providers@https://codeload.github.com/steveyout/providers/tar.gz/72d3be8f2aae503c50ca07ab22bcd9c8d8651c63':
-    resolution: {tarball: https://codeload.github.com/steveyout/providers/tar.gz/72d3be8f2aae503c50ca07ab22bcd9c8d8651c63}
+  '@p-stream/providers@https://codeload.github.com/steveyout/providers/tar.gz/d5fd07835f29beda03642a0978b5d5d32f0a588a':
+    resolution: {tarball: https://codeload.github.com/steveyout/providers/tar.gz/d5fd07835f29beda03642a0978b5d5d32f0a588a}
     version: 3.2.0
 
   '@pkgjs/parseargs@0.11.0':
@@ -5476,7 +5476,7 @@ snapshots:
 
   '@nolyfill/is-core-module@1.0.39': {}
 
-  '@p-stream/providers@https://codeload.github.com/steveyout/providers/tar.gz/72d3be8f2aae503c50ca07ab22bcd9c8d8651c63':
+  '@p-stream/providers@https://codeload.github.com/steveyout/providers/tar.gz/d5fd07835f29beda03642a0978b5d5d32f0a588a':
     dependencies:
       abort-controller: 3.0.0
       cheerio: 1.0.0-rc.12
