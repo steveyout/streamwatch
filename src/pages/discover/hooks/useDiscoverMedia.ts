@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
-import { get } from "@/backend/metadata/tmdb";
+import { get, getMediaDetails } from "@/backend/metadata/tmdb";
 import {
   PROVIDER_TO_TRAKT_MAP,
   getAppleMovieReleases,
@@ -21,8 +21,16 @@ import {
   getParamountTVShows,
   getPrimeMovies,
   getPrimeTVShows,
+  getTop10Movies,
 } from "@/backend/metadata/traktApi";
 import { paginateResults } from "@/backend/metadata/traktFunctions";
+import { TMDBContentTypes } from "@/backend/metadata/types/tmdb";
+import type {
+  TMDBMovieData,
+  TMDBMovieSearchResult,
+  TMDBShowData,
+  TMDBShowSearchResult,
+} from "@/backend/metadata/types/tmdb";
 import type { TraktListResponse } from "@/backend/metadata/types/trakt";
 import {
   EDITOR_PICKS_MOVIES,
@@ -42,6 +50,8 @@ import type {
 import { conf } from "@/setup/config";
 import { useLanguageStore } from "@/stores/language";
 import { getTmdbLanguageCode } from "@/utils/language";
+
+import { fetchFedSimilarItems } from "../lib/personalRecommendations";
 
 // Re-export types for backward compatibility
 export type {
@@ -321,6 +331,110 @@ export function useDiscoverMedia({
     }
   }, [mediaType, formattedLanguage, isCarouselView]);
 
+  const fetchRecommendationsWithFedSimilar = useCallback(
+    async (mediaId: string) => {
+      const isTVShow = mediaType === "tv";
+      const type = isTVShow ? TMDBContentTypes.TV : TMDBContentTypes.MOVIE;
+
+      try {
+        // Try fed-similar API first
+        const fedSimilarIds = await fetchFedSimilarItems(mediaId, isTVShow);
+
+        if (fedSimilarIds.length > 0) {
+          // Fetch full details for fed-similar items
+          const fedSimilarDetailPromises = fedSimilarIds
+            .slice(0, isCarouselView ? 20 : 100)
+            .map((tmdbId) => getMediaDetails(tmdbId, type));
+
+          const fedSimilarDetails = await Promise.allSettled(
+            fedSimilarDetailPromises,
+          );
+
+          const results: any[] = [];
+
+          for (const result of fedSimilarDetails) {
+            if (result.status !== "fulfilled" || !result.value) continue;
+            const item = result.value as TMDBMovieData | TMDBShowData;
+
+            let searchItem: TMDBMovieSearchResult | TMDBShowSearchResult;
+            if (isTVShow) {
+              const showItem = item as TMDBShowData;
+              searchItem = {
+                adult: showItem.adult ?? false,
+                backdrop_path: showItem.backdrop_path ?? "",
+                id: showItem.id,
+                name: showItem.name,
+                original_language: showItem.original_language ?? "",
+                original_name: showItem.original_name ?? "",
+                overview: showItem.overview ?? "",
+                poster_path: showItem.poster_path ?? "",
+                media_type: TMDBContentTypes.TV,
+                genre_ids: showItem.genres?.map((g) => g.id) ?? [],
+                popularity: showItem.popularity ?? 0,
+                first_air_date: showItem.first_air_date ?? "",
+                vote_average: showItem.vote_average,
+                vote_count: showItem.vote_count,
+                origin_country: showItem.origin_country ?? [],
+              };
+            } else {
+              const movieItem = item as TMDBMovieData;
+              searchItem = {
+                adult: movieItem.adult ?? false,
+                backdrop_path: movieItem.backdrop_path ?? "",
+                id: movieItem.id,
+                title: movieItem.title,
+                original_language: movieItem.original_language ?? "",
+                original_title: movieItem.original_title ?? "",
+                overview: movieItem.overview ?? "",
+                poster_path: movieItem.poster_path ?? "",
+                media_type: TMDBContentTypes.MOVIE,
+                genre_ids: movieItem.genres?.map((g) => g.id) ?? [],
+                popularity: movieItem.popularity ?? 0,
+                release_date: movieItem.release_date ?? "",
+                video: movieItem.video ?? false,
+                vote_average: movieItem.vote_average,
+                vote_count: movieItem.vote_count,
+              };
+            }
+
+            results.push(searchItem);
+          }
+
+          // If we have enough results from fed-similar, return them
+          const minResults = isCarouselView ? 5 : 10;
+          if (results.length >= minResults) {
+            console.info(
+              `Using fed-similar API results (${results.length} items)`,
+            );
+            return {
+              results: results.map((item) => ({
+                ...item,
+                type: mediaType === "movie" ? "movie" : "show",
+              })),
+              hasMore: false,
+            };
+          }
+        }
+
+        // Fall back to TMDB recommendations
+        console.info(
+          "Fed-similar API returned insufficient or no results, falling back to TMDB",
+        );
+        const data = await fetchTMDBMedia(
+          `/${mediaType}/${mediaId}/recommendations`,
+        );
+        return data;
+      } catch (err) {
+        console.error("Error fetching fed-similar recommendations:", err);
+
+        // Try TMDB fallback on error
+        console.info("Attempting TMDB fallback...");
+        return fetchTMDBMedia(`/${mediaType}/${mediaId}/recommendations`);
+      }
+    },
+    [mediaType, isCarouselView, fetchTMDBMedia],
+  );
+
   const fetchMedia = useCallback(async () => {
     // Skip fetching recommendations if no ID is provided
     if (contentType === "recommendations" && !id) {
@@ -366,6 +480,11 @@ export function useDiscoverMedia({
           } else {
             throw new Error("nowPlaying is only available for movies");
           }
+          break;
+
+        case "top10":
+          data = await fetchTraktMedia(getTop10Movies);
+          setSectionTitle(t("discover.carousel.title.top10"));
           break;
 
         case "latest":
@@ -454,7 +573,7 @@ export function useDiscoverMedia({
 
         case "recommendations":
           if (!id) throw new Error("Media ID is required for recommendations");
-          data = await fetchTMDBMedia(`/${mediaType}/${id}/recommendations`);
+          data = await fetchRecommendationsWithFedSimilar(id);
           setSectionTitle(
             t("discover.carousel.title.recommended", { title: mediaTitle }),
           );
@@ -520,6 +639,7 @@ export function useDiscoverMedia({
     fetchTMDBMedia,
     fetchTraktMedia,
     fetchEditorPicks,
+    fetchRecommendationsWithFedSimilar,
     t,
     page,
     getTraktProviderFunction,

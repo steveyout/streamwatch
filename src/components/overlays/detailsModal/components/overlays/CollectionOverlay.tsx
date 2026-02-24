@@ -111,6 +111,8 @@ export function CollectionOverlay({
 }: CollectionOverlayProps) {
   const { t } = useTranslation();
   const { showModal } = useOverlayStack();
+  const bookmarks = useBookmarkStore((s) => s.bookmarks);
+  const modifyBookmarks = useBookmarkStore((s) => s.modifyBookmarks);
   const addBookmarkWithGroups = useBookmarkStore(
     (s) => s.addBookmarkWithGroups,
   );
@@ -177,6 +179,8 @@ export function CollectionOverlay({
     // Format the group name with the random icon
     const groupName = `[${randomIcon}]${collectionName}`;
 
+    const existingIds: string[] = [];
+
     collection.parts.forEach((movie) => {
       const year = movie.release_date
         ? new Date(movie.release_date).getFullYear()
@@ -185,8 +189,15 @@ export function CollectionOverlay({
       // Skip movies without a release year
       if (year === undefined) return;
 
+      const movieId = movie.id.toString();
+
+      if (bookmarks[movieId]) {
+        existingIds.push(movieId);
+        return;
+      }
+
       const meta = {
-        tmdbId: movie.id.toString(),
+        tmdbId: movieId,
         type: "movie" as const,
         title: movie.title,
         releaseYear: year,
@@ -195,6 +206,12 @@ export function CollectionOverlay({
 
       addBookmarkWithGroups(meta, [groupName]);
     });
+
+    if (existingIds.length > 0) {
+      modifyBookmarks(existingIds, {
+        addGroups: [groupName],
+      });
+    }
   };
 
   const handleShowDetails = (media: MediaItem) => {

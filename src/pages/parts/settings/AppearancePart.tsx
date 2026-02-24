@@ -13,6 +13,11 @@ import { useBackendUrl } from "@/hooks/auth/useBackendUrl";
 import { useAuthStore } from "@/stores/auth";
 import { useBookmarkStore } from "@/stores/bookmarks";
 import { useGroupOrderStore } from "@/stores/groupOrder";
+import {
+  primaryOptions,
+  secondaryOptions,
+  tertiaryOptions,
+} from "@themes/custom";
 
 const availableThemes = [
   {
@@ -130,6 +135,11 @@ const availableThemes = [
     selector: "theme-christmas",
     key: "settings.appearance.themes.christmas",
   },
+  {
+    id: "custom",
+    selector: "theme-custom",
+    key: "settings.appearance.themes.custom",
+  },
 ];
 
 function ThemePreview(props: {
@@ -225,6 +235,46 @@ function ThemePreview(props: {
   );
 }
 
+function ColorOption(props: {
+  active: boolean;
+  colors: Record<string, string>;
+  onClick: () => void;
+  title: string;
+}) {
+  const c1 =
+    props.colors["--colors-type-logo"] ||
+    props.colors["--colors-background-main"] ||
+    props.colors["--colors-type-text"];
+  const c2 =
+    props.colors["--colors-lightBar-light"] ||
+    props.colors["--colors-modal-background"] ||
+    props.colors["--colors-utils-divider"];
+
+  return (
+    <div
+      className={classNames(
+        "cursor-pointer p-1 rounded-full border-2 transition-all",
+        props.active
+          ? "border-type-link scale-110"
+          : "border-transparent hover:border-white/20 hover:scale-105",
+      )}
+      onClick={props.onClick}
+      title={props.title}
+    >
+      <div className="w-8 h-8 rounded-full overflow-hidden flex transform rotate-45">
+        <div
+          className="flex-1 h-full"
+          style={{ backgroundColor: `rgb(${c1})` }}
+        />
+        <div
+          className="flex-1 h-full"
+          style={{ backgroundColor: `rgb(${c2})` }}
+        />
+      </div>
+    </div>
+  );
+}
+
 export function AppearancePart(props: {
   active: string;
   inUse: string;
@@ -242,6 +292,9 @@ export function AppearancePart(props: {
   enableImageLogos: boolean;
   setEnableImageLogos: (v: boolean) => void;
 
+  enablePauseOverlay: boolean;
+  setEnablePauseOverlay: (v: boolean) => void;
+
   enableCarouselView: boolean;
   setEnableCarouselView: (v: boolean) => void;
 
@@ -255,8 +308,22 @@ export function AppearancePart(props: {
   setHomeSectionOrder: (v: string[]) => void;
 
   enableLowPerformanceMode: boolean;
+
+  customTheme: {
+    primary: string;
+    secondary: string;
+    tertiary: string;
+  };
+  setCustomTheme: (v: {
+    primary: string;
+    secondary: string;
+    tertiary: string;
+  }) => void;
 }) {
   const { t } = useTranslation();
+
+  const customTheme = props.customTheme;
+  const setCustomTheme = props.setCustomTheme;
 
   const carouselRef = useRef<HTMLDivElement>(null);
   const activeThemeRef = useRef<HTMLDivElement>(null);
@@ -291,6 +358,7 @@ export function AppearancePart(props: {
     setEnableFeatured,
     setEnableDetailsModal,
     setEnableImageLogos,
+    setEnablePauseOverlay,
     setForceCompactEpisodeView,
   } = props;
 
@@ -301,6 +369,7 @@ export function AppearancePart(props: {
       setEnableFeatured(false);
       setEnableDetailsModal(false);
       setEnableImageLogos(false);
+      setEnablePauseOverlay(false);
       setForceCompactEpisodeView(true);
     }
   }, [
@@ -309,6 +378,7 @@ export function AppearancePart(props: {
     setEnableFeatured,
     setEnableDetailsModal,
     setEnableImageLogos,
+    setEnablePauseOverlay,
     setForceCompactEpisodeView,
   ]);
 
@@ -489,6 +559,33 @@ export function AppearancePart(props: {
             </div>
           </div>
 
+          {/* Pause Overlay */}
+          <div>
+            <p className="text-white font-bold mb-3">
+              {t("settings.appearance.options.pauseOverlay")}
+            </p>
+            <p className="max-w-[25rem] font-medium">
+              {t("settings.appearance.options.pauseOverlayDescription")}
+            </p>
+            <div
+              onClick={() =>
+                !props.enableLowPerformanceMode &&
+                props.setEnablePauseOverlay(!props.enablePauseOverlay)
+              }
+              className={classNames(
+                "bg-dropdown-background hover:bg-dropdown-hoverBackground select-none my-4 cursor-pointer space-x-3 flex items-center max-w-[25rem] py-3 px-4 rounded-lg",
+                props.enableLowPerformanceMode
+                  ? "cursor-not-allowed opacity-50 pointer-events-none"
+                  : "cursor-pointer opacity-100 pointer-events-auto",
+              )}
+            >
+              <Toggle enabled={props.enablePauseOverlay} />
+              <p className="flex-1 text-white font-bold">
+                {t("settings.appearance.options.pauseOverlayLabel")}
+              </p>
+            </div>
+          </div>
+
           {/* Carousel View */}
           <div>
             <p className="text-white font-bold mb-3">
@@ -628,6 +725,65 @@ export function AppearancePart(props: {
               </div>
             ))}
           </div>
+
+          {props.active === "custom" && (
+            <div className="animate-fade-in space-y-6 pt-4 border-t border-utils-divider">
+              <div>
+                <p className="text-white font-bold mb-3">
+                  {t("settings.appearance.customParts.primary")}
+                </p>
+                <div className="flex flex-wrap gap-3">
+                  {primaryOptions.map((opt) => (
+                    <ColorOption
+                      key={opt.id}
+                      active={customTheme.primary === opt.id}
+                      colors={opt.colors}
+                      onClick={() =>
+                        setCustomTheme({ ...customTheme, primary: opt.id })
+                      }
+                      title={t(`settings.appearance.themes.${opt.id}`)}
+                    />
+                  ))}
+                </div>
+              </div>
+              <div>
+                <p className="text-white font-bold mb-3">
+                  {t("settings.appearance.customParts.secondary")}
+                </p>
+                <div className="flex flex-wrap gap-3">
+                  {secondaryOptions.map((opt) => (
+                    <ColorOption
+                      key={opt.id}
+                      active={customTheme.secondary === opt.id}
+                      colors={opt.colors}
+                      onClick={() =>
+                        setCustomTheme({ ...customTheme, secondary: opt.id })
+                      }
+                      title={t(`settings.appearance.themes.${opt.id}`)}
+                    />
+                  ))}
+                </div>
+              </div>
+              <div>
+                <p className="text-white font-bold mb-3">
+                  {t("settings.appearance.customParts.tertiary")}
+                </p>
+                <div className="flex flex-wrap gap-3">
+                  {tertiaryOptions.map((opt) => (
+                    <ColorOption
+                      key={opt.id}
+                      active={customTheme.tertiary === opt.id}
+                      colors={opt.colors}
+                      onClick={() =>
+                        setCustomTheme({ ...customTheme, tertiary: opt.id })
+                      }
+                      title={t(`settings.appearance.themes.${opt.id}`)}
+                    />
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </div>
 

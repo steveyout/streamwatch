@@ -23,7 +23,23 @@ export interface ChromecastProps {
 export function Chromecast({ className }: ChromecastProps) {
   const [castHidden, setCastHidden] = useState(false);
   const isCasting = usePlayerStore((s) => s.interface.isCasting);
+  const source = usePlayerStore((s) => s.source);
   const launcherRef = useRef<HTMLDivElement>(null);
+
+  // Check if source is supported for casting
+  // HLS is always supported (proxied if needed)
+  // MP4/File is only supported if it doesn't need headers (no proxy available)
+  const isCastable = (() => {
+    if (!source) return false;
+    if (source.type === "hls") return true;
+    if (source.type === "file") {
+      const hasHeaders =
+        Object.keys(source.headers || {}).length > 0 ||
+        Object.keys(source.preferredHeaders || {}).length > 0;
+      return !hasHeaders;
+    }
+    return true; // Unknown types assumed castable
+  })();
 
   useEffect(() => {
     const w = window as unknown as { cast?: typeof cast };
@@ -72,7 +88,7 @@ export function Chromecast({ className }: ChromecastProps) {
         "google-cast-button",
         "cast-button-container",
         isCasting ? "casting" : "",
-        castHidden ? "hidden" : "",
+        castHidden || !isCastable ? "hidden" : "",
       ].join(" ")}
     >
       <div ref={launcherRef} />

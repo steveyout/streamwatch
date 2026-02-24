@@ -57,6 +57,12 @@ export function MoreContent({ onShowDetails }: MoreContentProps) {
       title: item.title || "",
     }));
 
+  // Find selected recommendation source (used in multiple places)
+  const selectedRecommendationSource = React.useMemo(
+    () => recommendationSources.find((s) => s.id === selectedRecommendationId),
+    [recommendationSources, selectedRecommendationId],
+  );
+
   // Determine the actual content type and ID from URL parameters
   const actualContentType = contentType || category?.split("-")[0] || "popular";
   const actualMediaType =
@@ -79,9 +85,7 @@ export function MoreContent({ onShowDetails }: MoreContentProps) {
     page: currentPage,
     genreName: selectedGenre?.name,
     providerName: selectedProvider?.name,
-    mediaTitle: recommendationSources.find(
-      (s) => s.id === selectedRecommendationId,
-    )?.title,
+    mediaTitle: selectedRecommendationSource?.title,
     isCarouselView: false,
   });
 
@@ -218,15 +222,10 @@ export function MoreContent({ onShowDetails }: MoreContentProps) {
             <div className="relative pr-4">
               <Dropdown
                 selectedItem={
-                  recommendationSources.find(
-                    (s) => s.id === selectedRecommendationId,
-                  )
+                  selectedRecommendationSource
                     ? {
                         id: selectedRecommendationId,
-                        name:
-                          recommendationSources.find(
-                            (s) => s.id === selectedRecommendationId,
-                          )?.title || "",
+                        name: selectedRecommendationSource?.title || "",
                       }
                     : { id: "", name: "..." }
                 }

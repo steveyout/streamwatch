@@ -12,6 +12,7 @@ import { usePlayerStore } from "@/stores/player/store";
 import { getPrettyLanguageNameFromLocale } from "@/utils/language";
 
 import { CaptionOption } from "./CaptionsView";
+import { useCaptionMatchScore } from "../../hooks/useCaptionMatchScore";
 
 export interface LanguageSubtitlesViewProps {
   id: string;
@@ -36,6 +37,7 @@ export function LanguageSubtitlesView({
   >(null);
   const [scrollTrigger, setScrollTrigger] = useState(0);
   const captionList = usePlayerStore((s) => s.captionList);
+  const matchScore = useCaptionMatchScore();
 
   // Trigger scroll when selected caption changes
   useEffect(() => {
@@ -175,6 +177,7 @@ export function LanguageSubtitlesView({
         subtitleSource={v.source}
         subtitleEncoding={v.encoding}
         isHearingImpaired={v.isHearingImpaired}
+        matchScore={v.id === selectedCaptionId ? matchScore : undefined}
       >
         {v.display || v.id}
       </CaptionOption>

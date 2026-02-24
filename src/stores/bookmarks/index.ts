@@ -186,6 +186,10 @@ export const useBookmarkStore = create(
             action: "add",
             tmdbId: showId,
             favoriteEpisodes: bookmark.favoriteEpisodes,
+            title: bookmark.title,
+            year: bookmark.year,
+            poster: bookmark.poster,
+            type: bookmark.type,
           });
         });
       },

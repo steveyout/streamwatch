@@ -290,8 +290,24 @@ export function SettingsPage() {
   const { t } = useTranslation();
   const activeTheme = useThemeStore((s) => s.theme);
   const setTheme = useThemeStore((s) => s.setTheme);
+  const customTheme = useThemeStore((s) => s.customTheme);
+  const setCustomTheme = useThemeStore((s) => s.setCustomTheme);
   const previewTheme = usePreviewThemeStore((s) => s.previewTheme);
   const setPreviewTheme = usePreviewThemeStore((s) => s.setPreviewTheme);
+
+  // Baseline for custom theme so "changed" is detected when only colors change.
+  // Only updated on load from backend or after save; prevents useDerived from
+  // resetting when we update the store for preview.
+  const [customThemeBaseline, setCustomThemeBaseline] = useState<{
+    primary: string;
+    secondary: string;
+    tertiary: string;
+  } | null>(null);
+  useEffect(() => {
+    if (customThemeBaseline === null) {
+      setCustomThemeBaseline(customTheme);
+    }
+  }, [customTheme, customThemeBaseline]);
 
   // Simple text search with highlighting
   const handleSearchChange = useCallback((value: string, _force: boolean) => {
@@ -397,6 +413,13 @@ export function SettingsPage() {
   const enableSkipCredits = usePreferencesStore((s) => s.enableSkipCredits);
   const setEnableSkipCredits = usePreferencesStore(
     (s) => s.setEnableSkipCredits,
+  );
+
+  const enableAutoSkipSegments = usePreferencesStore(
+    (s) => s.enableAutoSkipSegments,
+  );
+  const setEnableAutoSkipSegments = usePreferencesStore(
+    (s) => s.setEnableAutoSkipSegments,
   );
 
   const sourceOrder = usePreferencesStore((s) => s.sourceOrder);
@@ -508,6 +531,14 @@ export function SettingsPage() {
     (s) => s.setEnableAutoResumeOnPlaybackError,
   );
 
+  const enablePauseOverlay = usePreferencesStore((s) => s.enablePauseOverlay);
+  const setEnablePauseOverlay = usePreferencesStore(
+    (s) => s.setEnablePauseOverlay,
+  );
+  const setEnableNumberKeySeeking = usePreferencesStore(
+    (s) => s.setEnableNumberKeySeeking,
+  );
+
   const account = useAuthStore((s) => s.account);
   const updateProfile = useAuthStore((s) => s.setAccountProfile);
   const updateDeviceName = useAuthStore((s) => s.updateDeviceName);
@@ -532,16 +563,148 @@ export function SettingsPage() {
     const loadSettings = async () => {
       if (account && backendUrl) {
         const settings = await getSettings(backendUrl, account);
-        if (settings.febboxKey) {
+        if (settings.applicationTheme !== undefined) {
+          setTheme(settings.applicationTheme);
+        }
+        if (settings.applicationLanguage) {
+          setAppLanguage(settings.applicationLanguage);
+        }
+        if (settings.proxyUrls !== undefined) {
+          setProxySet(settings.proxyUrls?.filter((v) => v !== "") ?? null);
+        }
+        if (settings.febboxKey !== undefined) {
           setFebboxKey(settings.febboxKey);
         }
-        if (settings.debridToken) {
+        if (settings.debridToken !== undefined) {
           setdebridToken(settings.debridToken);
+        }
+        if (settings.debridService) {
+          setdebridService(settings.debridService);
+        }
+        if (settings.enableThumbnails !== undefined) {
+          setEnableThumbnails(settings.enableThumbnails);
+        }
+        if (settings.enableAutoplay !== undefined) {
+          setEnableAutoplay(settings.enableAutoplay);
+        }
+        if (settings.enableSkipCredits !== undefined) {
+          setEnableSkipCredits(settings.enableSkipCredits);
+        }
+        if (settings.enableAutoSkipSegments !== undefined) {
+          setEnableAutoSkipSegments(settings.enableAutoSkipSegments);
+        }
+        if (settings.enableDiscover !== undefined) {
+          setEnableDiscover(settings.enableDiscover);
+        }
+        if (settings.enableFeatured !== undefined) {
+          setEnableFeatured(settings.enableFeatured);
+        }
+        if (settings.enableDetailsModal !== undefined) {
+          setEnableDetailsModal(settings.enableDetailsModal);
+        }
+        if (settings.enableImageLogos !== undefined) {
+          setEnableImageLogos(settings.enableImageLogos);
+        }
+        if (
+          settings.sourceOrder !== undefined &&
+          Array.isArray(settings.sourceOrder)
+        ) {
+          setSourceOrder(settings.sourceOrder);
+        }
+        if (settings.enableSourceOrder !== undefined) {
+          setEnableSourceOrder(settings.enableSourceOrder);
+        }
+        if (settings.lastSuccessfulSource !== undefined) {
+          setLastSuccessfulSource(settings.lastSuccessfulSource);
+        }
+        if (settings.enableLastSuccessfulSource !== undefined) {
+          setEnableLastSuccessfulSource(settings.enableLastSuccessfulSource);
+        }
+        if (settings.proxyTmdb !== undefined) {
+          setProxyTmdb(settings.proxyTmdb);
+        }
+        if (settings.enableCarouselView !== undefined) {
+          setEnableCarouselView(settings.enableCarouselView);
+        }
+        if (settings.enableMinimalCards !== undefined) {
+          setEnableMinimalCards(settings.enableMinimalCards);
+        }
+        if (settings.forceCompactEpisodeView !== undefined) {
+          setForceCompactEpisodeView(settings.forceCompactEpisodeView);
+        }
+        if (settings.enableLowPerformanceMode !== undefined) {
+          setEnableLowPerformanceMode(settings.enableLowPerformanceMode);
+        }
+        if (settings.enableHoldToBoost !== undefined) {
+          setEnableHoldToBoost(settings.enableHoldToBoost);
+        }
+        if (
+          settings.homeSectionOrder !== undefined &&
+          Array.isArray(settings.homeSectionOrder)
+        ) {
+          setHomeSectionOrder(settings.homeSectionOrder);
+        }
+        if (settings.manualSourceSelection !== undefined) {
+          setManualSourceSelection(settings.manualSourceSelection);
+        }
+        if (settings.enableDoubleClickToSeek !== undefined) {
+          setEnableDoubleClickToSeek(settings.enableDoubleClickToSeek);
+        }
+        if (settings.enableAutoResumeOnPlaybackError !== undefined) {
+          setEnableAutoResumeOnPlaybackError(
+            settings.enableAutoResumeOnPlaybackError,
+          );
+        }
+        if (settings.enablePauseOverlay !== undefined) {
+          setEnablePauseOverlay(settings.enablePauseOverlay);
+        }
+        if (settings.enableNumberKeySeeking !== undefined) {
+          setEnableNumberKeySeeking(settings.enableNumberKeySeeking);
+        }
+        if (settings.customTheme) {
+          setCustomTheme(settings.customTheme);
+          setCustomThemeBaseline(settings.customTheme);
+        } else {
+          setCustomThemeBaseline(useThemeStore.getState().customTheme);
         }
       }
     };
     loadSettings();
-  }, [account, backendUrl, setFebboxKey, setdebridToken, setdebridService]);
+  }, [
+    account,
+    backendUrl,
+    setTheme,
+    setAppLanguage,
+    setProxySet,
+    setFebboxKey,
+    setdebridToken,
+    setdebridService,
+    setEnableThumbnails,
+    setEnableAutoplay,
+    setEnableSkipCredits,
+    setEnableAutoSkipSegments,
+    setEnableDiscover,
+    setEnableFeatured,
+    setEnableDetailsModal,
+    setEnableImageLogos,
+    setSourceOrder,
+    setEnableSourceOrder,
+    setLastSuccessfulSource,
+    setEnableLastSuccessfulSource,
+    setProxyTmdb,
+    setEnableCarouselView,
+    setEnableMinimalCards,
+    setForceCompactEpisodeView,
+    setEnableLowPerformanceMode,
+    setEnableHoldToBoost,
+    setHomeSectionOrder,
+    setManualSourceSelection,
+    setEnableDoubleClickToSeek,
+    setEnableAutoResumeOnPlaybackError,
+    setEnablePauseOverlay,
+    setEnableNumberKeySeeking,
+    setCustomTheme,
+  ]);
 
   const state = useSettingsState(
     activeTheme,
@@ -558,6 +721,8 @@ export function SettingsPage() {
     account ? account.profile : undefined,
     enableThumbnails,
     enableAutoplay,
+    enableSkipCredits,
+    enableAutoSkipSegments,
     enableDiscover,
     enableFeatured,
     enableDetailsModal,
@@ -568,7 +733,6 @@ export function SettingsPage() {
     embedOrder,
     enableEmbedOrder,
     proxyTmdb,
-    enableSkipCredits,
     enableImageLogos,
     enableCarouselView,
     enableMinimalCards,
@@ -580,6 +744,8 @@ export function SettingsPage() {
     manualSourceSelection,
     enableDoubleClickToSeek,
     enableAutoResumeOnPlaybackError,
+    enablePauseOverlay,
+    customThemeBaseline ?? customTheme,
   );
 
   const availableSources = useMemo(() => {
@@ -629,6 +795,7 @@ export function SettingsPage() {
         state.enableThumbnails.changed ||
         state.enableAutoplay.changed ||
         state.enableSkipCredits.changed ||
+        state.enableAutoSkipSegments.changed ||
         state.enableDiscover.changed ||
         state.enableFeatured.changed ||
         state.enableDetailsModal.changed ||
@@ -646,7 +813,9 @@ export function SettingsPage() {
         state.homeSectionOrder.changed ||
         state.manualSourceSelection.changed ||
         state.enableDoubleClickToSeek.changed ||
-        state.enableAutoResumeOnPlaybackError
+        state.enableAutoResumeOnPlaybackError.changed ||
+        state.enablePauseOverlay.changed ||
+        state.customTheme.changed
       ) {
         await updateSettings(backendUrl, account, {
           applicationLanguage: state.appLanguage.state,
@@ -658,6 +827,7 @@ export function SettingsPage() {
           enableThumbnails: state.enableThumbnails.state,
           enableAutoplay: state.enableAutoplay.state,
           enableSkipCredits: state.enableSkipCredits.state,
+          enableAutoSkipSegments: state.enableAutoSkipSegments.state,
           enableDiscover: state.enableDiscover.state,
           enableFeatured: state.enableFeatured.state,
           enableDetailsModal: state.enableDetailsModal.state,
@@ -677,6 +847,8 @@ export function SettingsPage() {
           enableDoubleClickToSeek: state.enableDoubleClickToSeek.state,
           enableAutoResumeOnPlaybackError:
             state.enableAutoResumeOnPlaybackError.state,
+          enablePauseOverlay: state.enablePauseOverlay.state,
+          customTheme: state.customTheme.state,
         });
       }
       if (state.deviceName.changed) {
@@ -706,6 +878,7 @@ export function SettingsPage() {
     setEnableThumbnails(state.enableThumbnails.state);
     setEnableAutoplay(state.enableAutoplay.state);
     setEnableSkipCredits(state.enableSkipCredits.state);
+    setEnableAutoSkipSegments(state.enableAutoSkipSegments.state);
     setEnableDiscover(state.enableDiscover.state);
     setEnableFeatured(state.enableFeatured.state);
     setEnableDetailsModal(state.enableDetailsModal.state);
@@ -735,6 +908,9 @@ export function SettingsPage() {
     setEnableAutoResumeOnPlaybackError(
       state.enableAutoResumeOnPlaybackError.state,
     );
+    setEnablePauseOverlay(state.enablePauseOverlay.state);
+    setCustomTheme(state.customTheme.state);
+    setCustomThemeBaseline(state.customTheme.state);
 
     if (state.profile.state) {
       updateProfile(state.profile.state);
@@ -769,6 +945,7 @@ export function SettingsPage() {
     setTIDBKey,
     setEnableAutoplay,
     setEnableSkipCredits,
+    setEnableAutoSkipSegments,
     setEnableDiscover,
     setEnableFeatured,
     setEnableDetailsModal,
@@ -794,6 +971,8 @@ export function SettingsPage() {
     setManualSourceSelection,
     setEnableDoubleClickToSeek,
     setEnableAutoResumeOnPlaybackError,
+    setEnablePauseOverlay,
+    setCustomTheme,
   ]);
   return (
     <SubPageLayout>
@@ -855,6 +1034,8 @@ export function SettingsPage() {
               setEnableAutoplay={state.enableAutoplay.set}
               enableSkipCredits={state.enableSkipCredits.state}
               setEnableSkipCredits={state.enableSkipCredits.set}
+              enableAutoSkipSegments={state.enableAutoSkipSegments.state}
+              setEnableAutoSkipSegments={state.enableAutoSkipSegments.set}
               sourceOrder={availableSources}
               setSourceOrder={state.sourceOrder.set}
               enableSourceOrder={state.enableSourceOrder.state}
@@ -907,6 +1088,10 @@ export function SettingsPage() {
               homeSectionOrder={state.homeSectionOrder.state}
               setHomeSectionOrder={state.homeSectionOrder.set}
               enableLowPerformanceMode={state.enableLowPerformanceMode.state}
+              enablePauseOverlay={state.enablePauseOverlay.state}
+              setEnablePauseOverlay={state.enablePauseOverlay.set}
+              customTheme={state.customTheme.state}
+              setCustomTheme={state.customTheme.set}
             />
           </div>
         )}

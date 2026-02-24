@@ -126,6 +126,17 @@ export function BookmarkSyncer() {
       },
     });
 
+    // Override toggleFavoriteEpisode to trigger immediate sync
+    const originalToggleFavoriteEpisode =
+      useBookmarkStore.getState().toggleFavoriteEpisode;
+    useBookmarkStore.setState({
+      toggleFavoriteEpisode: (...args) => {
+        originalToggleFavoriteEpisode(...args);
+        // Trigger debounced sync after toggling favorite episode
+        debouncedSync();
+      },
+    });
+
     return () => {
       if (syncTimeout) {
         clearTimeout(syncTimeout);

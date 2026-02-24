@@ -13,6 +13,8 @@ import { getProgressPercentage, useProgressStore } from "@/stores/progress";
 
 import { EpisodeCarouselProps } from "../../types";
 
+const EMPTY_ARRAY: string[] = [];
+
 export function EpisodeCarousel({
   episodes,
   showProgress,
@@ -216,7 +218,6 @@ export function EpisodeCarousel({
     (s) => s.toggleFavoriteEpisode,
   );
   const bookmarks = useBookmarkStore((s) => s.bookmarks);
-  const getFavoriteEpisodes = useBookmarkStore((s) => s.getFavoriteEpisodes);
 
   const toggleFavoriteStatus = (episodeId: number, event: React.MouseEvent) => {
     event.preventDefault();
@@ -247,9 +248,10 @@ export function EpisodeCarousel({
   );
 
   // Get favorite episodes for this show
-  const favoriteEpisodeIds = useMemo(
-    () => (mediaId ? getFavoriteEpisodes(mediaId.toString()) : []),
-    [mediaId, getFavoriteEpisodes],
+  const favoriteEpisodeIds = useBookmarkStore((s) =>
+    mediaId
+      ? (s.bookmarks[mediaId.toString()]?.favoriteEpisodes ?? EMPTY_ARRAY)
+      : EMPTY_ARRAY,
   );
 
   // Calculate watched episodes count and percentage

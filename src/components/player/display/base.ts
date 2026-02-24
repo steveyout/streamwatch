@@ -834,6 +834,8 @@ export function makeVideoElementDisplayInterface(): DisplayInterface {
         if (source?.type === "hls") {
           if (hls) {
             hls.loadSource(proxiedUrl);
+          } else {
+            videoPlayer.src = proxiedUrl;
           }
         } else {
           videoPlayer.src = proxiedUrl;

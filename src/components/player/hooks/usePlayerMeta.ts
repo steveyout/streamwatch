@@ -36,17 +36,20 @@ export function usePlayerMeta() {
           poster: m.meta.poster,
           tmdbId: m.tmdbId ?? "",
           imdbId: m.imdbId,
+          overview: m.meta.overview,
           episodes: m.meta.seasonData.episodes.map((v) => ({
             number: v.number,
             title: v.title,
             tmdbId: v.id,
             air_date: v.air_date,
+            overview: v.overview,
           })),
           episode: {
             number: ep.number,
             title: ep.title,
             tmdbId: ep.id,
             air_date: ep.air_date,
+            overview: ep.overview,
           },
           season: {
             number: m.meta.seasonData.number,
@@ -62,6 +65,7 @@ export function usePlayerMeta() {
           poster: m.meta.poster,
           tmdbId: m.tmdbId ?? "",
           imdbId: m.imdbId,
+          overview: m.meta.overview,
         };
       }
       setDirectMeta(playerMeta);

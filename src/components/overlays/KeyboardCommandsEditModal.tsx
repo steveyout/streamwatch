@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 
 import { updateSettings } from "@/backend/accounts/settings";
 import { Button } from "@/components/buttons/Button";
+import { Toggle } from "@/components/buttons/Toggle";
 import { Dropdown } from "@/components/form/Dropdown";
 import { Icon, Icons } from "@/components/Icon";
 import { Modal, ModalCard, useModal } from "@/components/overlays/Modal";
@@ -203,6 +204,12 @@ export function KeyboardCommandsEditModal({
   const setKeyboardShortcuts = usePreferencesStore(
     (s) => s.setKeyboardShortcuts,
   );
+  const enableNumberKeySeeking = usePreferencesStore(
+    (s) => s.enableNumberKeySeeking,
+  );
+  const setEnableNumberKeySeeking = usePreferencesStore(
+    (s) => s.setEnableNumberKeySeeking,
+  );
 
   const [editingShortcuts, setEditingShortcuts] =
     useState<KeyboardShortcuts>(keyboardShortcuts);
@@ -212,6 +219,8 @@ export function KeyboardCommandsEditModal({
   );
   const [editingKey, setEditingKey] = useState<string>("");
   const [isCapturingKey, setIsCapturingKey] = useState(false);
+  const [editingEnableNumberKeySeeking, setEditingEnableNumberKeySeeking] =
+    useState(enableNumberKeySeeking);
 
   // Cancel any active editing when modal closes
   useEffect(() => {
@@ -220,8 +229,9 @@ export function KeyboardCommandsEditModal({
       setEditingModifier("");
       setEditingKey("");
       setIsCapturingKey(false);
+      setEditingEnableNumberKeySeeking(enableNumberKeySeeking);
     }
-  }, [modal.isShown]);
+  }, [modal.isShown, enableNumberKeySeeking]);
 
   const shortcutGroups = getShortcutGroups(t, editingShortcuts).map(
     (group) => ({
@@ -339,11 +349,13 @@ export function KeyboardCommandsEditModal({
 
   const handleSave = useCallback(async () => {
     setKeyboardShortcuts(editingShortcuts);
+    setEnableNumberKeySeeking(editingEnableNumberKeySeeking);
 
     if (account && backendUrl) {
       try {
         await updateSettings(backendUrl, account, {
           keyboardShortcuts: editingShortcuts,
+          enableNumberKeySeeking: editingEnableNumberKeySeeking,
         });
       } catch (error) {
         console.error("Failed to save keyboard shortcuts:", error);
@@ -353,9 +365,11 @@ export function KeyboardCommandsEditModal({
     hideModal(id);
   }, [
     editingShortcuts,
+    editingEnableNumberKeySeeking,
     account,
     backendUrl,
     setKeyboardShortcuts,
+    setEnableNumberKeySeeking,
     hideModal,
     id,
   ]);
@@ -508,6 +522,24 @@ export function KeyboardCommandsEditModal({
                 </div>
               </div>
             ))}
+            <div className="flex items-center justify-between py-3 border-t border-gray-700">
+              <div className="flex-1">
+                <p className="text-white font-medium">
+                  {t("global.keyboardShortcuts.numberKeySeeking")}
+                </p>
+                <p className="text-type-secondary text-sm">
+                  {t("global.keyboardShortcuts.numberKeySeekingDescription")}
+                </p>
+              </div>
+              <Toggle
+                enabled={editingEnableNumberKeySeeking}
+                onClick={() =>
+                  setEditingEnableNumberKeySeeking(
+                    !editingEnableNumberKeySeeking,
+                  )
+                }
+              />
+            </div>
           </div>
 
           <div className="flex justify-end gap-3 pt-4 border-t border-gray-700">

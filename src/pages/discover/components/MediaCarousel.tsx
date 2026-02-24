@@ -192,16 +192,20 @@ export function MediaCarousel({
   ]);
 
   // Fetch media using our hook
-  const { media, sectionTitle, actualContentType } = useDiscoverMedia({
-    contentType,
-    mediaType,
-    id: selectedProviderId || selectedGenreId || selectedRecommendationId,
-    fallbackType: content.fallback,
-    genreName: selectedGenreName,
-    providerName: selectedProviderName,
-    mediaTitle: selectedRecommendationTitle,
-    isCarouselView: true,
-  });
+  const { media, sectionTitle, actualContentType, error, isLoading } =
+    useDiscoverMedia({
+      contentType,
+      mediaType,
+      id: selectedProviderId || selectedGenreId || selectedRecommendationId,
+      fallbackType: content.fallback,
+      genreName: selectedGenreName,
+      providerName: selectedProviderName,
+      mediaTitle: selectedRecommendationTitle,
+      isCarouselView: true,
+    });
+
+  // Hide section if there's an error or no content (after loading is complete)
+  const shouldHide = !isLoading && (error || media.length === 0);
 
   // Find active button
   const activeButton = React.useMemo(() => {
@@ -303,6 +307,11 @@ export function MediaCarousel({
     mediaType,
     actualContentType,
   ]);
+
+  // Hide the entire section if there's an error or no content
+  if (shouldHide) {
+    return null;
+  }
 
   return (
     <div>

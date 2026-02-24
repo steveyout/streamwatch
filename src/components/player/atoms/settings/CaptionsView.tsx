@@ -27,6 +27,8 @@ import {
   sortLangCodes,
 } from "@/utils/language";
 
+import { useCaptionMatchScore } from "../../hooks/useCaptionMatchScore";
+
 /* eslint-disable react/no-unused-prop-types */
 export interface CaptionOptionProps {
   countryCode?: string;
@@ -41,12 +43,12 @@ export interface CaptionOptionProps {
   isTranslatedTarget?: boolean;
   subtitleUrl?: string;
   subtitleType?: string;
-  // subtitle details from wyzie
   subtitleSource?: string;
   subtitleEncoding?: string;
   isHearingImpaired?: boolean;
   onDoubleClick?: () => void;
   onTranslate?: () => void;
+  matchScore?: number | null;
 }
 /* eslint-enable react/no-unused-prop-types */
 
@@ -128,12 +130,17 @@ export function CaptionOption(props: CaptionOptionProps) {
       parts.push(`URL: ${props.subtitleUrl}`);
     }
 
+    if (props.matchScore !== undefined && props.matchScore !== null) {
+      parts.push(`Match Score: ${props.matchScore}%`);
+    }
+
     return parts.join("\n");
   }, [
     props.subtitleUrl,
     props.subtitleSource,
     props.subtitleEncoding,
     props.isHearingImpaired,
+    props.matchScore,
   ]);
 
   const handleMouseEnter = () => {
@@ -176,45 +183,64 @@ export function CaptionOption(props: CaptionOptionProps) {
       >
         <span
           data-active-link={props.selected ? true : undefined}
-          className="flex items-center"
+          className="flex flex-col items-start"
         >
-          {props.flag ? (
-            <span data-code={props.countryCode} className="mr-3 inline-flex">
-              <FlagIcon langCode={props.countryCode} />
-            </span>
-          ) : null}
-          <span
-            className={
-              props.flag || props.subtitleUrl || props.subtitleSource
-                ? "truncate max-w-[100px]"
-                : ""
-            }
-          >
-            {props.children}
-          </span>
-          {props.subtitleType && (
-            <span className="ml-2 px-2 py-0.5 rounded bg-video-context-hoverColor bg-opacity-80 text-video-context-type-main text-xs font-semibold">
-              {props.subtitleType.toUpperCase()}
-            </span>
-          )}
-          {props.subtitleSource && (
+          <div className="flex items-center">
+            {props.flag ? (
+              <span data-code={props.countryCode} className="mr-3 inline-flex">
+                <FlagIcon langCode={props.countryCode} />
+              </span>
+            ) : null}
             <span
-              className={classNames(
-                "ml-2 px-2 py-0.5 rounded text-white text-xs font-semibold overflow-hidden text-ellipsis whitespace-nowrap",
-                {
-                  "bg-blue-500": props.subtitleSource.includes("wyzie"),
-                  "bg-orange-500": props.subtitleSource === "opensubs",
-                  "bg-purple-500": props.subtitleSource === "febbox",
-                  "bg-green-500": props.subtitleSource === "granite",
-                },
-              )}
+              className={
+                props.flag || props.subtitleUrl || props.subtitleSource
+                  ? "truncate max-w-[100px]"
+                  : ""
+              }
             >
-              {props.subtitleSource.toUpperCase()}
+              {props.children}
             </span>
-          )}
-          {props.isHearingImpaired && (
-            <Icon icon={Icons.EAR} className="ml-2" />
-          )}
+          </div>
+          <div className="flex items-center">
+            {props.subtitleType && (
+              <span className="px-2 py-0.5 mt-2 rounded bg-video-context-hoverColor bg-opacity-80 text-video-context-type-main text-xs font-semibold">
+                {props.subtitleType.toUpperCase()}
+              </span>
+            )}
+            {props.subtitleSource && (
+              <span
+                className={classNames(
+                  "ml-2 px-2 py-0.5 mt-2 rounded text-white text-xs font-semibold overflow-hidden text-ellipsis whitespace-nowrap",
+                  {
+                    "bg-blue-500": props.subtitleSource.includes("wyzie"),
+                    "bg-orange-500": props.subtitleSource === "opensubs",
+                    "bg-purple-500": props.subtitleSource === "febbox",
+                    "bg-green-500": props.subtitleSource === "granite",
+                  },
+                )}
+              >
+                {props.subtitleSource.toUpperCase()}
+              </span>
+            )}
+            {props.isHearingImpaired && (
+              <Icon icon={Icons.EAR} className="ml-2 mt-2" />
+            )}
+            {props.matchScore !== undefined && props.matchScore !== null && (
+              <span
+                className={classNames(
+                  "text-xs font-bold ml-2 mt-2 whitespace-nowrap",
+                  {
+                    "text-video-context-type-accent": props.matchScore >= 80,
+                    "text-yellow-500":
+                      props.matchScore >= 50 && props.matchScore < 80,
+                    "text-video-context-error": props.matchScore < 50,
+                  },
+                )}
+              >
+                ~{props.matchScore}% match
+              </span>
+            )}
+          </div>
         </span>
       </SelectableLink>
       {tooltipContent && showTooltip && (
@@ -420,7 +446,7 @@ export function CaptionsView({
 }: CaptionsViewProps) {
   const { t } = useTranslation();
   const router = useOverlayRouter(id);
-  const selectedCaptionId = usePlayerStore((s) => s.caption.selected?.id);
+  const selectedCaption = usePlayerStore((s) => s.caption.selected);
   const currentTranslateTask = usePlayerStore((s) => s.caption.translateTask);
   const { disable, selectRandomCaptionFromLastUsedLanguage } = useCaptions();
   const [isRandomSelecting, setIsRandomSelecting] = useState(false);
@@ -447,6 +473,7 @@ export function CaptionsView({
   const delay = useSubtitleStore((s) => s.delay);
   const appLanguage = useLanguageStore((s) => s.language);
   const setCustomSubs = useSubtitleStore((s) => s.setCustomSubs);
+  const matchScore = useCaptionMatchScore();
 
   // Get combined caption list
   const captions = useMemo(
@@ -512,13 +539,13 @@ export function CaptionsView({
 
   // Get current subtitle text preview
   const currentSubtitleText = useMemo(() => {
-    if (!srtData || !selectedCaptionId) return null;
+    if (!srtData || !selectedCaption) return null;
     const parsedCaptions = parseSubtitles(srtData, selectedLanguage);
     const visibleCaption = parsedCaptions.find(({ start, end }) =>
       captionIsVisible(start, end, delay, videoTime),
     );
     return visibleCaption?.content;
-  }, [srtData, selectedLanguage, delay, videoTime, selectedCaptionId]);
+  }, [srtData, selectedLanguage, delay, videoTime, selectedCaption]);
 
   function onDrop(event: DragEvent<HTMLDivElement>) {
     event.preventDefault();
@@ -614,7 +641,7 @@ export function CaptionsView({
         onDrop={(event) => onDrop(event)}
       >
         {/* Current subtitle preview */}
-        {selectedCaptionId && (
+        {selectedCaption && (
           <div className="mt-3 p-2 rounded-xl bg-video-context-light bg-opacity-10 text-center sm:hidden">
             <div className="text-sm text-video-context-type-secondary mb-1">
               {t("player.menus.subtitles.previewLabel")}
@@ -641,10 +668,7 @@ export function CaptionsView({
 
         <Menu.ScrollToActiveSection className="!pt-1 mt-2 pb-3">
           {/* Off button */}
-          <CaptionOption
-            onClick={() => disable()}
-            selected={!selectedCaptionId}
-          >
+          <CaptionOption onClick={() => disable()} selected={!selectedCaption}>
             {t("player.menus.subtitles.offChoice")}
           </CaptionOption>
 
@@ -652,14 +676,28 @@ export function CaptionsView({
           {captions.length > 0 && (
             <CaptionOption
               onClick={() => handleRandomSelect()}
-              selected={!!selectedCaptionId}
+              selected={!!selectedCaption}
               loading={isRandomSelecting}
             >
               <div className="flex flex-col">
                 {t("player.menus.subtitles.autoSelectChoice")}
-                {selectedCaptionId && (
+                {selectedCaption && (
                   <span className="text-video-context-type-secondary text-xs">
                     {t("player.menus.subtitles.autoSelectDifferentChoice")}
+                  </span>
+                )}
+                {matchScore !== undefined && matchScore !== null && (
+                  <span
+                    className={classNames(
+                      "text-xs font-bold mt-2 whitespace-nowrap",
+                      {
+                        "text-video-context-type-accent": matchScore >= 80,
+                        "text-yellow-500": matchScore >= 50 && matchScore < 80,
+                        "text-video-context-error": matchScore < 50,
+                      },
+                    )}
+                  >
+                    ~{matchScore}% match
                   </span>
                 )}
               </div>
@@ -671,10 +709,10 @@ export function CaptionsView({
 
           {/* Paste subtitle option */}
           <PasteCaptionOption
-            selected={selectedCaptionId === "pasted-caption"}
+            selected={selectedCaption?.id === "pasted-caption"}
           />
 
-          {selectedCaptionId && (
+          {selectedCaption && (
             <Menu.ChevronLink
               onClick={() => router.navigate("/captions/transcript")}
             >

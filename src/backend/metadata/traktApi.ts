@@ -303,6 +303,7 @@ export const getParamountTVShows = () => fetchFromTrakt("/paramounttv");
 // Popular content
 export const getPopularTVShows = () => fetchFromTrakt("/populartv");
 export const getPopularMovies = () => fetchFromTrakt("/popularmovies");
+export const getTop10Movies = () => fetchFromTrakt("/top10");
 
 // Discovery content used for the featured carousel
 export const getDiscoverContent = () =>

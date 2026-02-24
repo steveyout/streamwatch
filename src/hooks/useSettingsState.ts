@@ -8,7 +8,7 @@ import {
 } from "react";
 
 import { SubtitleStyling } from "@/stores/subtitles";
-import { usePreviewThemeStore } from "@/stores/theme";
+import { usePreviewThemeStore, useThemeStore } from "@/stores/theme";
 
 export function useDerived<T>(
   initial: T,
@@ -58,6 +58,8 @@ export function useSettingsState(
     | undefined,
   enableThumbnails: boolean,
   enableAutoplay: boolean,
+  enableSkipCredits: boolean,
+  enableAutoSkipSegments: boolean,
   enableDiscover: boolean,
   enableFeatured: boolean,
   enableDetailsModal: boolean,
@@ -68,7 +70,6 @@ export function useSettingsState(
   embedOrder: string[],
   enableEmbedOrder: boolean,
   proxyTmdb: boolean,
-  enableSkipCredits: boolean,
   enableImageLogos: boolean,
   enableCarouselView: boolean,
   enableMinimalCards: boolean,
@@ -80,6 +81,12 @@ export function useSettingsState(
   manualSourceSelection: boolean,
   enableDoubleClickToSeek: boolean,
   enableAutoResumeOnPlaybackError: boolean,
+  enablePauseOverlay: boolean,
+  customTheme: {
+    primary: string;
+    secondary: string;
+    tertiary: string;
+  },
 ) {
   const [proxyUrlsState, setProxyUrls, resetProxyUrls, proxyUrlsChanged] =
     useDerived(proxyUrls);
@@ -143,6 +150,12 @@ export function useSettingsState(
     resetEnableSkipCredits,
     enableSkipCreditsChanged,
   ] = useDerived(enableSkipCredits);
+  const [
+    enableAutoSkipSegmentsState,
+    setEnableAutoSkipSegmentsState,
+    resetEnableAutoSkipSegments,
+    enableAutoSkipSegmentsChanged,
+  ] = useDerived(enableAutoSkipSegments);
   const [
     enableDiscoverState,
     setEnableDiscoverState,
@@ -265,6 +278,19 @@ export function useSettingsState(
     resetEnableAutoResumeOnPlaybackError,
     enableAutoResumeOnPlaybackErrorChanged,
   ] = useDerived(enableAutoResumeOnPlaybackError);
+  const [
+    enablePauseOverlayState,
+    setEnablePauseOverlayState,
+    resetEnablePauseOverlay,
+    enablePauseOverlayChanged,
+  ] = useDerived(enablePauseOverlay);
+  const [
+    customThemeState,
+    setCustomThemeState,
+    resetCustomTheme,
+    customThemeChanged,
+  ] = useDerived(customTheme);
+  const setCustomThemeStore = useThemeStore((s) => s.setCustomTheme);
 
   function reset() {
     resetTheme();
@@ -282,6 +308,7 @@ export function useSettingsState(
     resetEnableThumbnails();
     resetEnableAutoplay();
     resetEnableSkipCredits();
+    resetEnableAutoSkipSegments();
     resetEnableDiscover();
     resetEnableFeatured();
     resetEnableDetailsModal();
@@ -303,6 +330,8 @@ export function useSettingsState(
     resetManualSourceSelection();
     resetEnableDoubleClickToSeek();
     resetEnableAutoResumeOnPlaybackError();
+    resetEnablePauseOverlay();
+    resetCustomTheme();
   }
 
   const changed =
@@ -321,6 +350,7 @@ export function useSettingsState(
     enableThumbnailsChanged ||
     enableAutoplayChanged ||
     enableSkipCreditsChanged ||
+    enableAutoSkipSegmentsChanged ||
     enableDiscoverChanged ||
     enableFeaturedChanged ||
     enableDetailsModalChanged ||
@@ -341,7 +371,9 @@ export function useSettingsState(
     homeSectionOrderChanged ||
     manualSourceSelectionChanged ||
     enableDoubleClickToSeekChanged ||
-    enableAutoResumeOnPlaybackErrorChanged;
+    enableAutoResumeOnPlaybackErrorChanged ||
+    enablePauseOverlayChanged ||
+    customThemeChanged;
 
   return {
     reset,
@@ -420,6 +452,11 @@ export function useSettingsState(
       state: enableSkipCreditsState,
       set: setEnableSkipCreditsState,
       changed: enableSkipCreditsChanged,
+    },
+    enableAutoSkipSegments: {
+      state: enableAutoSkipSegmentsState,
+      set: setEnableAutoSkipSegmentsState,
+      changed: enableAutoSkipSegmentsChanged,
     },
     enableDiscover: {
       state: enableDiscoverState,
@@ -525,6 +562,19 @@ export function useSettingsState(
       state: enableAutoResumeOnPlaybackErrorState,
       set: setEnableAutoResumeOnPlaybackErrorState,
       changed: enableAutoResumeOnPlaybackErrorChanged,
+    },
+    enablePauseOverlay: {
+      state: enablePauseOverlayState,
+      set: setEnablePauseOverlayState,
+      changed: enablePauseOverlayChanged,
+    },
+    customTheme: {
+      state: customThemeState,
+      set: (v: { primary: string; secondary: string; tertiary: string }) => {
+        setCustomThemeState(v);
+        setCustomThemeStore(v);
+      },
+      changed: customThemeChanged,
     },
   };
 }

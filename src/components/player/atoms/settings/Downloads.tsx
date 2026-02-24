@@ -1,74 +1,14 @@
-import { Listbox } from "@headlessui/react";
 import { useCallback, useMemo } from "react";
 import { Trans, useTranslation } from "react-i18next";
 import { useCopyToClipboard } from "react-use";
 
 import { Button } from "@/components/buttons/Button";
-import { OptionItem } from "@/components/form/Dropdown";
 import { Icon, Icons } from "@/components/Icon";
 import { OverlayPage } from "@/components/overlays/OverlayPage";
 import { Menu } from "@/components/player/internals/ContextMenu";
 import { convertSubtitlesToSrtDataurl } from "@/components/player/utils/captions";
-import { Transition } from "@/components/utils/Transition";
 import { useOverlayRouter } from "@/hooks/useOverlayRouter";
 import { usePlayerStore } from "@/stores/player/store";
-
-function PlayerDropdown({
-  options,
-  onSelectOption,
-}: {
-  options: OptionItem[];
-  onSelectOption: (option: OptionItem) => void;
-}) {
-  const { t } = useTranslation();
-  const defaultLabel = t("player.menus.downloads.openIn");
-
-  return (
-    <div className="relative w-full mb-3">
-      <Listbox onChange={onSelectOption}>
-        {({ open }) => (
-          <>
-            <Listbox.Button className="relative z-[101] w-full rounded-lg bg-dropdown-background hover:bg-dropdown-hoverBackground py-3 pl-3 pr-10 text-left text-white shadow-md focus:outline-none tabbable cursor-pointer">
-              <span className="flex gap-4 items-center truncate">
-                {defaultLabel}
-              </span>
-              <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
-                <Icon
-                  icon={Icons.UP_DOWN_ARROW}
-                  className="transform transition-transform text-xl text-dropdown-secondary rotate-180"
-                />
-              </span>
-            </Listbox.Button>
-            <Transition
-              animation="slide-down"
-              show={open}
-              className="absolute z-[102] bottom-full mb-1 w-full max-h-60 overflow-auto rounded-lg bg-dropdown-background py-1 text-white shadow-lg ring-1 ring-black ring-opacity-5 scrollbar-thin scrollbar-track-background-secondary scrollbar-thumb-type-secondary focus:outline-none"
-            >
-              <Listbox.Options static className="py-1">
-                {options.map((opt) => (
-                  <Listbox.Option
-                    className={({ active }) =>
-                      `cursor-pointer flex gap-4 items-center relative select-none py-2 px-4 mx-1 rounded-lg ${
-                        active
-                          ? "bg-background-secondaryHover text-type-link"
-                          : "text-type-secondary"
-                      }`
-                    }
-                    key={opt.id}
-                    value={opt}
-                  >
-                    {opt.leftIcon ? opt.leftIcon : null}
-                    {opt.name}
-                  </Listbox.Option>
-                ))}
-              </Listbox.Options>
-            </Transition>
-          </>
-        )}
-      </Listbox>
-    </div>
-  );
-}
 
 export function useDownloadLink() {
   const source = usePlayerStore((s) => s.source);
@@ -132,42 +72,6 @@ export function DownloadView({ id }: { id: string }) {
     window.open(dataUrl);
   }, [selectedCaption]);
 
-  const playerOptions = useMemo(
-    () => [
-      { id: "vlc", name: t("player.menus.downloads.vlc") },
-      { id: "iina", name: t("player.menus.downloads.iina") },
-      { id: "outplayer", name: t("player.menus.downloads.outplayer") },
-    ],
-    [t],
-  );
-
-  const openInExternalPlayer = useCallback(
-    (option: OptionItem) => {
-      if (!downloadUrl) return;
-
-      let externalUrl = "";
-
-      switch (option.id) {
-        case "vlc":
-          externalUrl = `vlc://${downloadUrl}`;
-          break;
-        case "iina":
-          externalUrl = `iina://weblink?url=${encodeURIComponent(downloadUrl)}`;
-          break;
-        case "outplayer":
-          externalUrl = `outplayer://${downloadUrl}`;
-          break;
-        default:
-          break;
-      }
-
-      if (externalUrl) {
-        window.open(externalUrl);
-      }
-    },
-    [downloadUrl],
-  );
-
   if (!downloadUrl) return null;
 
   return (
@@ -182,14 +86,6 @@ export function DownloadView({ id }: { id: string }) {
               <Menu.Paragraph marginClass="mb-6">
                 <StyleTrans k="player.menus.downloads.hlsDisclaimer" />
               </Menu.Paragraph>
-
-              <PlayerDropdown
-                options={playerOptions}
-                onSelectOption={openInExternalPlayer}
-              />
-              <p className="text-xs pb-4 text-type-danger">
-                <Trans i18nKey="player.menus.downloads.hlsOpenInDisclaimer" />
-              </p>
 
               <Button className="w-full mt-2" theme="purple" href={hlsDownload}>
                 {t("player.menus.downloads.button")}
@@ -245,11 +141,6 @@ export function DownloadView({ id }: { id: string }) {
               <Menu.Paragraph marginClass="my-6">
                 <StyleTrans k="player.menus.downloads.disclaimer" />
               </Menu.Paragraph>
-
-              <PlayerDropdown
-                options={playerOptions}
-                onSelectOption={openInExternalPlayer}
-              />
 
               <Button className="w-full" href={downloadUrl} theme="purple">
                 {t("player.menus.downloads.downloadVideo")}

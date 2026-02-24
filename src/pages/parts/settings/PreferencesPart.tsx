@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { Trans, useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
@@ -9,6 +9,7 @@ import { Toggle } from "@/components/buttons/Toggle";
 import { FlagIcon } from "@/components/FlagIcon";
 import { Dropdown } from "@/components/form/Dropdown";
 import { SortableList } from "@/components/form/SortableList";
+import { Icon, Icons } from "@/components/Icon";
 import { Heading1 } from "@/components/utils/Text";
 import { appLanguageOptions } from "@/setup/i18n";
 import { useOverlayStack } from "@/stores/interface/overlayStack";
@@ -24,6 +25,8 @@ export function PreferencesPart(props: {
   setEnableAutoplay: (v: boolean) => void;
   enableSkipCredits: boolean;
   setEnableSkipCredits: (v: boolean) => void;
+  enableAutoSkipSegments: boolean;
+  setEnableAutoSkipSegments: (v: boolean) => void;
   sourceOrder: string[];
   setSourceOrder: (v: string[]) => void;
   enableSourceOrder: boolean;
@@ -43,6 +46,7 @@ export function PreferencesPart(props: {
 }) {
   const { t } = useTranslation();
   const { showModal } = useOverlayStack();
+  const [isSourceListExpanded, setIsSourceListExpanded] = useState(false);
   const sorted = sortLangCodes(appLanguageOptions.map((item) => item.code));
 
   const allowAutoplay = isAutoplayAllowed();
@@ -174,6 +178,29 @@ export function PreferencesPart(props: {
                     <p className="flex-1 text-white font-bold">
                       {t("settings.preferences.skipCreditsLabel")}
                     </p>
+                  </div>
+
+                  {/* Auto Skip Segments Preference */}
+                  <div className="pt-4 mt-4">
+                    <p className="text-white font-bold mb-3">
+                      {t("settings.preferences.autoSkipSegments")}
+                    </p>
+                    <p className="max-w-[25rem] font-medium">
+                      {t("settings.preferences.autoSkipSegmentsDescription")}
+                    </p>
+                    <div
+                      onClick={() =>
+                        props.setEnableAutoSkipSegments(
+                          !props.enableAutoSkipSegments,
+                        )
+                      }
+                      className="bg-dropdown-background hover:bg-dropdown-hoverBackground select-none my-4 cursor-pointer space-x-3 flex items-center max-w-[25rem] py-3 px-4 rounded-lg"
+                    >
+                      <Toggle enabled={props.enableAutoSkipSegments} />
+                      <p className="flex-1 text-white font-bold">
+                        {t("settings.preferences.autoSkipSegmentsLabel")}
+                      </p>
+                    </div>
                   </div>
                 </div>
               )}
@@ -356,12 +383,41 @@ export function PreferencesPart(props: {
 
             {props.enableSourceOrder && (
               <div className="w-full flex flex-col gap-4">
-                <SortableList
-                  items={sourceItems}
-                  setItems={(items) =>
-                    props.setSourceOrder(items.map((item) => item.id))
-                  }
-                />
+                <div
+                  className={classNames(
+                    "overflow-hidden transition-all duration-300",
+                    sourceItems.length > 10 && !isSourceListExpanded
+                      ? "max-h-[400px]"
+                      : "max-h-none",
+                  )}
+                >
+                  <SortableList
+                    items={sourceItems}
+                    setItems={(items) =>
+                      props.setSourceOrder(items.map((item) => item.id))
+                    }
+                  />
+                </div>
+                {sourceItems.length > 10 && (
+                  <Button
+                    className="max-w-[25rem]"
+                    theme="secondary"
+                    onClick={() =>
+                      setIsSourceListExpanded(!isSourceListExpanded)
+                    }
+                  >
+                    {isSourceListExpanded
+                      ? t("settings.preferences.showLess")
+                      : t("settings.preferences.showMore")}
+                    <Icon
+                      icon={
+                        isSourceListExpanded
+                          ? Icons.CHEVRON_UP
+                          : Icons.CHEVRON_DOWN
+                      }
+                    />
+                  </Button>
+                )}
                 <Button
                   className="max-w-[25rem]"
                   theme="secondary"

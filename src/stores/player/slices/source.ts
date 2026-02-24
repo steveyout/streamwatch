@@ -29,6 +29,7 @@ export interface PlayerMetaEpisode {
   tmdbId: string;
   title: string;
   air_date?: string;
+  overview?: string;
 }
 
 export interface PlayerMeta {
@@ -38,6 +39,7 @@ export interface PlayerMeta {
   imdbId?: string;
   releaseYear: number;
   poster?: string;
+  overview?: string;
   episodes?: PlayerMetaEpisode[];
   episode?: PlayerMetaEpisode;
   season?: {

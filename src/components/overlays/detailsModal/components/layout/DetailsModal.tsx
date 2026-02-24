@@ -55,7 +55,7 @@ export function DetailsModal({
       try {
         const type =
           data.type === "movie" ? TMDBContentTypes.MOVIE : TMDBContentTypes.TV;
-        const details = await getMediaDetails(data.id.toString(), type);
+        const details = await getMediaDetails(data.id.toString(), type, false);
         const backdropUrl = getMediaBackdrop(details.backdrop_path);
         const logoUrl = await getMediaLogo(data.id.toString(), type);
         if (type === TMDBContentTypes.MOVIE) {

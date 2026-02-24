@@ -80,8 +80,9 @@ export function Footer() {
               {t("footer.links.github")}
             </FooterLink>
           )}
-          <FooterLink icon={Icons.DISCORD} href={conf().DISCORD_LINK}>
-            {t("footer.links.discord")}
+          {/* TODO: remove discord text */}
+          <FooterLink icon={Icons.FLUXER} href={conf().FLUXER_LINK}>
+            {t("footer.links.fluxer")}/Discord
           </FooterLink>
           <FooterLink href="https://rentry.co/nnqtas3e" icon={Icons.TIP_JAR}>
             {t("footer.links.funding")}

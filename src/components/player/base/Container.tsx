@@ -1,6 +1,7 @@
 import { ReactNode, RefObject, useEffect, useRef } from "react";
 
 import { OverlayDisplay } from "@/components/overlays/OverlayDisplay";
+import { AutoSkipSegments } from "@/components/player/internals/AutoSkipSegments";
 import { SkipTracker } from "@/components/player/internals/Backend/SkipTracker";
 import { CastingInternal } from "@/components/player/internals/CastingInternal";
 import { HeadUpdater } from "@/components/player/internals/HeadUpdater";
@@ -100,6 +101,7 @@ export function Container(props: PlayerProps) {
         <WatchPartyReporter />
         <SkipTracker />
         <WatchPartyResetter />
+        <AutoSkipSegments />
         <div className="relative h-screen overflow-hidden">
           <VideoClickTarget showingControls={props.showingControls} />
           <HeadUpdater />

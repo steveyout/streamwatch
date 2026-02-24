@@ -67,6 +67,9 @@ export function KeyboardEvents() {
   const setEnableNativeSubtitles = usePreferencesStore(
     (s) => s.setEnableNativeSubtitles,
   );
+  const enableNumberKeySeeking = usePreferencesStore(
+    (s) => s.enableNumberKeySeeking,
+  );
 
   const [isRolling, setIsRolling] = useState(false);
   const volumeDebounce = useRef<ReturnType<typeof setTimeout> | undefined>();
@@ -314,6 +317,7 @@ export function KeyboardEvents() {
     keyboardShortcuts,
     enableNativeSubtitles,
     setEnableNativeSubtitles,
+    enableNumberKeySeeking,
   });
 
   useEffect(() => {
@@ -350,6 +354,7 @@ export function KeyboardEvents() {
       keyboardShortcuts,
       enableNativeSubtitles,
       setEnableNativeSubtitles,
+      enableNumberKeySeeking,
     };
   }, [
     setShowVolume,
@@ -379,6 +384,7 @@ export function KeyboardEvents() {
     keyboardShortcuts,
     enableNativeSubtitles,
     setEnableNativeSubtitles,
+    enableNumberKeySeeking,
   ]);
 
   useEffect(() => {
@@ -606,6 +612,7 @@ export function KeyboardEvents() {
       // Skip to percentage with number keys (0-9) - locked, always use number keys
       // Number keys are reserved for progress skipping, so handle them before customizable shortcuts
       if (
+        dataRef.current.enableNumberKeySeeking &&
         /^[0-9]$/.test(k) &&
         dataRef.current.duration > 0 &&
         !evt.ctrlKey &&

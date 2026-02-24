@@ -1,5 +1,8 @@
-import { DeepPartial } from "vite-plugin-checker/dist/esm/types";
 import { defaultTheme } from "./default";
+
+export type DeepPartial<T> = {
+  [P in keyof T]?: T[P] extends object ? DeepPartial<T[P]> : T[P];
+};
 
 export interface Theme {
   name: string;

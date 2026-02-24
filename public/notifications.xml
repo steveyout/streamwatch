@@ -9,6 +9,51 @@
     <atom:link href="https://pstream.mov/notifications.xml" rel="self" type="application/rss+xml" />
 
     <item>
+      <guid>notification-060</guid>
+      <title>P-Stream v5.3.6 released!</title>
+      <description>WOW, crazy day! Our Discord server got taken down so we had to move to a new one, but I got an update for you!
+
+I'm sad to see 25,000 members and thousands of messages gone. I'll take a while to get all of those back up. Especially all the feature requests that we kept track of in discord. 😭 
+
+Anyway, we're back up and this time we've got a backup system figured out in case it ever happens again.
+
+To make it up to you all, I've released a new version of P-Stream with some bug fixes and improvements.
+
+Additions:
+- Added new 'Pause Overlay' setting to show the title and description of the current media when the player is paused and idle for 10 seconds.
+- New custom theme! You can now mix and match other themes to create your own custom theme!
+- Added a new caption match percentage. It uses TheIntroDB to ensure the subtitle doesn't overlap with the credits.
+- Added "For You" section to the discover page! Pulling from watch history and bookmarks.
+- Added new "Top 10" Movies section to the discover page!
+- Added a new 'Auto Skip Segments' setting.
+- Added support for preview segments from TheIntroDB!
+- Added a link to the desktop app on the onboarding page.
+- Added a toggle to disable 0-9 progress keyboard shortcuts.
+- Made custom source order collapsable.
+
+Fixes:
+- Fixed bookmarking a whole collection removing already bookmarked media from previous bookmark groups.
+- Hid the chromecast/airplay button when the stream requires extra headers that aren't supported when casting.
+- Fixed favoriting episodes not populating the favorites 'season' immediately.
+- Removed 'open in external player' button from the player — it never really worked.
+- Remove duplicate media from more content pages.
+- Made the details modal load much faster letting each section load individually.
+- Synced some settings that weren't already synced to the backend.
+- Improved season metadata fetching to be faster.
+- Attempted to fix the subtitles not showing for some users.
+- Many other bugs and issues!
+
+Thanks to everyone who helped build the server back up and get everything running as it was before. Can't express how much I appreciate all of you.  Truly amazing community and friends. 🫶
+
+If you know anyone who was in the old server and isn't now, please invite them, that would be appreciated! Also, if you have any archives or content that is missing, please help us add it back!
+
+Enjoy all the new features and fixes!
+      </description>
+      <pubDate>Fri, 20 Feb 2026 21:00:00 MST</pubDate>
+      <category>update</category>
+    </item>
+
+    <item>
       <guid>notification-059</guid>
       <title>StreamWatch desktop app is now available!</title>
       <description>The StreamWatch desktop app is now available for download! You can now stream movies and TV shows separately from your browser!
@@ -400,7 +445,7 @@ Just to clarify, the extension is still working perfectly fine, it's just the up
 The whole story behind me accidentally deleting my Firefox account is on our Discord server, feel free to ask there! (link below)
 
 I apologize for the inconvenience!</description>
-      <link>https://discord.gg/7z6znYgrTG</link>
+      <link>https://fluxer.gg/rEBQ3B8E</link>
       <pubDate>Mon, 08 Sep 2025 16:00:00 MST</pubDate>
       <category>announcement</category>
     </item>

@@ -25,8 +25,10 @@ interface WatchPartyStore {
 }
 
 // Generate a random 4-digit code
-const generateRoomCode = (): string => {
-  return Math.floor(1000 + Math.random() * 9000).toString();
+export const generateRoomCode = (): string => {
+  const array = new Uint32Array(1);
+  crypto.getRandomValues(array);
+  return (1000 + (array[0] % 9000)).toString();
 };
 
 // Helper function to reset playback rate to 1x

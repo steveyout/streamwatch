@@ -47,6 +47,7 @@ export function formatTMDBMetaResult(
       object_type: mediaTypeToTMDB(type),
       poster: getMediaPoster(movie.poster_path) ?? undefined,
       original_release_date: new Date(movie.release_date),
+      overview: movie.overview || undefined,
     };
   }
   if (type === MWMediaType.SERIES) {
@@ -62,6 +63,7 @@ export function formatTMDBMetaResult(
       })),
       poster: getMediaPoster(show.poster_path) ?? undefined,
       original_release_date: new Date(show.first_air_date),
+      overview: show.overview,
     };
   }
 

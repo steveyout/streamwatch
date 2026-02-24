@@ -25,6 +25,7 @@ export type TMDBMediaResult = {
   original_release_date?: Date;
   object_type: TMDBContentTypes;
   seasons?: TMDBSeasonShort[];
+  overview?: string;
 };
 
 export type TMDBSeasonMetaResult = {

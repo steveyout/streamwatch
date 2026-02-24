@@ -18,11 +18,12 @@
     "baseUrl": "./src",
     "paths": {
       "@/*": ["./*"],
+      "@themes/*": ["../themes/*"],
       "@sozialhelden/ietf-language-tags": [
         "../node_modules/@sozialhelden/ietf-language-tags/dist/cjs"
       ]
     },
     "typeRoots": ["node_modules/@types"]
   },
-  "include": ["src"]
+  "include": ["src", "themes"]
 }

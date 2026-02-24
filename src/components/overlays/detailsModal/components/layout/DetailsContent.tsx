@@ -2,6 +2,7 @@ import { t } from "i18next";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useCopyToClipboard } from "react-use";
 
+import { getSeasonDetails } from "@/backend/metadata/tmdb";
 import { getNetworkContent } from "@/backend/metadata/traktApi";
 import { TMDBContentTypes } from "@/backend/metadata/types/tmdb";
 import { Icon, Icons } from "@/components/Icon";
@@ -33,6 +34,12 @@ export function DetailsContent({ data, minimal = false }: DetailsContentProps) {
   const [showTrailer, setShowTrailer] = useState(false);
   const [showCollection, setShowCollection] = useState(false);
   const [selectedSeason, setSelectedSeason] = useState<number>(1);
+  const [fetchedSeasons, setFetchedSeasons] = useState<Record<number, any[]>>(
+    {},
+  );
+  const [loadingSeasons, setLoadingSeasons] = useState<Record<number, boolean>>(
+    {},
+  );
   const [, copyToClipboard] = useCopyToClipboard();
   const [hasCopiedShare, setHasCopiedShare] = useState(false);
   const [logoHeight, setLogoHeight] = useState<number>(0);
@@ -68,6 +75,54 @@ export function DetailsContent({ data, minimal = false }: DetailsContentProps) {
       setSelectedSeason(showProgress.season.number);
     }
   }, [showProgress]);
+
+  // Fetch episodes for selected season
+  useEffect(() => {
+    const fetchSeason = async (seasonNumber: number) => {
+      if (
+        !data.id ||
+        seasonNumber === -1 ||
+        fetchedSeasons[seasonNumber] ||
+        loadingSeasons[seasonNumber]
+      )
+        return;
+
+      setLoadingSeasons((prev) => ({ ...prev, [seasonNumber]: true }));
+      try {
+        const episodes = await getSeasonDetails(
+          data.id.toString(),
+          seasonNumber,
+        );
+        setFetchedSeasons((prev) => ({ ...prev, [seasonNumber]: episodes }));
+      } catch (err) {
+        console.error("Failed to fetch season details:", err);
+      } finally {
+        setLoadingSeasons((prev) => ({ ...prev, [seasonNumber]: false }));
+      }
+    };
+
+    if (data.type === "show") {
+      if (selectedSeason !== -1) {
+        fetchSeason(selectedSeason);
+      } else if (data.seasonData?.seasons) {
+        // Fetch all seasons for favorites
+        data.seasonData.seasons.forEach((season) => {
+          fetchSeason(season.season_number);
+        });
+      }
+    }
+  }, [
+    data.id,
+    data.type,
+    selectedSeason,
+    fetchedSeasons,
+    loadingSeasons,
+    data.seasonData,
+  ]);
+
+  const allEpisodes = useMemo(() => {
+    return Object.values(fetchedSeasons).flat();
+  }, [fetchedSeasons]);
 
   // Add effect to measure logo height
   useEffect(() => {
@@ -403,7 +458,7 @@ export function DetailsContent({ data, minimal = false }: DetailsContentProps) {
         {/* Episodes Carousel for TV Shows */}
         {data.type === "show" && data.seasonData && !minimal && (
           <EpisodeCarousel
-            episodes={data.seasonData.episodes}
+            episodes={allEpisodes}
             showProgress={showProgress}
             progress={progress}
             selectedSeason={selectedSeason}

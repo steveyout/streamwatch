@@ -6,6 +6,7 @@ export type DiscoverContentType =
   | "latest"
   | "latest4k"
   | "latesttv"
+  | "top10"
   | "genre"
   | "provider"
   | "editorPicks"
@@ -116,6 +117,10 @@ const MOVIES_DATA: EditorPick[] = [
   { id: 198184, type: "movie" }, // Chappie
   { id: 405774, type: "movie" }, // Bird Box
   { id: 333339, type: "movie" }, // Ready Player One
+  { id: 16859, type: "movie" }, // Kiki's Delivery Service
+  { id: 1268, type: "movie" }, // Mr. Bean's Holiday
+  { id: 85, type: "movie" }, // Indiana Jones and the Raiders of the Lost Ark
+  { id: 530915, type: "movie" }, // 1917
 ];
 
 const TV_SHOWS_DATA: EditorPick[] = [
@@ -146,6 +151,7 @@ const TV_SHOWS_DATA: EditorPick[] = [
   { id: 42009, type: "show" }, // Black Mirror
   { id: 86831, type: "show" }, // Love, Death & Robots
   { id: 261579, type: "show" }, // Secret Level
+  { id: 66573, type: "show" }, // The Good Place
 ];
 
 export const EDITOR_PICKS_MOVIES = shuffleArray(MOVIES_DATA);

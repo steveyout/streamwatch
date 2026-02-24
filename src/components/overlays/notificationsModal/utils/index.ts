@@ -1,3 +1,5 @@
+import DOMPurify from "dompurify";
+
 import { proxiedFetch } from "@/backend/helpers/fetch";
 
 const DEFAULT_FEEDS = ["/notifications.xml"];
@@ -138,7 +140,7 @@ export const getCategoryLabel = (category: string) => {
 };
 export function formatNotificationDescription(description: string): string {
   return (
-    description
+    DOMPurify.sanitize(description)
       // First, normalize multiple consecutive line breaks to single line breaks
       .replace(/\n{3,}/g, "\n\n")
       // Handle bullet points before paragraph breaks

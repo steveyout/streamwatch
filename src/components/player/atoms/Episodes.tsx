@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { useAsync } from "react-use";
 
 import { getMetaFromId } from "@/backend/metadata/getmeta";
+import { formatTMDBEpisode, getEpisodes } from "@/backend/metadata/tmdb";
 import { MWMediaType, MWSeasonMeta } from "@/backend/metadata/types/mw";
 import { Icon, Icons } from "@/components/Icon";
 import { ProgressRing } from "@/components/layout/ProgressRing";
@@ -20,9 +21,12 @@ import { PlayerMeta } from "@/stores/player/slices/source";
 import { usePlayerStore } from "@/stores/player/store";
 import { usePreferencesStore } from "@/stores/preferences";
 import { useProgressStore } from "@/stores/progress";
+import { concurrentMap } from "@/utils/async";
 import { scrollToElement } from "@/utils/scroll";
 
 import { hasAired } from "../utils/aired";
+
+const EMPTY_ARRAY: string[] = [];
 
 function CenteredText(props: { children: React.ReactNode }) {
   return (
@@ -504,8 +508,11 @@ function SeasonsView({
     meta?.tmdbId ?? "",
     selectedSeason,
   );
-  const getFavoriteEpisodes = useBookmarkStore((s) => s.getFavoriteEpisodes);
-  const favoriteEpisodes = meta?.tmdbId ? getFavoriteEpisodes(meta.tmdbId) : [];
+  const favoriteEpisodes = useBookmarkStore((s) =>
+    meta?.tmdbId
+      ? (s.bookmarks[meta.tmdbId]?.favoriteEpisodes ?? EMPTY_ARRAY)
+      : EMPTY_ARRAY,
+  );
 
   let content: ReactNode = null;
   if (seasons) {
@@ -574,8 +581,11 @@ export function EpisodesView({
   );
   const progress = useProgressStore();
   const updateItem = useProgressStore((s) => s.updateItem);
-  const getFavoriteEpisodes = useBookmarkStore((s) => s.getFavoriteEpisodes);
-  const favoriteEpisodes = meta?.tmdbId ? getFavoriteEpisodes(meta.tmdbId) : [];
+  const favoriteEpisodes = useBookmarkStore((s) =>
+    meta?.tmdbId
+      ? (s.bookmarks[meta.tmdbId]?.favoriteEpisodes ?? EMPTY_ARRAY)
+      : EMPTY_ARRAY,
+  );
   const bookmarks = useBookmarkStore((s) => s.bookmarks);
 
   // Load all seasons for favorites view
@@ -586,23 +596,21 @@ export function EpisodesView({
     if (selectedSeason === "favorites" && meta?.tmdbId && seasons) {
       setAllSeasonsLoading(true);
       const loadAllSeasons = async () => {
-        const seasonPromises = seasons.map(async (season) => {
+        const results = await concurrentMap(seasons, 5, async (season) => {
           try {
-            const data = await getMetaFromId(
-              MWMediaType.SERIES,
-              meta.tmdbId,
-              season.id,
-            );
-            return data?.meta.type === MWMediaType.SERIES
-              ? data.meta.seasonData
-              : null;
+            const episodes = await getEpisodes(meta.tmdbId!, season.number);
+            return {
+              id: season.id,
+              number: season.number,
+              title: season.title,
+              episodes: episodes.map(formatTMDBEpisode),
+            };
           } catch (error) {
             console.error(`Failed to load season ${season.id}:`, error);
             return null;
           }
         });
 
-        const results = await Promise.all(seasonPromises);
         setAllSeasonsData(results.filter(Boolean));
         setAllSeasonsLoading(false);
       };

@@ -22,7 +22,7 @@ export function Banner(props: {
   };
 
   useEffect(() => {
-    const hideBannerFlag = sessionStorage.getItem(`hideBanner-${props.id}`);
+    const hideBannerFlag = localStorage.getItem(`hideBanner-${props.id}`);
     if (hideBannerFlag) {
       hideBanner(props.id, true);
     }
@@ -44,7 +44,7 @@ export function Banner(props: {
           className="absolute right-4 hover:cursor-pointer"
           onClick={() => {
             hideBanner(props.id, true);
-            sessionStorage.setItem(`hideBanner-${props.id}`, "true");
+            localStorage.setItem(`hideBanner-${props.id}`, "true");
           }}
         >
           <Icon icon={Icons.X} />

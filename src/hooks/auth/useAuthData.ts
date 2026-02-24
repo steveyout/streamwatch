@@ -94,6 +94,9 @@ export function useAuthData() {
   const setEnableAutoResumeOnPlaybackError = usePreferencesStore(
     (s) => s.setEnableAutoResumeOnPlaybackError,
   );
+  const setEnableNumberKeySeeking = usePreferencesStore(
+    (s) => s.setEnableNumberKeySeeking,
+  );
   const setKeyboardShortcuts = usePreferencesStore(
     (s) => s.setKeyboardShortcuts,
   );
@@ -281,6 +284,10 @@ export function useAuthData() {
         );
       }
 
+      if (settings.enableNumberKeySeeking !== undefined) {
+        setEnableNumberKeySeeking(settings.enableNumberKeySeeking);
+      }
+
       if (settings.keyboardShortcuts !== undefined) {
         setKeyboardShortcuts(settings.keyboardShortcuts);
       }
@@ -323,6 +330,7 @@ export function useAuthData() {
       setManualSourceSelection,
       setEnableDoubleClickToSeek,
       setEnableAutoResumeOnPlaybackError,
+      setEnableNumberKeySeeking,
       setKeyboardShortcuts,
       setEnableMinimalCards,
     ],

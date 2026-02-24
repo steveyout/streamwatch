@@ -10,7 +10,7 @@ import { usePreferencesStore } from "@/stores/preferences";
 import { getTurnstileToken } from "@/utils/turnstile";
 
 // Thanks Nemo for this API
-const THE_INTRO_DB_BASE_URL = "https://api.theintrodb.org/v1";
+const THE_INTRO_DB_BASE_URL = "https://api.theintrodb.org/v2";
 const FED_SKIPS_BASE_URL = "https://fed-skips.pstream.mov";
 const INTRODB_BASE_URL = "https://api.introdb.app/intro";
 const MAX_RETRIES = 3;
@@ -84,48 +84,64 @@ export function useSkipTime() {
 
         const fetchedSegments: SegmentData[] = [];
 
-        // Add intro segment if it has data
-        if (data?.intro && data.intro.submission_count > 0) {
-          fetchedSegments.push({
-            type: "intro",
-            start_ms: data.intro.start_ms,
-            end_ms: data.intro.end_ms,
-            confidence: data.intro.confidence,
-            submission_count: data.intro.submission_count,
-          });
+        // Process intro segments (v2: array of segments)
+        if (Array.isArray(data?.intro) && data.intro.length > 0) {
+          for (const segment of data.intro) {
+            if (segment.submission_count > 0) {
+              fetchedSegments.push({
+                type: "intro",
+                start_ms: segment.start_ms,
+                end_ms: segment.end_ms,
+                confidence: segment.confidence,
+                submission_count: segment.submission_count,
+              });
+            }
+          }
         }
 
-        // Add recap segment if it has data
-        if (data?.recap && data.recap.submission_count > 0) {
-          fetchedSegments.push({
-            type: "recap",
-            start_ms: data.recap.start_ms,
-            end_ms: data.recap.end_ms,
-            confidence: data.recap.confidence,
-            submission_count: data.recap.submission_count,
-          });
+        // Process recap segments (v2: array of segments)
+        if (Array.isArray(data?.recap) && data.recap.length > 0) {
+          for (const segment of data.recap) {
+            if (segment.submission_count > 0) {
+              fetchedSegments.push({
+                type: "recap",
+                start_ms: segment.start_ms,
+                end_ms: segment.end_ms,
+                confidence: segment.confidence,
+                submission_count: segment.submission_count,
+              });
+            }
+          }
         }
 
-        // Add credits segment if it has data
-        if (data?.credits && data.credits.submission_count > 0) {
-          fetchedSegments.push({
-            type: "credits",
-            start_ms: data.credits.start_ms,
-            end_ms: data.credits.end_ms,
-            confidence: data.credits.confidence,
-            submission_count: data.credits.submission_count,
-          });
+        // Process credits segments (v2: array of segments)
+        if (Array.isArray(data?.credits) && data.credits.length > 0) {
+          for (const segment of data.credits) {
+            if (segment.submission_count > 0) {
+              fetchedSegments.push({
+                type: "credits",
+                start_ms: segment.start_ms,
+                end_ms: segment.end_ms,
+                confidence: segment.confidence,
+                submission_count: segment.submission_count,
+              });
+            }
+          }
         }
 
-        // Add preview segment if it has data
-        if (data?.preview && data.preview.submission_count > 0) {
-          fetchedSegments.push({
-            type: "preview",
-            start_ms: data.preview.start_ms,
-            end_ms: data.preview.end_ms,
-            confidence: data.preview.confidence,
-            submission_count: data.preview.submission_count,
-          });
+        // Process preview segments (v2: array of segments)
+        if (Array.isArray(data?.preview) && data.preview.length > 0) {
+          for (const segment of data.preview) {
+            if (segment.submission_count > 0) {
+              fetchedSegments.push({
+                type: "preview",
+                start_ms: segment.start_ms,
+                end_ms: segment.end_ms,
+                confidence: segment.confidence,
+                submission_count: segment.submission_count,
+              });
+            }
+          }
         }
 
         // TIDB returned 200 – we have segment data for this media (even if no intro)

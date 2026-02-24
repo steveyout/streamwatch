@@ -73,7 +73,7 @@ export function SupportPage() {
           items={[
             <Item title={t("support.q1.title")}>
               <Trans i18nKey="support.q1.body">
-                <MwLink to={conf().DISCORD_LINK} />
+                <MwLink to={conf().FLUXER_LINK} />
               </Trans>
             </Item>,
           ]}
