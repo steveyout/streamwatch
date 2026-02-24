@@ -81,7 +81,7 @@ export function Footer() {
             </FooterLink>
           )}
           {/* TODO: remove discord text */}
-          <FooterLink icon={Icons.FLUXER} href={conf().FLUXER_LINK}>
+          <FooterLink icon={Icons.DISCORD} href={conf().DISCORD_LINK}>
             {t("footer.links.fluxer")}/Discord
           </FooterLink>
           <FooterLink href="https://rentry.co/nnqtas3e" icon={Icons.TIP_JAR}>
