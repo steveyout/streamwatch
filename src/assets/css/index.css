@@ -15,6 +15,59 @@ body {
   overflow-x: clip;
 }
 
+/* Ambient reddish gradient glow layered over the base background */
+body {
+  background-image:
+    radial-gradient(
+      52% 38% at 82% -8%,
+      theme("colors.lightBar.light") 0%,
+      transparent 68%
+    ),
+    radial-gradient(
+      44% 34% at 12% 4%,
+      theme("colors.background.accentA") 0%,
+      transparent 70%
+    ),
+    radial-gradient(
+      60% 50% at 50% 110%,
+      theme("colors.lightBar.light") 0%,
+      transparent 70%
+    );
+  background-size: 100% 100%, 100% 100%, 100% 100%;
+  background-position: 0% 0%, 0% 0%, 50% 100%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  animation: ambient-glow-drift 28s ease-in-out infinite alternate;
+}
+
+@keyframes ambient-glow-drift {
+  0% {
+    background-position: 0% 0%, 0% 0%, 50% 100%;
+  }
+
+  50% {
+    background-position: 4% 2%, -3% 1%, 45% 100%;
+  }
+
+  100% {
+    background-position: -2% 3%, 2% 2%, 55% 100%;
+  }
+}
+
+/* Reddish gradient text (keeps theme palette, just layered as a gradient) */
+.text-gradient-red {
+  background-image: linear-gradient(
+    100deg,
+    theme("colors.global.accentB"),
+    theme("colors.type.logo") 55%,
+    theme("colors.buttons.danger")
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
 html[data-full],
 html[data-full] body {
   overscroll-behavior-y: none;
@@ -94,7 +147,7 @@ https://toughengineer.github.io/demo/slider-styler*/
 :root {
   --slider-height: 0.25rem;
   --slider-border-radius: 1em;
-  --slider-progress-background: #8652bb;
+  --slider-progress-background: #e04f4f;
 }
 
 input[type="range"].styled-slider {
@@ -244,11 +297,11 @@ input[type="range"].styled-slider.slider-progress::-ms-fill-lower {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background-color: rgba(134, 82, 187, 0.8);
+  background-color: rgba(224, 79, 79, 0.8);
 }
 
 ::-webkit-scrollbar-thumb:active {
-  background-color: rgba(134, 82, 187, 1);
+  background-color: rgba(224, 79, 79, 1);
 }
 
 ::-webkit-scrollbar-corner {
@@ -444,4 +497,14 @@ img.loaded:not(.no-fade) {
 /* For images that are already cached/loaded, show them immediately */
 img[complete]:not(.no-fade):not([src=""]) {
   opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body {
+    animation: none;
+  }
+
+  .lightbar-visual {
+    animation: none !important;
+  }
 }

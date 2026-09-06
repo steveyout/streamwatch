@@ -21,6 +21,7 @@ import { SearchLoadingPart } from "@/pages/parts/search/SearchLoadingPart";
 import { conf } from "@/setup/config";
 import { useOverlayStack } from "@/stores/interface/overlayStack";
 import { usePreferencesStore } from "@/stores/preferences";
+import { getBrandDescription, getBrandName } from "@/utils/brand";
 import { MediaItem } from "@/utils/mediaTypes";
 
 import { Button } from "./About";
@@ -147,7 +148,9 @@ export function HomePage() {
               scrollbar-gutter: stable;
             }
           `}</style>
-          <title>{t("global.name")}</title>
+          <title>{getBrandName()}</title>
+          <meta name="description" content={getBrandDescription()} />
+          <meta property="og:description" content={getBrandDescription()} />
         </Helmet>
 
         {/* Page Header */}

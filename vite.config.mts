@@ -163,6 +163,16 @@ export default defineConfig(({ mode }) => {
       },
     },
 
+    server: {
+      allowedHosts: [
+        "localhost",
+        "127.0.0.1",
+        "streamwatch.online",
+        "pstream.site",
+        "zstream.site",
+      ],
+    },
+
     resolve: {
       alias: {
         "@": path.resolve(__dirname, "./src"),

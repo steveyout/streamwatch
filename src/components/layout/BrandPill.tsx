@@ -1,15 +1,14 @@
 import classNames from "classnames";
-import { useTranslation } from "react-i18next";
 
 import { Icon, Icons } from "@/components/Icon";
 import { useIsMobile } from "@/hooks/useIsMobile";
+import { getBrandName } from "@/utils/brand";
 
 export function BrandPill(props: {
   clickable?: boolean;
   header?: boolean;
   backgroundClass?: string;
 }) {
-  const { t } = useTranslation();
   const isMobile = useIsMobile();
 
   return (
@@ -25,11 +24,11 @@ export function BrandPill(props: {
       <Icon className="text-2xl" icon={Icons.LOGO} />
       <span
         className={[
-          "font-semibold text-white",
+          "text-gradient-red font-semibold",
           isMobile && props.header ? "hidden sm:block" : "",
         ].join(" ")}
       >
-        {t("global.name")}
+        {getBrandName()}
       </span>
     </div>
   );

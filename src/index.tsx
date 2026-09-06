@@ -1,3 +1,4 @@
+// Hello from OpenCode Local
 import "@/setup/pwa";
 import "core-js/stable";
 import "./stores/__old/imports";

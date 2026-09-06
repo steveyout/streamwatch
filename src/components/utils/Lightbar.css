@@ -50,7 +50,8 @@
   transform: rotate(180deg) translateZ(0px) translateY(400px);
   transform-origin: center center;
   background-repeat: no-repeat;
-  animation: lightbarBoot var(--d) var(--animation) forwards;
+  animation: lightbarBoot var(--d) var(--animation) forwards,
+    lightbarShimmer 14s ease-in-out infinite;
 }
 
 .lightbar canvas {
@@ -76,5 +77,19 @@
 
   100% {
     transform: rotate(180deg) translateZ(0px) translateY(400px) scaleX(1);
+  }
+}
+
+/* Subtle breathing shimmer for the blood-red glow at the top */
+@keyframes lightbarShimmer {
+  0%,
+  100% {
+    background-position-x: 1%, 99%;
+    filter: brightness(1) saturate(1);
+  }
+
+  50% {
+    background-position-x: 4%, 96%;
+    filter: brightness(1.35) saturate(1.25);
   }
 }
