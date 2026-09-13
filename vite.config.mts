@@ -63,6 +63,7 @@ export default defineConfig(({ mode }) => {
         },
         includeAssets: [
           "favicon.ico",
+          "logo.svg",
           "apple-touch-icon.png",
           "safari-pinned-tab.svg",
         ],
