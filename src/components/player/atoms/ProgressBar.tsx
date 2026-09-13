@@ -8,6 +8,7 @@ import {
   useState,
 } from "react";
 
+import { useSkipTime } from "@/components/player/hooks/useSkipTime";
 import { useProgressBar } from "@/hooks/useProgressBar";
 import { nearestImageAt } from "@/stores/player/slices/thumbnails";
 import { usePlayerStore } from "@/stores/player/store";
@@ -95,6 +96,7 @@ function useMouseHoverPosition(barRef: RefObject<HTMLDivElement>) {
 
 export function ProgressBar() {
   const { duration, time, buffered } = usePlayerStore((s) => s.progress);
+  const segments = useSkipTime();
   const display = usePlayerStore((s) => s.display);
   const setDraggingTime = usePlayerStore((s) => s.setDraggingTime);
   const setSeeking = usePlayerStore((s) => s.setSeeking);
@@ -148,7 +150,7 @@ export function ProgressBar() {
         >
           <div
             className={[
-              "relative w-full h-1 bg-progress-background bg-opacity-25 rounded-full transition-[height] duration-100 group-hover:h-1.5",
+              "relative w-full h-1 bg-progress-background bg-opacity-25 rounded-full transition-[height] duration-100 group-hover:h-1.5 overflow-hidden",
               dragging ? "!h-1.5" : "",
             ].join(" ")}
           >
@@ -156,13 +158,13 @@ export function ProgressBar() {
             <div
               className="absolute top-0 left-0 h-full rounded-full bg-progress-preloaded bg-opacity-50 flex justify-end items-center"
               style={{
-                width: `${(buffered / duration) * 100}%`,
+                width: `${duration > 0 ? (buffered / duration) * 100 : 0}%`,
               }}
             />
 
             {/* Actual progress bar */}
             <div
-              className="absolute top-0 dir-neutral:left-0 h-full rounded-full bg-progress-filled flex justify-end items-center"
+              className="absolute top-0 dir-neutral:left-0 h-full rounded-full bg-progress-filled flex justify-end items-center z-10"
               style={{
                 width: `${
                   Math.max(
@@ -177,11 +179,44 @@ export function ProgressBar() {
             >
               <div
                 className={[
-                  "w-[1rem] min-w-[1rem] h-[1rem] rounded-full transform translate-x-1/2 scale-0 group-hover:scale-100 bg-white transition-[transform] duration-100",
+                  "relative z-30 w-[1rem] min-w-[1rem] h-[1rem] rounded-full transform translate-x-1/2 scale-0 group-hover:scale-100 bg-white transition-[transform] duration-100",
                   isSeeking ? "scale-100" : "",
                 ].join(" ")}
               />
             </div>
+
+            {/* TheIntroDB timestamp regions */}
+            {duration > 0
+              ? segments.map((segment) => {
+                  const start = Math.max(0, segment.start_ms ?? 0);
+                  const end = Math.min(
+                    duration * 1000,
+                    segment.end_ms ?? duration * 1000,
+                  );
+                  if (end <= start) return null;
+
+                  const colors = {
+                    intro: "#a855f7",
+                    recap: "#3b82f6",
+                    credits: "#f97316",
+                    preview: "#22c55e",
+                  } as const;
+
+                  return (
+                    <div
+                      key={`${segment.type}-${start}-${end}-${segment.confidence ?? "unknown"}-${segment.submission_count}`}
+                      className="absolute top-0 h-full z-20 opacity-90"
+                      style={{
+                        left: `${(start / 1000 / duration) * 100}%`,
+                        width: `${((end - start) / 1000 / duration) * 100}%`,
+                        backgroundColor: colors[segment.type],
+                      }}
+                      title={`${segment.type} timestamp`}
+                      aria-label={`${segment.type} timestamp`}
+                    />
+                  );
+                })
+              : null}
           </div>
         </div>
       </div>

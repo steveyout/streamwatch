@@ -159,8 +159,8 @@ export function TIDBSubmissionForm({
         segment: SegmentType;
         season?: number;
         episode?: number;
-        start_sec?: number | null;
-        end_sec?: number | null;
+        startSec?: number | null;
+        endSec?: number | null;
       } = {
         tmdb_id: parseInt(meta.tmdbId.toString(), 10),
         type: meta.type === "show" ? "tv" : "movie",
@@ -173,17 +173,28 @@ export function TIDBSubmissionForm({
       }
 
       if (formData.segment === "intro" || formData.segment === "recap") {
-        submissionData.start_sec = startSeconds !== null ? startSeconds : null;
-        submissionData.end_sec = endSeconds!;
+        submissionData.startSec = startSeconds !== null ? startSeconds : null;
+        submissionData.endSec = endSeconds!;
       } else if (
         formData.segment === "credits" ||
         formData.segment === "preview"
       ) {
-        submissionData.start_sec = startSeconds!;
-        submissionData.end_sec = endSeconds !== null ? endSeconds : null;
+        submissionData.startSec = startSeconds!;
+        submissionData.endSec = endSeconds !== null ? endSeconds : null;
       }
 
-      await submitIntro(submissionData, tidbKey);
+      await submitIntro(
+        {
+          tmdbId: submissionData.tmdb_id,
+          type: submissionData.type,
+          segment: submissionData.segment,
+          season: submissionData.season,
+          episode: submissionData.episode,
+          startSec: submissionData.startSec,
+          endSec: submissionData.endSec,
+        },
+        tidbKey,
+      );
 
       submissionModal.hide();
       if (onSuccess) onSuccess();
