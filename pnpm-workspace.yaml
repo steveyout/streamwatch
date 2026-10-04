@@ -1,0 +1,9 @@
+packages:
+  - '.'
+
+overrides:
+  'get-func-name@<2.0.1': '>=2.0.1'
+  'postcss@<8.4.31': '>=8.4.31'
+  '@babel/traverse@<7.23.2': '>=7.23.2'
+  'crypto-js@<4.2.0': '>=4.2.0'
+  rollup: 4.43.0

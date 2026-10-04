@@ -12,9 +12,9 @@
     "update-providers": "pnpm update @p-stream/providers",
     "test": "vitest run",
     "preview": "vite preview",
-    "lint": "eslint --ext .tsx,.ts src",
-    "lint:fix": "eslint --fix --ext .tsx,.ts src",
-    "lint:report": "eslint --ext .tsx,.ts --output-file eslint_report.json --format json src",
+    "lint": "eslint --ext .tsx --ext .ts src",
+    "lint:fix": "eslint --fix --ext .tsx --ext .ts src",
+    "lint:report": "eslint --ext .tsx --ext .ts --output-file eslint_report.json --format json src",
     "preinstall": "npx -y only-allow pnpm"
   },
   "browserslist": {
@@ -135,14 +135,5 @@
     "vite-plugin-static-copy": "^3.1.4",
     "vitest": "^1.6.1",
     "workbox-window": "^7.3.0"
-  },
-  "pnpm": {
-    "overrides": {
-      "get-func-name@<2.0.1": ">=2.0.1",
-      "postcss@<8.4.31": ">=8.4.31",
-      "@babel/traverse@<7.23.2": ">=7.23.2",
-      "crypto-js@<4.2.0": ">=4.2.0",
-      "rollup": "4.43.0"
-    }
   }
 }
