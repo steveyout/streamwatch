@@ -109,10 +109,11 @@ export default defineConfig(({ mode }) => {
         overlay: {
           position: "tr",
         },
+        enableBuild: false,
         typescript: true, // check typescript build errors in dev server
         eslint: {
           // check lint errors in dev server
-          lintCommand: "eslint --ext .tsx,.ts src",
+          lintCommand: "eslint --ext .tsx --ext .ts src",
           dev: {
             logLevel: ["error"],
           },
