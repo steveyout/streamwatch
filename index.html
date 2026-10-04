@@ -218,6 +218,121 @@
 
     <script src="/config.js"></script>
 
+    <!-- DevTools / Anti-Scraping Protection -->
+    <script>
+      (function () {
+        var DEFAULT_REDIRECT = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
+        function getRedirectUrl() {
+          try {
+            return (
+              (window.__CONFIG__ && window.__CONFIG__.VITE_DEVTOOL_REDIRECT_URL) ||
+              DEFAULT_REDIRECT
+            );
+          } catch (e) {
+            return DEFAULT_REDIRECT;
+          }
+        }
+        function isBypassed() {
+          try {
+            return (
+              window.location.search.indexOf("debug_mode=true") !== -1 ||
+              (window.localStorage &&
+                window.localStorage.getItem("streamwatch_allow_debug") === "true")
+            );
+          } catch (e) {
+            return false;
+          }
+        }
+        if (isBypassed()) return;
+
+        function trigger() {
+          try {
+            window.stop();
+            if (document.documentElement) {
+              document.documentElement.innerHTML = "";
+            }
+          } catch (e) {}
+          window.location.replace(getRedirectUrl());
+        }
+
+        // 1. Detect if DevTools is already docked on initial load or resize
+        function checkDocked() {
+          var threshold = 160;
+          if (
+            window.outerWidth - window.innerWidth > threshold ||
+            window.outerHeight - window.innerHeight > threshold
+          ) {
+            trigger();
+          }
+        }
+        checkDocked();
+        window.addEventListener("resize", checkDocked);
+
+        // 2. Intercept keyboard shortcuts (F12, Ctrl+Shift+I/J/C, Ctrl+U, Cmd+Option+I/J/C/U)
+        window.addEventListener(
+          "keydown",
+          function (e) {
+            var k = e.keyCode || e.which;
+            var key = (e.key || "").toLowerCase();
+            // F12
+            if (k === 123 || key === "f12") {
+              e.preventDefault();
+              e.stopPropagation();
+              trigger();
+              return false;
+            }
+            // Ctrl+Shift+I / J / C or Cmd+Option+I / J / C
+            if (
+              (e.ctrlKey || e.metaKey) &&
+              (e.shiftKey || e.altKey) &&
+              (k === 73 ||
+                k === 74 ||
+                k === 67 ||
+                key === "i" ||
+                key === "j" ||
+                key === "c")
+            ) {
+              e.preventDefault();
+              e.stopPropagation();
+              trigger();
+              return false;
+            }
+            // Ctrl+U or Cmd+Option+U (View Source) or Ctrl+S (Save)
+            if (
+              (e.ctrlKey || e.metaKey) &&
+              (k === 85 || k === 83 || key === "u" || key === "s")
+            ) {
+              e.preventDefault();
+              e.stopPropagation();
+              trigger();
+              return false;
+            }
+          },
+          true
+        );
+
+        // 3. Disable right-click context menu
+        window.addEventListener(
+          "contextmenu",
+          function (e) {
+            e.preventDefault();
+            return false;
+          },
+          true
+        );
+
+        // 4. Early debugger detection
+        try {
+          var t0 = performance.now();
+          // eslint-disable-next-line no-debugger
+          debugger;
+          if (performance.now() - t0 > 100) {
+            trigger();
+          }
+        } catch (e) {}
+      })();
+    </script>
+
     {{#if env.VITE_TRACK_SCRIPT }} {{{ env.VITE_TRACK_SCRIPT }}} {{/if}}
 
     <!-- prevent darkreader extension from messing with our already dark site -->

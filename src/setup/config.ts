@@ -35,6 +35,7 @@ interface Config {
   HIDE_PROXY_ONBOARDING: boolean;
   SHOW_SUPPORT_BAR: boolean;
   SUPPORT_BAR_VALUE: string;
+  DEVTOOL_REDIRECT_URL: string;
 }
 
 export interface RuntimeConfig {
@@ -67,6 +68,7 @@ export interface RuntimeConfig {
   HIDE_PROXY_ONBOARDING: boolean;
   SHOW_SUPPORT_BAR: boolean;
   SUPPORT_BAR_VALUE: string;
+  DEVTOOL_REDIRECT_URL: string;
 }
 
 const env: Record<keyof Config, undefined | string> = {
@@ -101,6 +103,7 @@ const env: Record<keyof Config, undefined | string> = {
   HIDE_PROXY_ONBOARDING: import.meta.env.VITE_HIDE_PROXY_ONBOARDING,
   SHOW_SUPPORT_BAR: import.meta.env.VITE_SHOW_SUPPORT_BAR,
   SUPPORT_BAR_VALUE: import.meta.env.VITE_SUPPORT_BAR_VALUE,
+  DEVTOOL_REDIRECT_URL: import.meta.env.VITE_DEVTOOL_REDIRECT_URL,
 };
 
 function coerceUndefined(value: string | null | undefined): string | undefined {
@@ -195,5 +198,9 @@ export function conf(): RuntimeConfig {
     HIDE_PROXY_ONBOARDING: getKey("HIDE_PROXY_ONBOARDING", "false") === "true",
     SHOW_SUPPORT_BAR: getKey("SHOW_SUPPORT_BAR", "false") === "true",
     SUPPORT_BAR_VALUE: getKey("SUPPORT_BAR_VALUE") ?? "",
+    DEVTOOL_REDIRECT_URL: getKey(
+      "DEVTOOL_REDIRECT_URL",
+      "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    ),
   };
 }

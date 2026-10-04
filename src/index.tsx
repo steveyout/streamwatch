@@ -40,9 +40,11 @@ import {
 } from "./backend/extension/messaging";
 import { initializeChromecast } from "./setup/chromecast";
 import { initializeImageFadeIn } from "./setup/imageFadeIn";
+import { initializeSecurity } from "./setup/security";
 import { initializeOldStores } from "./stores/__old/migrations";
 
 // initialize
+initializeSecurity();
 initializeChromecast();
 initializeImageFadeIn();
 

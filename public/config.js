@@ -17,4 +17,7 @@ window.__CONFIG__ = {
 
   // A comma separated list of disallowed IDs in the case of a DMCA claim - in the format "series-<id>" and "movie-<id>"
   VITE_DISALLOWED_IDS: "",
+
+  // URL to redirect scrapers / inspectors to when Developer Tools are detected
+  VITE_DEVTOOL_REDIRECT_URL: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
 };
