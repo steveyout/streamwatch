@@ -19,6 +19,11 @@ const BRAND_BY_HOSTNAME: Record<string, BrandEntry> = {
     description:
       "ZStream – Watch movies and TV shows online in HD. Fast, reliable streaming with multi-server support.",
   },
+  "cinecat.online": {
+    name: "CineCat",
+    description:
+      "CineCat – Watch movies and TV shows online in HD with multi-server support. Stream free, no account needed.",
+  },
 };
 
 const FALLBACK_BRAND: BrandEntry = {

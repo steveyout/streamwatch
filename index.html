@@ -234,6 +234,15 @@
         }
         function isBypassed() {
           try {
+            var envDevTools = "{{ env.VITE_ENABLE_DEVTOOLS }}";
+            if (
+              envDevTools === "true" ||
+              (window.__CONFIG__ &&
+                (window.__CONFIG__.VITE_ENABLE_DEVTOOLS === "true" ||
+                  window.__CONFIG__.VITE_ENABLE_DEVTOOLS === true))
+            ) {
+              return true;
+            }
             return (
               window.location.search.indexOf("debug_mode=true") !== -1 ||
               (window.localStorage &&
@@ -341,6 +350,41 @@
     <!-- disabling referrer can fix some provider problems -->
     <!-- <meta name="referrer" content="no-referrer" /> -->
     <meta name="referrer" content="always" />
+
+    <script>
+      (function () {
+        try {
+          var host = window.location.hostname.replace(/^www\./i, "").toLowerCase();
+          var parts = host.split(".");
+          var base = parts.length >= 3 ? parts.slice(-2).join(".") : host;
+          var brandNames = {
+            "streamwatch.online": "StreamWatch",
+            "pstream.site": "PStream",
+            "zstream.site": "ZStream",
+            "cinecat.online": "CineCat"
+          };
+          var brandDescs = {
+            "streamwatch.online": "StreamWatch – Watch movies and TV shows online in HD with multi-server support. Stream free, no account needed.",
+            "pstream.site": "PStream – Stream movies and TV shows online free in HD with multiple server options for smooth playback.",
+            "zstream.site": "ZStream – Watch movies and TV shows online in HD. Fast, reliable streaming with multi-server support.",
+            "cinecat.online": "CineCat – Watch movies and TV shows online in HD with multi-server support. Stream free, no account needed."
+          };
+          var brandName = brandNames[host] || brandNames[base];
+          var brandDesc = brandDescs[host] || brandDescs[base];
+          if (brandName) {
+            document.title = brandName;
+            var ogTitle = document.querySelector('meta[property="og:title"]');
+            if (ogTitle) ogTitle.setAttribute("content", brandName);
+          }
+          if (brandDesc) {
+            var metaDesc = document.querySelector('meta[name="description"]');
+            if (metaDesc) metaDesc.setAttribute("content", brandDesc);
+            var ogDesc = document.querySelector('meta[property="og:description"]');
+            if (ogDesc) ogDesc.setAttribute("content", brandDesc);
+          }
+        } catch (e) {}
+      })();
+    </script>
 
     <title>P-Stream | Watch Movies & TV Shows Online Free </title>
 

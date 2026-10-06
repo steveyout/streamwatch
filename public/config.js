@@ -20,4 +20,7 @@ window.__CONFIG__ = {
 
   // URL to redirect scrapers / inspectors to when Developer Tools are detected
   VITE_DEVTOOL_REDIRECT_URL: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+
+  // Enable Developer Tools (default: false / disabled)
+  VITE_ENABLE_DEVTOOLS: false,
 };

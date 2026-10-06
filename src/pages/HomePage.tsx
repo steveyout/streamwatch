@@ -150,7 +150,13 @@ export function HomePage() {
           `}</style>
           <title>{getBrandName()}</title>
           <meta name="description" content={getBrandDescription()} />
+          <meta property="og:title" content={getBrandName()} />
           <meta property="og:description" content={getBrandDescription()} />
+          <meta property="twitter:title" content={getBrandName()} />
+          <meta
+            property="twitter:description"
+            content={getBrandDescription()}
+          />
         </Helmet>
 
         {/* Page Header */}

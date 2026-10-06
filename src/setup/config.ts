@@ -36,6 +36,7 @@ interface Config {
   SHOW_SUPPORT_BAR: boolean;
   SUPPORT_BAR_VALUE: string;
   DEVTOOL_REDIRECT_URL: string;
+  ENABLE_DEVTOOLS: boolean;
 }
 
 export interface RuntimeConfig {
@@ -69,6 +70,7 @@ export interface RuntimeConfig {
   SHOW_SUPPORT_BAR: boolean;
   SUPPORT_BAR_VALUE: string;
   DEVTOOL_REDIRECT_URL: string;
+  ENABLE_DEVTOOLS: boolean;
 }
 
 const env: Record<keyof Config, undefined | string> = {
@@ -104,6 +106,7 @@ const env: Record<keyof Config, undefined | string> = {
   SHOW_SUPPORT_BAR: import.meta.env.VITE_SHOW_SUPPORT_BAR,
   SUPPORT_BAR_VALUE: import.meta.env.VITE_SUPPORT_BAR_VALUE,
   DEVTOOL_REDIRECT_URL: import.meta.env.VITE_DEVTOOL_REDIRECT_URL,
+  ENABLE_DEVTOOLS: import.meta.env.VITE_ENABLE_DEVTOOLS,
 };
 
 function coerceUndefined(value: string | null | undefined): string | undefined {
@@ -202,5 +205,6 @@ export function conf(): RuntimeConfig {
       "DEVTOOL_REDIRECT_URL",
       "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
     ),
+    ENABLE_DEVTOOLS: getKey("ENABLE_DEVTOOLS", "false") === "true",
   };
 }

@@ -1,9 +1,16 @@
 import disableDevtool from "disable-devtool";
 
+import { conf } from "@/setup/config";
+
 const DEFAULT_REDIRECT_URL = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
 
 export function initializeSecurity(): void {
   if (typeof window === "undefined") return;
+
+  // If DevTools is explicitly enabled via environment or config, do not activate security restrictions
+  if (conf().ENABLE_DEVTOOLS) {
+    return;
+  }
 
   // Allow developer bypass if explicitly requested via query param or localStorage
   try {

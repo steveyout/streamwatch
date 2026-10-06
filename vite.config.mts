@@ -172,6 +172,8 @@ export default defineConfig(({ mode }) => {
         "streamwatch.online",
         "pstream.site",
         "zstream.site",
+        "cinecat.online",
+        "www.cinecat.online",
       ],
     },
 
