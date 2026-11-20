@@ -52,11 +52,14 @@ function getScraperAuthHeaders(
   type: string,
   id: string,
 ): Record<string, string> {
+  if (typeof window !== "undefined") {
+    return {};
+  }
   const { token } = signScraperRequest(type, id);
   const headers: Record<string, string> = {
     "X-Scraper-Token": token,
   };
-  if (typeof window === "undefined" && INTERNAL_API_KEY) {
+  if (INTERNAL_API_KEY) {
     headers["X-Internal-Key"] = INTERNAL_API_KEY;
   }
   return headers;
@@ -545,6 +548,14 @@ const FALLBACK_PROVIDERS: MetaOutput[] = [
   },
   {
     type: "source",
+    id: "netmirror",
+    name: "🪞 NetMirror",
+    rank: 495,
+    flags: [flags.CORS_ALLOWED],
+    mediaTypes: ["movie", "show"],
+  },
+  {
+    type: "source",
     id: "oneshows",
     name: "💫 Nova",
     rank: 490,
@@ -733,7 +744,11 @@ export async function ensureProvidersLoaded(
 
   inflightProvidersFetch = (async () => {
     try {
-      const res = await fetch(`${SCRAPER_API_BASE}/providers`, {
+      const { ts, sig } = signScraperRequest("providers", "list");
+      const url = `${SCRAPER_API_BASE}/providers?_ts=${encodeURIComponent(
+        ts,
+      )}&_sig=${encodeURIComponent(sig)}`;
+      const res = await fetch(url, {
         headers: {
           Accept: "application/json",
           ...getScraperAuthHeaders("providers", "list"),
@@ -1135,10 +1150,11 @@ async function runAllViaSse(
   media: ScrapeMedia,
   sourceOrder: string[] | undefined,
   events: FullScraperEvents | undefined,
+  strictOrder = false,
 ): Promise<{ output: RunOutput | null; completed: boolean }> {
   const params = buildScrapeQueryParams(media, {
     sourceOrder,
-    strictOrder: Boolean(sourceOrder && sourceOrder.length > 0),
+    strictOrder,
     stream: true,
   });
 
@@ -1333,7 +1349,17 @@ export function makeProviders(_ops?: ProviderMakerOptions): ProviderControls {
       }
 
       try {
-        const sseResult = await runAllViaSse(media, targetOrder, events);
+        const isSubsetOrder = Boolean(
+          Array.isArray(sourceOrder) &&
+          sourceOrder.length > 0 &&
+          sourceOrder.length < activeProvidersList.length,
+        );
+        const sseResult = await runAllViaSse(
+          media,
+          targetOrder,
+          events,
+          isSubsetOrder,
+        );
         if (sseResult.completed || sseResult.output) {
           return sseResult.output;
         }

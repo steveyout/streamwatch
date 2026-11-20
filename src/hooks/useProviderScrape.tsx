@@ -2,8 +2,14 @@ import { RefObject, useCallback, useEffect, useRef, useState } from "react";
 
 import { isExtensionActiveCached } from "@/backend/extension/messaging";
 import { prepareStream } from "@/backend/extension/streams";
-import { getCachedMetadata } from "@/backend/helpers/providerApi";
-import { getProviders } from "@/backend/providers/providers";
+import {
+  getCachedMetadata,
+  setCachedMetadata,
+} from "@/backend/helpers/providerApi";
+import {
+  ensureProvidersLoaded,
+  getProviders,
+} from "@/backend/providers/providers";
 import {
   FullScraperEvents,
   RunOutput,
@@ -64,19 +70,50 @@ function useBaseScrape() {
 
   const startEvent = useCallback((id: ScraperEvent<"start">) => {
     const lastIdTmp = lastId.current;
+    const providerInstance = getProviders();
     setSources((s) => {
-      if (s[id]) s[id].status = "pending";
+      if (!s[id]) {
+        const meta =
+          getCachedMetadata().find((m) => m.id === id) ||
+          providerInstance.getMetadata(id);
+        s[id] = {
+          name: meta?.name || id,
+          id,
+          status: "pending",
+          percentage: 0,
+        };
+      } else {
+        s[id].status = "pending";
+      }
       if (lastIdTmp && s[lastIdTmp] && s[lastIdTmp].status === "pending")
         s[lastIdTmp].status = "success";
       return { ...s };
     });
+    setSourceOrder((order) =>
+      order.some((item) => item.id === id)
+        ? order
+        : [...order, { id, children: [] }],
+    );
     setCurrentSource(id);
     lastId.current = id;
   }, []);
 
   const updateEvent = useCallback((evt: ScraperEvent<"update">) => {
+    const providerInstance = getProviders();
     setSources((s) => {
-      if (s[evt.id]) {
+      if (!s[evt.id]) {
+        const meta =
+          getCachedMetadata().find((m) => m.id === evt.id) ||
+          providerInstance.getMetadata(evt.id);
+        s[evt.id] = {
+          name: meta?.name || evt.id,
+          id: evt.id,
+          status: evt.status,
+          reason: evt.reason,
+          error: evt.error,
+          percentage: evt.percentage,
+        };
+      } else {
         s[evt.id].status = evt.status;
         s[evt.id].reason = evt.reason;
         s[evt.id].error = evt.error;
@@ -84,6 +121,11 @@ function useBaseScrape() {
       }
       return { ...s };
     });
+    setSourceOrder((order) =>
+      order.some((item) => item.id === evt.id)
+        ? order
+        : [...order, { id: evt.id, children: [] }],
+    );
   }, []);
 
   const discoverEmbedsEvent = useCallback(
@@ -169,8 +211,10 @@ export function useScrape() {
 
   const startScraping = useCallback(
     async (media: ScrapeMedia, startFromSourceId?: string) => {
+      await ensureProvidersLoaded();
       const providerInstance = getProviders();
       const allSources = providerInstance.listSources();
+      setCachedMetadata([...allSources, ...providerInstance.listEmbeds()]);
       const playerState = usePlayerStore.getState();
 
       // Get media-specific failed sources/embeds
