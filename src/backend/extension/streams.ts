@@ -1,6 +1,5 @@
-import { Stream } from "@p-stream/providers";
-
 import { RULE_IDS, setDomainRule } from "@/backend/extension/messaging";
+import { Stream } from "@/backend/providers/scraperApi";
 
 function extractDomain(url: string): string | null {
   try {

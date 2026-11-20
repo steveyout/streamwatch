@@ -1,5 +1,4 @@
-import { Stream } from "@p-stream/providers";
-
+import { Stream } from "@/backend/providers/scraperApi";
 import {
   SourceFileStream,
   SourceQuality,
@@ -30,6 +29,7 @@ export function convertRunoutputToSource(out: {
       url: out.stream.playlist,
       headers: out.stream.headers,
       preferredHeaders: out.stream.preferredHeaders,
+      client: out.stream.client,
     };
   }
   if (out.stream.type === "file") {
@@ -53,6 +53,7 @@ export function convertRunoutputToSource(out: {
       qualities,
       headers: out.stream.headers,
       preferredHeaders: out.stream.preferredHeaders,
+      client: out.stream.client,
     };
   }
   throw new Error("unrecognized type");

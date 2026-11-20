@@ -1,7 +1,6 @@
 /* eslint-disable no-console */
-import { ScrapeMedia } from "@p-stream/providers";
-
 import { downloadCaption } from "@/backend/helpers/subs";
+import { ScrapeMedia } from "@/backend/providers/scraperApi";
 import { MakeSlice } from "@/stores/player/slices/types";
 import {
   SourceQuality,

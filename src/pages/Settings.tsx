@@ -11,7 +11,10 @@ import {
 import { getSessions, updateSession } from "@/backend/accounts/sessions";
 import { getSettings, updateSettings } from "@/backend/accounts/settings";
 import { editUser } from "@/backend/accounts/user";
-import { getAllProviders } from "@/backend/providers/providers";
+import {
+  ensureProvidersLoaded,
+  getAllProviders,
+} from "@/backend/providers/providers";
 import { Button } from "@/components/buttons/Button";
 import { SearchBarInput } from "@/components/form/SearchBar";
 import { ThinContainer } from "@/components/layout/ThinContainer";
@@ -748,7 +751,15 @@ export function SettingsPage() {
     customThemeBaseline ?? customTheme,
   );
 
+  const [providersTick, setProvidersTick] = useState(0);
+  useEffect(() => {
+    ensureProvidersLoaded()
+      .then(() => setProvidersTick((v) => v + 1))
+      .catch(() => {});
+  }, []);
+
   const availableSources = useMemo(() => {
+    if (providersTick < 0) return [];
     const sources = getAllProviders().listSources();
     const sourceIDs = sources.map((s) => s.id);
     const stateSources = state.sourceOrder.state || [];
@@ -762,7 +773,7 @@ export function SettingsPage() {
       .map((s) => s.id);
 
     return [...updatedSources, ...missingSources];
-  }, [state.sourceOrder.state]);
+  }, [state.sourceOrder.state, providersTick]);
 
   useEffect(() => {
     setPreviewTheme(activeTheme ?? "default");

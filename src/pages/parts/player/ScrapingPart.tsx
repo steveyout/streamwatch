@@ -1,4 +1,3 @@
-import { ProviderControls, ScrapeMedia } from "@p-stream/providers";
 import classNames from "classnames";
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -9,6 +8,7 @@ import {
   scrapePartsToProviderMetric,
   useReportProviders,
 } from "@/backend/helpers/report";
+import { ProviderControls, ScrapeMedia } from "@/backend/providers/scraperApi";
 import { Button } from "@/components/buttons/Button";
 import { Loading } from "@/components/layout/Loading";
 import {

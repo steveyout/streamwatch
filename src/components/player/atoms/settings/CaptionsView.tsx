@@ -1,4 +1,3 @@
-import { labelToLanguageCode } from "@p-stream/providers";
 import classNames from "classnames";
 import Fuse from "fuse.js";
 import { type DragEvent, useEffect, useMemo, useRef, useState } from "react";
@@ -6,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import { convert } from "subsrt-ts";
 
 import { subtitleTypeList } from "@/backend/helpers/subs";
+import { labelToLanguageCode } from "@/backend/providers/scraperApi";
 import { FileDropHandler } from "@/components/DropFile";
 import { FlagIcon } from "@/components/FlagIcon";
 import { Icon, Icons } from "@/components/Icon";

@@ -174,6 +174,22 @@ export default defineConfig(({ mode }) => {
         "zstream.site",
         "cinecat.online",
         "www.cinecat.online",
+        "streamwatch.youplex.site",
+      ],
+    },
+    preview: {
+      port: 5174,
+      host: "0.0.0.0",
+      strictPort: true,
+      allowedHosts: [
+        "localhost",
+        "127.0.0.1",
+        "streamwatch.online",
+        "pstream.site",
+        "zstream.site",
+        "cinecat.online",
+        "www.cinecat.online",
+        "streamwatch.youplex.site",
       ],
     },
 

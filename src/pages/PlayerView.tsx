@@ -1,4 +1,3 @@
-import { RunOutput } from "@p-stream/providers";
 import { useCallback, useEffect, useRef, useState } from "react";
 import {
   Navigate,
@@ -9,6 +8,7 @@ import {
 import { useAsync } from "react-use";
 
 import { DetailedMeta } from "@/backend/metadata/getmeta";
+import { RunOutput } from "@/backend/providers/scraperApi";
 import { usePlayer } from "@/components/player/hooks/usePlayer";
 import { usePlayerMeta } from "@/components/player/hooks/usePlayerMeta";
 import { convertProviderCaption } from "@/components/player/utils/captions";

@@ -1,9 +1,13 @@
 import classNames from "classnames";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Trans, useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
-import { getAllProviders, getProviders } from "@/backend/providers/providers";
+import {
+  ensureProvidersLoaded,
+  getAllProviders,
+  getProviders,
+} from "@/backend/providers/providers";
 import { Button } from "@/components/buttons/Button";
 import { Toggle } from "@/components/buttons/Toggle";
 import { FlagIcon } from "@/components/FlagIcon";
@@ -63,7 +67,17 @@ export function PreferencesPart(props: {
     (item) => item.id === getLocaleInfo(props.language)?.code,
   );
 
-  const allSources = getAllProviders().listSources();
+  const [providersTick, setProvidersTick] = useState(0);
+  useEffect(() => {
+    ensureProvidersLoaded()
+      .then(() => setProvidersTick((v) => v + 1))
+      .catch(() => {});
+  }, []);
+
+  const allSources = useMemo(() => {
+    if (providersTick < 0) return [];
+    return getAllProviders().listSources();
+  }, [providersTick]);
 
   const sourceItems = useMemo(() => {
     const currentDeviceSources = getProviders().listSources();

@@ -48,7 +48,12 @@ export function createMP4ProxyUrl(
  */
 export function isUrlAlreadyProxied(url: string): boolean {
   // Check if URL contains the m3u8-proxy pattern (Airplay format)
-  if (url.includes("/m3u8-proxy?url=")) {
+  if (
+    url.includes("/m3u8-proxy?url=") ||
+    url.includes("api.youplex.site/proxy") ||
+    url.includes("proxy.youplex.site") ||
+    url.includes("/proxy?url=")
+  ) {
     return true;
   }
 

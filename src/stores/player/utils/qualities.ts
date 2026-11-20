@@ -1,5 +1,4 @@
-import { Qualities, Stream } from "@p-stream/providers";
-
+import { Qualities, Stream } from "@/backend/providers/scraperApi";
 import { QualityStore } from "@/stores/quality";
 
 export type SourceQuality = Qualities;
@@ -16,6 +15,7 @@ export type LoadableSource = {
   url: string;
   headers?: Stream["headers"];
   preferredHeaders?: Stream["preferredHeaders"];
+  client?: boolean;
 };
 
 export type SourceSliceSource =
@@ -24,12 +24,14 @@ export type SourceSliceSource =
       qualities: Partial<Record<SourceQuality, SourceFileStream>>;
       headers?: Stream["headers"];
       preferredHeaders?: Stream["preferredHeaders"];
+      client?: boolean;
     }
   | {
       type: "hls";
       url: string;
       headers?: Stream["headers"];
       preferredHeaders?: Stream["preferredHeaders"];
+      client?: boolean;
     };
 
 const qualitySorting: Record<SourceQuality, number> = {

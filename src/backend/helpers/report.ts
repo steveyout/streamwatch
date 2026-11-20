@@ -1,9 +1,9 @@
-import { ScrapeMedia } from "@p-stream/providers";
 import { nanoid } from "nanoid";
 import { ofetch } from "ofetch";
 import { useCallback } from "react";
 
 import { isExtensionActiveCached } from "@/backend/extension/messaging";
+import { ScrapeMedia } from "@/backend/providers/scraperApi";
 import { ScrapingItems, ScrapingSegment } from "@/hooks/useProviderScrape";
 import { conf } from "@/setup/config";
 import { useAuthStore } from "@/stores/auth";

@@ -9,7 +9,10 @@ import { setCachedMetadata } from "@/backend/helpers/providerApi";
 import { DetailedMeta, getMetaFromId } from "@/backend/metadata/getmeta";
 import { decodeTMDBId } from "@/backend/metadata/tmdb";
 import { MWMediaType } from "@/backend/metadata/types/mw";
-import { getProviders } from "@/backend/providers/providers";
+import {
+  ensureProvidersLoaded,
+  getProviders,
+} from "@/backend/providers/providers";
 import { Button } from "@/components/buttons/Button";
 import { Icons } from "@/components/Icon";
 import { IconPill } from "@/components/layout/IconPill";
@@ -48,7 +51,8 @@ export function MetaPart(props: MetaPartProps) {
       if (!info.hasPermission) throw new Error("extension-no-permission");
     }
 
-    // use providers metadata
+    // use providers metadata (synced from movies-scrapper API /providers)
+    await ensureProvidersLoaded();
     setCachedMetadata([
       ...getProviders().listSources(),
       ...getProviders().listEmbeds(),

@@ -1,8 +1,8 @@
-import { ScrapeMedia } from "@p-stream/providers";
 import React, { ReactNode, useEffect, useMemo, useRef } from "react";
 import { useTranslation } from "react-i18next";
 
 import { getCachedMetadata } from "@/backend/helpers/providerApi";
+import { ScrapeMedia } from "@/backend/providers/scraperApi";
 import { Loading } from "@/components/layout/Loading";
 import {
   useEmbedScraping,

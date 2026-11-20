@@ -1,5 +1,6 @@
-import { MetaOutput } from "@p-stream/providers";
 import { jwtDecode } from "jwt-decode";
+
+import { MetaOutput } from "@/backend/providers/scraperApi";
 
 let metaDataCache: MetaOutput[] | null = null;
 let token: null | string = null;

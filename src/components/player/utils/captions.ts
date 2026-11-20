@@ -1,8 +1,8 @@
-import { RunOutput } from "@p-stream/providers";
 import DOMPurify from "dompurify";
 import { convert, detect, parse } from "subsrt-ts";
 import { ContentCaption } from "subsrt-ts/dist/types/handler";
 
+import { RunOutput } from "@/backend/providers/scraperApi";
 import { CaptionListItem } from "@/stores/player/slices/source";
 
 export type CaptionCueType = ContentCaption;

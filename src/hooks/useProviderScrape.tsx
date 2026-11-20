@@ -1,10 +1,14 @@
-import { FullScraperEvents, RunOutput, ScrapeMedia } from "@p-stream/providers";
 import { RefObject, useCallback, useEffect, useRef, useState } from "react";
 
 import { isExtensionActiveCached } from "@/backend/extension/messaging";
 import { prepareStream } from "@/backend/extension/streams";
 import { getCachedMetadata } from "@/backend/helpers/providerApi";
 import { getProviders } from "@/backend/providers/providers";
+import {
+  FullScraperEvents,
+  RunOutput,
+  ScrapeMedia,
+} from "@/backend/providers/scraperApi";
 import { getMediaKey } from "@/stores/player/slices/source";
 import { usePlayerStore } from "@/stores/player/store";
 import { usePreferencesStore } from "@/stores/preferences";
@@ -35,14 +39,16 @@ function useBaseScrape() {
   const lastId = useRef<string | null>(null);
 
   const initEvent = useCallback((evt: ScraperEvent<"init">) => {
+    const providerInstance = getProviders();
     setSources(
       evt.sourceIds
         .map((v) => {
-          const source = getCachedMetadata().find((s) => s.id === v);
-          if (!source) throw new Error("invalid source id");
+          const source =
+            getCachedMetadata().find((s) => s.id === v) ||
+            providerInstance.getMetadata(v);
           const out: ScrapingSegment = {
-            name: source.name,
-            id: source.id,
+            name: source?.name || v,
+            id: source?.id || v,
             status: "waiting",
             percentage: 0,
           };

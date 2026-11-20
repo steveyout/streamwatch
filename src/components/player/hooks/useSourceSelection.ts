@@ -1,8 +1,3 @@
-import {
-  EmbedOutput,
-  NotFoundError,
-  SourcererOutput,
-} from "@p-stream/providers";
 import { useAsyncFn } from "react-use";
 
 import { isExtensionActiveCached } from "@/backend/extension/messaging";
@@ -12,6 +7,11 @@ import {
   useReportProviders,
 } from "@/backend/helpers/report";
 import { getProviders } from "@/backend/providers/providers";
+import {
+  EmbedOutput,
+  NotFoundError,
+  SourcererOutput,
+} from "@/backend/providers/scraperApi";
 import { convertProviderCaption } from "@/components/player/utils/captions";
 import { convertRunoutputToSource } from "@/components/player/utils/convertRunoutputToSource";
 import { useOverlayRouter } from "@/hooks/useOverlayRouter";
