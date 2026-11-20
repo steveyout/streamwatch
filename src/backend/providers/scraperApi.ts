@@ -768,6 +768,36 @@ if (typeof window !== "undefined") {
 // Response Normalization -> Stream / RunOutput
 // ----------------------------------------------------------------------
 
+function parseQualityRank(
+  rawQuality?: string,
+  rawName?: string,
+  isHls = false,
+): number {
+  const combined = `${rawQuality || ""} ${rawName || ""}`.toLowerCase();
+  if (/2160|4k|uhd/.test(combined)) return 2160;
+  if (/1440|2k|qhd/.test(combined)) return 1440;
+  if (/1080|fhd/.test(combined)) return 1080;
+  if (/720|\bhd\b/.test(combined)) return 720;
+  if (/480|\bsd\b/.test(combined)) return 480;
+  if (/360/.test(combined)) return 360;
+  if (/\b(auto|master|default)\b/.test(combined)) {
+    return isHls ? 1050 : 1000;
+  }
+  return isHls ? 1050 : 900;
+}
+
+function formatQualityDisplay(rawQuality?: string, isHls = false): string {
+  const lower = String(rawQuality || "").toLowerCase();
+  if (/2160|4k|uhd/.test(lower)) return "4K";
+  if (/1440|2k|qhd/.test(lower)) return "1440p";
+  if (/1080|fhd/.test(lower)) return "1080p";
+  if (/720|\bhd\b/.test(lower)) return "720p";
+  if (/480|\bsd\b/.test(lower)) return "480p";
+  if (/360/.test(lower)) return "360p";
+  if (isHls) return "Auto";
+  return rawQuality || "1080p";
+}
+
 function mapQualityKey(rawQuality?: string): Qualities {
   if (!rawQuality || typeof rawQuality !== "string") return "unknown";
   const q = rawQuality.toLowerCase();
@@ -818,74 +848,73 @@ function normalizeCaptions(payload: any): Caption[] {
   return captions;
 }
 
-function convertApiPayloadToStream(payload: any): Stream | null {
-  if (!payload) return null;
+const childEmbedRegistry = new Map<
+  string,
+  { meta: MetaOutput; stream: Stream }
+>();
 
-  const rawSources: any[] =
-    Array.isArray(payload.sources) && payload.sources.length > 0
-      ? payload.sources
-      : payload.url || payload.stream
-        ? [
-            {
-              id: "primary",
-              url: payload.url || payload.stream,
-              quality: payload.quality || "1080p",
-              type: payload.type,
-              isM3U8: (payload.url || payload.stream)?.includes(".m3u8"),
-              headers: payload.headers,
-              client: payload.client ?? true,
-              directClient: Boolean(payload.directClient),
-            },
-          ]
-        : [];
+function isHlsSourceItem(s: any): boolean {
+  return (
+    s?.type === "hls" ||
+    Boolean(s?.isM3U8) ||
+    String(s?.url || "").includes(".m3u8") ||
+    String(s?.rawUrl || "").includes(".m3u8")
+  );
+}
 
-  const validSources = rawSources
-    .filter((s) => Boolean(s?.url))
-    .sort((a, b) => {
-      const scoreA = (a.directClient ? 2 : 0) + (a.client ? 1 : 0);
-      const scoreB = (b.directClient ? 2 : 0) + (b.client ? 1 : 0);
-      return scoreB - scoreA;
-    });
-  if (validSources.length === 0) return null;
+function buildSingleSourceStream(
+  s: any,
+  payload: any,
+  captions: Caption[],
+): Stream {
+  const isHls = isHlsSourceItem(s);
+  const streamHeaders = s.headers || payload.headers || undefined;
+  const clientFlag =
+    s.client !== undefined
+      ? Boolean(s.client)
+      : Boolean(payload.client ?? true);
+  const streamFlags = Array.isArray(s.flags) ? s.flags : [flags.CORS_ALLOWED];
 
-  const captions = normalizeCaptions(payload);
-
-  const isHlsSource = (s: any) =>
-    s.type === "hls" ||
-    Boolean(s.isM3U8) ||
-    String(s.url).includes(".m3u8") ||
-    String(s.rawUrl || "").includes(".m3u8");
-
-  const hlsCandidate = validSources.find((s) => isHlsSource(s));
-  const topSource = validSources[0];
-  const topScore =
-    (topSource.directClient ? 2 : 0) + (topSource.client ? 1 : 0);
-  const hlsScore = hlsCandidate
-    ? (hlsCandidate.directClient ? 2 : 0) + (hlsCandidate.client ? 1 : 0)
-    : -1;
-
-  if (hlsCandidate && hlsScore >= topScore) {
-    const streamHeaders = hlsCandidate.headers || payload.headers || undefined;
+  if (isHls) {
     return {
-      id: hlsCandidate.id || "primary",
+      id: s.id || "primary",
       type: "hls",
-      playlist: hlsCandidate.url,
-      flags: Array.isArray(hlsCandidate.flags)
-        ? hlsCandidate.flags
-        : [flags.CORS_ALLOWED],
+      playlist: s.url,
+      flags: streamFlags,
       captions,
       headers: streamHeaders,
       preferredHeaders: streamHeaders,
       skipValidation: true,
-      client:
-        hlsCandidate.client !== undefined
-          ? Boolean(hlsCandidate.client)
-          : Boolean(payload.client ?? true),
+      client: clientFlag,
     };
   }
 
+  const qKey = mapQualityKey(s.quality);
+  return {
+    id: s.id || "primary",
+    type: "file",
+    qualities: {
+      [qKey]: {
+        type: "mp4",
+        url: s.url,
+      },
+    },
+    flags: streamFlags,
+    captions,
+    headers: streamHeaders,
+    preferredHeaders: streamHeaders,
+    skipValidation: true,
+    client: clientFlag,
+  };
+}
+
+function buildFileQualitiesStream(
+  fileSources: any[],
+  payload: any,
+  captions: Caption[],
+): Stream {
   const qualities: Partial<Record<Qualities, StreamFile>> = {};
-  validSources.forEach((s) => {
+  fileSources.forEach((s) => {
     const qKey = mapQualityKey(s.quality);
     if (!qualities[qKey]) {
       qualities[qKey] = {
@@ -895,16 +924,15 @@ function convertApiPayloadToStream(payload: any): Stream | null {
     }
   });
 
-  if (Object.keys(qualities).length === 0) {
+  if (Object.keys(qualities).length === 0 && fileSources[0]) {
     qualities.unknown = {
       type: "mp4",
-      url: validSources[0].url,
+      url: fileSources[0].url,
     };
   }
 
-  const primary = validSources[0];
+  const primary = fileSources[0];
   const streamHeaders = primary.headers || payload.headers || undefined;
-
   return {
     id: primary.id || "primary",
     type: "file",
@@ -919,6 +947,142 @@ function convertApiPayloadToStream(payload: any): Stream | null {
         ? Boolean(primary.client)
         : Boolean(payload.client ?? true),
   };
+}
+
+function getSortedValidSources(payload: any): any[] {
+  const rawSources: any[] =
+    Array.isArray(payload?.sources) && payload.sources.length > 0
+      ? payload.sources
+      : payload?.url || payload?.stream
+        ? [
+            {
+              id: "primary",
+              url: payload.url || payload.stream,
+              quality: payload.quality || "1080p",
+              type: payload.type,
+              isM3U8: (payload.url || payload.stream)?.includes(".m3u8"),
+              headers: payload.headers,
+              client: payload.client ?? true,
+              directClient: Boolean(payload.directClient),
+            },
+          ]
+        : [];
+
+  return rawSources
+    .filter((s) => Boolean(s?.url))
+    .map((s) => ({
+      ...s,
+      qualityRank:
+        typeof s.qualityRank === "number"
+          ? s.qualityRank
+          : parseQualityRank(s.quality, s.name, isHlsSourceItem(s)),
+    }))
+    .sort((a, b) => {
+      const scoreA = (a.directClient ? 2 : 0) + (a.client ? 1 : 0);
+      const scoreB = (b.directClient ? 2 : 0) + (b.client ? 1 : 0);
+      if (scoreB !== scoreA) return scoreB - scoreA;
+      return (b.qualityRank || 0) - (a.qualityRank || 0);
+    });
+}
+
+function buildChildEmbedsForPayload(
+  providerId: string,
+  payload: any,
+): Array<{ embedId: string; url: string }> {
+  const validSources = getSortedValidSources(payload);
+  if (validSources.length <= 1) return [];
+
+  const captions = normalizeCaptions(payload);
+  const embeds: Array<{ embedId: string; url: string }> = [];
+
+  const fileSources = validSources.filter((s) => !isHlsSourceItem(s));
+  const distinctFileQualities = new Set(
+    fileSources.map((s) => mapQualityKey(s.quality)),
+  );
+  if (fileSources.length >= 2 && distinctFileQualities.size >= 2) {
+    const combinedId = `${providerId}::all-qualities`;
+    const combinedStream = buildFileQualitiesStream(
+      fileSources,
+      payload,
+      captions,
+    );
+    childEmbedRegistry.set(combinedId, {
+      meta: {
+        type: "embed",
+        id: combinedId,
+        name: `Auto Quality Select (${Array.from(distinctFileQualities).join(" / ")})`,
+        rank: 600,
+      },
+      stream: combinedStream,
+    });
+    embeds.push({ embedId: combinedId, url: fileSources[0].url });
+  }
+
+  validSources.forEach((s, idx) => {
+    const isHls = isHlsSourceItem(s);
+    const qualityLabel = formatQualityDisplay(s.quality, isHls);
+    const streamTypeTag = isHls ? "HLS" : "MP4";
+    const serverLabel =
+      s.server && s.server !== payload.providerName
+        ? String(s.server)
+        : s.name || `Server ${idx + 1}`;
+    const label =
+      s.optionLabel || `${serverLabel} • ${qualityLabel} (${streamTypeTag})`;
+    const embedId = `${providerId}::child::${idx}::${encodeURIComponent(
+      String(s.id || qualityLabel),
+    )}`;
+    const childStream = buildSingleSourceStream(s, payload, captions);
+
+    childEmbedRegistry.set(embedId, {
+      meta: {
+        type: "embed",
+        id: embedId,
+        name: label,
+        rank: 500 - idx,
+      },
+      stream: childStream,
+    });
+    embeds.push({ embedId, url: s.url });
+  });
+
+  return embeds;
+}
+
+function convertApiPayloadToStream(payload: any): Stream | null {
+  if (!payload) return null;
+
+  const validSources = getSortedValidSources(payload);
+  if (validSources.length === 0) return null;
+
+  const captions = normalizeCaptions(payload);
+
+  const fileSources = validSources.filter((s) => !isHlsSourceItem(s));
+  const fileQualitiesCount = new Set(
+    fileSources.map((s) => mapQualityKey(s.quality)),
+  ).size;
+
+  const hlsCandidate = validSources.find((s) => isHlsSourceItem(s));
+  const topSource = validSources[0];
+  const topScore =
+    (topSource.directClient ? 2 : 0) + (topSource.client ? 1 : 0);
+  const hlsScore = hlsCandidate
+    ? (hlsCandidate.directClient ? 2 : 0) + (hlsCandidate.client ? 1 : 0)
+    : -1;
+  const highestFileRank = fileSources[0]?.qualityRank || 0;
+  const hlsRank = hlsCandidate?.qualityRank || 0;
+
+  if (
+    fileQualitiesCount > 1 &&
+    (!hlsCandidate || highestFileRank > hlsRank || topScore > hlsScore)
+  ) {
+    return buildFileQualitiesStream(fileSources, payload, captions);
+  }
+
+  if (hlsCandidate && hlsScore >= topScore) {
+    return buildSingleSourceStream(hlsCandidate, payload, captions);
+  }
+
+  return buildFileQualitiesStream(validSources, payload, captions);
 }
 
 function buildScrapeQueryParams(
@@ -1138,10 +1302,12 @@ export function makeProviders(_ops?: ProviderMakerOptions): ProviderControls {
     },
 
     listEmbeds(): MetaOutput[] {
-      return [];
+      return Array.from(childEmbedRegistry.values()).map((entry) => entry.meta);
     },
 
     getMetadata(id: string): MetaOutput | null {
+      const childMeta = childEmbedRegistry.get(id)?.meta;
+      if (childMeta) return childMeta;
       const cleanId = String(id || "")
         .trim()
         .toLowerCase()
@@ -1231,6 +1397,8 @@ export function makeProviders(_ops?: ProviderMakerOptions): ProviderControls {
         throw new NotFoundError("No playable streams returned");
       }
 
+      const childEmbeds = buildChildEmbedsForPayload(id, data);
+
       events?.update?.({
         id,
         percentage: 100,
@@ -1238,18 +1406,48 @@ export function makeProviders(_ops?: ProviderMakerOptions): ProviderControls {
       });
 
       return {
-        embeds: [],
+        embeds: childEmbeds,
         stream: [stream],
       };
     },
 
     async runEmbedScraper(runnerOps: EmbedRunnerOptions): Promise<EmbedOutput> {
-      const { url } = runnerOps;
+      const { id, url } = runnerOps;
+      const cached =
+        (id && childEmbedRegistry.get(id)) ||
+        (url && childEmbedRegistry.get(url));
+      if (cached) {
+        return {
+          stream: [cached.stream],
+        };
+      }
+
       if (!url) throw new NotFoundError("Missing embed stream URL");
+      const isHls = url.includes(".m3u8");
+      if (!isHls) {
+        return {
+          stream: [
+            {
+              id: id || "primary",
+              type: "file",
+              qualities: {
+                unknown: {
+                  type: "mp4",
+                  url,
+                },
+              },
+              flags: [flags.CORS_ALLOWED],
+              captions: [],
+              skipValidation: true,
+              client: true,
+            },
+          ],
+        };
+      }
       return {
         stream: [
           {
-            id: "primary",
+            id: id || "primary",
             type: "hls",
             playlist: url,
             flags: [flags.CORS_ALLOWED],

@@ -2,6 +2,7 @@ import React, { ReactNode, useEffect, useMemo, useRef } from "react";
 import { useTranslation } from "react-i18next";
 
 import { getCachedMetadata } from "@/backend/helpers/providerApi";
+import { getProviders } from "@/backend/providers/providers";
 import { ScrapeMedia } from "@/backend/providers/scraperApi";
 import { Loading } from "@/components/layout/Loading";
 import {
@@ -24,8 +25,10 @@ function EmbedOption(props: {
 
   const embedName = useMemo(() => {
     if (!props.embedId) return unknownEmbedName;
-    const sourceMeta = getCachedMetadata().find((s) => s.id === props.embedId);
-    return sourceMeta?.name ?? unknownEmbedName;
+    const sourceMeta =
+      getCachedMetadata().find((s) => s.id === props.embedId) ||
+      getProviders().getMetadata(props.embedId);
+    return sourceMeta?.name ?? props.embedId ?? unknownEmbedName;
   }, [props.embedId, unknownEmbedName]);
 
   const { run, errored, loading, notFound } = useEmbedScraping(

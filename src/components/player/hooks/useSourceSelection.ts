@@ -153,6 +153,10 @@ export function useSourceScraping(sourceId: string | null, routerId: string) {
       scrapeSourceOutputToProviderMetric(meta, sourceId, null, "success", null),
     ]);
 
+    if (result.embeds && result.embeds.length > 1) {
+      return result.embeds;
+    }
+
     if (result.stream) {
       if (isExtensionActiveCached()) await prepareStream(result.stream[0]);
       setEmbedId(null);
